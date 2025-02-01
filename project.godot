@@ -11,6 +11,10 @@ config_version=5
 [application]
 
 config/name="Capstone-25"
+<<<<<<< Updated upstream
+=======
+run/main_scene="res://Scenes/main.tscn"
+>>>>>>> Stashed changes
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 

@@ -21,5 +21,4 @@ project/assembly_name="Capstone-25"
 
 [editor]
 
-version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true

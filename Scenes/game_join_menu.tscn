@@ -1,0 +1,102 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2pjiwjskef5o"]
+
+[ext_resource type="Script" path="res://Scripts/game_join_menu.gd" id="1_ctu8x"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_yocke"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_nb33g"]
+
+[node name="GameJoinMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ctu8x")
+
+[node name="MenuTemplate" parent="." instance=ExtResource("1_yocke")]
+layout_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 528.0
+offset_right = 696.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb33g")
+theme_override_font_sizes/font_size = 20
+text = "Back
+"
+
+[node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb33g")
+theme_override_font_sizes/font_size = 20
+text = "Quit
+"
+
+[node name="ConquerButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb33g")
+theme_override_font_sizes/font_size = 20
+text = "Conquer ->"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuTemplate"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.5
+offset_top = -120.0
+offset_right = 75.5
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Local" type="CheckBox" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb33g")
+theme_override_font_sizes/font_size = 30
+text = "Local Game"
+
+[node name="Join" type="CheckBox" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb33g")
+theme_override_font_sizes/font_size = 30
+text = "Join Game"
+
+[node name="JoinName" type="TextEdit" parent="MenuTemplate/VBoxContainer/Join"]
+layout_mode = 2
+offset_top = 64.0
+offset_right = 151.0
+offset_bottom = 84.0
+theme_override_fonts/font = ExtResource("2_nb33g")
+theme_override_font_sizes/font_size = 8
+text = "Game to Join?"
+
+[node name="Host" type="CheckBox" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nb33g")
+theme_override_font_sizes/font_size = 30
+text = "Host Game"
+
+[node name="HostName" type="TextEdit" parent="MenuTemplate/VBoxContainer/Host"]
+layout_mode = 2
+offset_top = 64.0
+offset_right = 151.0
+offset_bottom = 84.0
+theme_override_fonts/font = ExtResource("2_nb33g")
+theme_override_font_sizes/font_size = 8
+text = "Name your Game"
+
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/ConquerButton" to="." method="_on_conquer_button_pressed"]

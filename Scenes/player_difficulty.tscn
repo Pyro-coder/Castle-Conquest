@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6gbkadyot10x"]
+
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_pkfo5"]
+[ext_resource type="Script" path="res://Scripts/player_difficulty.gd" id="1_qgnl5"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_x644m"]
+
+[node name="PlayerDifficulty" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qgnl5")
+
+[node name="MenuTemplate" parent="." instance=ExtResource("1_pkfo5")]
+layout_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 528.0
+offset_right = 696.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_x644m")
+theme_override_font_sizes/font_size = 20
+text = "Back
+"
+
+[node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_x644m")
+theme_override_font_sizes/font_size = 20
+text = "Quit
+"
+
+[node name="ConquerButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_x644m")
+theme_override_font_sizes/font_size = 20
+text = "Conquer ->"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 267.0
+offset_right = 503.0
+offset_bottom = 307.0
+
+[node name="Peasant" type="CheckBox" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_x644m")
+theme_override_font_sizes/font_size = 20
+text = "Peasant: Easy"
+
+[node name="Knight" type="CheckBox" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_x644m")
+theme_override_font_sizes/font_size = 20
+text = "Knight: Medium"
+
+[node name="King" type="CheckBox" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_x644m")
+theme_override_font_sizes/font_size = 20
+text = "King: Hard"
+
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/ConquerButton" to="." method="_on_conquer_button_pressed"]

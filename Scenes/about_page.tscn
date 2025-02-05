@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwbten0vfmks"]
+
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_6m12b"]
+[ext_resource type="Script" path="res://Scripts/about_page.gd" id="1_yg6ry"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_dunht"]
+[ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="3_echs6"]
+
+[node name="AboutPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yg6ry")
+
+[node name="MenuTemplate" parent="." instance=ExtResource("1_6m12b")]
+layout_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 528.0
+offset_right = 696.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dunht")
+theme_override_font_sizes/font_size = 20
+text = "Back
+"
+
+[node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_dunht")
+theme_override_font_sizes/font_size = 20
+text = "Quit
+"
+
+[node name="Label" type="Label" parent="MenuTemplate"]
+layout_mode = 2
+offset_left = 412.0
+offset_top = 130.0
+offset_right = 580.0
+offset_bottom = 149.0
+theme_override_fonts/font = ExtResource("3_echs6")
+theme_override_font_sizes/font_size = 20
+text = "Here is some information on the Creators"
+
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

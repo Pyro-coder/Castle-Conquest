@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://i81pumhgpsx7"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_bo02r"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_y2ofo"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_gaqhp"]
+
+[sub_resource type="GDScript" id="GDScript_h4ssn"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bo02r")
+
+[node name="MenuTemplate" parent="." instance=ExtResource("1_y2ofo")]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = -1.0
+
+[node name="Label2" type="Label" parent="MenuTemplate"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.372
+anchor_top = 0.184
+anchor_right = 0.372
+anchor_bottom = 0.184
+offset_left = -18.544
+offset_top = -3.23201
+offset_right = 297.456
+offset_bottom = 84.768
+theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_font_sizes/font_size = 50
+text = "Castle Conquest"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MenuTemplate"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.444444
+anchor_top = 0.364198
+anchor_right = 0.529514
+anchor_bottom = 0.654321
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_font_sizes/font_size = 30
+text = "Play
+"
+script = SubResource("GDScript_h4ssn")
+
+[node name="SettingsButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_font_sizes/font_size = 30
+text = "Settings
+"
+
+[node name="TutorialButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_font_sizes/font_size = 30
+text = "Tutorial
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+layout_mode = 2
+offset_left = 432.0
+offset_top = 528.0
+offset_right = 696.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 170
+
+[node name="AboutButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_font_sizes/font_size = 20
+text = "About
+"
+
+[node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_font_sizes/font_size = 20
+text = "Quit
+"
+
+[connection signal="pressed" from="MenuTemplate/VBoxContainer3/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer3/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer3/TutorialButton" to="." method="_on_tutorial_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

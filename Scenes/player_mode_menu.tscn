@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf5nwd8pspm3u"]
+
+[ext_resource type="Script" path="res://Scripts/player_mode_menu.gd" id="1_2esew"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_wxfi3"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_4sg4i"]
+
+[node name="PlayerMode_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2esew")
+
+[node name="MenuTemplate" parent="." instance=ExtResource("1_wxfi3")]
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 223.0
+offset_right = 652.0
+offset_bottom = 379.0
+
+[node name="OnePlayerButton" type="Button" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4sg4i")
+theme_override_font_sizes/font_size = 40
+text = "One Player"
+
+[node name="TwoPlayerButton" type="Button" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4sg4i")
+theme_override_font_sizes/font_size = 40
+text = "Two Player"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 528.0
+offset_right = 696.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4sg4i")
+theme_override_font_sizes/font_size = 20
+text = "Back
+"
+
+[node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_4sg4i")
+theme_override_font_sizes/font_size = 20
+text = "Quit
+"
+
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/OnePlayerButton" to="." method="_on_one_player_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/TwoPlayerButton" to="." method="_on_two_player_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

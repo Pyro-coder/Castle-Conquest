@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://bneps1brnw5s1"]
+
+[ext_resource type="Script" path="res://Scripts/tutorial_pg_1.gd" id="1_75y2n"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_ujvu6"]
+[ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="2_cvcir"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="4_7eub2"]
+
+[node name="TutorialPg1" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_75y2n")
+
+[node name="MenuTemplate" parent="." instance=ExtResource("1_ujvu6")]
+layout_mode = 1
+
+[node name="Label" type="Label" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 126.0
+offset_right = 751.0
+offset_bottom = 167.0
+theme_override_fonts/font = ExtResource("2_cvcir")
+theme_override_font_sizes/font_size = 20
+text = "Here is some information on 
+how to play the game"
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 528.0
+offset_right = 696.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7eub2")
+theme_override_font_sizes/font_size = 20
+text = "Back
+"
+
+[node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_7eub2")
+theme_override_font_sizes/font_size = 20
+text = "Quit
+"
+
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

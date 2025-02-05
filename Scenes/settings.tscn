@@ -1,0 +1,98 @@
+[gd_scene load_steps=4 format=3 uid="uid://da4cb5yjobgfi"]
+
+[ext_resource type="Script" path="res://Scripts/settings.gd" id="1_2x8j0"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_c4ub5"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_214xw"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2x8j0")
+
+[node name="MenuTemplate" parent="." instance=ExtResource("1_c4ub5")]
+layout_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuTemplate"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 0
+offset_left = 466.0
+offset_top = 183.0
+offset_right = 506.0
+offset_bottom = 223.0
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_214xw")
+theme_override_font_sizes/font_size = 30
+text = "SFX Volume"
+horizontal_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="MenuTemplate/VBoxContainer/Label"]
+clip_contents = true
+layout_mode = 2
+offset_top = 56.0
+offset_right = 200.0
+offset_bottom = 72.0
+tick_count = 10
+
+[node name="Label2" type="Label" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_214xw")
+theme_override_font_sizes/font_size = 30
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="MenuTemplate/VBoxContainer/Label2"]
+layout_mode = 2
+offset_top = 56.0
+offset_right = 200.0
+offset_bottom = 72.0
+tick_count = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 528.0
+offset_right = 696.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_214xw")
+theme_override_font_sizes/font_size = 20
+text = "Back
+"
+
+[node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_214xw")
+theme_override_font_sizes/font_size = 20
+text = "Quit
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 643.0
+offset_top = 528.0
+offset_right = 907.0
+offset_bottom = 571.0
+theme_override_constants/separation = 10
+
+[node name="ApplyButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_214xw")
+theme_override_font_sizes/font_size = 20
+text = "Apply
+"
+
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]

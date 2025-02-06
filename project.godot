@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 AudioPlayer="*res://Scenes/GlobalScenes/AudioPlayer.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="Capstone-25"

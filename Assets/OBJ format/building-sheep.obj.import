@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://boytu6rwgtfuu"
+path="res://.godot/imported/building-sheep.obj-daa7a752f17b00a005eb18572e0a6a14.mesh"
+
+[deps]
+
+files=["res://.godot/imported/building-sheep.obj-daa7a752f17b00a005eb18572e0a6a14.mesh"]
+
+source_file="res://Assets/OBJ format/building-sheep.obj"
+dest_files=["res://.godot/imported/building-sheep.obj-daa7a752f17b00a005eb18572e0a6a14.mesh", "res://.godot/imported/building-sheep.obj-daa7a752f17b00a005eb18572e0a6a14.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

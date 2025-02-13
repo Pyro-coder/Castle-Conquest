@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvlxdrs67u455"]
+
+[ext_resource type="Script" path="res://Scripts/waterHex.gd" id="2_aodnd"]
+[ext_resource type="ArrayMesh" uid="uid://xd4rhjstdb7n" path="res://Assets/OBJ format/water.obj" id="2_dbcwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx0fb"]
+albedo_color = Color(0.4, 0.8, 0.9, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fjo68"]
+height = 0.203389
+
+[node name="waterHex" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
+mesh = ExtResource("2_dbcwl")
+surface_material_override/0 = SubResource("StandardMaterial3D_lx0fb")
+script = ExtResource("2_aodnd")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("CylinderShape3D_fjo68")
+
+[connection signal="area_entered" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_area_entered"]
+[connection signal="input_event" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_mouse_exited"]

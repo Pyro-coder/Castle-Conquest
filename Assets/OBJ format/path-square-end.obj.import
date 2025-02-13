@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://rnfooaeowvmk"
+path="res://.godot/imported/path-square-end.obj-fbaf3a9c76044870a6d88cf2c1f852b7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/path-square-end.obj-fbaf3a9c76044870a6d88cf2c1f852b7.mesh"]
+
+source_file="res://Assets/OBJ format/path-square-end.obj"
+dest_files=["res://.godot/imported/path-square-end.obj-fbaf3a9c76044870a6d88cf2c1f852b7.mesh", "res://.godot/imported/path-square-end.obj-fbaf3a9c76044870a6d88cf2c1f852b7.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

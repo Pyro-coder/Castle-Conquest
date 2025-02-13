@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dr2vhgidurdpf"
+path="res://.godot/imported/unit-mill.obj-e0c19701bdc1d4f0ecec689e36569056.mesh"
+
+[deps]
+
+files=["res://.godot/imported/unit-mill.obj-e0c19701bdc1d4f0ecec689e36569056.mesh"]
+
+source_file="res://Assets/OBJ format/unit-mill.obj"
+dest_files=["res://.godot/imported/unit-mill.obj-e0c19701bdc1d4f0ecec689e36569056.mesh", "res://.godot/imported/unit-mill.obj-e0c19701bdc1d4f0ecec689e36569056.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

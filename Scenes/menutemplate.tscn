@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0id1c01yo1ck"]
+[gd_scene load_steps=2 format=3 uid="uid://c0id1c01yo1ck"]
 
-[ext_resource type="Texture2D" uid="uid://dtuyhj4bxj8wk" path="res://Assets/origbig.png" id="1_c5i8c"]
 [ext_resource type="Texture2D" uid="uid://5q375qr4476d" path="res://Assets/wood1.png" id="1_th0xl"]
 
 [node name="MenuTemplate" type="Control"]
@@ -10,11 +9,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Origbig" type="Sprite2D" parent="."]
-position = Vector2(607, 260)
-scale = Vector2(0.65, 0.65)
-texture = ExtResource("1_c5i8c")
 
 [node name="Wood1" type="Sprite2D" parent="."]
 position = Vector2(572, 325)

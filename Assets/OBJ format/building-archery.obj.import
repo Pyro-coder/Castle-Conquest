@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c0u232qq5tsei"
+path="res://.godot/imported/building-archery.obj-4aaf1f7fa4f29d8a61f2aa67d9a3a09f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/building-archery.obj-4aaf1f7fa4f29d8a61f2aa67d9a3a09f.mesh"]
+
+source_file="res://Assets/OBJ format/building-archery.obj"
+dest_files=["res://.godot/imported/building-archery.obj-4aaf1f7fa4f29d8a61f2aa67d9a3a09f.mesh", "res://.godot/imported/building-archery.obj-4aaf1f7fa4f29d8a61f2aa67d9a3a09f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

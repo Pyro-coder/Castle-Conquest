@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhcs32pehblli"
-path.s3tc="res://.godot/imported/colormap.png-6b9620a685675e3ea44c53f36eba173c.s3tc.ctex"
+uid="uid://cyfv6w8v0jm0v"
+path.s3tc="res://.godot/imported/building-village_0.png-62067dc9b08c33864991c469da1aff71.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "4b96ead31ce06689fa5393a01c3beae8"
+}
 
 [deps]
 
-source_file="res://Assets/FBX format/Textures/colormap.png"
-dest_files=["res://.godot/imported/colormap.png-6b9620a685675e3ea44c53f36eba173c.s3tc.ctex"]
+source_file="res://Assets/FBX format/building-village_0.png"
+dest_files=["res://.godot/imported/building-village_0.png-62067dc9b08c33864991c469da1aff71.s3tc.ctex"]
 
 [params]
 

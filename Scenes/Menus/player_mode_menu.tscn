@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bf5nwd8pspm3u"]
 
-[ext_resource type="Script" path="res://Scripts/player_mode_menu.gd" id="1_2esew"]
-[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_wxfi3"]
+[ext_resource type="Script" path="res://Scripts/menu_scripts/player_mode_menu.gd" id="1_2esew"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_wxfi3"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_4sg4i"]
 
 [node name="PlayerMode_menu" type="Control"]

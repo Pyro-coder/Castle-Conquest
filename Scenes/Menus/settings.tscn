@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://da4cb5yjobgfi"]
 
-[ext_resource type="Script" path="res://Scripts/settings.gd" id="1_2x8j0"]
-[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_c4ub5"]
+[ext_resource type="Script" path="res://Scripts/menu_scripts/settings.gd" id="1_2x8j0"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_c4ub5"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_214xw"]
 
 [node name="Settings" type="Control"]

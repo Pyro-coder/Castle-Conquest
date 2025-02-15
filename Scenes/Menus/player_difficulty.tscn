@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6gbkadyot10x"]
 
-[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_pkfo5"]
-[ext_resource type="Script" path="res://Scripts/player_difficulty.gd" id="1_qgnl5"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_pkfo5"]
+[ext_resource type="Script" path="res://Scripts/menu_scripts/player_difficulty.gd" id="1_qgnl5"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_x644m"]
 
 [node name="PlayerDifficulty" type="Control"]

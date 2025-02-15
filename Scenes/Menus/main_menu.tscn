@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://i81pumhgpsx7"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_bo02r"]
-[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_y2ofo"]
-[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_gaqhp"]
+[ext_resource type="Script" path="res://Scripts/menu_scripts/main_menu.gd" id="1_wpd8b"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_lt155"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_3aj6u"]
 
 [sub_resource type="GDScript" id="GDScript_h4ssn"]
 script/source = "extends Button
@@ -25,9 +25,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bo02r")
+script = ExtResource("1_wpd8b")
 
-[node name="MenuTemplate" parent="." instance=ExtResource("1_y2ofo")]
+[node name="MenuTemplate" parent="." instance=ExtResource("2_lt155")]
 layout_mode = 1
 offset_right = 1.0
 offset_bottom = -1.0
@@ -43,7 +43,7 @@ offset_left = -18.544
 offset_top = -3.23201
 offset_right = 297.456
 offset_bottom = 84.768
-theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_fonts/font = ExtResource("3_3aj6u")
 theme_override_font_sizes/font_size = 50
 text = "Castle Conquest"
 horizontal_alignment = 1
@@ -62,7 +62,7 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_fonts/font = ExtResource("3_3aj6u")
 theme_override_font_sizes/font_size = 30
 text = "Play
 "
@@ -71,7 +71,7 @@ script = SubResource("GDScript_h4ssn")
 [node name="SettingsButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_fonts/font = ExtResource("3_3aj6u")
 theme_override_font_sizes/font_size = 30
 text = "Settings
 "
@@ -79,7 +79,7 @@ text = "Settings
 [node name="TutorialButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_fonts/font = ExtResource("3_3aj6u")
 theme_override_font_sizes/font_size = 30
 text = "Tutorial
 "
@@ -96,14 +96,14 @@ theme_override_constants/separation = 170
 
 [node name="AboutButton" type="Button" parent="MenuTemplate/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_fonts/font = ExtResource("3_3aj6u")
 theme_override_font_sizes/font_size = 20
 text = "About
 "
 
 [node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_gaqhp")
+theme_override_fonts/font = ExtResource("3_3aj6u")
 theme_override_font_sizes/font_size = 20
 text = "Quit
 "

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bneps1brnw5s1"]
 
-[ext_resource type="Script" path="res://Scripts/tutorial_pg_1.gd" id="1_75y2n"]
-[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/menutemplate.tscn" id="1_ujvu6"]
+[ext_resource type="Script" path="res://Scripts/menu_scripts/tutorial_pg_1.gd" id="1_75y2n"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_ujvu6"]
 [ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="2_cvcir"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="4_7eub2"]
 

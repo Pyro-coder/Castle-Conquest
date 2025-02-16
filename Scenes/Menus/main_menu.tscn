@@ -1,8 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://i81pumhgpsx7"]
+[gd_scene load_steps=7 format=3 uid="uid://i81pumhgpsx7"]
 
 [ext_resource type="Script" path="res://Scripts/menu_scripts/main_menu.gd" id="1_wpd8b"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_lt155"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_3aj6u"]
+
+[sub_resource type="Shader" id="Shader_3icbh"]
+code = "shader_type canvas_item;
+
+uniform int amount = 40;
+
+void fragment()
+{
+	vec2 grid_uv = round(UV * float(amount)) / float(amount);
+	
+	vec4 text = texture(TEXTURE, grid_uv);
+	
+	COLOR = text;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6wbe"]
+shader = SubResource("Shader_3icbh")
+shader_parameter/amount = 250
 
 [sub_resource type="GDScript" id="GDScript_h4ssn"]
 script/source = "extends Button
@@ -33,15 +51,16 @@ offset_right = 1.0
 offset_bottom = -1.0
 
 [node name="Label2" type="Label" parent="MenuTemplate"]
+material = SubResource("ShaderMaterial_v6wbe")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.372
 anchor_top = 0.184
 anchor_right = 0.372
 anchor_bottom = 0.184
-offset_left = -18.544
+offset_left = -121.728
 offset_top = -3.23201
-offset_right = 297.456
+offset_right = 194.272
 offset_bottom = 84.768
 theme_override_fonts/font = ExtResource("3_3aj6u")
 theme_override_font_sizes/font_size = 50
@@ -51,10 +70,10 @@ horizontal_alignment = 1
 [node name="VBoxContainer3" type="VBoxContainer" parent="MenuTemplate"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.444444
-anchor_top = 0.364198
-anchor_right = 0.529514
-anchor_bottom = 0.654321
+anchor_left = 0.351826
+anchor_top = 0.36476
+anchor_right = 0.436896
+anchor_bottom = 0.655332
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true

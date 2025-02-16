@@ -80,9 +80,9 @@ text = "Quit
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 643.0
+offset_left = 363.0
 offset_top = 528.0
-offset_right = 907.0
+offset_right = 627.0
 offset_bottom = 571.0
 theme_override_constants/separation = 10
 

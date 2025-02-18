@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://byihrtakunev4"]
 
-[ext_resource type="ArrayMesh" uid="uid://c3lby4t3yxnwi" path="res://Assets/OBJ format/building-castle.obj" id="1_6wif4"]
+[ext_resource type="ArrayMesh" uid="uid://jm51ljdmfjh7" path="res://Assets/OBJ format/grass-forest.obj" id="1_pppdi"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wtyoj"]
 height = 0.420277
@@ -8,7 +8,7 @@ height = 0.420277
 [node name="forest_hex" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_6wif4")
+mesh = ExtResource("1_pppdi")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
 

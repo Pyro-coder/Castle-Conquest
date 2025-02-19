@@ -7,19 +7,47 @@ const FOREST_TILE = preload("res://Scenes/forest_hex.tscn")
 
 
 
+
 var tile_map = {}
 
 func _ready() -> void:
 	_generate_grid()
 	
-	change_tile(Vector2i(6,3))
-
+	#change_tile(Vector2i(_offset(0),_offset(0)))
+	var board = _return_test_board()
+	for i in range(board.size()):
+		var hex = board[i]
+		var xcoord = hex.x
+		var ycoord = hex.y
+		change_tile(Vector2i(_offset(ycoord),_offset(xcoord)))
 	
 
-	
+func _return_test_board():
+	var board1 = [
+		Vector4(0, 0, 16, 1),
+		Vector4(2, -1, 16, 2),
+		Vector4(1, -1, 0, -1),
+		Vector4(1, 0, 0, -1),
+		Vector4(0, 1, 0, -1),
+		Vector4(-1, 1, 0, -1),
+		Vector4(-1, 0, 0, -1),
+		Vector4(0, -1, 0, -1)
+	]
+	var board2 = [
+	Vector4(0,  0, 10, 1),  # Player 1 left 10 pieces at the initial cell.
+	Vector4(0, -1,  6, 1),  # Player 1 moved 6 pieces to an adjacent cell.
+	Vector4(2, -1, 10, 2),  # Player 2 left 10 pieces at the initial cell.
+	Vector4(1, -1,  6, 2),  # Player 2 moved 6 pieces to an adjacent cell.
+	Vector4(1,  0,  0, -1),
+	Vector4(0,  1,  0, -1),
+	Vector4(-1, 1,  0, -1),
+	Vector4(-1, 0,  0, -1)
+]
+	return board2
 
-
+func _offset(coordinate):
 	
+	return coordinate + grid_size/2
 
 
 func _generate_grid():
@@ -29,8 +57,9 @@ func _generate_grid():
 	for x in range(grid_size):
 		for y in range(grid_size):
 			var tile = HEX_TILE.instantiate()
-			var coords = Vector2i(x, y + int(y_offset))
+			var coords = Vector2i(x, y)
 			add_child(tile)
+			
 			
 			var world_position = _axial_to_world(Vector2(coords))
 			tile.translate(Vector3(world_position.x, 0, world_position.y))

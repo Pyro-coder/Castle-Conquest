@@ -2,6 +2,9 @@ extends Node3D
 const TILE_SIZE := 1.0
 const HEX_TILE = preload("res://Scenes/water_hex.tscn")
 const FOREST_TILE = preload("res://Scenes/forest_hex.tscn")
+const BLUE_CASTLE = preload("res://Scenes/castle_hex_blue.tscn")
+const RED_CASTLE = preload("res://Scenes/castle_hex_red.tscn")
+
 @export_range(2, 20) var grid_size: int = 20
 
 
@@ -19,8 +22,12 @@ func _ready() -> void:
 		var hex = board[i]
 		var xcoord = hex.x
 		var ycoord = hex.y
-		change_tile(Vector2i(_offset(ycoord),_offset(xcoord)))
+		change_tile(Vector2i(_offset(ycoord),_offset(xcoord)),"forest")
+		
+		
 	
+	change_tile(Vector2i(_offset(0),_offset(2)),"blue")
+	change_tile(Vector2i(_offset(-1),_offset(-1)),"red")
 
 func _return_test_board():
 	var board1 = [
@@ -83,10 +90,18 @@ func get_tile_at(coords: Vector2):
 	return tile_map.get(coords, null)
 	
 	
-func change_tile(coords: Vector2i) -> void:
+func change_tile(coords: Vector2i, type: String) -> void:
 	if tile_map.has(coords):
 		var old_tile = tile_map[coords]
-		var new_tile = FOREST_TILE.instantiate()
+		var new_tile
+		if type == "blue":
+			new_tile = BLUE_CASTLE.instantiate()
+		
+		if type == "red":
+			new_tile = RED_CASTLE.instantiate()
+		
+		if type == "forest":
+			new_tile = FOREST_TILE.instantiate()
 		
 		# Preserve position and transformation
 		new_tile.transform = old_tile.transform

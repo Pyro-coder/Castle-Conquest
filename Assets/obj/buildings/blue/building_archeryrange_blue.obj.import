@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://5ixskp3wvrtf"
+path="res://.godot/imported/building_archeryrange_blue.obj-5b51c563ca6690e492e2a4baca0f34c7.mesh"
+
+[deps]
+
+files=["res://.godot/imported/building_archeryrange_blue.obj-5b51c563ca6690e492e2a4baca0f34c7.mesh"]
+
+source_file="res://Assets/obj/buildings/blue/building_archeryrange_blue.obj"
+dest_files=["res://.godot/imported/building_archeryrange_blue.obj-5b51c563ca6690e492e2a4baca0f34c7.mesh", "res://.godot/imported/building_archeryrange_blue.obj-5b51c563ca6690e492e2a4baca0f34c7.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bv43gxjc4hftv"
+path="res://.godot/imported/hills_B_trees.obj-41d2c972fa1eca498e8e35b1f4befd33.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hills_B_trees.obj-41d2c972fa1eca498e8e35b1f4befd33.mesh"]
+
+source_file="res://Assets/obj/decoration/nature/hills_B_trees.obj"
+dest_files=["res://.godot/imported/hills_B_trees.obj-41d2c972fa1eca498e8e35b1f4befd33.mesh", "res://.godot/imported/hills_B_trees.obj-41d2c972fa1eca498e8e35b1f4befd33.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d344wkoa5mjxg"
+path="res://.godot/imported/hex_road_A_sloped_high.obj-7b9f7e03b13d6d8a442c3a80655b6dcf.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hex_road_A_sloped_high.obj-7b9f7e03b13d6d8a442c3a80655b6dcf.mesh"]
+
+source_file="res://Assets/obj/tiles/roads/hex_road_A_sloped_high.obj"
+dest_files=["res://.godot/imported/hex_road_A_sloped_high.obj-7b9f7e03b13d6d8a442c3a80655b6dcf.mesh", "res://.godot/imported/hex_road_A_sloped_high.obj-7b9f7e03b13d6d8a442c3a80655b6dcf.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

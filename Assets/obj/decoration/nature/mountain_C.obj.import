@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://3gv0hur2uwvy"
+path="res://.godot/imported/mountain_C.obj-9882d815f146cb71f3a37da464a2dee8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/mountain_C.obj-9882d815f146cb71f3a37da464a2dee8.mesh"]
+
+source_file="res://Assets/obj/decoration/nature/mountain_C.obj"
+dest_files=["res://.godot/imported/mountain_C.obj-9882d815f146cb71f3a37da464a2dee8.mesh", "res://.godot/imported/mountain_C.obj-9882d815f146cb71f3a37da464a2dee8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

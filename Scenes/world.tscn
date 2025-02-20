@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvy7s6wfutupg"]
+
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_t7bt3"]
+[ext_resource type="MeshLibrary" uid="uid://dyymujlo3ml6" path="res://Scenes/Blcoks.tres" id="1_tyue0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1i6cp"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_qmuoi"]
+sky_material = SubResource("ProceduralSkyMaterial_1i6cp")
+
+[sub_resource type="Environment" id="Environment_bjlow"]
+background_mode = 2
+sky = SubResource("Sky_qmuoi")
+sky_custom_fov = 104.2
+ambient_light_color = Color(0.928735, 0.243927, 0.799091, 1)
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjw6v"]
+transparency = 1
+albedo_color = Color(0.117647, 0.486275, 1, 0.584314)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cf3se"]
+material = SubResource("StandardMaterial3D_xjw6v")
+size = Vector2(10000, 10000)
+subdivide_width = 10
+subdivide_depth = 10
+center_offset = Vector3(0, -100, 0)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_t7bt3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bjlow")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_tyue0")
+cell_scale = 100.0
+data = {
+"cells": PackedInt32Array(65534, 1, 0, 49, 85, 0, 98, 65535, 0, 46, 65449, 0, 65482, 65457, 0, 65440, 3, 0, 65490, 84, 0, -1245193, 174, 0, -1245287, 166, 0, -1245338, 80, 0, -1245384, 65529, 0, -1245332, 65450, 0, -1245279, 65364, 0, -1245190, 65372, 0, -1310627, 65377, 0, -1310581, 65464, 0, -1310534, 13, 0, -1310587, 96, 0, -1310643, 169, 0, 0, 65535, 1)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Sea" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_cf3se")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(0.976308, -0.00020148, -0.216384, 0.00523462, 0.999729, 0.0226873, 0.216321, -0.0232825, 0.976045, -208.9, 121.88, 548.84)

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ba1f1i5dkh8l4"
+path="res://.godot/imported/building_tavern_green.obj-716c301b2373e109b61cb0430bb4172a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/building_tavern_green.obj-716c301b2373e109b61cb0430bb4172a.mesh"]
+
+source_file="res://Assets/obj/buildings/green/building_tavern_green.obj"
+dest_files=["res://.godot/imported/building_tavern_green.obj-716c301b2373e109b61cb0430bb4172a.mesh", "res://.godot/imported/building_tavern_green.obj-716c301b2373e109b61cb0430bb4172a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

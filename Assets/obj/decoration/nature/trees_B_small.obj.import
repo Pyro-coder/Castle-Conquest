@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b2xaas0k374k5"
+path="res://.godot/imported/trees_B_small.obj-252716e31b7b7a5d8c8488c7a42699dd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/trees_B_small.obj-252716e31b7b7a5d8c8488c7a42699dd.mesh"]
+
+source_file="res://Assets/obj/decoration/nature/trees_B_small.obj"
+dest_files=["res://.godot/imported/trees_B_small.obj-252716e31b7b7a5d8c8488c7a42699dd.mesh", "res://.godot/imported/trees_B_small.obj-252716e31b7b7a5d8c8488c7a42699dd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

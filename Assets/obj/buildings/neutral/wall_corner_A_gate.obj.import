@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dee5ngp2ljrxe"
+path="res://.godot/imported/wall_corner_A_gate.obj-124727636a2573188890417e23cf9465.mesh"
+
+[deps]
+
+files=["res://.godot/imported/wall_corner_A_gate.obj-124727636a2573188890417e23cf9465.mesh"]
+
+source_file="res://Assets/obj/buildings/neutral/wall_corner_A_gate.obj"
+dest_files=["res://.godot/imported/wall_corner_A_gate.obj-124727636a2573188890417e23cf9465.mesh", "res://.godot/imported/wall_corner_A_gate.obj-124727636a2573188890417e23cf9465.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

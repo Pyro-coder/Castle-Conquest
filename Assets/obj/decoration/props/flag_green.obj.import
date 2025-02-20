@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dgml4camfvxra"
+path="res://.godot/imported/flag_green.obj-6d8f313dd723d529a8f415cda04c41bd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/flag_green.obj-6d8f313dd723d529a8f415cda04c41bd.mesh"]
+
+source_file="res://Assets/obj/decoration/props/flag_green.obj"
+dest_files=["res://.godot/imported/flag_green.obj-6d8f313dd723d529a8f415cda04c41bd.mesh", "res://.godot/imported/flag_green.obj-6d8f313dd723d529a8f415cda04c41bd.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

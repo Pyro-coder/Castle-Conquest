@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d8ylw5g8ivsd"
+path="res://.godot/imported/weaponrack.obj-a11cb2233a8a88e8fe3c420942f8663e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/weaponrack.obj-a11cb2233a8a88e8fe3c420942f8663e.mesh"]
+
+source_file="res://Assets/obj/decoration/props/weaponrack.obj"
+dest_files=["res://.godot/imported/weaponrack.obj-a11cb2233a8a88e8fe3c420942f8663e.mesh", "res://.godot/imported/weaponrack.obj-a11cb2233a8a88e8fe3c420942f8663e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

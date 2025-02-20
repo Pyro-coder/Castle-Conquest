@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://djx2t7q6fbr2q"]
+
+[ext_resource type="ArrayMesh" uid="uid://b2aysgjxh2gbh" path="res://Assets/obj/buildings/blue/building_castle_blue.obj" id="1_phw31"]
+[ext_resource type="ArrayMesh" uid="uid://n10i8i8gibar" path="res://Assets/OBJ format/grass.obj" id="2_v4lbb"]
+
+[node name="castleHex" type="Node3D"]
+
+[node name="BuildingCastleBlue" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.2, 0)
+mesh = ExtResource("1_phw31")
+
+[node name="Grass" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_v4lbb")

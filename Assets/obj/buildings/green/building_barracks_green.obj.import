@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b5k24pq0cf16f"
+path="res://.godot/imported/building_barracks_green.obj-0f5b1c2a4b3be27ae047a2d552dbc4e9.mesh"
+
+[deps]
+
+files=["res://.godot/imported/building_barracks_green.obj-0f5b1c2a4b3be27ae047a2d552dbc4e9.mesh"]
+
+source_file="res://Assets/obj/buildings/green/building_barracks_green.obj"
+dest_files=["res://.godot/imported/building_barracks_green.obj-0f5b1c2a4b3be27ae047a2d552dbc4e9.mesh", "res://.godot/imported/building_barracks_green.obj-0f5b1c2a4b3be27ae047a2d552dbc4e9.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

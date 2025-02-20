@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c1vdtbxp405ku"
+path="res://.godot/imported/crate_long_empty.obj-ad80cc625ad9c6e9fa34cb26b875672a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/crate_long_empty.obj-ad80cc625ad9c6e9fa34cb26b875672a.mesh"]
+
+source_file="res://Assets/obj/decoration/props/crate_long_empty.obj"
+dest_files=["res://.godot/imported/crate_long_empty.obj-ad80cc625ad9c6e9fa34cb26b875672a.mesh", "res://.godot/imported/crate_long_empty.obj-ad80cc625ad9c6e9fa34cb26b875672a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

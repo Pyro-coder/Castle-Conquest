@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cgviu2sqes0cl"
+path="res://.godot/imported/projectile_catapult.obj-c957cc5acc9efb408f085ec1a2969578.mesh"
+
+[deps]
+
+files=["res://.godot/imported/projectile_catapult.obj-c957cc5acc9efb408f085ec1a2969578.mesh"]
+
+source_file="res://Assets/obj/buildings/neutral/projectile_catapult.obj"
+dest_files=["res://.godot/imported/projectile_catapult.obj-c957cc5acc9efb408f085ec1a2969578.mesh", "res://.godot/imported/projectile_catapult.obj-c957cc5acc9efb408f085ec1a2969578.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

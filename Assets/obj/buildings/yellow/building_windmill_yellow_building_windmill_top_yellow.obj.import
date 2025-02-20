@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://hfcnhtkrue2q"
+path="res://.godot/imported/building_windmill_yellow_building_windmill_top_yellow.obj-a285a376317cf07cdf2c994d7e165e57.mesh"
+
+[deps]
+
+files=["res://.godot/imported/building_windmill_yellow_building_windmill_top_yellow.obj-a285a376317cf07cdf2c994d7e165e57.mesh"]
+
+source_file="res://Assets/obj/buildings/yellow/building_windmill_yellow_building_windmill_top_yellow.obj"
+dest_files=["res://.godot/imported/building_windmill_yellow_building_windmill_top_yellow.obj-a285a376317cf07cdf2c994d7e165e57.mesh", "res://.godot/imported/building_windmill_yellow_building_windmill_top_yellow.obj-a285a376317cf07cdf2c994d7e165e57.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

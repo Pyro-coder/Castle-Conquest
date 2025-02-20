@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bdjpwub6jjk33"
+path="res://.godot/imported/resource_lumber.obj-cc1188efe12666080eed01666b551c03.mesh"
+
+[deps]
+
+files=["res://.godot/imported/resource_lumber.obj-cc1188efe12666080eed01666b551c03.mesh"]
+
+source_file="res://Assets/obj/decoration/props/resource_lumber.obj"
+dest_files=["res://.godot/imported/resource_lumber.obj-cc1188efe12666080eed01666b551c03.mesh", "res://.godot/imported/resource_lumber.obj-cc1188efe12666080eed01666b551c03.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

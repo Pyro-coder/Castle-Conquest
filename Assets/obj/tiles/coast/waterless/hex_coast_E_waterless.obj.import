@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c24iewac7lj4d"
+path="res://.godot/imported/hex_coast_E_waterless.obj-422e4e6d1b5f147e9d552e41f03582ed.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hex_coast_E_waterless.obj-422e4e6d1b5f147e9d552e41f03582ed.mesh"]
+
+source_file="res://Assets/obj/tiles/coast/waterless/hex_coast_E_waterless.obj"
+dest_files=["res://.godot/imported/hex_coast_E_waterless.obj-422e4e6d1b5f147e9d552e41f03582ed.mesh", "res://.godot/imported/hex_coast_E_waterless.obj-422e4e6d1b5f147e9d552e41f03582ed.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

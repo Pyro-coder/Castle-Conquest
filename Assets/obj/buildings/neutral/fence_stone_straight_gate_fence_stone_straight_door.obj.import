@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cgx6ojt2nmk4h"
+path="res://.godot/imported/fence_stone_straight_gate_fence_stone_straight_door.obj-b13aad5c4e51aa168a218872de3cf6ae.mesh"
+
+[deps]
+
+files=["res://.godot/imported/fence_stone_straight_gate_fence_stone_straight_door.obj-b13aad5c4e51aa168a218872de3cf6ae.mesh"]
+
+source_file="res://Assets/obj/buildings/neutral/fence_stone_straight_gate_fence_stone_straight_door.obj"
+dest_files=["res://.godot/imported/fence_stone_straight_gate_fence_stone_straight_door.obj-b13aad5c4e51aa168a218872de3cf6ae.mesh", "res://.godot/imported/fence_stone_straight_gate_fence_stone_straight_door.obj-b13aad5c4e51aa168a218872de3cf6ae.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

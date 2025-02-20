@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dfkfit3rn8pit"
+path="res://.godot/imported/building_stage_C.obj-3a3983e7fb5831e7000fb00caad1769d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/building_stage_C.obj-3a3983e7fb5831e7000fb00caad1769d.mesh"]
+
+source_file="res://Assets/obj/buildings/neutral/building_stage_C.obj"
+dest_files=["res://.godot/imported/building_stage_C.obj-3a3983e7fb5831e7000fb00caad1769d.mesh", "res://.godot/imported/building_stage_C.obj-3a3983e7fb5831e7000fb00caad1769d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

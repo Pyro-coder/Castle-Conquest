@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://p8cp4bghdte3"
+path="res://.godot/imported/fence_wood_straight.obj-e43472b4d689e295176798ad9a60cab8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/fence_wood_straight.obj-e43472b4d689e295176798ad9a60cab8.mesh"]
+
+source_file="res://Assets/obj/buildings/neutral/fence_wood_straight.obj"
+dest_files=["res://.godot/imported/fence_wood_straight.obj-e43472b4d689e295176798ad9a60cab8.mesh", "res://.godot/imported/fence_wood_straight.obj-e43472b4d689e295176798ad9a60cab8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

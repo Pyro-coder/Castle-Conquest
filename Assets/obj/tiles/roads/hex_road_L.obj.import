@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bmcoqxwafwcvj"
+path="res://.godot/imported/hex_road_L.obj-943e0d7b8b6bedb203acf9278757fa39.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hex_road_L.obj-943e0d7b8b6bedb203acf9278757fa39.mesh"]
+
+source_file="res://Assets/obj/tiles/roads/hex_road_L.obj"
+dest_files=["res://.godot/imported/hex_road_L.obj-943e0d7b8b6bedb203acf9278757fa39.mesh", "res://.godot/imported/hex_road_L.obj-943e0d7b8b6bedb203acf9278757fa39.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

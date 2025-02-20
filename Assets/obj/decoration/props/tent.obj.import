@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://mkbhk4uvu3ci"
+path="res://.godot/imported/tent.obj-38ab3f19de16fb6461740a4946a9e13d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/tent.obj-38ab3f19de16fb6461740a4946a9e13d.mesh"]
+
+source_file="res://Assets/obj/decoration/props/tent.obj"
+dest_files=["res://.godot/imported/tent.obj-38ab3f19de16fb6461740a4946a9e13d.mesh", "res://.godot/imported/tent.obj-38ab3f19de16fb6461740a4946a9e13d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

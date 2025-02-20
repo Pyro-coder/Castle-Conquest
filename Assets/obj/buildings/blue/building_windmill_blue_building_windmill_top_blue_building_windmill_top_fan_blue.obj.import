@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bk508my22im6q"
+path="res://.godot/imported/building_windmill_blue_building_windmill_top_blue_building_windmill_top_fan_blue.obj-8973738e164c3f114c6dd770c449c495.mesh"
+
+[deps]
+
+files=["res://.godot/imported/building_windmill_blue_building_windmill_top_blue_building_windmill_top_fan_blue.obj-8973738e164c3f114c6dd770c449c495.mesh"]
+
+source_file="res://Assets/obj/buildings/blue/building_windmill_blue_building_windmill_top_blue_building_windmill_top_fan_blue.obj"
+dest_files=["res://.godot/imported/building_windmill_blue_building_windmill_top_blue_building_windmill_top_fan_blue.obj-8973738e164c3f114c6dd770c449c495.mesh", "res://.godot/imported/building_windmill_blue_building_windmill_top_blue_building_windmill_top_fan_blue.obj-8973738e164c3f114c6dd770c449c495.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

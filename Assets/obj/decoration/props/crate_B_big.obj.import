@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://eemxtpsdi5px"
+path="res://.godot/imported/crate_B_big.obj-7cf6aa9d5be7e9aed8ad31f5cbd8b129.mesh"
+
+[deps]
+
+files=["res://.godot/imported/crate_B_big.obj-7cf6aa9d5be7e9aed8ad31f5cbd8b129.mesh"]
+
+source_file="res://Assets/obj/decoration/props/crate_B_big.obj"
+dest_files=["res://.godot/imported/crate_B_big.obj-7cf6aa9d5be7e9aed8ad31f5cbd8b129.mesh", "res://.godot/imported/crate_B_big.obj-7cf6aa9d5be7e9aed8ad31f5cbd8b129.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

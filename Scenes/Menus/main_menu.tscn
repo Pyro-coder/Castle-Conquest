@@ -47,7 +47,8 @@ script = ExtResource("1_wpd8b")
 
 [node name="MenuTemplate" parent="." instance=ExtResource("2_lt155")]
 layout_mode = 1
-offset_right = 1.0
+offset_left = -270.0
+offset_right = 2.0
 offset_bottom = -1.0
 
 [node name="Label2" type="Label" parent="MenuTemplate"]

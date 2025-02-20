@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dcdw2byy8thha"
+path="res://.godot/imported/hex_grass_bottom.obj-bbb5983242aeadebefb0190f59c50dbc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/hex_grass_bottom.obj-bbb5983242aeadebefb0190f59c50dbc.mesh"]
+
+source_file="res://Assets/obj/tiles/base/hex_grass_bottom.obj"
+dest_files=["res://.godot/imported/hex_grass_bottom.obj-bbb5983242aeadebefb0190f59c50dbc.mesh", "res://.godot/imported/hex_grass_bottom.obj-bbb5983242aeadebefb0190f59c50dbc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

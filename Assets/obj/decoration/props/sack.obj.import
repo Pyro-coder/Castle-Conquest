@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://by3kvtfx5nisu"
+path="res://.godot/imported/sack.obj-0e23eb6c192e45077b4ba80dfa2b1526.mesh"
+
+[deps]
+
+files=["res://.godot/imported/sack.obj-0e23eb6c192e45077b4ba80dfa2b1526.mesh"]
+
+source_file="res://Assets/obj/decoration/props/sack.obj"
+dest_files=["res://.godot/imported/sack.obj-0e23eb6c192e45077b4ba80dfa2b1526.mesh", "res://.godot/imported/sack.obj-0e23eb6c192e45077b4ba80dfa2b1526.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

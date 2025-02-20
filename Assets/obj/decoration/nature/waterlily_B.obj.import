@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ctoc0io7pwwg0"
+path="res://.godot/imported/waterlily_B.obj-f0ab7fdf5d2b738c728a9f2b12172fff.mesh"
+
+[deps]
+
+files=["res://.godot/imported/waterlily_B.obj-f0ab7fdf5d2b738c728a9f2b12172fff.mesh"]
+
+source_file="res://Assets/obj/decoration/nature/waterlily_B.obj"
+dest_files=["res://.godot/imported/waterlily_B.obj-f0ab7fdf5d2b738c728a9f2b12172fff.mesh", "res://.godot/imported/waterlily_B.obj-f0ab7fdf5d2b738c728a9f2b12172fff.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

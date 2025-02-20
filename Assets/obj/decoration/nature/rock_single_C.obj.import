@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://pl170uupr42p"
+path="res://.godot/imported/rock_single_C.obj-ee8afe32b9f006fca33b792d21aae63f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/rock_single_C.obj-ee8afe32b9f006fca33b792d21aae63f.mesh"]
+
+source_file="res://Assets/obj/decoration/nature/rock_single_C.obj"
+dest_files=["res://.godot/imported/rock_single_C.obj-ee8afe32b9f006fca33b792d21aae63f.mesh", "res://.godot/imported/rock_single_C.obj-ee8afe32b9f006fca33b792d21aae63f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

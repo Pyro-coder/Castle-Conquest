@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://l6ubg68vxx38"]
+[gd_scene load_steps=5 format=3 uid="uid://l6ubg68vxx38"]
 
 [ext_resource type="Script" path="res://Scripts/board.gd" id="1_1wluw"]
-[ext_resource type="Script" path="res://Scenes/camera_3d.gd" id="2_rkaem"]
 
 [sub_resource type="Environment" id="Environment_1i5nl"]
 
@@ -13,11 +12,11 @@ albedo_color = Color(0.273647, 0.623187, 0.924147, 1)
 
 [node name="board" type="Node3D"]
 script = ExtResource("1_1wluw")
+grid_size = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.798636, 0.521187, -0.300907, 0, 0.5, 0.866025, 0.601815, -0.691639, 0.399318, -40.3381, 22.6868, -14.6001)
+transform = Transform3D(-0.0464891, 0.866921, -0.496273, 0.0435779, 0.498097, 0.866026, 0.997968, 0.0186342, -0.0609347, -33.7646, 31.951, -18.7738)
 fov = 74.5992
-script = ExtResource("2_rkaem")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.852914, -0.109628, -0.510412, 0.522052, 0.179107, 0.833896, 1.0185e-08, -0.977703, 0.209994, 0, 0, 0)

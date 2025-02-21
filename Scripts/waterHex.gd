@@ -8,8 +8,8 @@ func _ready() -> void:
 	set_surface_override_material(0, unique_material)
 
 func _on_area_3d_mouse_entered() -> void:
-	var coords = get_meta("hex_coords")
-	print ("Hovered tile coordinates: ", coords)
+	# var coords = get_meta("hex_coords")
+	# print ("Hovered tile coordinates: ", coords)
 	_change_color(Color(1, .2, .3, 1))  # Make red
 	_apply_to_neighbors("_change_color", Color(1, .2, .3, 1))  # Also apply to neighbors
 

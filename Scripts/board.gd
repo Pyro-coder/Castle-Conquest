@@ -15,7 +15,13 @@ func _ready() -> void:
 	# For testing, change some tiles using original change_tile logic:
 	change_tile(Vector2i(0, 0), "forest")
 	change_tile(Vector2i(0, 1), "blue")
+	change_tile(Vector2i(0, 2), "blue")
+	change_tile(Vector2i(0, 3), "blue")
+	change_tile(Vector2i(0, 4), "blue")
 	change_tile(Vector2i(1, 0), "red")
+	change_tile(Vector2i(2, 0), "red")
+	change_tile(Vector2i(3, 0), "red")
+	change_tile(Vector2i(4, 0), "red")
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -56,9 +62,11 @@ func _generate_grid() -> void:
 		tile.position += grid_offset
 
 func _axial_to_world(coords: Vector2) -> Vector2:
-	# Use your original conversion logic:
-	var x = coords.x * TILE_SIZE * 2.0 * cos(deg_to_rad(30))
-	var y = coords.y * TILE_SIZE * 2.0 + (TILE_SIZE if int(coords.x) % 2 != 0 else 0)
+	# Standard flat-topped hex conversion:
+	# x = TILE_SIZE * 1.5 * q
+	# y = TILE_SIZE * sqrt(3) * (r + 0.5 * q)
+	var x = TILE_SIZE * 1.5 * coords.x
+	var y = TILE_SIZE * sqrt(3) * (coords.y + 0.5 * coords.x)
 	return Vector2(x, y)
 
 func get_tile_at(coords: Vector2i) -> Node:

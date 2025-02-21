@@ -7,6 +7,7 @@ const BLUE_CASTLE = preload("res://Scenes/castle_hex_blue.tscn")
 const RED_CASTLE = preload("res://Scenes/castle_hex_red.tscn")
 
 @export_range(2, 20) var grid_size: int = 20
+@export var spacing_factor: float = 1.15  # Increase this value if tiles overlap
 
 var tile_map = {}
 
@@ -62,11 +63,11 @@ func _generate_grid() -> void:
 		tile.position += grid_offset
 
 func _axial_to_world(coords: Vector2) -> Vector2:
-	# Standard flat-topped hex conversion:
+	# Original formula for flat-topped hexes using axial coordinates:
 	# x = TILE_SIZE * 1.5 * q
 	# y = TILE_SIZE * sqrt(3) * (r + 0.5 * q)
-	var x = TILE_SIZE * 1.5 * coords.x
-	var y = TILE_SIZE * sqrt(3) * (coords.y + 0.5 * coords.x)
+	var x = TILE_SIZE * 1.5 * coords.x * spacing_factor
+	var y = TILE_SIZE * sqrt(3) * (coords.y + 0.5 * coords.x) * spacing_factor
 	return Vector2(x, y)
 
 func get_tile_at(coords: Vector2i) -> Node:

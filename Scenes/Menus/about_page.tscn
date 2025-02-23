@@ -1,11 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwbten0vfmks"]
+[gd_scene load_steps=8 format=3 uid="uid://bwbten0vfmks"]
 
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_6m12b"]
+[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="1_vxo88"]
 [ext_resource type="Script" path="res://Scripts/menu_scripts/about_page.gd" id="1_yg6ry"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_dunht"]
 [ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="3_echs6"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5xh2"]
+shader = ExtResource("1_vxo88")
+shader_parameter/amount = 300
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05qcj"]
+
 [node name="AboutPage" type="Control"]
+material = SubResource("ShaderMaterial_r5xh2")
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,9 +23,11 @@ grow_vertical = 2
 script = ExtResource("1_yg6ry")
 
 [node name="MenuTemplate" parent="." instance=ExtResource("1_6m12b")]
+use_parent_material = true
 layout_mode = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+use_parent_material = true
 layout_mode = 0
 offset_left = 432.0
 offset_top = 528.0
@@ -28,20 +38,26 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_dunht")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_05qcj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_05qcj")
 text = "Back
 "
 
-[node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_dunht")
-theme_override_font_sizes/font_size = 20
-text = "Quit
-"
-
 [node name="Label" type="Label" parent="MenuTemplate"]
+use_parent_material = true
 layout_mode = 2
 offset_left = 412.0
 offset_top = 130.0
@@ -49,7 +65,7 @@ offset_right = 580.0
 offset_bottom = 149.0
 theme_override_fonts/font = ExtResource("3_echs6")
 theme_override_font_sizes/font_size = 20
-text = "Here is some information on the Creators"
+text = "Placeholder text for where information will 
+go on the creators,  (cannot mention any PII)"
 
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="MenuTemplate/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

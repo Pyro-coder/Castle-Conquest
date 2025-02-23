@@ -1,8 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://da4cb5yjobgfi"]
+[gd_scene load_steps=9 format=3 uid="uid://da4cb5yjobgfi"]
 
 [ext_resource type="Script" path="res://Scripts/menu_scripts/settings.gd" id="1_2x8j0"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_c4ub5"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_214xw"]
+[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="3_b1pvb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xwr8"]
+shader = ExtResource("3_b1pvb")
+shader_parameter/amount = 350
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hcgrk"]
+shader = ExtResource("3_b1pvb")
+shader_parameter/amount = 300
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nmon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8e75j"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -17,6 +30,7 @@ script = ExtResource("1_2x8j0")
 layout_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuTemplate"]
+material = SubResource("ShaderMaterial_2xwr8")
 custom_minimum_size = Vector2(200, 200)
 layout_mode = 0
 offset_left = 466.0
@@ -26,9 +40,10 @@ offset_bottom = 223.0
 theme_override_constants/separation = 60
 
 [node name="Label" type="Label" parent="MenuTemplate/VBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_214xw")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 35
 text = "SFX Volume"
 horizontal_alignment = 1
 
@@ -41,9 +56,10 @@ offset_bottom = 72.0
 tick_count = 10
 
 [node name="Label2" type="Label" parent="MenuTemplate/VBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_214xw")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 35
 text = "Music Volume"
 horizontal_alignment = 1
 
@@ -55,6 +71,7 @@ offset_bottom = 72.0
 tick_count = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+material = SubResource("ShaderMaterial_hcgrk")
 layout_mode = 0
 offset_left = 432.0
 offset_top = 528.0
@@ -65,34 +82,46 @@ grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_214xw")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_7nmon")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7nmon")
 text = "Back
 "
 
-[node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+[node name="Control" type="Control" parent="MenuTemplate/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ApplyButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_214xw")
-theme_override_font_sizes/font_size = 20
-text = "Quit
-"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 363.0
-offset_top = 528.0
-offset_right = 627.0
-offset_bottom = 571.0
-theme_override_constants/separation = 10
-
-[node name="ApplyButton" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_214xw")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8e75j")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8e75j")
 text = "Apply
 "
 
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="pressed" from="MenuTemplate/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/ApplyButton" to="." method="_on_apply_button_pressed"]

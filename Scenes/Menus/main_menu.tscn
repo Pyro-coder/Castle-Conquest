@@ -1,26 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://i81pumhgpsx7"]
+[gd_scene load_steps=17 format=3 uid="uid://i81pumhgpsx7"]
 
 [ext_resource type="Script" path="res://Scripts/menu_scripts/main_menu.gd" id="1_wpd8b"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_lt155"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_3aj6u"]
+[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="3_w6ur7"]
 
-[sub_resource type="Shader" id="Shader_3icbh"]
-code = "shader_type canvas_item;
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8a6q5"]
+shader = ExtResource("3_w6ur7")
+shader_parameter/amount = 400
 
-uniform int amount = 40;
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yhydq"]
+shader = ExtResource("3_w6ur7")
+shader_parameter/amount = 400
 
-void fragment()
-{
-	vec2 grid_uv = round(UV * float(amount)) / float(amount);
-	
-	vec4 text = texture(TEXTURE, grid_uv);
-	
-	COLOR = text;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v6wbe"]
-shader = SubResource("Shader_3icbh")
-shader_parameter/amount = 250
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dqcxr"]
 
 [sub_resource type="GDScript" id="GDScript_h4ssn"]
 script/source = "extends Button
@@ -36,6 +29,30 @@ func _process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrawt"]
+shader = ExtResource("3_w6ur7")
+shader_parameter/amount = 400
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1lrkj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_owxxc"]
+shader = ExtResource("3_w6ur7")
+shader_parameter/amount = 400
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2rh1v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jysbr"]
+shader = ExtResource("3_w6ur7")
+shader_parameter/amount = 300
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d4ae1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8371c"]
+shader = ExtResource("3_w6ur7")
+shader_parameter/amount = 300
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kc6iu"]
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -47,12 +64,11 @@ script = ExtResource("1_wpd8b")
 
 [node name="MenuTemplate" parent="." instance=ExtResource("2_lt155")]
 layout_mode = 1
-offset_left = -270.0
-offset_right = 2.0
+offset_right = 1.0
 offset_bottom = -1.0
 
 [node name="Label2" type="Label" parent="MenuTemplate"]
-material = SubResource("ShaderMaterial_v6wbe")
+material = SubResource("ShaderMaterial_8a6q5")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.372
@@ -80,51 +96,111 @@ grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="PlayButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
+material = SubResource("ShaderMaterial_yhydq")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_3aj6u")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 38
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_dqcxr")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_dqcxr")
 text = "Play
 "
 script = SubResource("GDScript_h4ssn")
 
 [node name="SettingsButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
+material = SubResource("ShaderMaterial_xrawt")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_3aj6u")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 38
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_1lrkj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1lrkj")
 text = "Settings
 "
 
 [node name="TutorialButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
+material = SubResource("ShaderMaterial_owxxc")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_3aj6u")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 38
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_2rh1v")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_2rh1v")
 text = "Tutorial
 "
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
 layout_mode = 2
-offset_left = 432.0
-offset_top = 528.0
-offset_right = 696.0
+offset_left = 413.0
+offset_top = 510.0
+offset_right = 716.0
 offset_bottom = 571.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 170
 
 [node name="AboutButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+material = SubResource("ShaderMaterial_jysbr")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3aj6u")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_d4ae1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d4ae1")
 text = "About
 "
 
 [node name="QuitButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+material = SubResource("ShaderMaterial_8371c")
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_3aj6u")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_kc6iu")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_kc6iu")
 text = "Quit
 "
 

@@ -21,6 +21,7 @@ script = ExtResource("2_rkaem")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.852914, -0.109628, -0.510412, 0.522052, 0.179107, 0.833896, 1.0185e-08, -0.977703, 0.209994, 0, 0, 0)
+light_energy = 1.27
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1i5nl")

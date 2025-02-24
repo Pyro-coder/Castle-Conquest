@@ -22,31 +22,37 @@ func check(string):
 	print(string)
 
 func type():
+	print( tileType)
 	return tileType
-
+	
+func setType(string):
+	tileType = string
+	
 func setcoords(vector):
 	coordsfromboard = vector
 
 
 func _on_area_3d_mouse_entered() -> void:
 	var board = get_parent().get_parent()
-
-	_change_color(Color(0.8, 0.1, 0.1, 1.0))  # Change to red.
-	board.vertNeighborCoords(coordsfromboard,Color(0.8, 0.1, 0.1, 1.0))
-	_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))  # Also update neighbors.
+	if type() == "water":
+		board.OnBoardPlaceHover(coordsfromboard,Color(0.8, 0.1, 0.1, 1.0))
+		#_change_color(Color(0.8, 0.1, 0.1, 1.0))  # Change to red.
+		_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))  # Also update neighbors.
+	
 
 func _on_area_3d_mouse_exited() -> void:
 	var board = get_parent().get_parent()
-	_change_color(Color(0.12, 0.28, 0.66, 1.0))  # Change back to blue.
-	board.vertNeighborCoords(coordsfromboard,Color(0.12, 0.28, 0.66, 1.0))
+	board.OnBoardPlaceHover(coordsfromboard,Color(0.12, 0.28, 0.66, 1.0))
+	#_change_color(Color(0.12, 0.28, 0.66, 1.0))  # Change back to blue.
+	
 	_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		_replace_tile()
+		#_replace_tile()
 		tileType="forest"
 		var board = get_parent().get_parent()
-		board.changeVneighbor(coordsfromboard)
+		board.OnBoardPlaceClick(coordsfromboard)
 		_apply_to_neighbors("_replace_tile")
 
 func _change_color(color: Color):

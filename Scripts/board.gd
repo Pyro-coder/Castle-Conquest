@@ -5,50 +5,155 @@ const HEX_TILE = preload("res://Scenes/water_hex.tscn")
 const FOREST_TILE = preload("res://Scenes/forest_hex.tscn")
 const BLUE_CASTLE = preload("res://Scenes/castle_hex_blue.tscn")
 const RED_CASTLE = preload("res://Scenes/castle_hex_red.tscn")
-
-
+var orientation = "vert"
 @export_range(2, 44) var grid_size: int = 30
 @export var spacing_factor: float = 1.15  # Increase this value if tiles overlap
 
 var tile_map = {}
 
+var hoveredTile = Vector2i(0,0)
+var tempColor
 
 func _ready() -> void:
-	_generate_grid()
 	
-	var tile = get_tile_at(Vector2i(8,8))
-	print(tile.get_child(0)._change_color(Color.RED))
-	# For testing, change some tiles using original change_tile logic:
-	change_tile(Vector2i(0, 0), "forest")
-	change_tile(Vector2i(0, 1), "blue")
-	change_tile(Vector2i(0, 2), "blue")
-	change_tile(Vector2i(0, 3), "blue")
-	change_tile(Vector2i(0, 4), "blue")
-	change_tile(Vector2i(1, 0), "red")
-	change_tile(Vector2i(2, 0), "red")
-	change_tile(Vector2i(3, 0), "red")
-	change_tile(Vector2i(4, 0), "red")
+	_generate_grid()      
 	
 	
 
+func check():
+	return orientation
+	
+	
+
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		print("spacebar push")
+		OnBoardPlaceHover(hoveredTile,Color(0.12, 0.28, 0.66, 1.0))
+		if(orientation == "vert"):
+			orientation = "left"
+			
+		elif(orientation == "left"):
+			orientation = "right"
+			
+		elif(orientation == "right"):
+			orientation = "vert"
+		
+		OnBoardPlaceHover(hoveredTile,Color(0.8, 0.1, 0.1, 1.0))
+			
 
 
+func OnBoardPlaceHover(hoveredtilecoords,color):
+	hoveredTile = hoveredtilecoords
+	tempColor = color
+	if orientation == "vert":
+		vertNeighborCoords(hoveredtilecoords,color)
+	if orientation == "right":
+		rightNeighborCoords(hoveredtilecoords,color)
+	if orientation == "left":
+		leftNeighborCoords(hoveredtilecoords,color)
+	
+
+
+func OnBoardPlaceClick(hoveredtilecoords):
+	hoveredTile = hoveredtilecoords
+	if orientation == "vert":
+		changeVneighbor(hoveredtilecoords)
+	if orientation == "right":
+		changeRneighbor(hoveredtilecoords)
+	if orientation == "left":
+		changeLneighbor(hoveredtilecoords)
+	
+
+func isNotForest(neighbor):
+	if neighbor.get_child(0).has_method("type"):
+		return true
+	else:
+		return false
+
+#WORKS
 func vertNeighborCoords(hoveredtilecoords,color):
 	var tile = get_tile_at(hoveredtilecoords)
-	var neighbor = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
-	if neighbor.get_child(0).type() == "water":
-		neighbor.get_child(0)._change_color(color)
-
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	
+	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
+		neighbor1.get_child(0)._change_color(color)
+		neighbor2.get_child(0)._change_color(color)
+		neighbor3.get_child(0)._change_color(color)
+		tile.get_child(0)._change_color(color)
+#WORKS
 func changeVneighbor(hoveredtilecoords):
 	var tile = get_tile_at(hoveredtilecoords)
-	var neighbor = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
-	neighbor.get_child(0)._replace_tile()
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	
+	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
+		neighbor1.get_child(0)._replace_tile()
+		neighbor2.get_child(0)._replace_tile()
+		neighbor3.get_child(0)._replace_tile()
+		tile.get_child(0)._replace_tile()
+		tile.get_child(0)._replace_tile()
 
-func rightNeighborCoords():
-	pass
 
-func lefttNeighborCoords():
-	pass
+
+
+func rightNeighborCoords(hoveredtilecoords,color):
+	var tile = get_tile_at(hoveredtilecoords)
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y+1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	
+	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
+		neighbor1.get_child(0)._change_color(color)
+		neighbor2.get_child(0)._change_color(color)
+		neighbor3.get_child(0)._change_color(color)
+		tile.get_child(0)._change_color(color)
+
+func changeRneighbor(hoveredtilecoords):
+	var tile = get_tile_at(hoveredtilecoords)
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y+1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	
+	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
+		neighbor1.get_child(0)._replace_tile()
+		neighbor2.get_child(0)._replace_tile()
+		neighbor3.get_child(0)._replace_tile()
+		tile.get_child(0)._replace_tile()
+		tile.get_child(0)._replace_tile()
+
+
+
+
+
+func leftNeighborCoords(hoveredtilecoords,color):
+	var tile = get_tile_at(hoveredtilecoords)
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y-1))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
+	
+	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
+		neighbor1.get_child(0)._change_color(color)
+		neighbor2.get_child(0)._change_color(color)
+		neighbor3.get_child(0)._change_color(color)
+		tile.get_child(0)._change_color(color)
+		
+		
+		
+func changeLneighbor(hoveredtilecoords):
+	var tile = get_tile_at(hoveredtilecoords)
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y-1))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
+	
+	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
+		neighbor1.get_child(0)._replace_tile()
+		neighbor2.get_child(0)._replace_tile()
+		neighbor3.get_child(0)._replace_tile()
+		tile.get_child(0)._replace_tile()
+		tile.get_child(0)._replace_tile()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:

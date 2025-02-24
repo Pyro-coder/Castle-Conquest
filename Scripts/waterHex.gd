@@ -3,9 +3,11 @@ extends MeshInstance3D
 @export var new_tile_scene: PackedScene = preload("res://Scenes/forest_hex.tscn")
 var shader_resource: Shader = preload("res://Assets/Shaders/water_animate.gdshader")
 var shader_material: ShaderMaterial = ShaderMaterial.new()
-
+var coordsfromboard
+var tileType = "water"
 func _ready() -> void:
 	# Assign the shader to the ShaderMaterial.
+	
 	shader_material.shader = shader_resource
 	# Set an initial color.
 	shader_material.set_shader_parameter("albedo_color", Color(0.12, 0.28, 0.66, 1.0))
@@ -13,18 +15,38 @@ func _ready() -> void:
 	shader_material.set_shader_parameter("phase_offset", randf_range(0, 2 * PI))
 	# Assign the ShaderMaterial to the mesh.
 	set_surface_override_material(0, shader_material)
+	
+	
+	
+func check(string):
+	print(string)
+
+func type():
+	return tileType
+
+func setcoords(vector):
+	coordsfromboard = vector
+
 
 func _on_area_3d_mouse_entered() -> void:
+	var board = get_parent().get_parent()
+
 	_change_color(Color(0.8, 0.1, 0.1, 1.0))  # Change to red.
+	board.vertNeighborCoords(coordsfromboard,Color(0.8, 0.1, 0.1, 1.0))
 	_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))  # Also update neighbors.
 
 func _on_area_3d_mouse_exited() -> void:
+	var board = get_parent().get_parent()
 	_change_color(Color(0.12, 0.28, 0.66, 1.0))  # Change back to blue.
+	board.vertNeighborCoords(coordsfromboard,Color(0.12, 0.28, 0.66, 1.0))
 	_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		_replace_tile()
+		tileType="forest"
+		var board = get_parent().get_parent()
+		board.changeVneighbor(coordsfromboard)
 		_apply_to_neighbors("_replace_tile")
 
 func _change_color(color: Color):

@@ -6,13 +6,18 @@ const FOREST_TILE = preload("res://Scenes/forest_hex.tscn")
 const BLUE_CASTLE = preload("res://Scenes/castle_hex_blue.tscn")
 const RED_CASTLE = preload("res://Scenes/castle_hex_red.tscn")
 
+
 @export_range(2, 44) var grid_size: int = 30
 @export var spacing_factor: float = 1.15  # Increase this value if tiles overlap
 
 var tile_map = {}
 
+
 func _ready() -> void:
 	_generate_grid()
+	
+	var tile = get_tile_at(Vector2i(8,8))
+	print(tile.get_child(0)._change_color(Color.RED))
 	# For testing, change some tiles using original change_tile logic:
 	change_tile(Vector2i(0, 0), "forest")
 	change_tile(Vector2i(0, 1), "blue")
@@ -23,6 +28,27 @@ func _ready() -> void:
 	change_tile(Vector2i(2, 0), "red")
 	change_tile(Vector2i(3, 0), "red")
 	change_tile(Vector2i(4, 0), "red")
+	
+	
+
+
+
+func vertNeighborCoords(hoveredtilecoords,color):
+	var tile = get_tile_at(hoveredtilecoords)
+	var neighbor = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
+	if neighbor.get_child(0).type() == "water":
+		neighbor.get_child(0)._change_color(color)
+
+func changeVneighbor(hoveredtilecoords):
+	var tile = get_tile_at(hoveredtilecoords)
+	var neighbor = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
+	neighbor.get_child(0)._replace_tile()
+
+func rightNeighborCoords():
+	pass
+
+func lefttNeighborCoords():
+	pass
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -52,11 +78,15 @@ func _generate_grid() -> void:
 			var tile = HEX_TILE.instantiate()
 			tile.rotation_degrees = Vector3.ZERO  # Reset rotation.
 			var coords = Vector2i(q, r)
-			add_child(tile)
+			
 			var world_pos: Vector2 = _axial_to_world(Vector2(q, r))
 			tile.position = Vector3(world_pos.x, 0, world_pos.y)
 			tile_map[coords] = tile
 			tile.set_meta("hex_coords", coords)
+			tile.get_child(0).setcoords(coords)
+			
+
+			add_child(tile)
 	# Optionally, center the grid by applying an offset.
 	var grid_offset = Vector3(-TILE_SIZE * grid_size, 0, -TILE_SIZE * grid_size)
 	for tile in tile_map.values():

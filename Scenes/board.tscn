@@ -3,13 +3,19 @@
 [ext_resource type="Script" path="res://Scripts/board.gd" id="1_1wluw"]
 [ext_resource type="Script" path="res://Scenes/camera_3d.gd" id="2_rkaem"]
 
-[sub_resource type="Environment" id="Environment_1i5nl"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]
+sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
+sky_horizon_color = Color(0.514926, 0.661726, 0.884476, 1)
+ground_bottom_color = Color(0.0823529, 0.196078, 0.482353, 1)
+ground_horizon_color = Color(0.0823529, 0.196078, 0.482353, 1)
+sun_angle_max = 272.35
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_kgf45"]
-size = Vector2(150, 150)
+[sub_resource type="Sky" id="Sky_4gvus"]
+sky_material = SubResource("ProceduralSkyMaterial_4r3ic")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ws2rq"]
-albedo_color = Color(0.273647, 0.623187, 0.924147, 1)
+[sub_resource type="Environment" id="Environment_p0gk8"]
+background_mode = 2
+sky = SubResource("Sky_4gvus")
 
 [node name="board" type="Node3D"]
 script = ExtResource("1_1wluw")
@@ -19,13 +25,8 @@ transform = Transform3D(0.798636, 0.521187, -0.300907, 0, 0.5, 0.866025, 0.60181
 fov = 74.5992
 script = ExtResource("2_rkaem")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.852914, -0.109628, -0.510412, 0.522052, 0.179107, 0.833896, 1.0185e-08, -0.977703, 0.209994, 0, 0, 0)
-light_energy = 1.27
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1i5nl")
+environment = SubResource("Environment_p0gk8")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_kgf45")
-surface_material_override/0 = SubResource("StandardMaterial3D_ws2rq")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.979575, -0.20082, -0.0101731, 0, -0.0505929, 0.998719, -0.201078, -0.978321, -0.0495596, 0, 0, 0)

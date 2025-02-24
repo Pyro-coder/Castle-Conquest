@@ -1,6 +1,6 @@
 shader_type spatial;
 
-uniform vec4 albedo_color = vec4(0.4, 0.8, 0.9, 1.0);
+uniform vec4 albedo_color = vec4(0.08, 0.2, 0.48, 1.0);
 uniform float time;
 uniform float oscillation_frequency : hint_range(0.0, 5.0) = 0.7;
 uniform float max_angle : hint_range(0.0, 0.5) = 0.1;

@@ -8,19 +8,19 @@ func _ready() -> void:
 	# Assign the shader to the ShaderMaterial.
 	shader_material.shader = shader_resource
 	# Set an initial color.
-	shader_material.set_shader_parameter("albedo_color", Color(0.4, 0.8, 0.9, 1))
+	shader_material.set_shader_parameter("albedo_color", Color(0.12, 0.28, 0.66, 1.0))
 	# Give each tile a unique phase offset.
 	shader_material.set_shader_parameter("phase_offset", randf_range(0, 2 * PI))
 	# Assign the ShaderMaterial to the mesh.
 	set_surface_override_material(0, shader_material)
 
 func _on_area_3d_mouse_entered() -> void:
-	_change_color(Color(1, 0.2, 0.3, 1))  # Change to red.
-	_apply_to_neighbors("_change_color", Color(1, 0.2, 0.3, 1))  # Also update neighbors.
+	_change_color(Color(0.8, 0.1, 0.1, 1.0))  # Change to red.
+	_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))  # Also update neighbors.
 
 func _on_area_3d_mouse_exited() -> void:
-	_change_color(Color(0.4, 0.8, 0.9, 1))  # Change back to blue.
-	_apply_to_neighbors("_change_color", Color(0.4, 0.8, 0.9, 1))
+	_change_color(Color(0.12, 0.28, 0.66, 1.0))  # Change back to blue.
+	_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

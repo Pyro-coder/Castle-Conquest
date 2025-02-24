@@ -6,7 +6,7 @@ const FOREST_TILE = preload("res://Scenes/forest_hex.tscn")
 const BLUE_CASTLE = preload("res://Scenes/castle_hex_blue.tscn")
 const RED_CASTLE = preload("res://Scenes/castle_hex_red.tscn")
 
-@export_range(2, 20) var grid_size: int = 20
+@export_range(2, 44) var grid_size: int = 30
 @export var spacing_factor: float = 1.15  # Increase this value if tiles overlap
 
 var tile_map = {}

@@ -2,8 +2,8 @@ shader_type spatial;
 
 uniform vec4 albedo_color = vec4(0.08, 0.2, 0.48, 1.0);
 uniform float time;
-uniform float oscillation_frequency : hint_range(0.0, 5.0) = 0.7;
-uniform float max_angle : hint_range(0.0, 0.5) = 0.1;
+uniform float oscillation_frequency : hint_range(0.0, 5.0) = 2;
+uniform float max_angle : hint_range(0.0, 0.5) = 0.2;
 uniform float phase_offset : hint_range(0.0, 6.28318530718) = 0.0;
 // A new uniform to control the rounding effect (0 = no rounding, 1 = fully spherical)
 uniform float roundness : hint_range(0.0, 1.0) = 0.5;

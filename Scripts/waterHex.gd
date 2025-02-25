@@ -22,7 +22,7 @@ func check(string):
 	print(string)
 
 func type():
-	print( tileType)
+	
 	return tileType
 	
 func setType(string):

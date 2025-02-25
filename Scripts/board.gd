@@ -73,9 +73,9 @@ func isNotForest(neighbor):
 #WORKS
 func vertNeighborCoords(hoveredtilecoords,color):
 	var tile = get_tile_at(hoveredtilecoords)
-	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
-	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
-	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y+1))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x -1,hoveredtilecoords.y+2))
 	
 	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
 		neighbor1.get_child(0)._change_color(color)
@@ -85,9 +85,9 @@ func vertNeighborCoords(hoveredtilecoords,color):
 #WORKS
 func changeVneighbor(hoveredtilecoords):
 	var tile = get_tile_at(hoveredtilecoords)
-	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
-	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
-	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y+1))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x -1,hoveredtilecoords.y+2))
 	
 	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
 		neighbor1.get_child(0)._replace_tile()
@@ -102,8 +102,8 @@ func changeVneighbor(hoveredtilecoords):
 func rightNeighborCoords(hoveredtilecoords,color):
 	var tile = get_tile_at(hoveredtilecoords)
 	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
-	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y+1))
-	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x + 2,hoveredtilecoords.y - 1))
 	
 	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
 		neighbor1.get_child(0)._change_color(color)
@@ -114,8 +114,8 @@ func rightNeighborCoords(hoveredtilecoords,color):
 func changeRneighbor(hoveredtilecoords):
 	var tile = get_tile_at(hoveredtilecoords)
 	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
-	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y+1))
-	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x + 2,hoveredtilecoords.y - 1))
 	
 	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
 		neighbor1.get_child(0)._replace_tile()
@@ -130,9 +130,9 @@ func changeRneighbor(hoveredtilecoords):
 
 func leftNeighborCoords(hoveredtilecoords,color):
 	var tile = get_tile_at(hoveredtilecoords)
-	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y-1))
-	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
-	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y-1))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y - 1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y))
 	
 	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
 		neighbor1.get_child(0)._change_color(color)
@@ -144,9 +144,9 @@ func leftNeighborCoords(hoveredtilecoords,color):
 		
 func changeLneighbor(hoveredtilecoords):
 	var tile = get_tile_at(hoveredtilecoords)
-	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y-1))
-	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
-	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
+	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y-1))
+	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y - 1))
+	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y))
 	
 	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
 		neighbor1.get_child(0)._replace_tile()

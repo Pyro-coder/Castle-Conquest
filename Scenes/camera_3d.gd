@@ -30,6 +30,17 @@ var _e = false
 var _shift = false
 var _alt = false
 
+#Test functionality
+#var board_center = Vector3.ZERO
+#var smoothing_factor = 0.1
+
+#var fov_zoom_level = 60.0
+#@export_range(1, 120) var max_fov = 100
+#@export_range(1, 120) var min_fov = 30
+#
+#var camera_height = 10.0
+#end of test
+
 func _input(event):
 	# Receives mouse motion
 	if event is InputEventMouseMotion:
@@ -69,6 +80,8 @@ func _input(event):
 func _process(delta):
 	_update_mouselook()
 	_update_movement(delta)
+	#Test function
+	#_center_camera_on_board(delta)
 
 # Updates camera movement
 func _update_movement(delta):
@@ -116,3 +129,15 @@ func _update_mouselook():
 	
 		rotate_y(deg_to_rad(-yaw))
 		rotate_object_local(Vector3(1,0,0), deg_to_rad(-pitch))
+		
+# Smoothly centers the camera on the board's ceneter
+#func _center_camera_on_board(delta):
+#	position = position.lerp(board_center + Vector3(0, camera_height, 0), smoothing_factor * delta)
+#	look_at(board_center, Vector3(0,1,0))
+	
+#	var fov_factor = max(board_center.distance_to(position) / 10.0, min_fov)
+#	fov = clamp(fov_factor, min_fov, max_fov)
+	
+	
+#func update_board_center(new_center: Vector3):
+#	board_center = new_center

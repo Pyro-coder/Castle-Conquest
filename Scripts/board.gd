@@ -196,6 +196,8 @@ func _generate_grid() -> void:
 	var grid_offset = Vector3(-TILE_SIZE * grid_size, 0, -TILE_SIZE * grid_size)
 	for tile in tile_map.values():
 		tile.position += grid_offset
+		
+	update_camera()
 
 func _axial_to_world(coords: Vector2) -> Vector2:
 	# Original formula for flat-topped hexes using axial coordinates:
@@ -230,3 +232,31 @@ func change_tile(coords: Vector2i, type: String) -> void:
 		old_tile.queue_free()
 		add_child(new_tile)
 		tile_map[coords] = new_tile
+		
+		update_camera()
+		
+func update_camera():
+	var camera = get_viewport().get_camera_3d()
+	
+	if camera == null:
+		return
+	
+	var board_min = Vector3(float("inf"), float("inf"), float("inf"))
+	var board_max = Vector3(float("-inf"), float("-inf"), float("-inf"))
+	
+	for tile_coords in tile_map.keys():
+		var tile = tile_map[tile_coords]
+		var tile_pos = tile.position
+		board_min = Vector3(min(board_min.x, tile_pos.x), min(board_min.y, tile_pos.y), min(board_min.z, tile_pos.z))
+		board_max = Vector3(max(board_max.x, tile_pos.x), max(board_max.y, tile_pos.y), max(board_max.z, tile_pos.z))
+		
+	var board_center = (board_min + board_max) / 2.0
+	
+	var board_size = board_max - board_min
+	var board_diagonal_length = board_size.length()
+	
+	var fov_factor = max(board_diagonal_length / 10.0, 30)
+	camera.fov = clamp(fov_factor, 30, 100)
+	
+	camera.position = board_center + Vector3(0,50,0)
+	camera.look_at(board_center, Vector3(0, 1, 0))

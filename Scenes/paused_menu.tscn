@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://csny3if363son"]
+
+[ext_resource type="Script" path="res://paused_menu.gd" id="1_jypes"]
+[ext_resource type="Texture2D" uid="uid://5q375qr4476d" path="res://Assets/wood1.png" id="2_rc272"]
+[ext_resource type="Shader" path="res://Scenes/paused_menu.gdshader" id="2_w03cf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cetyb"]
+shader = ExtResource("2_w03cf")
+shader_parameter/amount = 3.0
+
+[node name="PausedMenu" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jypes")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cetyb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.266667, 0.266667, 0.705882)
+
+[node name="GridContainer" type="GridContainer" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/v_separation = 10
+
+[node name="Label" type="Label" parent="GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Resume Game"
+
+[node name="SettingsBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitBtn" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="Wood1" type="Sprite2D" parent="."]
+show_behind_parent = true
+z_index = 1
+position = Vector2(584, 329)
+scale = Vector2(0.307185, 0.233525)
+texture = ExtResource("2_rc272")
+
+[node name="GridContainer2" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 460.0
+offset_right = 717.0
+offset_bottom = 500.0
+
+[node name="Back2MainBtn" type="Button" parent="GridContainer2"]
+z_index = 2
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="pressed" from="GridContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
+[connection signal="pressed" from="GridContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="GridContainer2/Back2MainBtn" to="." method="_on_back_2_main_btn_pressed"]

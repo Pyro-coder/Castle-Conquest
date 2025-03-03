@@ -11,12 +11,12 @@ ground_bottom_color = Color(0.0823529, 0.196078, 0.482353, 1)
 ground_horizon_color = Color(0.0823529, 0.196078, 0.482353, 1)
 sun_angle_max = 272.35
 
-[sub_resource type="Sky" id="Sky_4gvus"]
+[sub_resource type="Sky" id="Sky_xn7db"]
 sky_material = SubResource("ProceduralSkyMaterial_4r3ic")
 
 [sub_resource type="Environment" id="Environment_p0gk8"]
 background_mode = 2
-sky = SubResource("Sky_4gvus")
+sky = SubResource("Sky_xn7db")
 
 [node name="board" type="Node3D"]
 script = ExtResource("1_1wluw")

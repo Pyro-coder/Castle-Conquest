@@ -1,46 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://dvy7s6wfutupg"]
+[gd_scene load_steps=9 format=3 uid="uid://dvy7s6wfutupg"]
 
-[ext_resource type="Script" path="res://Scenes/world.gd" id="1_t7bt3"]
 [ext_resource type="MeshLibrary" uid="uid://dyymujlo3ml6" path="res://Scenes/Blcoks.tres" id="1_tyue0"]
+[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="3_3l63v"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1i6cp"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="GDScript" id="GDScript_xly3f"]
+script/source = "extends Node3D
 
-[sub_resource type="Sky" id="Sky_qmuoi"]
-sky_material = SubResource("ProceduralSkyMaterial_1i6cp")
+@onready var camera_pivot = $SubViewport/CameraPivot
 
-[sub_resource type="Environment" id="Environment_bjlow"]
+var rotation_speed = 8
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	camera_pivot.rotation_degrees.y += delta * rotation_speed
+"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fo615"]
+sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
+sky_horizon_color = Color(0.514926, 0.661726, 0.884476, 1)
+ground_bottom_color = Color(0.0823529, 0.196078, 0.482353, 1)
+ground_horizon_color = Color(0.0823529, 0.196078, 0.482353, 1)
+sun_angle_max = 272.35
+
+[sub_resource type="Sky" id="Sky_4gvus"]
+sky_material = SubResource("ProceduralSkyMaterial_fo615")
+
+[sub_resource type="Environment" id="Environment_emw23"]
 background_mode = 2
-sky = SubResource("Sky_qmuoi")
-sky_custom_fov = 104.2
-ambient_light_color = Color(0.928735, 0.243927, 0.799091, 1)
-tonemap_mode = 2
-glow_enabled = true
+sky = SubResource("Sky_4gvus")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjw6v"]
-transparency = 1
-albedo_color = Color(0.117647, 0.486275, 1, 0.584314)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cukkr"]
+shader = ExtResource("3_3l63v")
+shader_parameter/amount = 600
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_cf3se"]
-material = SubResource("StandardMaterial3D_xjw6v")
-size = Vector2(10000, 10000)
-subdivide_width = 10
-subdivide_depth = 10
-center_offset = Vector3(0, -100, 0)
+[sub_resource type="ViewportTexture" id="ViewportTexture_neqo4"]
+viewport_path = NodePath("SubViewport")
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_t7bt3")
+script = SubResource("GDScript_xly3f")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_bjlow")
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1920, 1080)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
-shadow_enabled = true
-directional_shadow_mode = 0
-
-[node name="GridMap" type="GridMap" parent="."]
+[node name="GridMap" type="GridMap" parent="SubViewport"]
 mesh_library = ExtResource("1_tyue0")
 cell_scale = 100.0
 data = {
@@ -48,10 +51,22 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Sea" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_cf3se")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_mode = 0
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="CameraPivot" type="Node3D" parent="SubViewport"]
 
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(0.976308, -0.00020148, -0.216384, 0.00523462, 0.999729, 0.0226873, 0.216321, -0.0232825, 0.976045, -208.9, 121.88, 548.84)
+[node name="Camera3D" type="Camera3D" parent="SubViewport/CameraPivot"]
+transform = Transform3D(0.976283, -0.00511185, -0.21644, 0.00523596, 0.999986, -7.8022e-11, 0.216437, -0.00113327, 0.976296, -208.9, 121.88, 548.84)
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
+environment = SubResource("Environment_emw23")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cukkr")
+position = Vector2(753.329, 391.185)
+scale = Vector2(0.831139, 0.831139)
+texture = SubResource("ViewportTexture_neqo4")

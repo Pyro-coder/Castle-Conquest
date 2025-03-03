@@ -9,6 +9,7 @@ shader = ExtResource("1_d5qj4")
 shader_parameter/amount = 150
 
 [node name="MenuTemplate" type="Control"]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

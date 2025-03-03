@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioPlayer="*res://Scenes/GlobalScenes/AudioPlayer.tscn"
+GlobalMenuCamera="*res://Scripts/menu_scripts/GlobalMenuCamera.gd"
 
 [display]
 

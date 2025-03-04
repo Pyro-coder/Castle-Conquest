@@ -35,7 +35,7 @@ sky = SubResource("Sky_4gvus")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cukkr"]
 shader = ExtResource("4_42q1i")
-shader_parameter/pixel_count = Vector2(640, 360)
+shader_parameter/pixel_count = Vector2(480, 270)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_neqo4"]
 viewport_path = NodePath("SubViewport")

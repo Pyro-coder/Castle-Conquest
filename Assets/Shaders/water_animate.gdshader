@@ -7,6 +7,7 @@ uniform float max_angle : hint_range(0.0, 0.5) = 0.1;
 uniform float phase_offset : hint_range(0.0, 6.28318530718) = 0.0;
 // A new uniform to control the rounding effect (0 = no rounding, 1 = fully spherical)
 uniform float roundness : hint_range(0.0, 1.0) = 0.5;
+uniform float transparency : hint_range(0.0, 1.0) = 0.3;
 
 void vertex() {
     // Existing rotation code
@@ -35,6 +36,6 @@ void vertex() {
 }
 
 void fragment() {
-    ALPHA = 0.3;
+    ALPHA = transparency;
     ALBEDO = albedo_color.rgb;
 }

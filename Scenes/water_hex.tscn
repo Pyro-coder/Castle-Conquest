@@ -14,6 +14,7 @@ shader_parameter/oscillation_frequency = 0.5
 shader_parameter/max_angle = 0.175
 shader_parameter/phase_offset = 0.0
 shader_parameter/roundness = 0.5
+shader_parameter/transparency = 0.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rtocd"]
 render_priority = 0

@@ -16,3 +16,7 @@ script = ExtResource("2_kawhx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
 shape = SubResource("CylinderShape3D_wtyoj")
+
+[connection signal="input_event" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_input_event"]
+[connection signal="mouse_entered" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_mouse_exited"]

@@ -62,6 +62,7 @@ func _replace_tile() -> void:
 	if new_tile_scene:
 		var new_tile = new_tile_scene.instantiate()
 		new_tile.transform = self.transform  # Keep the same position.
+		new_tile.get_child(0).setcoords(coordsfromboard)
 		get_parent().add_child(new_tile)
 		queue_free()  # Remove the old tile.
 

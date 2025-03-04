@@ -94,7 +94,6 @@ func changeVneighbor(hoveredtilecoords):
 		neighbor2.get_child(0)._replace_tile()
 		neighbor3.get_child(0)._replace_tile()
 		tile.get_child(0)._replace_tile()
-		tile.get_child(0)._replace_tile()
 
 
 
@@ -121,7 +120,6 @@ func changeRneighbor(hoveredtilecoords):
 		neighbor1.get_child(0)._replace_tile()
 		neighbor2.get_child(0)._replace_tile()
 		neighbor3.get_child(0)._replace_tile()
-		tile.get_child(0)._replace_tile()
 		tile.get_child(0)._replace_tile()
 
 
@@ -153,7 +151,18 @@ func changeLneighbor(hoveredtilecoords):
 		neighbor2.get_child(0)._replace_tile()
 		neighbor3.get_child(0)._replace_tile()
 		tile.get_child(0)._replace_tile()
-		tile.get_child(0)._replace_tile()
+
+
+func _forest_hovered(hoveredforestcoords,color):
+	var tile = get_tile_at(hoveredforestcoords)
+	tile.get_child(0).get_child(0)._change_color(color)
+
+func _forest_selected(hoveredforestcoords,numTokens):
+	var tile = get_tile_at(hoveredforestcoords)
+	tile.get_child(0).get_child(0).placetoken(numTokens)
+
+
+
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:

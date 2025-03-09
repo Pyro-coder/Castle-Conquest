@@ -1,13 +1,13 @@
-using Godot;
-using System;
-using System.Collections.Generic;
 using BattleSheepCore.Game;
+using Godot;
 
 namespace BattleSheepCore.Players
 {
     /// <summary>
     /// Represents a player in the game.
     /// </summary>
+    /// 
+    [GlobalClass]
     public partial class Player : Node
     {
         /// <summary>
@@ -30,7 +30,9 @@ namespace BattleSheepCore.Players
         /// </summary>
         /// <param name="id">The player's ID.</param>
         /// <param name="name">The player's name.</param>
-        public Player(int id, string name)
+        public Player() { }
+
+        public void Initialize(int id, string name)
         {
             Id = id;
             Name = name;

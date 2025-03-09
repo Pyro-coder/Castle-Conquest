@@ -41,12 +41,12 @@ func change_to_token_hex(building_type):
 		get_parent().get_parent().add_child(new_tile)
 		queue_free()  # Remove the old tile.
 	
-func _on_area_3d_mouse_entered() -> void:
-	board._forest_hovered(coordsfromboard,Color(0.0,0.7,0.2,1.0))
+# func _on_area_3d_mouse_entered() -> void:
+	# board._forest_hovered(coordsfromboard,Color(0.0,0.7,0.2,1.0))
 
 
-func _on_area_3d_mouse_exited() -> void:
-	board._forest_hovered(coordsfromboard,Color(0.3, 0.6, 0.3, 1.0))
+# func _on_area_3d_mouse_exited() -> void:
+	# board._forest_hovered(coordsfromboard,Color(0.3, 0.6, 0.3, 1.0))
 	
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:

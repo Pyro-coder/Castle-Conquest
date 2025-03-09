@@ -1,15 +1,20 @@
-﻿using BattleSheepCore.Board;
-using BattleSheepCore.Players;
-using Godot;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using BattleSheepCore.Game;
+using Godot;
+
+using BattleSheepCore.Board;
+using BattleSheepCore.Players;
 
 namespace BattleSheepCore.Game
 {
-    public partial class GameController : Node
+    public class GameController
     {
-        private readonly GameManager _gameManager;
-        private readonly List<Player> _players;
+        private GameManager _gameManager;
+        private List<Player> _players;
         public GameController(int boardSize, List<Player> players)
         {
             var boardManager = new BoardManager(boardSize);
@@ -78,6 +83,22 @@ namespace BattleSheepCore.Game
         public void PrintBoard()
         {
             _gameManager.PrintBoard();
+        }
+
+
+        // Clone the GameController.
+        public GameController Clone()
+        {
+            var clonedManager = _gameManager.Clone();
+            // Assume players can be shared or cloned as needed.
+            return new GameController(clonedManager, _players);
+        }
+
+        // Private constructor used for cloning.
+        private GameController(GameManager clonedManager, List<Player> players)
+        {
+            _gameManager = clonedManager;
+            _players = players;
         }
     }
 }

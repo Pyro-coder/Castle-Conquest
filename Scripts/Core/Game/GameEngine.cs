@@ -1,26 +1,43 @@
 ﻿using BattleSheepCore.Board;
 using BattleSheepCore.Players;
-using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using BattleSheepCore.Game;
+using Godot;
+using Godot.Collections;
 
 namespace BattleSheepCore.Game
 {
     /// <summary>
     /// The GameEngine class serves as the main interface for the game, encapsulating the game logic and interactions.
     /// </summary>
-    public partial class GameEngine : Node
+    ///
+    [GlobalClass]
+    public partial class GameEngine : Node, IGameEngine
     {
         private readonly GameController _gameController;
+
+        private int boardSize;
+
+        public int BoardSize => boardSize;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GameEngine"/> class.
         /// </summary>
         /// <param name="boardSize">The size of the game board.</param>
         /// <param name="players">The list of players participating in the game.</param>
-        public GameEngine(int boardSize, List<Player> players)
+        public GameEngine()
         {
+            this.boardSize = 22;
+            var humanPlayer = new Player();
+            humanPlayer.Initialize(1, "Human");
+            var aiPlayer = new Player();
+            aiPlayer.Initialize(2, "AI");
+            var players = new List<Player> { humanPlayer, aiPlayer };
+
             _gameController = new GameController(boardSize, players);
         }
 
@@ -53,7 +70,6 @@ namespace BattleSheepCore.Game
                 if (_gameController.PlaceTile(tile, row, col))
                 {
                     Console.WriteLine($"Tile placed at ({row}, {col}) with orientation {orientation}.");
-                    _gameController.PrintBoard();
                 }
                 else
                 {
@@ -64,6 +80,11 @@ namespace BattleSheepCore.Game
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        public void PrintBoard()
+        {
+            _gameController.PrintBoard();
         }
 
         /// <summary>
@@ -125,6 +146,27 @@ namespace BattleSheepCore.Game
             return _gameController.GetValidMoves(player);
         }
 
+        public Godot.Collections.Array GodotGetValidMoves(int playerId)
+        {
+            var valid = GetValidMoves(playerId);
+
+            var arrayOfDicts = new Godot.Collections.Array();
+
+            foreach (var placement in valid)
+            {
+                // Create a Godot dictionary for each placement.
+                Dictionary placementDict = new Dictionary();
+                placementDict["startRow"] = placement.startRow;
+                placementDict["startCol"] = placement.startCol;
+                placementDict["count"] = placement.count;
+                placementDict["directionIndex"] = placement.directionIndex;
+
+                arrayOfDicts.Add(placementDict);
+            }
+
+            return arrayOfDicts;
+        }
+
         /// <summary>
         /// Gets the valid tile placements on the board.
         /// </summary>
@@ -133,6 +175,26 @@ namespace BattleSheepCore.Game
         public List<(int q, int r, int orientation)> GetValidTilePlacements(Tile tile)
         {
             return _gameController.GetValidTilePlacements(tile);
+        }
+
+        public Godot.Collections.Array GodotGetValidTile()
+        {
+            var tile = new Tile();
+            var validPlacements = _gameController.GetValidTilePlacements(tile);
+            var arrayOfDicts = new Godot.Collections.Array();
+
+            foreach (var placement in validPlacements)
+            {
+                // Create a Godot dictionary for each placement.
+                Dictionary placementDict = new Dictionary();
+                placementDict["q"] = placement.q;
+                placementDict["r"] = placement.r;
+                placementDict["orientation"] = placement.orientation;
+
+                arrayOfDicts.Add(placementDict);
+            }
+
+            return arrayOfDicts;
         }
 
         /// <summary>
@@ -144,13 +206,52 @@ namespace BattleSheepCore.Game
             return _gameController.GetValidInitialPiecePlacements();
         }
 
+        public Godot.Collections.Array GodotGetValidInitial()
+        {
+            var valid = GetValidInitialPiecePlacements();
+
+            var arrayOfDicts = new Godot.Collections.Array();
+
+            foreach (var placement in valid)
+            {
+                // Create a Godot dictionary for each placement.
+                Dictionary placementDict = new Dictionary();
+                placementDict["q"] = placement.q;
+                placementDict["r"] = placement.r;
+
+                arrayOfDicts.Add(placementDict);
+            }
+
+            return arrayOfDicts;
+        }
+
         /// <summary>
         /// Gets the current state of the game board.
         /// </summary>
         /// <returns>The current state of the game board.</returns>
-        public List<(int q, int r, int pieceCount, int playerId)> GetCurrentBoardState()
+        public List<(int q, int r, int pieceCount, int playerId)> AIGetCurrentBoardState()
         {
             return _gameController.GetCurrentBoardState();
+        }
+
+        public Godot.Collections.Array GetCurrentBoardState()
+        {
+            var boardState = _gameController.GetCurrentBoardState();
+            var listOfDicts = new Godot.Collections.Array();
+
+            foreach (var cell in boardState)
+            {
+                // Create a Godot dictionary for each cell with the proper keys.
+                var cellDict = new Dictionary();
+                cellDict["q"] = cell.q;
+                cellDict["r"] = cell.r;
+                cellDict["pieceCount"] = cell.pieceCount;
+                cellDict["playerId"] = cell.playerId;
+
+                listOfDicts.Add(cellDict);
+            }
+
+            return listOfDicts;
         }
 
         /// <summary>
@@ -160,6 +261,24 @@ namespace BattleSheepCore.Game
         public bool CheckForWin()
         {
             return _gameController.CheckForWin();
+        }
+
+        // Clone the entire game engine.
+        public GameEngine Clone()
+        {
+            var clonedController = _gameController.Clone();
+            return new GameEngine(clonedController);
+        }
+
+        IGameEngine IGameEngine.Clone()
+        {
+            return Clone();
+        }
+
+        // Private constructor for cloning.
+        private GameEngine(GameController clonedController)
+        {
+            _gameController = clonedController;
         }
     }
 }

@@ -14,15 +14,15 @@ var tile_map = {}
 var hoveredTile = Vector2i(0,0)
 var tempColor
 
-func _ready() -> void:
-	
-	_generate_grid()      
-	
-	
+var example_board_state = [
+	[0, 0, 1, 1],  # A blue piece at (0, 0) (player_id 1)
+	[1, 0, 1, 2],  # A red piece at (1, 0) (player_id 2)
+	[0, 1, 0, -1]  # An empty cell at (0, 1) (piece_count 0, player_id -1)
+]
 
-func check():
-	return orientation
-	
+func _ready() -> void:
+	_generate_grid()      
+	# update_from_state(example_board_state)
 	
 
 func _input(event):
@@ -153,15 +153,6 @@ func changeLneighbor(hoveredtilecoords):
 		tile.get_child(0)._replace_tile()
 
 
-func _forest_hovered(hoveredforestcoords,color):
-	var tile = get_tile_at(hoveredforestcoords)
-	tile.get_child(0).get_child(0)._change_color(color)
-
-func _forest_selected(hoveredforestcoords,numTokens):
-	var tile = get_tile_at(hoveredforestcoords)
-	tile.get_child(0).get_child(0).placetoken(numTokens)
-
-
 
 
 func _unhandled_input(event):
@@ -205,8 +196,6 @@ func _generate_grid() -> void:
 	var grid_offset = Vector3(-TILE_SIZE * grid_size, 0, -TILE_SIZE * grid_size)
 	for tile in tile_map.values():
 		tile.position += grid_offset
-		
-	update_camera()
 
 func _axial_to_world(coords: Vector2) -> Vector2:
 	# Original formula for flat-topped hexes using axial coordinates:
@@ -218,10 +207,33 @@ func _axial_to_world(coords: Vector2) -> Vector2:
 
 func get_tile_at(coords: Vector2i) -> Node:
 	return tile_map.get(coords, null)
+	
+
+func update_from_state(board_state: Array) -> void:
+	for cell in board_state:
+		var q = cell["q"]
+		var r = cell["r"]
+		var piece_count = cell["pieceCount"]
+		var player_id = cell["playerId"]
+		var tile_type = ""
+		if piece_count > 0:
+			if player_id == 1:
+				tile_type = "blue"
+			elif player_id == 2:
+				tile_type = "red"
+			else:
+				tile_type = "forest"
+		else:
+			tile_type = "forest"
+		change_tile(Vector2i(q, r), tile_type)
+
 
 func change_tile(coords: Vector2i, type: String) -> void:
 	if tile_map.has(coords):
 		var old_tile = tile_map[coords]
+		# Check if the tile was already modified.
+		var already_modified = old_tile.has_meta("modified") and old_tile.get_meta("modified")
+		
 		var new_tile
 		match type:
 			"blue":
@@ -230,42 +242,22 @@ func change_tile(coords: Vector2i, type: String) -> void:
 				new_tile = RED_CASTLE.instantiate()
 			"forest":
 				new_tile = FOREST_TILE.instantiate()
+			"default":
+				new_tile = HEX_TILE.instantiate()
 			_:
 				return
-		# Apply original transformation logic:
+		
+		# Copy the transform from the old tile.
 		new_tile.transform = old_tile.transform
-		new_tile.rotate(Vector3.UP, deg_to_rad(90))
-		new_tile.scale *= 2
+		# Apply rotation and scaling only if this tile hasn't been modified before.
+		if not already_modified:
+			new_tile.rotate(Vector3.UP, deg_to_rad(90))
+			new_tile.scale *= 2
+		# Ensure that the new tile always carries the "modified" flag.
+		new_tile.set_meta("modified", true)
 		new_tile.set_meta("hex_coords", coords)
+		
 		remove_child(old_tile)
 		old_tile.queue_free()
 		add_child(new_tile)
 		tile_map[coords] = new_tile
-		
-		update_camera()
-		
-func update_camera():
-	var camera = get_viewport().get_camera_3d()
-	
-	if camera == null:
-		return
-	
-	var board_min = Vector3(float("inf"), float("inf"), float("inf"))
-	var board_max = Vector3(float("-inf"), float("-inf"), float("-inf"))
-	
-	for tile_coords in tile_map.keys():
-		var tile = tile_map[tile_coords]
-		var tile_pos = tile.position
-		board_min = Vector3(min(board_min.x, tile_pos.x), min(board_min.y, tile_pos.y), min(board_min.z, tile_pos.z))
-		board_max = Vector3(max(board_max.x, tile_pos.x), max(board_max.y, tile_pos.y), max(board_max.z, tile_pos.z))
-		
-	var board_center = (board_min + board_max) / 2.0
-	
-	var board_size = board_max - board_min
-	var board_diagonal_length = board_size.length()
-	
-	var fov_factor = max(board_diagonal_length / 10.0, 30)
-	camera.fov = clamp(fov_factor, 30, 100)
-	
-	camera.position = board_center + Vector3(0,50,0)
-	camera.look_at(board_center, Vector3(0, 1, 0))

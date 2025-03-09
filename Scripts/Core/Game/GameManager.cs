@@ -1,6 +1,5 @@
 using BattleSheepCore.Board;
 using BattleSheepCore.Players;
-using Godot;
 using System;
 using System.Collections.Generic;
 
@@ -11,10 +10,10 @@ namespace BattleSheepCore.Game
         public InvalidMoveException(string message) : base(message) { }
     }
 
-    public partial class GameManager : Node
+    public class GameManager
     {
-        private readonly BoardManager _boardManager;
-        private readonly List<Player> _players;
+        private BoardManager _boardManager;
+        private List<Player> _players;
 
         public GameManager(BoardManager boardManager, List<Player> players)
         {
@@ -287,6 +286,15 @@ namespace BattleSheepCore.Game
             }
 
             return validMoves;
+        }
+
+        public GameManager Clone()
+        {
+            // Clone the board manager.
+            var clonedBoardManager = _boardManager.Clone();
+            // Shallow copy of players if they are immutable or if sharing is acceptable.
+            var clonedPlayers = new List<Player>(_players);
+            return new GameManager(clonedBoardManager, clonedPlayers);
         }
     }
 }

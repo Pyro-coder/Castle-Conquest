@@ -9,16 +9,14 @@ var orientation = "vert"
 @export_range(2, 50) var grid_size: int = 50
 @export var spacing_factor: float = 1.15  # Increase this value if tiles overlap
 
+#################### IMPORTANT ###################
+# If control_node.turn_order[control_node.tile_turn_index].Id == 1, then it is the user's turn
+
 var tile_map = {}
 
 var hoveredTile = Vector2i(0,0)
 var tempColor
 
-var example_board_state = [
-	[0, 0, 1, 1],  # A blue piece at (0, 0) (player_id 1)
-	[1, 0, 1, 2],  # A red piece at (1, 0) (player_id 2)
-	[0, 1, 0, -1]  # An empty cell at (0, 1) (piece_count 0, player_id -1)
-]
 
 func _ready() -> void:
 	_generate_grid()      
@@ -55,13 +53,18 @@ func OnBoardPlaceHover(hoveredtilecoords,color):
 
 
 func OnBoardPlaceClick(hoveredtilecoords):
-	hoveredTile = hoveredtilecoords
-	if orientation == "vert":
-		changeVneighbor(hoveredtilecoords)
-	if orientation == "right":
-		changeRneighbor(hoveredtilecoords)
-	if orientation == "left":
-		changeLneighbor(hoveredtilecoords)
+	var control_node = get_node("PV_AI_Control")
+		
+	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
+	if (control_node.game_state == control_node.GameState.TILE_PLACEMENT && control_node.turn_order[control_node.tile_turn_index].Id == 1):
+		hoveredTile = hoveredtilecoords
+		if orientation == "vert":
+			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 1)
+		if orientation == "right":
+			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 0)
+			print(hoveredtilecoords)
+		if orientation == "left":
+			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 2)
 	
 
 func isNotForest(neighbor):

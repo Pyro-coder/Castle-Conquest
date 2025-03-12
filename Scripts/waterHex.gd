@@ -49,11 +49,11 @@ func _on_area_3d_mouse_exited() -> void:
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		#_replace_tile()
-		tileType="forest"
+		# _replace_tile()
+		# tileType="forest"
 		var board = get_parent().get_parent()
 		board.OnBoardPlaceClick(coordsfromboard)
-		_apply_to_neighbors("_replace_tile")
+		# _apply_to_neighbors("_replace_tile")
 
 func _change_color(color: Color):
 	shader_material.set_shader_parameter("albedo_color", color)

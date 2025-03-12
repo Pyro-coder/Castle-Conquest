@@ -11,7 +11,7 @@ var dynamic_max_z: float
 func _ready() -> void:
 	# Keep the camera angle/position you want:
 	rotation_degrees = Vector3(-70.0, 90.0, 0.0)
-	position = Vector3(-40.0, 20.0, -50.0)
+	position = Vector3(-40.0, 13.0, -50.0)
 
 func _physics_process(delta: float) -> void:
 	_update_dynamic_bounds()
@@ -66,5 +66,5 @@ func _update_dynamic_bounds() -> void:
 	var margin = 10.0
 	dynamic_min_x = min_px - margin + 15
 	dynamic_max_x = max_px + margin - 3
-	dynamic_min_z = min_pz - margin + 5
-	dynamic_max_z = max_pz + margin - 5
+	dynamic_min_z = min_pz - margin + 10
+	dynamic_max_z = max_pz + margin - 10

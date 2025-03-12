@@ -16,11 +16,11 @@ var ai_tile                       # Instance of ABMinimaxTile.
 var monte_carlo_ai                # Instance of MonteCarloInitialMovement.
 var human_first: bool = true
 var players = []                  # Array of Player objects.
-var turn_order = []               # Turn order array.
+@export var turn_order = []               # Turn order array.
 
 # For tracking the tile placement phase.
 var tile_round: int = 1
-var tile_turn_index: int = 0
+@export var tile_turn_index: int = 0
 
 # For initial piece placement.
 var init_turn_index: int = 0
@@ -29,10 +29,9 @@ var init_turn_index: int = 0
 var move_turn_index: int = 0
 
 # Overall game state.
-var game_state = GameState.TURN_ORDER
+@export var game_state = GameState.TURN_ORDER
 
 func _ready():
-	# Initialize your game engine (assumes GameEngine is defined elsewhere).
 	game_engine = GameEngine.new()
 	# Connect the submit button's pressed signal to our handler.
 	submit_button.pressed.connect(_on_submit_pressed)
@@ -40,15 +39,14 @@ func _ready():
 	setup_game(3)  # For example, using difficulty level 3.
 
 func setup_game(difficulty_level: int):
-	difficulty = difficulty_level
 
 	# Set AI parameters based on difficulty.
 	var max_depth = 3
-	if difficulty == 1:
+	if difficulty_level == 1:
 		max_depth = 2
-	elif difficulty == 2:
+	elif difficulty_level == 2:
 		max_depth = 4
-	elif difficulty == 3:
+	elif difficulty_level == 3:
 		max_depth = 6
 
 	# Initialize AI components.
@@ -87,8 +85,6 @@ func process_input(input_text: String) -> void:
 	match game_state:
 		GameState.TURN_ORDER:
 			process_turn_order(input_text)
-		GameState.TILE_PLACEMENT:
-			process_tile_input(input_text)
 		GameState.INITIAL_PLACEMENT:
 			process_initial_input(input_text)
 		GameState.MOVE_PHASE:
@@ -149,10 +145,17 @@ func process_tile_turn():
 		# Continue to process the next turn.
 		process_tile_turn()
 
-func process_tile_input(input_text: String):
-	var tokens = input_text.split(" ")
-	if tokens.size() == 3 and tokens[0].is_valid_int() and tokens[1].is_valid_int() and tokens[2].is_valid_int():
-		game_engine.PlaceTile(1, tokens[0].to_int(), tokens[1].to_int(), tokens[2].to_int())
+func process_tile_input(q: int, r: int, orientation: int):
+	var valid_moves = get_valid()
+	var is_valid = false
+	
+	# Only process a move if it is valid
+	for move in valid_moves:
+		if move["q"] == q and move["r"] == r and move["orientation"] == orientation:
+			is_valid = true
+			break
+	if is_valid:
+		game_engine.PlaceTile(1, q, r, orientation)
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
 		input_field.hide()
@@ -160,15 +163,13 @@ func process_tile_input(input_text: String):
 		tile_turn_index += 1
 		process_tile_turn()
 	else:
-		message_label.text = "Invalid input. Enter (q r orientation):"
+		message_label.text = "Invalid tile placement. Please try again."
+	
 
 func ai_place_tile():
 	var best_tile = ai_tile.GetBestTilePlacement(game_engine)
-	var q = best_tile["q"]
-	var r = best_tile["r"]
-	var orientation = best_tile["orientation"]
-	game_engine.PlaceTile(2, q, r, orientation)
-	message_label.text = "AI placed tile at (%d, %d) with orientation %d" % [q, r, orientation]
+	game_engine.PlaceTile(2, best_tile["q"], best_tile["r"], best_tile["orientation"])
+	message_label.text = "AI placed tile at (%d, %d) with orientation %d" % [best_tile["q"], best_tile["r"], best_tile["orientation"]]
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
 

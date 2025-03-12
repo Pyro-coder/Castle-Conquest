@@ -1,3 +1,3 @@
 extends Node
 
-@export var difficulty: int
+@export var difficulty: int = 3

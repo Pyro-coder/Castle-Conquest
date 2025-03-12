@@ -39,7 +39,7 @@ func _ready():
 	setup_game(Difficulty.difficulty)  # For example, using difficulty level 3.
 
 func setup_game(difficulty_level: int):
-	print(difficulty_level)
+	print("Difficulty: ", difficulty_level)
 	# Set AI parameters based on difficulty.
 	var max_depth = 3
 	if difficulty_level == 1:

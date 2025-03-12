@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://d2pjiwjskef5o"]
 
-[ext_resource type="Script" path="res://Scripts/menu_scripts/game_join_menu.gd" id="1_ctu8x"]
+[ext_resource type="Script" uid="uid://ghiew1c82y11" path="res://Scripts/menu_scripts/game_join_menu.gd" id="1_ctu8x"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_yocke"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_nb33g"]
-[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="3_nvum6"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_nvum6"]
 [ext_resource type="ButtonGroup" uid="uid://dy41ywmmtdylm" path="res://Scripts/menu_scripts/buttons/game_join_buttons.tres" id="4_tw4g0"]
-[ext_resource type="Script" path="res://Scripts/menu_scripts/buttons/select_parrent_check.gd" id="5_4q0dx"]
+[ext_resource type="Script" uid="uid://ctqiw56hledk4" path="res://Scripts/menu_scripts/buttons/select_parrent_check.gd" id="5_4q0dx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3lv6u"]
 shader = ExtResource("3_nvum6")

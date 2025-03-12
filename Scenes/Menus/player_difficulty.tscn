@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://c6gbkadyot10x"]
 
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_pkfo5"]
-[ext_resource type="Script" path="res://Scripts/menu_scripts/player_difficulty.gd" id="1_qgnl5"]
-[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="3_hbxv6"]
+[ext_resource type="Script" uid="uid://rfh5kmw121ah" path="res://Scripts/menu_scripts/player_difficulty.gd" id="1_qgnl5"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_hbxv6"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_x644m"]
 [ext_resource type="ButtonGroup" uid="uid://bn5iid2y2pwts" path="res://Scripts/menu_scripts/buttons/difficulty_select_buttons.tres" id="4_2fxua"]
 

@@ -1,15 +1,15 @@
 [gd_scene load_steps=8 format=3 uid="uid://bvlxdrs67u455"]
 
-[ext_resource type="Script" path="res://Scripts/waterHex.gd" id="2_aodnd"]
+[ext_resource type="Script" uid="uid://dqskqfjsc20h7" path="res://Scripts/waterHex.gd" id="2_aodnd"]
 [ext_resource type="ArrayMesh" uid="uid://xd4rhjstdb7n" path="res://Assets/OBJ format/water.obj" id="2_dbcwl"]
-[ext_resource type="Shader" path="res://Assets/Shaders/water_animate.gdshader" id="2_olfnp"]
-[ext_resource type="Shader" path="res://Assets/Shaders/invisible.gdshader" id="3_k3fss"]
+[ext_resource type="Shader" uid="uid://c0perbevs2ap8" path="res://Assets/Shaders/water_animate.gdshader" id="2_olfnp"]
+[ext_resource type="Shader" uid="uid://b7jhe3l70j4u6" path="res://Assets/Shaders/invisible.gdshader" id="3_k3fss"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_exdhd"]
 render_priority = 0
 shader = ExtResource("2_olfnp")
 shader_parameter/albedo_color = Vector4(0.4, 0.8, 0.9, 1)
-shader_parameter/time = null
+shader_parameter/time = 0.0
 shader_parameter/oscillation_frequency = 0.5
 shader_parameter/max_angle = 0.175
 shader_parameter/phase_offset = 0.0

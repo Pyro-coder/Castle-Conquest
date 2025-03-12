@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://c0id1c01yo1ck"]
 
-[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="1_d5qj4"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_d5qj4"]
 [ext_resource type="Texture2D" uid="uid://5q375qr4476d" path="res://Assets/wood1.png" id="1_th0xl"]
 [ext_resource type="PackedScene" uid="uid://dvy7s6wfutupg" path="res://Scenes/world.tscn" id="1_wrae2"]
 

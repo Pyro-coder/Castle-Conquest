@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://bf5nwd8pspm3u"]
 
-[ext_resource type="Script" path="res://Scripts/menu_scripts/player_mode_menu.gd" id="1_2esew"]
+[ext_resource type="Script" uid="uid://doa7vv27gb3xt" path="res://Scripts/menu_scripts/player_mode_menu.gd" id="1_2esew"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_wxfi3"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_4sg4i"]
-[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="3_i52xn"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_i52xn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oor2m"]
 shader = ExtResource("3_i52xn")

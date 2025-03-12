@@ -13,13 +13,13 @@ config_version=5
 config/name="Capstone-25"
 run/main_scene="res://Scenes/Menus/main_menu.tscn"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
-boot_splash/image="res://Screenshot 2025-02-28 232548.png"
 config/icon="res://icon.svg"
 
 [autoload]
 
 AudioPlayer="*res://Scenes/GlobalScenes/AudioPlayer.tscn"
 GlobalMenuCamera="*res://Scripts/menu_scripts/GlobalMenuCamera.gd"
+Difficulty="*res://difficulty.gd"
 
 [display]
 

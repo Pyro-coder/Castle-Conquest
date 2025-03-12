@@ -19,7 +19,7 @@ var players = []                  # Array of Player objects.
 @export var turn_order = []               # Turn order array.
 
 # For tracking the tile placement phase.
-var tile_round: int = 1
+@export var tile_round: int = 1
 @export var tile_turn_index: int = 0
 
 # For initial piece placement.
@@ -36,10 +36,10 @@ func _ready():
 	# Connect the submit button's pressed signal to our handler.
 	submit_button.pressed.connect(_on_submit_pressed)
 	# Setup the game with the desired difficulty.
-	setup_game(3)  # For example, using difficulty level 3.
+	setup_game(Difficulty.difficulty)  # For example, using difficulty level 3.
 
 func setup_game(difficulty_level: int):
-
+	print(difficulty_level)
 	# Set AI parameters based on difficulty.
 	var max_depth = 3
 	if difficulty_level == 1:
@@ -137,7 +137,6 @@ func process_tile_turn():
 		message_label.text = "Your turn to place a tile. Enter (q r orientation):"
 		input_field.show()
 		submit_button.show()
-		print(get_valid())
 	else:
 		# AI places its tile.
 		ai_place_tile()

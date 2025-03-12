@@ -25,6 +25,21 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_conquer_button_pressed() -> void:
+	var group = $MenuTemplate/VBoxContainer/Peasant.button_group
+	var selected = group.get_pressed_button()
+
+	if selected == null:
+		# No button is selected. Optionally, show a message to the user.
+		print("Please select a difficulty before continuing.")
+		return
+
+	match selected.name:
+		"Peasant":
+			Difficulty.difficulty = 1
+		"Knight":
+			Difficulty.difficulty = 2
+		"King":
+			Difficulty.difficulty = 3
 
 	get_tree().change_scene_to_file("res://Scenes/board.tscn")
 	

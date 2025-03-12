@@ -58,6 +58,10 @@ func OnBoardPlaceClick(hoveredtilecoords):
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
 	if (control_node.game_state == control_node.GameState.TILE_PLACEMENT && control_node.turn_order[control_node.tile_turn_index].Id == 1):
 		hoveredTile = hoveredtilecoords
+		if (control_node.tile_turn_index == 0 && control_node.tile_round == 1):
+			hoveredTile.x = 0
+			hoveredTile.y = 0
+			
 		if orientation == "vert":
 			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 1)
 		if orientation == "right":

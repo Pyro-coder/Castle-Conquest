@@ -8,12 +8,17 @@ var dynamic_max_x: float
 var dynamic_min_z: float
 var dynamic_max_z: float
 
+@onready var control_node = get_node("../PV_AI_Control")
+
 func _ready() -> void:
 	# Keep the camera angle/position you want:
 	rotation_degrees = Vector3(-70.0, 90.0, 0.0)
-	position = Vector3(-40.0, 13.0, -50.0)
+	position = Vector3(-45.0, 13.0, -50.0)
 
 func _physics_process(delta: float) -> void:
+	if control_node.tile_round == 1:
+		return
+		
 	_update_dynamic_bounds()
 
 	# 1) Gather input for WASD / Arrow keys (The directions are also tilted 90 degrees)

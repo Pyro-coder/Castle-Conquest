@@ -65,8 +65,11 @@ func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void
 		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			board.OnBoardPlaceClick(coordsfromboard)
 			
-			#board.OnBoardPlaceHoverExit(coordsfromboard,Color(0.12, 0.28, 0.66, 1.0))
-			#_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
+			# These lines fix a bug where tiles wont update after the initial placement as player 1, and where green remains after first placement by player
+			var current_color = shader_material.get_shader_parameter("albedo_color")
+			if board.control_node.tile_round == 1 and board.control_node.turn_order[0].Id == 1 or current_color != Color(0.8, 0.1, 0.1, 1.0):
+				board.OnBoardPlaceHoverExit(coordsfromboard,Color(0.12, 0.28, 0.66, 1.0))
+				_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
 
 func _change_color(color: Color):
 	shader_material.set_shader_parameter("albedo_color", color)

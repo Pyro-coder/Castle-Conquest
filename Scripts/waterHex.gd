@@ -5,6 +5,9 @@ var shader_resource: Shader = preload("res://Assets/Shaders/water_animate.gdshad
 var shader_material: ShaderMaterial = ShaderMaterial.new()
 var coordsfromboard
 var tileType = "water"
+
+var board
+
 func _ready() -> void:
 	# Assign the shader to the ShaderMaterial.
 	
@@ -33,38 +36,37 @@ func setcoords(vector):
 
 
 func _on_area_3d_mouse_entered() -> void:
-	var board = get_parent().get_parent()
-	
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
-	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && board.control_node.turn_order[board.control_node.tile_turn_index].Id == 1):
+	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
 		if type() == "water":
 			board.OnBoardPlaceHover(coordsfromboard,Color(0.8, 0.1, 0.1, 1.0))
 			#_change_color(Color(0.8, 0.1, 0.1, 1.0))  # Change to red.
 			_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))  # Also update neighbors.
-	elif board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and board.control_node.turn_order[board.control_node.init_turn_index].Id == 1:
+	elif board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and GlobalVars.player_turn:
 		_change_color("red")
 	
 
 func _on_area_3d_mouse_exited() -> void:
-	var board = get_parent().get_parent()
+	var control = board.control_node
+	
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
-	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && board.control_node.turn_order[board.control_node.tile_turn_index].Id == 1):
+	if control.game_state == control.GameState.TILE_PLACEMENT and GlobalVars.player_turn:
+		_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
 		board.OnBoardPlaceHoverExit(coordsfromboard,Color(0.12, 0.28, 0.66, 1.0))
 		#_change_color(Color(0.12, 0.28, 0.66, 1.0))  # Change back to blue.
 		
-		_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
+		
 	else:
 		_change_color(Color(0.12, 0.28, 0.66, 1.0))
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
-	var board = get_parent().get_parent()  # board is now the direct parent of this tile.
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
-	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && board.control_node.turn_order[board.control_node.tile_turn_index].Id == 1):
+	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
 		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			board.OnBoardPlaceClick(coordsfromboard)
 			
-			board.OnBoardPlaceHoverExit(coordsfromboard,Color(0.12, 0.28, 0.66, 1.0))
-			_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
+			#board.OnBoardPlaceHoverExit(coordsfromboard,Color(0.12, 0.28, 0.66, 1.0))
+			#_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
 
 func _change_color(color: Color):
 	shader_material.set_shader_parameter("albedo_color", color)

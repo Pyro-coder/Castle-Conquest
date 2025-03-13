@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7rjtg1v6gs8v"]
 
-[ext_resource type="Script" path="res://Scenes/castle_hex.gd" id="1_61qd1"]
+[ext_resource type="Script" uid="uid://uctu6o3ef4dt" path="res://Scenes/castle_hex.gd" id="1_61qd1"]
 [ext_resource type="ArrayMesh" uid="uid://b2aysgjxh2gbh" path="res://Assets/obj/buildings/blue/building_castle_blue.obj" id="1_phw31"]
 [ext_resource type="ArrayMesh" uid="uid://n10i8i8gibar" path="res://Assets/OBJ format/grass.obj" id="2_v4lbb"]
 

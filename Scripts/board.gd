@@ -255,6 +255,7 @@ func _generate_grid() -> void:
 			tile_map[coords] = tile
 			tile.set_meta("hex_coords", coords)
 			tile.get_child(0).setcoords(coords)
+			tile.get_child(0).board = self
 			
 
 			add_child(tile)

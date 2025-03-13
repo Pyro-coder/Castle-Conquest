@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://l6ubg68vxx38"]
 
-[ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_1wluw"]
-[ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_rkaem"]
+[ext_resource type="Script" path="res://Scripts/board.gd" id="1_1wluw"]
+[ext_resource type="Script" path="res://Scenes/camera_3d.gd" id="2_rkaem"]
 [ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="3_cwopn"]
-[ext_resource type="Script" uid="uid://276gg21mowur" path="res://Scenes/p_v_ai.gd" id="4_npwrj"]
+[ext_resource type="Script" path="res://Scenes/p_v_ai.gd" id="4_npwrj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]
 sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)

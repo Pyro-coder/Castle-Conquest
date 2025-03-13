@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://byihrtakunev4"]
 
-[ext_resource type="Script" uid="uid://cg0dcxtm8tsuf" path="res://Scenes/forest_hex.gd" id="1_p7vp4"]
+[ext_resource type="Script" path="res://Scenes/forest_hex.gd" id="1_p7vp4"]
 [ext_resource type="ArrayMesh" uid="uid://jm51ljdmfjh7" path="res://Assets/OBJ format/grass-forest.obj" id="1_pppdi"]
-[ext_resource type="Script" uid="uid://csv1wdv78vuih" path="res://Scripts/forestHex.gd" id="2_kawhx"]
+[ext_resource type="Script" path="res://Scripts/forestHex.gd" id="2_kawhx"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wtyoj"]
 height = 0.420277

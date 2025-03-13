@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://cihrmbx3hcrmq"]
+
+[ext_resource type="Texture2D" uid="uid://cq67l6xoosi4" path="res://Assets/Coin/white_background.png" id="1_7mmtr"]
+[ext_resource type="Texture2D" uid="uid://c6a8rrmb1172g" path="res://Assets/Coin/goldcoin-frame1.png" id="1_fklgg"]
+[ext_resource type="Texture2D" uid="uid://b8anor7ix3jm0" path="res://Assets/Coin/goldcoin-frame2.png" id="2_kgi1s"]
+[ext_resource type="Texture2D" uid="uid://55yuwofj7vcj" path="res://Assets/Coin/goldcoin-frame3.png" id="3_3ih1q"]
+[ext_resource type="Texture2D" uid="uid://dnnkebudd73bg" path="res://Assets/Coin/goldcoin-frame4.png" id="4_44x4u"]
+[ext_resource type="Texture2D" uid="uid://ck2gp3aaqd5s7" path="res://Assets/Coin/goldcoin-frame5.png" id="5_5b00r"]
+[ext_resource type="Texture2D" uid="uid://cxgenjpjlj0fy" path="res://Assets/Coin/goldcoin-frame6.png" id="6_ss1oy"]
+[ext_resource type="Texture2D" uid="uid://b1vdqo8drrd8q" path="res://Assets/Coin/goldcoin-frame1-heads.png" id="7_4frnt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fvg8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fklgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kgi1s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3ih1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_44x4u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5b00r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ss1oy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4frnt")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xp7ak"]
+distance = -506.0
+
+[node name="coin heads" type="Node2D"]
+
+[node name="WhiteBackground" type="Sprite2D" parent="."]
+z_index = -5
+position = Vector2(584, 360)
+scale = Vector2(1.68734, 1.87793)
+texture = ExtResource("1_7mmtr")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(576, 320)
+sprite_frames = SubResource("SpriteFrames_3fvg8")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("WorldBoundaryShape2D_xp7ak")

@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://u6vqhbdxmgvf"]
+
+[node name="CoinFlip" type="Node2D"]

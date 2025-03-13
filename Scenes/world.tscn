@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvy7s6wfutupg"]
+[gd_scene load_steps=11 format=3 uid="uid://dvy7s6wfutupg"]
 
 [ext_resource type="MeshLibrary" uid="uid://dyymujlo3ml6" path="res://Scenes/Blcoks.tres" id="1_tyue0"]
 [ext_resource type="Script" uid="uid://bvt02xcmkxc12" path="res://Scripts/menu_scripts/sub_viewport_framerate.gd" id="1_wxcjb"]
 [ext_resource type="Script" uid="uid://hgy6xsr7e6hn" path="res://Scenes/menu_camera.gd" id="2_rg8tt"]
 [ext_resource type="Shader" uid="uid://g87ex1hrlogb" path="res://Assets/Shaders/3dPixelate.gdshader" id="4_42q1i"]
-[ext_resource type="Script" uid="uid://dhn4tq6dsdrqg" path="res://Scenes/ocean.gd" id="4_o4lc7"]
 
 [sub_resource type="GDScript" id="GDScript_xly3f"]
 script/source = "extends Node3D
@@ -71,9 +70,6 @@ script = ExtResource("2_rg8tt")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
 environment = SubResource("Environment_emw23")
-
-[node name="Ocean" type="Node3D" parent="SubViewport"]
-script = ExtResource("4_o4lc7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cukkr")

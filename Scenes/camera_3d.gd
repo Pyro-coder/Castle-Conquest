@@ -2,11 +2,14 @@ extends Camera3D
 class_name FixedAngleCamera
 
 @export var move_speed: float = 10.0
+@export var smooth_factor: float = 5.0  # Higher value = faster interpolation
 
 var dynamic_min_x: float
 var dynamic_max_x: float
 var dynamic_min_z: float
 var dynamic_max_z: float
+
+var target_position: Vector3
 
 @onready var control_node = get_node("../PV_AI_Control")
 
@@ -14,6 +17,7 @@ func _ready() -> void:
 	# Keep the camera angle/position you want:
 	rotation_degrees = Vector3(-70.0, 90.0, 0.0)
 	position = Vector3(-45.0, 13.0, -50.0)
+	target_position = position
 
 func _physics_process(delta: float) -> void:
 	if control_node.tile_round == 1:
@@ -35,14 +39,16 @@ func _physics_process(delta: float) -> void:
 	# 2) Move strictly in global XZ, ignoring camera rotation
 	if input_dir != Vector2.ZERO:
 		input_dir = input_dir.normalized()
-		# Here, "input_dir.y" moves along global Z, and "input_dir.x" along global X.
-		# Negative Z is "forward" if you prefer W to go 'forward' on the plane.
+		# "input_dir.y" moves along global Z, and "input_dir.x" along global X.
 		var move_vec = Vector3(input_dir.x, 0.0, input_dir.y) * move_speed * delta
-		position += move_vec
+		target_position += move_vec
 
-		# 3) Clamp the camera so it cannot pan away from your pieces
-		position.x = clamp(position.x, dynamic_min_x, dynamic_max_x)
-		position.z = clamp(position.z, dynamic_min_z, dynamic_max_z)
+		# 3) Clamp the target position so it cannot pan away from your pieces
+		target_position.x = clamp(target_position.x, dynamic_min_x, dynamic_max_x)
+		target_position.z = clamp(target_position.z, dynamic_min_z, dynamic_max_z)
+		
+	# 4) Smoothly interpolate the camera's current position toward the target position
+	position = position.lerp(target_position, smooth_factor * delta)
 
 func _update_dynamic_bounds() -> void:
 	# Dynamically compute bounding box around all "Pieces" in the scene

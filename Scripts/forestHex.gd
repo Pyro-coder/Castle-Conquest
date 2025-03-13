@@ -41,16 +41,26 @@ func change_to_token_hex(building_type):
 		get_parent().get_parent().add_child(new_tile)
 		queue_free()  # Remove the old tile.
 	
-# func _on_area_3d_mouse_entered() -> void:
-	# board._forest_hovered(coordsfromboard,Color(0.0,0.7,0.2,1.0))
+func _on_area_3d_mouse_entered() -> void:
+	var board = get_parent().get_parent()  # board is now the direct parent of this tile.
+	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
+	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && board.control_node.turn_order[board.control_node.tile_turn_index].Id == 1):
+		
+		# Use the tile’s meta to get its coordinate.
+		board.OnBoardPlaceHover(coordsfromboard, Color(0.8, 0.1, 0.1, 1.0))
+
+func _on_area_3d_mouse_exited() -> void:
+	var board = get_parent().get_parent()  # board is now the direct parent of this tile.
+	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
+	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && board.control_node.turn_order[board.control_node.tile_turn_index].Id == 1):
+		board.OnBoardPlaceHoverExit(coordsfromboard, Color(0.12, 0.28, 0.66, 1.0))
 
 
-# func _on_area_3d_mouse_exited() -> void:
-	# board._forest_hovered(coordsfromboard,Color(0.3, 0.6, 0.3, 1.0))
+
 	
 
-func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-		
-		tileType="forest"
-		board._forest_selected(coordsfromboard,numTokens)
+#func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
+#	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+#		
+#		tileType="forest"
+#		board._forest_selected(coordsfromboard,numTokens)

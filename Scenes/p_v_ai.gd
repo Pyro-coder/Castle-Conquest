@@ -16,11 +16,11 @@ var ai_tile                       # Instance of ABMinimaxTile.
 var monte_carlo_ai                # Instance of MonteCarloInitialMovement.
 var human_first: bool = true
 var players = []                  # Array of Player objects.
-@export var turn_order = []               # Turn order array.
+var turn_order = []               # Turn order array.
 
 # For tracking the tile placement phase.
-@export var tile_round: int = 1
-@export var tile_turn_index: int = 0
+var tile_round: int = 1
+var tile_turn_index: int = 0
 
 # For initial piece placement.
 var init_turn_index: int = 0
@@ -29,16 +29,20 @@ var init_turn_index: int = 0
 var move_turn_index: int = 0
 
 # Overall game state.
-@export var game_state = GameState.TURN_ORDER
+var game_state = GameState.TURN_ORDER
+
+var ai_moved: bool
+
 
 func _ready():
 	game_engine = GameEngine.new()
 	# Connect the submit button's pressed signal to our handler.
 	submit_button.pressed.connect(_on_submit_pressed)
 	# Setup the game with the desired difficulty.
-	setup_game(Difficulty.difficulty)  # For example, using difficulty level 3.
+	setup_game()  # For example, using difficulty level 3.
 
-func setup_game(difficulty_level: int):
+func setup_game():
+	var difficulty_level = GlobalVars.difficulty
 	print("Difficulty: ", difficulty_level)
 	# Set AI parameters based on difficulty.
 	var max_depth = 3
@@ -51,7 +55,7 @@ func setup_game(difficulty_level: int):
 
 	# Initialize AI components.
 	ai_tile = ABMinimaxTile.new()
-	ai_tile.Initialize(max_depth, 2)
+	ai_tile.Initialize(max_depth + 5, 2)
 	monte_carlo_ai = MonteCarloInitialMovement.new()
 	monte_carlo_ai.Initialize(250 * (max_depth / 2), 2)
 	monte_carlo_ai.connect("BestInitialPlacementReady", _on_BestInitialPlacementReady)
@@ -117,7 +121,7 @@ func start_tile_placement():
 	if tile_round <= 4:
 		message_label.text = "Tile Placement Round %d" % tile_round
 		tile_turn_index = 0
-		process_tile_turn()
+		await process_tile_turn()  # Make sure to await if process_tile_turn is async.
 	else:
 		# When tile placement rounds are complete, start initial piece placement.
 		game_state = GameState.INITIAL_PLACEMENT
@@ -128,49 +132,55 @@ func process_tile_turn():
 	# If all players have placed a tile in this round, move to the next round.
 	if tile_turn_index >= turn_order.size():
 		tile_round += 1
-		start_tile_placement()
+		await start_tile_placement()
 		return
-	
+
 	var current_player = turn_order[tile_turn_index]
+	print("Player: ", current_player.Id)
 	if current_player.Id == 1:
 		# Wait for human input.
-		message_label.text = "Your turn to place a tile. Enter (q r orientation):"
-		input_field.show()
-		submit_button.show()
+		message_label.text = "Your turn to place a tile."
+		GlobalVars.player_turn = true
 	else:
-		# AI places its tile.
-		ai_place_tile()
-		tile_turn_index += 1
-		# Continue to process the next turn.
-		process_tile_turn()
+		message_label.text = "AI's turn to place a tile."
+		# AI places its tile asynchronously.
+		await ai_place_tile()
+		# After the AI move, continue processing the next turn.
+		await process_tile_turn()
 
 func process_tile_input(q: int, r: int, orientation: int):
 	var valid_moves = get_valid()
 	var is_valid = false
-	
-	# Only process a move if it is valid
+
+	# Only process a move if it is valid.
 	for move in valid_moves:
 		if move["q"] == q and move["r"] == r and move["orientation"] == orientation:
 			is_valid = true
 			break
+
 	if is_valid:
 		game_engine.PlaceTile(1, q, r, orientation)
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
-		input_field.hide()
-		submit_button.hide()
+		GlobalVars.player_turn = false
 		tile_turn_index += 1
+		# Process the next turn.
 		process_tile_turn()
 	else:
 		message_label.text = "Invalid tile placement. Please try again."
-	
 
 func ai_place_tile():
 	var best_tile = ai_tile.GetBestTilePlacement(game_engine)
+	
+	# Simulate AI thinking time without blocking the engine.
+	await get_tree().create_timer(1.0).timeout
+	
 	game_engine.PlaceTile(2, best_tile["q"], best_tile["r"], best_tile["orientation"])
 	message_label.text = "AI placed tile at (%d, %d) with orientation %d" % [best_tile["q"], best_tile["r"], best_tile["orientation"]]
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
+	
+	tile_turn_index += 1
 
 #############################################
 # Initial Piece Placement Phase
@@ -181,8 +191,7 @@ func start_initial_piece_placement():
 		var current_player = turn_order[init_turn_index]
 		if current_player.Id == 1:
 			message_label.text = "Your turn for initial piece placement. Enter (q r):"
-			input_field.show()
-			submit_button.show()
+			GlobalVars.player_turn = true
 			print(get_valid())
 		else:
 			ai_place_initial_piece()
@@ -198,8 +207,7 @@ func process_initial_input(input_text: String):
 		game_engine.PlaceInitialPieces(1, tokens[0].to_int(), tokens[1].to_int())
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
-		input_field.hide()
-		submit_button.hide()
+		GlobalVars.player_turn = false
 		init_turn_index += 1
 		start_initial_piece_placement()
 	else:
@@ -243,8 +251,7 @@ func process_move_turn():
 
 	if current_player.Id == 1:
 		message_label.text = "Your turn to move. Enter (startRow startCol count directionIndex):"
-		input_field.show()
-		submit_button.show()
+		GlobalVars.player_turn = true
 		print(get_valid())
 	else:
 		ai_move()
@@ -255,8 +262,7 @@ func process_move_input(input_text: String):
 		game_engine.MovePieces(1, tokens[0].to_int(), tokens[1].to_int(), tokens[2].to_int(), tokens[3].to_int())
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
-		input_field.hide()
-		submit_button.hide()
+		GlobalVars.player_turn = false
 		move_turn_index = (move_turn_index + 1) % turn_order.size()
 		process_move_turn()
 	else:
@@ -282,8 +288,7 @@ func _on_BestMovementReady(result):
 func end_game():
 	game_state = GameState.GAME_OVER
 	message_label.text = "Game Over. Final Board State:"
-	input_field.hide()
-	submit_button.hide()
+	GlobalVars.player_turn = false
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
 

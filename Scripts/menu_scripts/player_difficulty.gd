@@ -35,11 +35,11 @@ func _on_conquer_button_pressed() -> void:
 
 	match selected.name:
 		"Peasant":
-			Difficulty.difficulty = 1
+			GlobalVars.difficulty = 1
 		"Knight":
-			Difficulty.difficulty = 2
+			GlobalVars.difficulty = 2
 		"King":
-			Difficulty.difficulty = 3
+			GlobalVars.difficulty = 3
 
 	get_tree().change_scene_to_file("res://Scenes/board.tscn")
 	

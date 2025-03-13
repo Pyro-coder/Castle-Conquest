@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://l6ubg68vxx38"]
+
+[ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_1wluw"]
+[ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_rkaem"]
+[ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="3_cwopn"]
+[ext_resource type="Script" uid="uid://276gg21mowur" path="res://Scenes/p_v_ai.gd" id="4_npwrj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]
+sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
+sky_horizon_color = Color(0.514926, 0.661726, 0.884476, 1)
+ground_bottom_color = Color(0.0823529, 0.196078, 0.482353, 1)
+ground_horizon_color = Color(0.0823529, 0.196078, 0.482353, 1)
+sun_angle_max = 272.35
+
+[sub_resource type="Sky" id="Sky_xn7db"]
+sky_material = SubResource("ProceduralSkyMaterial_4r3ic")
+
+[sub_resource type="Environment" id="Environment_p0gk8"]
+background_mode = 2
+sky = SubResource("Sky_xn7db")
+
+[node name="board" type="Node3D"]
+script = ExtResource("1_1wluw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.766045, 0.642788, 0, 0.642788, 0.766045, -1, 3.34849e-08, -2.80971e-08, -40, 13, -50)
+fov = 74.5992
+script = ExtResource("2_rkaem")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p0gk8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.979575, -0.20082, -0.0101731, 0, -0.0505929, 0.998719, -0.201078, -0.978321, -0.0495596, 0, 0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("3_cwopn")]
+
+[node name="PV_AI_Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_npwrj")
+
+[node name="MessageLabel" type="Label" parent="PV_AI_Control"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 32.0
+offset_right = 132.0
+offset_bottom = 55.0
+
+[node name="InputField" type="LineEdit" parent="PV_AI_Control"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 62.0
+offset_right = 133.0
+offset_bottom = 93.0
+
+[node name="SubmitButton" type="Button" parent="PV_AI_Control"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 105.0
+offset_right = 118.0
+offset_bottom = 126.0
+text = "Submit"

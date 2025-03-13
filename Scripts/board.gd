@@ -17,6 +17,8 @@ var tile_map = {}
 var hoveredTile = Vector2i(0,0)
 var tempColor
 
+@onready var control_node = get_node("PV_AI_Control")
+
 
 func _ready() -> void:
 	_generate_grid()      
@@ -26,7 +28,7 @@ func _ready() -> void:
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
 		print("spacebar push")
-		OnBoardPlaceHover(hoveredTile,Color(0.12, 0.28, 0.66, 1.0))
+		OnBoardPlaceHoverExit(hoveredTile,Color(0.12, 0.28, 0.66, 1.0))
 		if(orientation == "vert"):
 			orientation = "left"
 			
@@ -41,34 +43,86 @@ func _input(event):
 
 
 func OnBoardPlaceHover(hoveredtilecoords,color):
+	# Get valid moves for tile coloring
+	var valid_moves = control_node.get_valid()
+	var is_valid = false
 	hoveredTile = hoveredtilecoords
-	tempColor = color
-	if orientation == "vert":
-		vertNeighborCoords(hoveredtilecoords,color)
-	if orientation == "right":
-		rightNeighborCoords(hoveredtilecoords,color)
-	if orientation == "left":
-		leftNeighborCoords(hoveredtilecoords,color)
 	
+	if orientation == "vert":
+		for move in valid_moves:
+			if move["q"] == hoveredtilecoords.x and move["r"] == hoveredtilecoords.y and move["orientation"] == 1:
+				is_valid = true
+				break
+		if is_valid:
+			tempColor = Color(0, 1, 0, 1)
+			vertNeighborCoords(hoveredtilecoords,tempColor)
+		elif control_node.tile_turn_index == 0 && control_node.tile_round == 1:
+			tempColor = Color(0, 1, 0, 1)
+			vertNeighborCoords(hoveredtilecoords,tempColor)
+		else:
+			tempColor = color
+			vertNeighborCoords(hoveredtilecoords,tempColor)
+	
+	
+	if orientation == "right":
+		for move in valid_moves:
+			if move["q"] == hoveredtilecoords.x and move["r"] == hoveredtilecoords.y and move["orientation"] == 0:
+				is_valid = true
+				break
+		if is_valid:
+			tempColor = Color(0, 1, 0, 1)
+			rightNeighborCoords(hoveredtilecoords,tempColor)
+		elif control_node.tile_turn_index == 0 && control_node.tile_round == 1:
+			tempColor = Color(0, 1, 0, 1)
+			rightNeighborCoords(hoveredtilecoords,tempColor)
+		else:
+			tempColor = color
+			rightNeighborCoords(hoveredtilecoords,tempColor)
+			
+			
+	if orientation == "left":
+		for move in valid_moves:
+			if move["q"] == hoveredtilecoords.x and move["r"] == hoveredtilecoords.y and move["orientation"] == 2:
+				is_valid = true
+				break
+		if is_valid:
+			tempColor = Color(0, 1, 0, 1)
+			leftNeighborCoords(hoveredtilecoords,tempColor)
+		elif control_node.tile_turn_index == 0 && control_node.tile_round == 1:
+			tempColor = Color(0, 1, 0, 1)
+			leftNeighborCoords(hoveredtilecoords,tempColor)
+		else:
+			tempColor = color
+			leftNeighborCoords(hoveredtilecoords,tempColor)
+	
+	
+func OnBoardPlaceHoverExit(hoveredtilecoords,color):
+	if orientation == "vert":
+		tempColor = color
+		vertNeighborCoords(hoveredtilecoords,tempColor)
+	
+	if orientation == "right":
+		tempColor = color
+		rightNeighborCoords(hoveredtilecoords,tempColor)
+			
+			
+	if orientation == "left":
+		tempColor = color
+		leftNeighborCoords(hoveredtilecoords,tempColor)
 
 
 func OnBoardPlaceClick(hoveredtilecoords):
-	var control_node = get_node("PV_AI_Control")
+	hoveredTile = hoveredtilecoords
+	if (control_node.tile_turn_index == 0 && control_node.tile_round == 1):
+		hoveredTile.x = 0
+		hoveredTile.y = 0
 		
-	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
-	if (control_node.game_state == control_node.GameState.TILE_PLACEMENT && control_node.turn_order[control_node.tile_turn_index].Id == 1):
-		hoveredTile = hoveredtilecoords
-		if (control_node.tile_turn_index == 0 && control_node.tile_round == 1):
-			hoveredTile.x = 0
-			hoveredTile.y = 0
-			
-		if orientation == "vert":
-			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 1)
-		if orientation == "right":
-			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 0)
-			print(hoveredtilecoords)
-		if orientation == "left":
-			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 2)
+	if orientation == "vert":
+		control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 1)
+	if orientation == "right":
+		control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 0)
+	if orientation == "left":
+		control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 2)
 	
 
 func isNotForest(neighbor):
@@ -84,23 +138,25 @@ func vertNeighborCoords(hoveredtilecoords,color):
 	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
 	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x -1,hoveredtilecoords.y+2))
 	
-	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
+	if neighbor1.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		neighbor1.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
 		neighbor1.get_child(0)._change_color(color)
-		neighbor2.get_child(0)._change_color(color)
-		neighbor3.get_child(0)._change_color(color)
-		tile.get_child(0)._change_color(color)
-#WORKS
-func changeVneighbor(hoveredtilecoords):
-	var tile = get_tile_at(hoveredtilecoords)
-	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y+1))
-	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y+1))
-	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x -1,hoveredtilecoords.y+2))
 	
-	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
-		neighbor1.get_child(0)._replace_tile()
-		neighbor2.get_child(0)._replace_tile()
-		neighbor3.get_child(0)._replace_tile()
-		tile.get_child(0)._replace_tile()
+	if neighbor2.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		neighbor2.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
+		neighbor2.get_child(0)._change_color(color)
+	
+	if neighbor3.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		neighbor3.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
+		neighbor3.get_child(0)._change_color(color)
+		
+	if tile.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		tile.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
+		tile.get_child(0)._change_color(color)
 
 
 
@@ -111,23 +167,26 @@ func rightNeighborCoords(hoveredtilecoords,color):
 	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
 	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x + 2,hoveredtilecoords.y - 1))
 	
-	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
+	if neighbor1.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		neighbor1.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
 		neighbor1.get_child(0)._change_color(color)
+	
+	if neighbor2.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		neighbor2.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
 		neighbor2.get_child(0)._change_color(color)
+	
+	if neighbor3.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		neighbor3.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
 		neighbor3.get_child(0)._change_color(color)
+		
+	if tile.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		tile.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
 		tile.get_child(0)._change_color(color)
 
-func changeRneighbor(hoveredtilecoords):
-	var tile = get_tile_at(hoveredtilecoords)
-	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y))
-	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x+1,hoveredtilecoords.y-1))
-	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x + 2,hoveredtilecoords.y - 1))
-	
-	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
-		neighbor1.get_child(0)._replace_tile()
-		neighbor2.get_child(0)._replace_tile()
-		neighbor3.get_child(0)._replace_tile()
-		tile.get_child(0)._replace_tile()
 
 
 
@@ -139,25 +198,25 @@ func leftNeighborCoords(hoveredtilecoords,color):
 	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y - 1))
 	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y))
 	
-	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
+	if neighbor1.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		neighbor1.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
 		neighbor1.get_child(0)._change_color(color)
-		neighbor2.get_child(0)._change_color(color)
-		neighbor3.get_child(0)._change_color(color)
-		tile.get_child(0)._change_color(color)
-		
-		
-		
-func changeLneighbor(hoveredtilecoords):
-	var tile = get_tile_at(hoveredtilecoords)
-	var neighbor1 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y-1))
-	var neighbor2 = get_tile_at(Vector2i(hoveredtilecoords.x,hoveredtilecoords.y - 1))
-	var neighbor3 = get_tile_at(Vector2i(hoveredtilecoords.x-1,hoveredtilecoords.y))
 	
-	if isNotForest(neighbor1) and isNotForest(neighbor2) and isNotForest(neighbor3) and isNotForest(tile):
-		neighbor1.get_child(0)._replace_tile()
-		neighbor2.get_child(0)._replace_tile()
-		neighbor3.get_child(0)._replace_tile()
-		tile.get_child(0)._replace_tile()
+	if neighbor2.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		neighbor2.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
+		neighbor2.get_child(0)._change_color(color)
+	
+	if neighbor3.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		neighbor3.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
+		neighbor3.get_child(0)._change_color(color)
+		
+	if tile.get_child(0).tileType == "forest" and color == Color(0.12, 0.28, 0.66, 1.0):
+		tile.get_child(0)._change_color(Color(0.3, 0.6, 0.3, 1.0))
+	else:
+		tile.get_child(0)._change_color(color)
 
 
 
@@ -249,6 +308,7 @@ func change_tile(coords: Vector2i, type: String) -> void:
 				new_tile = RED_CASTLE.instantiate()
 			"forest":
 				new_tile = FOREST_TILE.instantiate()
+				new_tile.get_child(0).setcoords(coords)
 			"default":
 				new_tile = HEX_TILE.instantiate()
 			_:

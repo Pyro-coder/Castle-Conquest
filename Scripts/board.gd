@@ -304,8 +304,10 @@ func change_tile(coords: Vector2i, type: String) -> void:
 		match type:
 			"blue":
 				new_tile = BLUE_CASTLE.instantiate()
+				new_tile.setcoords(coords)
 			"red":
 				new_tile = RED_CASTLE.instantiate()
+				new_tile.setcoords(coords)
 			"forest":
 				new_tile = FOREST_TILE.instantiate()
 				new_tile.get_child(0).setcoords(coords)

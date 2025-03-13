@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://djx2t7q6fbr2q"]
+[gd_scene load_steps=4 format=3 uid="uid://b7rjtg1v6gs8v"]
 
-[ext_resource type="Script" uid="uid://stp1yy27xe77" path="res://Scenes/castle_hex_blue.gd" id="1_61qd1"]
+[ext_resource type="Script" uid="uid://uctu6o3ef4dt" path="res://Scenes/castle_hex.gd" id="1_61qd1"]
 [ext_resource type="ArrayMesh" uid="uid://b2aysgjxh2gbh" path="res://Assets/obj/buildings/blue/building_castle_blue.obj" id="1_phw31"]
 [ext_resource type="ArrayMesh" uid="uid://n10i8i8gibar" path="res://Assets/OBJ format/grass.obj" id="2_v4lbb"]
 
-[node name="castleHex" type="Node3D"]
+[node name="castleHexBlue" type="Node3D"]
 script = ExtResource("1_61qd1")
 
 [node name="BuildingCastleBlue" type="MeshInstance3D" parent="."]

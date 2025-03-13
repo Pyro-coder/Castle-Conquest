@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://7etsob7mi32y"]
+[gd_scene load_steps=5 format=3 uid="uid://7etsob7mi32y"]
 
 [ext_resource type="Script" uid="uid://uctu6o3ef4dt" path="res://Scenes/castle_hex.gd" id="1_rhbcl"]
 [ext_resource type="ArrayMesh" uid="uid://n10i8i8gibar" path="res://Assets/OBJ format/grass.obj" id="2_aloyl"]
 [ext_resource type="ArrayMesh" uid="uid://c88ebwnymke8y" path="res://Assets/obj/buildings/red/building_castle_red.obj" id="2_wvurj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rhbcl"]
+albedo_color = Color(0.3, 0.6, 0.3, 1)
 
 [node name="castleHexRed" type="Node3D"]
 script = ExtResource("1_rhbcl")
@@ -13,3 +16,4 @@ mesh = ExtResource("2_wvurj")
 
 [node name="Grass" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_aloyl")
+surface_material_override/0 = SubResource("StandardMaterial3D_rhbcl")

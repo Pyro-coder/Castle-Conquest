@@ -89,8 +89,8 @@ func process_input(input_text: String) -> void:
 	match game_state:
 		GameState.TURN_ORDER:
 			process_turn_order(input_text)
-		GameState.INITIAL_PLACEMENT:
-			process_initial_input(input_text)
+		#GameState.INITIAL_PLACEMENT:
+			#process_initial_input(input_text)
 		GameState.MOVE_PHASE:
 			process_move_input(input_text)
 		_:
@@ -192,7 +192,6 @@ func start_initial_piece_placement():
 		if current_player.Id == 1:
 			message_label.text = "Your turn for initial piece placement. Enter (q r):"
 			GlobalVars.player_turn = true
-			print(get_valid())
 		else:
 			ai_place_initial_piece()
 	else:
@@ -201,10 +200,17 @@ func start_initial_piece_placement():
 		move_turn_index = 0
 		start_move_phase()
 
-func process_initial_input(input_text: String):
-	var tokens = input_text.split(" ")
-	if tokens.size() == 2 and tokens[0].is_valid_int() and tokens[1].is_valid_int():
-		game_engine.PlaceInitialPieces(1, tokens[0].to_int(), tokens[1].to_int())
+func process_initial_input(q: int, r: int):
+	var valid_moves = get_valid()
+	var is_valid = false
+	
+	for move in valid_moves:
+		if move["q"] == q and move["r"] == r:
+			is_valid = true
+			break
+
+	if is_valid:
+		game_engine.PlaceInitialPieces(1, q, r)
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
 		GlobalVars.player_turn = false

@@ -41,6 +41,8 @@ func _on_area_3d_mouse_entered() -> void:
 			board.OnBoardPlaceHover(coordsfromboard,Color(0.8, 0.1, 0.1, 1.0))
 			#_change_color(Color(0.8, 0.1, 0.1, 1.0))  # Change to red.
 			_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))  # Also update neighbors.
+	elif board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and board.control_node.turn_order[board.control_node.init_turn_index].Id == 1:
+		_change_color("red")
 	
 
 func _on_area_3d_mouse_exited() -> void:
@@ -51,6 +53,8 @@ func _on_area_3d_mouse_exited() -> void:
 		#_change_color(Color(0.12, 0.28, 0.66, 1.0))  # Change back to blue.
 		
 		_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
+	else:
+		_change_color(Color(0.12, 0.28, 0.66, 1.0))
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
 	var board = get_parent().get_parent()  # board is now the direct parent of this tile.

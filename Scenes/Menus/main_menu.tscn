@@ -75,22 +75,23 @@ anchor_left = 0.372
 anchor_top = 0.184
 anchor_right = 0.372
 anchor_bottom = 0.184
-offset_left = -121.728
-offset_top = -3.23201
-offset_right = 194.272
-offset_bottom = 84.768
+offset_left = -124.728
+offset_top = -40.232
+offset_right = 191.272
+offset_bottom = 120.768
 theme_override_fonts/font = ExtResource("3_3aj6u")
-theme_override_font_sizes/font_size = 50
-text = "Castle Conquest"
+theme_override_font_sizes/font_size = 60
+text = "Castle
+Conquest"
 horizontal_alignment = 1
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MenuTemplate"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.351826
-anchor_top = 0.36476
-anchor_right = 0.436896
-anchor_bottom = 0.655332
+anchor_left = 0.340288
+anchor_top = 0.411901
+anchor_right = 0.448434
+anchor_bottom = 0.710201
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
@@ -100,7 +101,7 @@ material = SubResource("ShaderMaterial_yhydq")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_3aj6u")
-theme_override_font_sizes/font_size = 38
+theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_dqcxr")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_dqcxr")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_dqcxr")
@@ -116,12 +117,16 @@ text = "Play
 "
 script = SubResource("GDScript_h4ssn")
 
+[node name="Spacer" type="Control" parent="MenuTemplate/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="SettingsButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
 material = SubResource("ShaderMaterial_xrawt")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_3aj6u")
-theme_override_font_sizes/font_size = 38
+theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_1lrkj")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_1lrkj")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_1lrkj")
@@ -136,12 +141,16 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_1lrkj")
 text = "Settings
 "
 
+[node name="Spacer2" type="Control" parent="MenuTemplate/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="TutorialButton" type="Button" parent="MenuTemplate/VBoxContainer3"]
 material = SubResource("ShaderMaterial_owxxc")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("3_3aj6u")
-theme_override_font_sizes/font_size = 38
+theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2rh1v")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2rh1v")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_2rh1v")

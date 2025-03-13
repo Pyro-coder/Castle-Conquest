@@ -1,20 +1,30 @@
-[gd_scene load_steps=10 format=3 uid="uid://bf5nwd8pspm3u"]
+[gd_scene load_steps=14 format=3 uid="uid://bf5nwd8pspm3u"]
 
-[ext_resource type="Script" uid="uid://doa7vv27gb3xt" path="res://Scripts/menu_scripts/player_mode_menu.gd" id="1_2esew"]
-[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_wxfi3"]
-[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_4sg4i"]
-[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_i52xn"]
+[ext_resource type="Script" uid="uid://doa7vv27gb3xt" path="res://Scripts/menu_scripts/player_mode_menu.gd" id="1_rfso3"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_7mog6"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_eipc5"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="4_qhost"]
+[ext_resource type="Texture2D" uid="uid://ccrd5mhlku4nu" path="res://Assets/player selection/singleplayer.png" id="5_uwjup"]
+[ext_resource type="Texture2D" uid="uid://b8tq4e5kekxdo" path="res://Assets/player selection/multiplayer.png" id="6_ac18x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oor2m"]
-shader = ExtResource("3_i52xn")
+shader = ExtResource("3_eipc5")
 shader_parameter/amount = 400
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2kw2"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yh0q3"]
+shader = ExtResource("3_eipc5")
+shader_parameter/amount = 100
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v4dh5"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tjvii"]
+shader = ExtResource("3_eipc5")
+shader_parameter/amount = 100
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c8grt"]
-shader = ExtResource("3_i52xn")
+shader = ExtResource("3_eipc5")
 shader_parameter/amount = 300
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u35pr"]
@@ -26,23 +36,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2esew")
+script = ExtResource("1_rfso3")
 
-[node name="MenuTemplate" parent="." instance=ExtResource("1_wxfi3")]
+[node name="MenuTemplate" parent="." instance=ExtResource("2_7mog6")]
 layout_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_oor2m")
 layout_mode = 0
-offset_left = 423.0
+offset_left = 403.0
 offset_top = 139.0
-offset_right = 699.0
-offset_bottom = 436.0
+offset_right = 721.0
+offset_bottom = 481.0
+
+[node name="Control" type="Control" parent="MenuTemplate/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="OnePlayerButton" type="Button" parent="MenuTemplate/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_4sg4i")
+theme_override_fonts/font = ExtResource("4_qhost")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_i2kw2")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_i2kw2")
@@ -57,14 +71,20 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_i2kw2")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_i2kw2")
 text = "Go Thee Alone"
 
-[node name="Control" type="Control" parent="MenuTemplate/VBoxContainer"]
+[node name="Singleplayer" type="Sprite2D" parent="MenuTemplate/VBoxContainer/OnePlayerButton"]
+material = SubResource("ShaderMaterial_yh0q3")
+position = Vector2(159, -61)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_uwjup")
+
+[node name="Control2" type="Control" parent="MenuTemplate/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [node name="TwoPlayerButton" type="Button" parent="MenuTemplate/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_4sg4i")
+theme_override_fonts/font = ExtResource("4_qhost")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_v4dh5")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_v4dh5")
@@ -78,6 +98,12 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_v4dh5")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_v4dh5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v4dh5")
 text = "Take Thy Firends"
+
+[node name="Multiplayer" type="Sprite2D" parent="MenuTemplate/VBoxContainer/TwoPlayerButton"]
+material = SubResource("ShaderMaterial_tjvii")
+position = Vector2(159, -70)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_ac18x")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_c8grt")
@@ -93,7 +119,7 @@ theme_override_constants/separation = 10
 [node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_4sg4i")
+theme_override_fonts/font = ExtResource("4_qhost")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_u35pr")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_u35pr")

@@ -35,7 +35,7 @@ func setcoords(vector):
 	coordsfromboard = vector
 
 
-func _on_area_3d_mouse_entered() -> void:
+func _on_static_body_3d_mouse_entered() -> void:
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
 	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
 		if type() == "water":
@@ -46,7 +46,7 @@ func _on_area_3d_mouse_entered() -> void:
 		_change_color("red")
 	
 
-func _on_area_3d_mouse_exited() -> void:
+func _on_static_body_3d_mouse_exited() -> void:
 	var control = board.control_node
 	
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
@@ -59,7 +59,8 @@ func _on_area_3d_mouse_exited() -> void:
 	else:
 		_change_color(Color(0.12, 0.28, 0.66, 1.0))
 
-func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
+func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	_on_static_body_3d_mouse_entered()
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
 	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
 		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:

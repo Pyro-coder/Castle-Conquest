@@ -26,8 +26,7 @@ func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_posit
 			var new_material = current_material.duplicate() if current_material else StandardMaterial3D.new()
 			
 			# If using StandardMaterial3D, change the albedo (base) color.
-			if new_material is StandardMaterial3D:
-				new_material.albedo_color = Color(1, 0, 0)  # Change to red as an example.
+			new_material.albedo_color = Color(1, 0, 0)  # Change to red as an example.
 			
 			# Apply the modified material as an override.
 			child_node.material_override = new_material

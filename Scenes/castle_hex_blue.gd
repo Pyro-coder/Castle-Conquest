@@ -36,5 +36,5 @@ func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_posit
 
 func _on_static_body_3d_mouse_exited() -> void:
 	var child_node = self.get_child(0) as MeshInstance3D
-	var original_material = load("res://Assets/obj/buildings/red/building_castle_red.obj::StandardMaterial3D_2ks4u")
+	var original_material = load("res://Assets/obj/buildings/blue/building_castle_blue.obj::StandardMaterial3D_a8lc7")
 	child_node.material_override = original_material

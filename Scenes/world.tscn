@@ -1,14 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvy7s6wfutupg"]
+[gd_scene load_steps=9 format=3 uid="uid://dvy7s6wfutupg"]
 
 [ext_resource type="MeshLibrary" uid="uid://dyymujlo3ml6" path="res://Scenes/Blcoks.tres" id="1_tyue0"]
-[ext_resource type="Script" uid="uid://bvt02xcmkxc12" path="res://Scripts/menu_scripts/sub_viewport_framerate.gd" id="1_wxcjb"]
 [ext_resource type="Script" uid="uid://hgy6xsr7e6hn" path="res://Scenes/menu_camera.gd" id="2_rg8tt"]
-[ext_resource type="Shader" uid="uid://g87ex1hrlogb" path="res://Assets/Shaders/3dPixelate.gdshader" id="4_42q1i"]
 
 [sub_resource type="GDScript" id="GDScript_xly3f"]
 script/source = "extends Node3D
 
-@onready var camera_pivot = $SubViewport/CameraPivot
+@onready var camera_pivot = $CameraPivot
 
 var rotation_speed = 2
 
@@ -33,8 +31,6 @@ background_mode = 2
 sky = SubResource("Sky_4gvus")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cukkr"]
-shader = ExtResource("4_42q1i")
-shader_parameter/pixel_count = Vector2(854, 480)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_neqo4"]
 viewport_path = NodePath("SubViewport")
@@ -42,12 +38,10 @@ viewport_path = NodePath("SubViewport")
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_xly3f")
 
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(1920, 1080)
-render_target_update_mode = 1
-script = ExtResource("1_wxcjb")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_emw23")
 
-[node name="GridMap" type="GridMap" parent="SubViewport"]
+[node name="GridMap" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 74.233, 0)
 mesh_library = ExtResource("1_tyue0")
 cell_scale = 100.0
@@ -56,20 +50,18 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, -20, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport"]
-transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.75, -0.43301, 0, 0, 0)
 shadow_enabled = true
 directional_shadow_mode = 0
 
-[node name="CameraPivot" type="Node3D" parent="SubViewport"]
+[node name="CameraPivot" type="Node3D" parent="."]
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport/CameraPivot"]
-transform = Transform3D(0.976296, 0.0523615, -0.21001, 0, 0.970296, 0.241922, 0.21644, -0.236187, 0.947296, -208.9, 294.366, 548.84)
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, -194.561, 341.428, 634.78)
 current = true
+fov = 51.2819
 script = ExtResource("2_rg8tt")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport"]
-environment = SubResource("Environment_emw23")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_cukkr")

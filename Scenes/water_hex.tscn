@@ -20,8 +20,8 @@ shader_parameter/transparency = 0.3
 render_priority = 0
 shader = ExtResource("3_k3fss")
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_fjo68"]
-height = 0.203389
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4este"]
+data = PackedVector3Array(0, 0.1, 0.5774, 0.5, 0.1, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0.1, -0.2887, 0, 0.1, 0.5774, 0, 0.1, -0.5774, 0, 0.1, -0.5774, 0, 0.1, 0.5774, -0.5, 0.1, 0.2887, 0, 0.1, -0.5774, -0.5, 0.1, 0.2887, -0.5, 0.1, -0.2887, -0.5, 0.1, -0.2887, -0.5, 0, 0.2887, -0.5, 0, -0.2887, -0.5, 0, 0.2887, -0.5, 0.1, -0.2887, -0.5, 0.1, 0.2887, 0, 0, 0.5774, 0.5, 0.1, 0.2887, 0.5, 0, 0.2887, 0.5, 0.1, 0.2887, 0, 0, 0.5774, 0, 0.1, 0.5774, -0.5, 0, 0.2887, 0, 0.1, 0.5774, 0, 0, 0.5774, 0, 0.1, 0.5774, -0.5, 0, 0.2887, -0.5, 0.1, 0.2887, 0.5, 0, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0.1, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0, -0.2887, 0.5, 0, 0.2887, 0, 0, -0.5774, -0.5, 0.1, -0.2887, -0.5, 0, -0.2887, -0.5, 0.1, -0.2887, 0, 0, -0.5774, 0, 0.1, -0.5774, 0.5, 0, -0.2887, 0, 0.1, -0.5774, 0, 0, -0.5774, 0, 0.1, -0.5774, 0.5, 0, -0.2887, 0.5, 0.1, -0.2887, 0.5, 0, -0.2887, 0, 0, 0.5774, 0.5, 0, 0.2887, 0, 0, 0.5774, 0.5, 0, -0.2887, 0, 0, -0.5774, 0, 0, 0.5774, 0, 0, -0.5774, -0.5, 0, 0.2887, -0.5, 0, 0.2887, 0, 0, -0.5774, -0.5, 0, -0.2887, 0, 0.1, 0.5774, 0.5, 0.1, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0.1, -0.2887, 0, 0.1, 0.5774, 0, 0.1, -0.5774, 0, 0.1, -0.5774, 0, 0.1, 0.5774, -0.5, 0.1, 0.2887, 0, 0.1, -0.5774, -0.5, 0.1, 0.2887, -0.5, 0.1, -0.2887, -0.5, 0.1, -0.2887, -0.5, 0, 0.2887, -0.5, 0, -0.2887, -0.5, 0, 0.2887, -0.5, 0.1, -0.2887, -0.5, 0.1, 0.2887, 0, 0, 0.5774, 0.5, 0.1, 0.2887, 0.5, 0, 0.2887, 0.5, 0.1, 0.2887, 0, 0, 0.5774, 0, 0.1, 0.5774, -0.5, 0, 0.2887, 0, 0.1, 0.5774, 0, 0, 0.5774, 0, 0.1, 0.5774, -0.5, 0, 0.2887, -0.5, 0.1, 0.2887, 0.5, 0, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0.1, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0, -0.2887, 0.5, 0, 0.2887, 0, 0, -0.5774, -0.5, 0.1, -0.2887, -0.5, 0, -0.2887, -0.5, 0.1, -0.2887, 0, 0, -0.5774, 0, 0.1, -0.5774, 0.5, 0, -0.2887, 0, 0.1, -0.5774, 0, 0, -0.5774, 0, 0.1, -0.5774, 0.5, 0, -0.2887, 0.5, 0.1, -0.2887, 0.5, 0, -0.2887, 0, 0, 0.5774, 0.5, 0, 0.2887, 0, 0, 0.5774, 0.5, 0, -0.2887, 0, 0, -0.5774, 0, 0, 0.5774, 0, 0, -0.5774, -0.5, 0, 0.2887, -0.5, 0, 0.2887, 0, 0, -0.5774, -0.5, 0, -0.2887)
 
 [node name="waterHex" type="Node3D"]
 
@@ -32,12 +32,11 @@ surface_material_override/0 = SubResource("ShaderMaterial_exdhd")
 surface_material_override/1 = SubResource("ShaderMaterial_rtocd")
 script = ExtResource("2_aodnd")
 
-[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
-shape = SubResource("CylinderShape3D_fjo68")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4este")
 
-[connection signal="area_entered" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_area_entered"]
-[connection signal="input_event" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_input_event"]
-[connection signal="mouse_entered" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_mouse_entered"]
-[connection signal="mouse_exited" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_mouse_exited"]
+[connection signal="input_event" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_static_body_3d_input_event"]
+[connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_static_body_3d_mouse_exited"]

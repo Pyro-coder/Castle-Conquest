@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dvy7s6wfutupg"]
+[gd_scene load_steps=7 format=3 uid="uid://dvy7s6wfutupg"]
 
 [ext_resource type="MeshLibrary" uid="uid://dyymujlo3ml6" path="res://Scenes/Blcoks.tres" id="1_tyue0"]
 [ext_resource type="Script" uid="uid://hgy6xsr7e6hn" path="res://Scenes/menu_camera.gd" id="2_rg8tt"]
@@ -30,11 +30,6 @@ sky_material = SubResource("ProceduralSkyMaterial_fo615")
 background_mode = 2
 sky = SubResource("Sky_4gvus")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cukkr"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_neqo4"]
-viewport_path = NodePath("SubViewport")
-
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_xly3f")
 
@@ -62,9 +57,3 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 current = true
 fov = 51.2819
 script = ExtResource("2_rg8tt")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_cukkr")
-position = Vector2(753.329, 391.185)
-scale = Vector2(0.831139, 0.831139)
-texture = SubResource("ViewportTexture_neqo4")

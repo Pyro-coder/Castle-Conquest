@@ -91,8 +91,8 @@ func process_input(input_text: String) -> void:
 			process_turn_order(input_text)
 		#GameState.INITIAL_PLACEMENT:
 			#process_initial_input(input_text)
-		GameState.MOVE_PHASE:
-			process_move_input(input_text)
+		# GameState.MOVE_PHASE:
+			#process_move_input(input_text)
 		_:
 			pass
 
@@ -258,21 +258,19 @@ func process_move_turn():
 	if current_player.Id == 1:
 		message_label.text = "Your turn to move. Enter (startRow startCol count directionIndex):"
 		GlobalVars.player_turn = true
-		print(get_valid())
+		# print(get_valid())
 	else:
 		ai_move()
 
-func process_move_input(input_text: String):
-	var tokens = input_text.split(" ")
-	if tokens.size() == 4 and tokens[0].is_valid_int() and tokens[1].is_valid_int() and tokens[2].is_valid_int() and tokens[3].is_valid_int():
-		game_engine.MovePieces(1, tokens[0].to_int(), tokens[1].to_int(), tokens[2].to_int(), tokens[3].to_int())
-		var state = game_engine.GetCurrentBoardState()
-		board.update_from_state(state)
-		GlobalVars.player_turn = false
-		move_turn_index = (move_turn_index + 1) % turn_order.size()
-		process_move_turn()
-	else:
-		message_label.text = "Invalid input. Enter (startRow startCol count directionIndex):"
+func process_move_input(q: int, r: int, num_pieces: int, direction: int):
+	print(q, " ", r, " ",num_pieces, " ", direction)
+	game_engine.MovePieces(1, q, r, num_pieces, direction)
+	var state = game_engine.GetCurrentBoardState()
+	board.update_from_state(state)
+	GlobalVars.player_turn = false
+	move_turn_index = (move_turn_index + 1) % turn_order.size()
+	process_move_turn()
+
 
 func ai_move():
 	if not game_engine.CanPlayerMove(2):

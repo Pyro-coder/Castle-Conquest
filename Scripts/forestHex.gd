@@ -3,7 +3,10 @@ extends MeshInstance3D
 var material := StandardMaterial3D.new()
 var tileType = "forest"
 var coordsfromboard
-var numTokens=16
+
+var valid_index: int
+
+@onready var board = get_parent().get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,7 +24,11 @@ func setcoords(vector):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	# Change the color if pieces can be moved here 
+	if is_valid_tile():
+		_change_color("green")
+	elif board.control_node.game_state == board.control_node.GameState.MOVE_PHASE:
+		_change_color(Color(0.3, 0.6, 0.3, 1))
 
 	
 func _change_color(color: Color):
@@ -41,7 +48,6 @@ func change_to_token_hex(building_type):
 		queue_free()  # Remove the old tile.
 	
 func _on_area_3d_mouse_entered() -> void:
-	var board = get_parent().get_parent()
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
 	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
 		
@@ -61,7 +67,6 @@ func _on_area_3d_mouse_entered() -> void:
 			_change_color("red")
 
 func _on_area_3d_mouse_exited() -> void:
-	var board = get_parent().get_parent()
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
 	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
 		board.OnBoardPlaceHoverExit(coordsfromboard, Color(0.12, 0.28, 0.66, 1.0))
@@ -73,6 +78,24 @@ func _on_area_3d_mouse_exited() -> void:
 	
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
-	var board = get_parent().get_parent()
+	if Input.is_action_pressed("ui_click"):		
+		if is_valid_tile() and board.control_node.game_state == board.control_node.GameState.MOVE_PHASE and GlobalVars.player_turn:
+			# If this is a valid tile in the piece movement phase, and everything is set, move tiles
+			board.control_node.process_move_input(GlobalVars.castle_coords.x, GlobalVars.castle_coords.y, GlobalVars.num_pieces_selected, valid_index)
+		
+		GlobalVars.hex_selected = coordsfromboard
+		GlobalVars.castle_selected = false
+		GlobalVars.valid_move_tiles = []
+		
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and GlobalVars.player_turn:
 		board.control_node.process_initial_input(coordsfromboard.x, coordsfromboard.y)
+		
+	
+
+func is_valid_tile() -> bool:
+	for tile in GlobalVars.valid_move_tiles:
+		print(tile)
+		if tile["q"] == coordsfromboard.x and tile["r"] == coordsfromboard.y:
+			valid_index = tile["i"]
+			return true
+	return false

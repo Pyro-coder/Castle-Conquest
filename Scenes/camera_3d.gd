@@ -11,7 +11,7 @@ var dynamic_max_z: float
 
 var target_position: Vector3
 
-@onready var control_node = get_node("../PV_AI_Control")
+@onready var control_node = get_node("../GameControl")
 
 func _ready() -> void:
 	# Keep the camera angle/position you want:

@@ -17,7 +17,7 @@ var tile_map = {}
 var hoveredTile = Vector2i(0,0)
 var tempColor
 
-@onready var control_node = get_node("PV_AI_Control")
+@onready var control_node = get_node("GameControl")
 
 
 func _ready() -> void:

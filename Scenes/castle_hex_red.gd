@@ -2,7 +2,7 @@ extends Node3D
 
 
 
-var coordsfromboard
+var coordsfromboard: Vector2i
 
 func setcoords(vector):
 	coordsfromboard = vector
@@ -10,10 +10,11 @@ func setcoords(vector):
 func _ready() -> void:
 	add_to_group("Pieces")
 
-func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+# func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	var board = get_parent()
 	if Input.is_action_pressed("ui_click"):
 		print("castle clicked")
-		
+		GlobalVars.hex_selected = coordsfromboard
 		# Get the first child and cast it to MeshInstance3D
 		var child_node = self.get_child(0) as MeshInstance3D
 		if child_node:
@@ -24,16 +25,19 @@ func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_posit
 			
 			# Duplicate the material so that changes affect only this instance.
 			var new_material = current_material.duplicate() if current_material else StandardMaterial3D.new()
-			
-			# If using StandardMaterial3D, change the albedo (base) color.
-			new_material.albedo_color = Color(1, 0, 0)  # Change to red as an example.
-			
+	
+			# Enable emission and set an emissive color.
+			new_material.emission_enabled = true
+			new_material.emission = Color(0.5, 0.1, 0.1)  # Same green color for glow.
+			new_material.emission_energy = 2.0  # Increase brightness.
+
 			# Apply the modified material as an override.
 			child_node.material_override = new_material
 
 
 
-func _on_static_body_3d_mouse_exited() -> void:
-	var child_node = self.get_child(0) as MeshInstance3D
-	var original_material = load("res://Assets/obj/buildings/red/building_castle_red.obj::StandardMaterial3D_2ks4u")
-	child_node.material_override = original_material
+# func _process(delta: float) -> void:
+	if GlobalVars.hex_selected != coordsfromboard:
+		var child_node = self.get_child(0) as MeshInstance3D
+		var original_material = load("res://Assets/obj/buildings/red/building_castle_red.obj")
+		child_node.material_override = original_material

@@ -60,6 +60,11 @@ func _on_static_body_3d_mouse_exited() -> void:
 		_change_color(Color(0.12, 0.28, 0.66, 1.0))
 
 func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
+	if Input.is_action_pressed("ui_click"):
+		GlobalVars.castle_selected = false
+		GlobalVars.valid_move_tiles = []
+		GlobalVars.hex_selected = coordsfromboard
+		
 	_on_static_body_3d_mouse_entered()
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
 	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):

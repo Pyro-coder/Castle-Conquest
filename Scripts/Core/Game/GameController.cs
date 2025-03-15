@@ -8,6 +8,7 @@ using Godot;
 
 using BattleSheepCore.Board;
 using BattleSheepCore.Players;
+using System.Xml.Linq;
 
 namespace BattleSheepCore.Game
 {
@@ -99,6 +100,11 @@ namespace BattleSheepCore.Game
         {
             _gameManager = clonedManager;
             _players = players;
+        }
+
+        public HexCell GetFurthestUnoccupiedHex(int startQ, int startR, int directionIndex)
+        {
+            return _gameManager.GetFurthestUnoccupiedHex(startQ, startR, directionIndex);
         }
     }
 }

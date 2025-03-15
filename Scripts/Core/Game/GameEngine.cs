@@ -280,6 +280,19 @@ namespace BattleSheepCore.Game
         {
             _gameController = clonedController;
         }
+
+        public Godot.Collections.Dictionary<string, int> GetFurthestUnoccupiedHexCoords(int startQ, int startR, int directionIndex)
+        {
+            var hex = _gameController.GetFurthestUnoccupiedHex(startQ, startR, directionIndex);
+            var returnValue = new Godot.Collections.Dictionary<string, int>
+            {
+                { "q", hex.Q },
+                { "r", hex.R },
+                { "i", directionIndex }
+            };
+
+            return returnValue;
+        }
     }
 }
 

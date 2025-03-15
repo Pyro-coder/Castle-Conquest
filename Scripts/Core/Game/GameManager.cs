@@ -296,5 +296,31 @@ namespace BattleSheepCore.Game
             var clonedPlayers = new List<Player>(_players);
             return new GameManager(clonedBoardManager, clonedPlayers);
         }
+
+
+        public HexCell GetFurthestUnoccupiedHex(int startQ, int startR, int directionIndex)
+        {
+            // Define the six possible hex direction vectors.
+            (int dq, int dr)[] directions = new (int, int)[]
+            {
+                (1, 0),   // Direction 0: Right
+                (1, -1),  // Direction 1: Up-Right
+                (0, -1),  // Direction 2: Up-Left
+                (-1, 0),  // Direction 3: Left
+                (-1, 1),  // Direction 4: Down-Left
+                (0, 1)    // Direction 5: Down-Right
+            };
+
+            if (directionIndex < 0 || directionIndex >= directions.Length)
+            {
+                throw new ArgumentException("Invalid direction index.");
+            }
+
+            // Extract the vector for the given direction.
+            var (dq, dr) = directions[directionIndex];
+
+            // Call the existing method that takes a direction vector.
+            return _boardManager.GetFurthestUnoccupiedHex(startQ, startR, dq, dr);
+        }
     }
 }

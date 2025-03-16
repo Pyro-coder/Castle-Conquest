@@ -1,8 +1,8 @@
 [gd_scene load_steps=14 format=3 uid="uid://bf5nwd8pspm3u"]
 
-[ext_resource type="Script" uid="uid://doa7vv27gb3xt" path="res://Scripts/menu_scripts/player_mode_menu.gd" id="1_rfso3"]
+[ext_resource type="Script" uid="uid://cmpu4eghrmdv8" path="res://Scripts/menu_scripts/player_mode_menu.gd" id="1_rfso3"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_7mog6"]
-[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_eipc5"]
+[ext_resource type="Shader" uid="uid://c3nu17xroy62" path="res://Assets/Shaders/pixelate.gdshader" id="3_eipc5"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="4_qhost"]
 [ext_resource type="Texture2D" uid="uid://ccrd5mhlku4nu" path="res://Assets/player selection/singleplayer.png" id="5_uwjup"]
 [ext_resource type="Texture2D" uid="uid://b8tq4e5kekxdo" path="res://Assets/player selection/multiplayer.png" id="6_ac18x"]

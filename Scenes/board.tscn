@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://l6ubg68vxx38"]
+[gd_scene load_steps=12 format=3 uid="uid://l6ubg68vxx38"]
 
-[ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_1wluw"]
-[ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_rkaem"]
+[ext_resource type="Script" path="res://Scripts/board.gd" id="1_1wluw"]
+[ext_resource type="Script" path="res://Scenes/camera_3d.gd" id="2_rkaem"]
 [ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="3_cwopn"]
-[ext_resource type="Script" uid="uid://276gg21mowur" path="res://Scenes/p_v_ai.gd" id="4_npwrj"]
+[ext_resource type="Script" path="res://Scenes/p_v_ai.gd" id="4_npwrj"]
 [ext_resource type="Texture2D" uid="uid://b456wrsaj5ixr" path="res://Assets/WoodGui.png" id="5_s4i1f"]
-[ext_resource type="Script" uid="uid://umip4dnym153" path="res://Scenes/piece_selection_slider.gd" id="6_bh37u"]
+[ext_resource type="Script" path="res://Scenes/piece_selection_slider.gd" id="6_bh37u"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="7_twe5h"]
+[ext_resource type="PackedScene" uid="uid://7p8dxs2ubagd" path="res://Scenes/Menus/in_game_ui.tscn" id="8_lqe6w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]
 sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
@@ -47,34 +48,37 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_npwrj")
 
+[node name="InGameUI" parent="GameControl" instance=ExtResource("8_lqe6w")]
+layout_mode = 1
+
 [node name="MessageLabel" type="Label" parent="GameControl"]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 32.0
-offset_right = 132.0
-offset_bottom = 55.0
+offset_left = 12.0
+offset_top = 272.0
+offset_right = 150.0
+offset_bottom = 311.0
 
 [node name="InputField" type="LineEdit" parent="GameControl"]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 49.0
-offset_right = 94.0
-offset_bottom = 80.0
+offset_left = 8.0
+offset_top = 328.0
+offset_right = 87.0
+offset_bottom = 359.0
 
 [node name="SubmitButton" type="Button" parent="GameControl"]
 layout_mode = 0
-offset_left = 14.0
-offset_top = 86.0
-offset_right = 98.0
-offset_bottom = 114.0
+offset_left = 7.0
+offset_top = 365.0
+offset_right = 91.0
+offset_bottom = 396.0
 text = "Submit"
 
 [node name="WoodPanel" type="TextureRect" parent="GameControl"]
 layout_mode = 0
-offset_left = 484.0
-offset_top = 98.0
-offset_right = 684.0
-offset_bottom = 133.0
+offset_left = 483.0
+offset_top = 152.0
+offset_right = 683.0
+offset_bottom = 187.0
 texture = ExtResource("5_s4i1f")
 
 [node name="Left Buffer" type="HBoxContainer" parent="GameControl/WoodPanel"]

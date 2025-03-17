@@ -16,10 +16,7 @@ dest_files=["res://.godot/imported/cloud_big.obj-f753a46e9a6200a0190e41dc3bf8269
 [params]
 
 generate_tangents=true
-generate_lods=true
-generate_shadow_mesh=true
-generate_lightmap_uv2=false
-generate_lightmap_uv2_texel_size=0.2
 scale_mesh=Vector3(1, 1, 1)
 offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
 force_disable_mesh_compression=false

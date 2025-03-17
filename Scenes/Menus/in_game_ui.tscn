@@ -1,0 +1,301 @@
+[gd_scene load_steps=44 format=3 uid="uid://7p8dxs2ubagd"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
+[ext_resource type="Texture2D" uid="uid://dn62p177n757l" path="res://Assets/InGameUIAssets/banners-large-cropped-main.png" id="2_jujhd"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_vh2kd"]
+[ext_resource type="Texture2D" uid="uid://cmsnligvb4ixn" path="res://Assets/InGameUIAssets/blueWood.png" id="4_74sw4"]
+[ext_resource type="Texture2D" uid="uid://c504mdg4mhpe8" path="res://Assets/InGameUIAssets/redWood.png" id="5_1o7vr"]
+[ext_resource type="Texture2D" uid="uid://fl3h47n17kxi" path="res://Assets/InGameUIAssets/goldwood.png" id="6_8rrnw"]
+[ext_resource type="Texture2D" uid="uid://6dwcatrj7ext" path="res://Assets/InGameUIAssets/Knight_SW_attack1_1.png" id="7_xy8ad"]
+[ext_resource type="Texture2D" uid="uid://bdtptw55sqtfp" path="res://Assets/InGameUIAssets/Knight_SW_attack1_2.png" id="8_m0kcb"]
+[ext_resource type="Texture2D" uid="uid://b4e62rcjdxww5" path="res://Assets/InGameUIAssets/Knight_SW_attack1_3.png" id="9_6k8js"]
+[ext_resource type="Texture2D" uid="uid://cl4fiwbni4wll" path="res://Assets/InGameUIAssets/Knight_SW_attack1_4.png" id="10_marjj"]
+[ext_resource type="Texture2D" uid="uid://y4m7rwidg8ro" path="res://Assets/InGameUIAssets/Knight_SW_attack1_5.png" id="11_q1r8l"]
+[ext_resource type="Texture2D" uid="uid://b7d5us77jiopv" path="res://Assets/InGameUIAssets/Knight_SW_attack1_6.png" id="12_q2l58"]
+[ext_resource type="Texture2D" uid="uid://cmkf66uhanymu" path="res://Assets/InGameUIAssets/Knight_SW_attack1_7.png" id="13_ef0ps"]
+[ext_resource type="Texture2D" uid="uid://6vk6modu80dg" path="res://Assets/InGameUIAssets/Knight_SW_attack1_8.png" id="14_0srtm"]
+[ext_resource type="Texture2D" uid="uid://dj7fvr5ih23yk" path="res://Assets/InGameUIAssets/Knight_SW_idle2_1.png" id="15_djqcb"]
+[ext_resource type="Texture2D" uid="uid://djyo0edp4iqu" path="res://Assets/InGameUIAssets/Knight_SW_idle2_2.png" id="16_n1p68"]
+[ext_resource type="Texture2D" uid="uid://c15ooqhw7njrp" path="res://Assets/InGameUIAssets/Knight_SW_idle2_3.png" id="17_4m8ya"]
+[ext_resource type="Texture2D" uid="uid://0fdtp4nutyf2" path="res://Assets/InGameUIAssets/Knight_SW_idle2_4.png" id="18_uw3ev"]
+[ext_resource type="Texture2D" uid="uid://cgx1cli3eltvm" path="res://Assets/InGameUIAssets/redatk1 .png" id="19_fn7u1"]
+[ext_resource type="Texture2D" uid="uid://duocof7cu22ox" path="res://Assets/InGameUIAssets/redIdle.png" id="20_efkxi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2vwgs"]
+shader = ExtResource("1_4t0ia")
+shader_parameter/amount = 40
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hs3qg"]
+shader = ExtResource("1_4t0ia")
+shader_parameter/amount = 40
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxvqv"]
+shader = ExtResource("1_4t0ia")
+shader_parameter/amount = 40
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ynf82"]
+shader = ExtResource("1_4t0ia")
+shader_parameter/amount = 40
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8q6xp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_xy8ad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_m0kcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6k8js")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_marjj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_q1r8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_q2l58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ef0ps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_0srtm")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_djqcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_n1p68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_4m8ya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_uw3ev")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tcoe6"]
+shader = ExtResource("1_4t0ia")
+shader_parameter/amount = 40
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xmfp"]
+atlas = ExtResource("19_fn7u1")
+region = Rect2(0, 0, 78, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmls0"]
+atlas = ExtResource("19_fn7u1")
+region = Rect2(78, 0, 78, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xd0v"]
+atlas = ExtResource("19_fn7u1")
+region = Rect2(156, 0, 78, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8b0p"]
+atlas = ExtResource("19_fn7u1")
+region = Rect2(234, 0, 78, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i00qp"]
+atlas = ExtResource("19_fn7u1")
+region = Rect2(312, 0, 78, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6661k"]
+atlas = ExtResource("19_fn7u1")
+region = Rect2(390, 0, 78, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7p5q"]
+atlas = ExtResource("19_fn7u1")
+region = Rect2(468, 0, 78, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u81xj"]
+atlas = ExtResource("19_fn7u1")
+region = Rect2(546, 0, 78, 55)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x675r"]
+atlas = ExtResource("20_efkxi")
+region = Rect2(0, 0, 31, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_el6oc"]
+atlas = ExtResource("20_efkxi")
+region = Rect2(31, 0, 31, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t53m"]
+atlas = ExtResource("20_efkxi")
+region = Rect2(62, 0, 31, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eud3o"]
+atlas = ExtResource("20_efkxi")
+region = Rect2(93, 0, 31, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iey3"]
+atlas = ExtResource("20_efkxi")
+region = Rect2(124, 0, 31, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwur1"]
+atlas = ExtResource("20_efkxi")
+region = Rect2(155, 0, 31, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2aw6"]
+atlas = ExtResource("20_efkxi")
+region = Rect2(186, 0, 31, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6133b"]
+atlas = ExtResource("20_efkxi")
+region = Rect2(217, 0, 31, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dlnws"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xmfp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmls0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xd0v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8b0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i00qp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6661k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s7p5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u81xj")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x675r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_el6oc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t53m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eud3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iey3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwur1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2aw6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6133b")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
+
+[node name="InGameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Banners-large-cropped-main" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_2vwgs")
+position = Vector2(578, 75)
+texture = ExtResource("2_jujhd")
+
+[node name="MainLabel" type="Label" parent="Banners-large-cropped-main"]
+offset_left = -82.0
+offset_top = -51.0
+offset_right = 87.0
+offset_bottom = 2.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vh2kd")
+theme_override_font_sizes/font_size = 40
+text = "Terraform"
+
+[node name="BlueWood" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hs3qg")
+position = Vector2(156, 64)
+scale = Vector2(0.207333, 0.207333)
+texture = ExtResource("4_74sw4")
+
+[node name="blueLabel" type="Label" parent="BlueWood"]
+offset_left = -308.682
+offset_top = -106.109
+offset_right = 180.318
+offset_bottom = 88.8906
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vh2kd")
+theme_override_font_sizes/font_size = 150
+text = "Player 1
+"
+
+[node name="RedWood" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sxvqv")
+position = Vector2(990.5, 72.9375)
+scale = Vector2(0.19006, 0.225304)
+texture = ExtResource("5_1o7vr")
+
+[node name="redLabel" type="Label" parent="RedWood"]
+offset_left = -318.32
+offset_top = -101.807
+offset_right = 201.68
+offset_bottom = 93.1931
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_vh2kd")
+theme_override_font_sizes/font_size = 150
+text = "Player 2"
+
+[node name="Goldwood" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ynf82")
+position = Vector2(110, 565)
+scale = Vector2(0.595694, 0.595694)
+texture = ExtResource("6_8rrnw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Goldwood"]
+position = Vector2(-21.8233, -11.751)
+scale = Vector2(3.56366, 3.56366)
+sprite_frames = SubResource("SpriteFrames_8q6xp")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.423752
+
+[node name="Goldwood2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tcoe6")
+position = Vector2(1050, 565)
+scale = Vector2(0.595694, 0.595694)
+texture = ExtResource("6_8rrnw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Goldwood2"]
+position = Vector2(2.19629, -11.6617)
+scale = Vector2(3.06591, 3.06591)
+sprite_frames = SubResource("SpriteFrames_dlnws")
+animation = &"attack"
+autoplay = "idle"
+frame = 7
+frame_progress = 1.0

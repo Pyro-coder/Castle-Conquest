@@ -94,7 +94,7 @@ func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void
 
 func is_valid_tile() -> bool:
 	for tile in GlobalVars.valid_move_tiles:
-		print(tile)
+		# print(tile)
 		if tile["q"] == coordsfromboard.x and tile["r"] == coordsfromboard.y:
 			valid_index = tile["i"]
 			return true

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://n01c2i8qqp24" path="res://Scripts/menu_scripts/main_menu.gd" id="1_wpd8b"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_lt155"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_3aj6u"]
-[ext_resource type="Shader" uid="uid://c3nu17xroy62" path="res://Assets/Shaders/pixelate.gdshader" id="3_w6ur7"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_w6ur7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8a6q5"]
 shader = ExtResource("3_w6ur7")

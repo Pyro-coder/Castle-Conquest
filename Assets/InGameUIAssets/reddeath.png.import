@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drqt3b6pxlg08"
-path="res://.godot/imported/goldcoin-frame1-tails.png-3ae923dd8bb7eafecf17e2bdc9e1f9a4.ctex"
+uid="uid://clkvuyfepgwkh"
+path="res://.godot/imported/reddeath.png-9cab619ccd47c04a81a1d757be50f867.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Coin/goldcoin-frame1-tails.png"
-dest_files=["res://.godot/imported/goldcoin-frame1-tails.png-3ae923dd8bb7eafecf17e2bdc9e1f9a4.ctex"]
+source_file="res://Assets/InGameUIAssets/reddeath.png"
+dest_files=["res://.godot/imported/reddeath.png-9cab619ccd47c04a81a1d757be50f867.ctex"]
 
 [params]
 

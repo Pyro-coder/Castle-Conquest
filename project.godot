@@ -24,7 +24,7 @@ GlobalVars="*res://global_vars.gd"
 
 [display]
 
-window/size/mode=4
+window/size/mode=1
 window/stretch/mode="canvas_items"
 
 [dotnet]

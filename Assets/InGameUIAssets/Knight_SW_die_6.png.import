@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://55yuwofj7vcj"
-path="res://.godot/imported/goldcoin-frame3.png-ab4ca6d2e0027f1cc873db861820e8e5.ctex"
+uid="uid://dtaecqiunk8y5"
+path="res://.godot/imported/Knight_SW_die_6.png-2ddcf6dc97357bc77033dc487b8c47e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Coin/goldcoin-frame3.png"
-dest_files=["res://.godot/imported/goldcoin-frame3.png-ab4ca6d2e0027f1cc873db861820e8e5.ctex"]
+source_file="res://Assets/InGameUIAssets/Knight_SW_die_6.png"
+dest_files=["res://.godot/imported/Knight_SW_die_6.png-2ddcf6dc97357bc77033dc487b8c47e7.ctex"]
 
 [params]
 

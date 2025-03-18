@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://c68lvhr8ewsej"]
+
+[ext_resource type="Script" path="res://Scripts/menu_scripts/coinflipscreen.gd" id="1_5ih67"]
+[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="1_tktfm"]
+[ext_resource type="Texture2D" uid="uid://dn62p177n757l" path="res://Assets/InGameUIAssets/banners-large-cropped-main.png" id="2_dk1n8"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_w8q2y"]
+[ext_resource type="PackedScene" uid="uid://cihrmbx3hcrmq" path="res://Scenes/Menus/coinflip.tscn" id="4_i53mw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lrqhg"]
+shader = ExtResource("1_tktfm")
+shader_parameter/amount = 40
+
+[node name="coinflipscreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ih67")
+
+[node name="Banners-large-cropped-main" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_lrqhg")
+position = Vector2(588, 169)
+scale = Vector2(1.97506, 1.89726)
+texture = ExtResource("2_dk1n8")
+
+[node name="bannerlabel" type="Label" parent="Banners-large-cropped-main"]
+offset_left = -116.0
+offset_top = -36.0
+offset_right = 116.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_w8q2y")
+theme_override_font_sizes/font_size = 20
+text = "Press space to flip the coin"
+
+[node name="coinflip" parent="." instance=ExtResource("4_i53mw")]
+position = Vector2(511, 347)

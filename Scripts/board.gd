@@ -4,7 +4,28 @@ const TILE_SIZE := 1.0
 const HEX_TILE = preload("res://Scenes/water_hex.tscn")
 const FOREST_TILE = preload("res://Scenes/forest_hex.tscn")
 const BLUE_CASTLE = preload("res://Scenes/castle_hex_blue.tscn")
+const BLUE_BARRACKS = preload("res://Scenes/barracks_hex_blue.tscn")
+const BLUE_TOWER = preload("res://Scenes/tower_hex_blue.tscn")
+const BLUE_CHURCH = preload("res://Scenes/church_hex_blue.tscn")
+const BLUE_MARKET = preload("res://Scenes/market_hex_blue.tscn")
+const BLUE_TAVERN = preload("res://Scenes/tavern_hex_blue.tscn")
+const BLUE_BLACKSMITH = preload("res://Scenes/blacksmith_hex_blue.tscn")
+const BLUE_LARGEHOUSE = preload("res://Scenes/largehouse_hex_blue.tscn")
+const BLUE_SMALLHOUSE = preload("res://Scenes/smallhouse_hex_blue.tscn")
+
+
+
 const RED_CASTLE = preload("res://Scenes/castle_hex_red.tscn")
+const RED_BARRACKS = preload("res://Scenes/barracks_hex_red.tscn")
+const RED_TOWER = preload("res://Scenes/tower_hex_red.tscn")
+const RED_CHURCH = preload("res://Scenes/church_hex_red.tscn")
+const RED_MARKET = preload("res://Scenes/market_hex_red.tscn")
+const RED_TAVERN = preload("res://Scenes/tavern_hex_red.tscn")
+const RED_BLACKSMITH = preload("res://Scenes/blacksmith_hex_red.tscn")
+const RED_LARGEHOUSE = preload("res://Scenes/largehouse_hex_red.tscn")
+const RED_SMALLHOUSE = preload("res://Scenes/smallhouse_hex_red.tscn")
+
+
 var orientation = "vert"
 @export_range(2, 50) var grid_size: int = 50
 @export var spacing_factor: float = 1.15  # Increase this value if tiles overlap
@@ -286,9 +307,44 @@ func update_from_state(board_state: Array) -> void:
 		var tile_type = ""
 		if piece_count > 0:
 			if player_id == 1:
-				tile_type = "blue"
+				if piece_count == 16:
+					tile_type = "blue-castle"
+				if piece_count == 15 || piece_count == 14:
+					tile_type = "blue-barracks"
+				if piece_count == 13 || piece_count == 12:
+					tile_type = "blue-tower"
+				if piece_count == 11 || piece_count == 10:
+					tile_type = "blue-church"
+				if piece_count == 9 || piece_count == 8:
+					tile_type = "blue-market"		
+				if piece_count == 7 || piece_count == 6:
+					tile_type = "blue-tavern"
+				if piece_count == 5 || piece_count == 4:
+					tile_type = "blue-blacksmith"
+				if piece_count == 3 || piece_count == 2:
+					tile_type = "blue-largehouse"
+				if piece_count == 1:
+					tile_type = "blue-smallhouse"
+					
 			elif player_id == 2:
-				tile_type = "red"
+				if piece_count == 16:
+					tile_type = "red-castle"
+				if  piece_count == 15 || piece_count == 14:
+					tile_type = "red-barracks"
+				if  piece_count == 13 || piece_count == 12:
+					tile_type = "red-tower"
+				if  piece_count == 11 || piece_count == 10:
+					tile_type = "red-church"
+				if  piece_count == 9 || piece_count == 8:
+					tile_type = "red-market"
+				if  piece_count == 7 || piece_count == 6:
+					tile_type = "red-tavern"
+				if  piece_count == 5 || piece_count == 4:
+					tile_type = "red-blacksmith"
+				if  piece_count == 3 || piece_count == 2:
+					tile_type = "red-largehouse"
+				if  piece_count == 1:
+					tile_type = "red-smallhouse"
 			else:
 				tile_type = "forest"
 		else:
@@ -304,12 +360,67 @@ func change_tile(coords: Vector2i, type: String) -> void:
 		
 		var new_tile
 		match type:
-			"blue":
+			"blue-castle":
 				new_tile = BLUE_CASTLE.instantiate()
 				new_tile.setcoords(coords)
-			"red":
+			"blue-barracks":
+				new_tile = BLUE_BARRACKS.instantiate()
+				new_tile.setcoords(coords)
+			"blue-tower":
+				new_tile = BLUE_TOWER.instantiate()
+				new_tile.setcoords(coords)
+			"blue-church":
+				new_tile = BLUE_CHURCH.instantiate()
+				new_tile.setcoords(coords)	
+			"blue-market":
+				new_tile = BLUE_MARKET.instantiate()
+				new_tile.setcoords(coords)	
+			"blue-tavern":
+				new_tile = BLUE_TAVERN.instantiate()
+				new_tile.setcoords(coords)	
+			"blue-blacksmith":
+				new_tile = BLUE_BLACKSMITH.instantiate()
+				new_tile.setcoords(coords)	
+			"blue-largehouse":
+				new_tile = BLUE_LARGEHOUSE.instantiate()
+				new_tile.setcoords(coords)	
+			"blue-smallhouse":
+				new_tile = BLUE_SMALLHOUSE.instantiate()
+				new_tile.setcoords(coords)	
+				
+			
+				
+			"red-castle":
 				new_tile = RED_CASTLE.instantiate()
 				new_tile.setcoords(coords)
+			"red-barracks":
+				new_tile = RED_BARRACKS.instantiate()
+				new_tile.setcoords(coords)
+			"red-tower":
+				new_tile = RED_TOWER.instantiate()
+				new_tile.setcoords(coords)
+			"red-church":
+				new_tile = RED_CHURCH.instantiate()
+				new_tile.setcoords(coords)
+			"red-market":
+				new_tile = RED_MARKET.instantiate()
+				new_tile.setcoords(coords)
+			"red-market":
+				new_tile = RED_TAVERN.instantiate()
+				new_tile.setcoords(coords)
+			"red-blacksmith":
+				new_tile = RED_BLACKSMITH.instantiate()
+				new_tile.setcoords(coords)
+			"red-largehouse":
+				new_tile = RED_LARGEHOUSE.instantiate()
+				new_tile.setcoords(coords)
+			"red-smallhouse":
+				new_tile = RED_SMALLHOUSE.instantiate()
+				new_tile.setcoords(coords)
+				
+				
+				
+				
 			"forest":
 				new_tile = FOREST_TILE.instantiate()
 				new_tile.get_child(0).setcoords(coords)

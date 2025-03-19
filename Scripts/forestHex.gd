@@ -1,5 +1,7 @@
 extends MeshInstance3D
 @export var blue_castle: PackedScene = preload("res://Scenes/castle_hex_blue.tscn")
+@export var blue_barracks: PackedScene = preload("res://Scenes/barracks_hex_blue.tscn")
+
 var material := StandardMaterial3D.new()
 var tileType = "forest"
 var coordsfromboard
@@ -82,7 +84,6 @@ func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void
 		if is_valid_tile() and board.control_node.game_state == board.control_node.GameState.MOVE_PHASE and GlobalVars.player_turn:
 			# If this is a valid tile in the piece movement phase, and everything is set, move tiles
 			board.control_node.process_move_input(GlobalVars.castle_coords.x, GlobalVars.castle_coords.y, GlobalVars.num_pieces_selected, valid_index)
-		
 		GlobalVars.hex_selected = coordsfromboard
 		GlobalVars.castle_selected = false
 		GlobalVars.valid_move_tiles = []

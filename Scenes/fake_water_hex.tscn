@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://d4n12ib5t8mf2"]
 
 [ext_resource type="ArrayMesh" uid="uid://xd4rhjstdb7n" path="res://Assets/OBJ format/water.obj" id="1_iwf4e"]
-[ext_resource type="Shader" path="res://Assets/Shaders/water_animate.gdshader" id="2_pc74a"]
-[ext_resource type="Shader" path="res://Assets/Shaders/invisible.gdshader" id="3_1y1bd"]
-[ext_resource type="Script" path="res://Scripts/menu_scripts/fake_water_hex.gd" id="4_fpl3f"]
+[ext_resource type="Shader" uid="uid://c0perbevs2ap8" path="res://Assets/Shaders/water_animate.gdshader" id="2_pc74a"]
+[ext_resource type="Shader" uid="uid://b7jhe3l70j4u6" path="res://Assets/Shaders/invisible.gdshader" id="3_1y1bd"]
+[ext_resource type="Script" uid="uid://c5fg1pkrx2nng" path="res://Scripts/menu_scripts/fake_water_hex.gd" id="4_fpl3f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_exdhd"]
 render_priority = 0

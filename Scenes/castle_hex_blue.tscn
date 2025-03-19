@@ -27,17 +27,18 @@ data = PackedVector3Array(0.5, 0, -0.2887, 0, 0, 0.5774, 0.5, 0, 0.2887, 0, 0, 0
 [node name="castleHexBlue" type="Node3D"]
 script = ExtResource("1_enlhx")
 
-[node name="BuildingCastleRed" type="MeshInstance3D" parent="."]
+[node name="BuildingCastleBlue" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.2, 0)
 material_overlay = SubResource("ShaderMaterial_61qd1")
 mesh = ExtResource("1_phw31")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="BuildingCastleRed"]
+[node name="StaticBody3D" type="StaticBody3D" parent="BuildingCastleBlue"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildingCastleRed/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BuildingCastleBlue/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_enlhx")
 
 [node name="Grass" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.98, 0, 0, 0, 0.98, 0, 0, 0, 0.98, 0, 0, 0)
 material_overlay = SubResource("ShaderMaterial_e1mlq")
 mesh = ExtResource("2_v4lbb")
 surface_material_override/0 = SubResource("StandardMaterial3D_rpv00")
@@ -47,5 +48,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rpv00")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_jig15")
 
-[connection signal="input_event" from="BuildingCastleRed/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
+[connection signal="input_event" from="BuildingCastleBlue/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
 [connection signal="input_event" from="Grass/StaticBody3D" to="." method="_on_static_body_3d_input_event"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://c68lvhr8ewsej"]
 
-[ext_resource type="Script" path="res://Scripts/menu_scripts/coinflipscreen.gd" id="1_5ih67"]
-[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="1_tktfm"]
+[ext_resource type="Script" uid="uid://dima02s4lyrd7" path="res://Scripts/menu_scripts/coinflipscreen.gd" id="1_5ih67"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_tktfm"]
 [ext_resource type="Texture2D" uid="uid://dn62p177n757l" path="res://Assets/InGameUIAssets/banners-large-cropped-main.png" id="2_dk1n8"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_w8q2y"]
 [ext_resource type="PackedScene" uid="uid://cihrmbx3hcrmq" path="res://Scenes/Menus/coinflip.tscn" id="4_i53mw"]
-[ext_resource type="Script" path="res://Scenes/Menus/fakeboard.gd" id="6_3y37e"]
+[ext_resource type="Script" uid="uid://b6oj3odbhejd6" path="res://Scenes/Menus/fakeboard.gd" id="6_3y37e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e6r3s"]
 sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
@@ -66,5 +66,5 @@ text = "Press space to flip the coin"
 position = Vector2(511, 347)
 
 [node name="WaitTimer" type="Timer" parent="coinflipscreen"]
-wait_time = 3.0
+wait_time = 1.733
 one_shot = true

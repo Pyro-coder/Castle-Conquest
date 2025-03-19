@@ -15,7 +15,7 @@ var target_position: Vector3
 
 func _ready() -> void:
 	# Keep the camera angle/position you want:
-	rotation_degrees = Vector3(-70.0, 90.0, 0.0)
+	rotation_degrees = Vector3(-60.0, 90.0, 0.0)
 	position = Vector3(-45.0, 13.0, -50.0)
 	target_position = position
 

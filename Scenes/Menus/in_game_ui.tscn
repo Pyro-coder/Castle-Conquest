@@ -1,9 +1,10 @@
-[gd_scene load_steps=65 format=3 uid="uid://7p8dxs2ubagd"]
+[gd_scene load_steps=66 format=3 uid="uid://7p8dxs2ubagd"]
 
-[ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
 [ext_resource type="Texture2D" uid="uid://dn62p177n757l" path="res://Assets/InGameUIAssets/banners-large-cropped-main.png" id="2_jujhd"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_vh2kd"]
 [ext_resource type="Texture2D" uid="uid://cmsnligvb4ixn" path="res://Assets/InGameUIAssets/blueWood.png" id="4_74sw4"]
+[ext_resource type="Shader" uid="uid://g87ex1hrlogb" path="res://Assets/Shaders/3dPixelate.gdshader" id="4_rt54k"]
 [ext_resource type="Texture2D" uid="uid://c504mdg4mhpe8" path="res://Assets/InGameUIAssets/redWood.png" id="5_1o7vr"]
 [ext_resource type="Texture2D" uid="uid://fl3h47n17kxi" path="res://Assets/InGameUIAssets/goldwood.png" id="6_8rrnw"]
 [ext_resource type="Texture2D" uid="uid://6dwcatrj7ext" path="res://Assets/InGameUIAssets/Knight_SW_attack1_1.png" id="7_xy8ad"]
@@ -33,12 +34,12 @@ shader = ExtResource("1_4t0ia")
 shader_parameter/amount = 40
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hs3qg"]
-shader = ExtResource("1_4t0ia")
-shader_parameter/amount = 40
+shader = ExtResource("4_rt54k")
+shader_parameter/pixel_count = Vector2(280, 80)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sxvqv"]
-shader = ExtResource("1_4t0ia")
-shader_parameter/amount = 40
+shader = ExtResource("4_rt54k")
+shader_parameter/pixel_count = Vector2(280, 80)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ynf82"]
 shader = ExtResource("1_4t0ia")
@@ -371,7 +372,7 @@ text = "Terraform"
 
 [node name="BlueWood" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_hs3qg")
-position = Vector2(156, 64)
+position = Vector2(167, 75)
 scale = Vector2(0.207333, 0.207333)
 texture = ExtResource("4_74sw4")
 
@@ -387,7 +388,7 @@ text = "Player 1"
 
 [node name="RedWood" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_sxvqv")
-position = Vector2(990.5, 72.9375)
+position = Vector2(988.5, 76.9375)
 scale = Vector2(0.19006, 0.225304)
 texture = ExtResource("5_1o7vr")
 
@@ -411,9 +412,9 @@ texture = ExtResource("6_8rrnw")
 position = Vector2(6.71485, -11.751)
 scale = Vector2(3.56366, 3.56366)
 sprite_frames = SubResource("SpriteFrames_8q6xp")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.959487
+frame_progress = 0.556357
 
 [node name="Goldwood2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tcoe6")
@@ -425,6 +426,7 @@ texture = ExtResource("6_8rrnw")
 position = Vector2(2.19629, -11.6617)
 scale = Vector2(3.06591, 3.06591)
 sprite_frames = SubResource("SpriteFrames_dlnws")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.743176
+frame = 7
+frame_progress = 1.0

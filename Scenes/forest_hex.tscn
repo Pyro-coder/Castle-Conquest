@@ -17,6 +17,7 @@ height = 0.420277
 script = ExtResource("1_p7vp4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.98, 0, 0, 0, 0.98, 0, 0, 0, 0.98, 0, 0, 0)
 material_overlay = SubResource("ShaderMaterial_2p2fq")
 mesh = ExtResource("1_pppdi")
 script = ExtResource("2_kawhx")

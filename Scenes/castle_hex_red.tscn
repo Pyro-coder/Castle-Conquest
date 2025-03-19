@@ -38,6 +38,7 @@ mesh = ExtResource("2_wvurj")
 shape = SubResource("ConcavePolygonShape3D_rhbcl")
 
 [node name="Grass" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.98, 0, 0, 0, 0.98, 0, 0, 0, 0.98, 0, 0, 0)
 material_overlay = SubResource("ShaderMaterial_s0byi")
 mesh = ExtResource("2_aloyl")
 surface_material_override/0 = SubResource("StandardMaterial3D_rhbcl")

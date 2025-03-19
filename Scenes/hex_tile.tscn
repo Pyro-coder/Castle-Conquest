@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://b4lloo3vbuxjd"]
 
 [ext_resource type="Texture2D" uid="uid://bhd4qcwjg6x1j" path="res://Assets/gltf/tiles/base/hexagons_medieval.png" id="1_bwvwv"]
-[ext_resource type="Texture2D" uid="uid://jwsvejgl2t6a" path="res://Assets/gltf/buildings/blue/hexagons_medieval.png" id="2_14sen"]
+[ext_resource type="Texture2D" uid="uid://dhmaims5n80ds" path="res://Assets/gltf/buildings/blue/hexagons_medieval.png" id="2_14sen"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgeng"]
 resource_name = "hexagons_medieval"

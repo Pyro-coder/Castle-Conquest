@@ -1,46 +1,50 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Castle-Conquest\\",
+  "WorkspaceRootPath": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\networking\\networkai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\networking\\networkai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\board\\hexcell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\board\\hexcell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\game\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\game\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\board\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\board\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\ai\\abminimaxtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\ai\\abminimaxtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\ai\\abminimaxtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\players\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\gamemodes\\gamemodefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\gamemodes\\gamemodefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\board\\hexcell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\board\\hexcell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\board\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\board\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\game\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\players\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\players\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\ai\\montecarloinitialmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\gamemodes\\localpvaimode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\gamemodes\\localpvaimode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\ai\\montecarloinitialmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\ai\\montecarloinitialmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\ai\\abminimaxinitialmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\ai\\abminimaxinitialmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\board\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\board\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\board\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\board\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,34 +54,72 @@
       "DocumentGroups": [
         {
           "DockedWidth": 80,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameManager.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameManager.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameManager.cs",
-              "RelativeToolTip": "Scripts\\Core\\Game\\GameManager.cs",
-              "ViewState": "AgIAAB0BAAAAAAAAAAAiwCwBAABaAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "GameModeFactory.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\GameModes\\GameModeFactory.cs",
+              "RelativeDocumentMoniker": "Scripts\\Core\\GameModes\\GameModeFactory.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\GameModes\\GameModeFactory.cs",
+              "RelativeToolTip": "Scripts\\Core\\GameModes\\GameModeFactory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T01:54:59.779Z",
+              "WhenOpened": "2025-03-18T19:05:12.03Z",
               "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{08a1bf1d-7967-4afc-8253-1790862ab8c9}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:2:0:{08a1bf1d-7967-4afc-8253-1790862ab8c9}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "NetworkAi.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Networking\\NetworkAi.cs",
+              "RelativeDocumentMoniker": "Scripts\\Core\\Networking\\NetworkAi.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Networking\\NetworkAi.cs",
+              "RelativeToolTip": "Scripts\\Core\\Networking\\NetworkAi.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T22:52:57.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LocalPvAIMode.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\GameModes\\LocalPvAIMode.cs",
+              "RelativeDocumentMoniker": "Scripts\\Core\\GameModes\\LocalPvAIMode.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\GameModes\\LocalPvAIMode.cs",
+              "RelativeToolTip": "Scripts\\Core\\GameModes\\LocalPvAIMode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T23:15:16.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "GameEngine.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameEngine.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameEngine.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameEngine.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameEngine.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameEngine.cs",
               "RelativeToolTip": "Scripts\\Core\\Game\\GameEngine.cs",
-              "ViewState": "AgIAAAABAAAAAAAAAAAQwCgBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-14T17:49:07.217Z",
               "EditorCaption": ""
@@ -86,46 +128,48 @@
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Player.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Players\\Player.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Players\\Player.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Players\\Player.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Players\\Player.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Players\\Player.cs",
               "RelativeToolTip": "Scripts\\Core\\Players\\Player.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:28:25.491Z"
+              "WhenOpened": "2025-03-09T03:28:25.491Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "GameController.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameController.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameController.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameController.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameController.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameController.cs",
               "RelativeToolTip": "Scripts\\Core\\Game\\GameController.cs",
-              "ViewState": "AgIAAFUAAAAAAAAAAAAUwGgAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-09T03:08:09.026Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "Tile.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Board\\Tile.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\Tile.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Board\\Tile.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Board\\Tile.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\Tile.cs",
               "RelativeToolTip": "Scripts\\Core\\Board\\Tile.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:08:04.798Z"
+              "WhenOpened": "2025-03-09T03:08:04.798Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "HexCell.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Board\\HexCell.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\HexCell.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Board\\HexCell.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Board\\HexCell.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\HexCell.cs",
               "RelativeToolTip": "Scripts\\Core\\Board\\HexCell.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -134,70 +178,42 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 10,
               "Title": "BoardManager.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Board\\BoardManager.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\BoardManager.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Board\\BoardManager.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Board\\BoardManager.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\BoardManager.cs",
               "RelativeToolTip": "Scripts\\Core\\Board\\BoardManager.cs",
-              "ViewState": "AgIAAAgBAAAAAAAAAAAQwCUBAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-09T03:07:36.753Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "ABMinimaxTile.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\AI\\ABMinimaxTile.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\ABMinimaxTile.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\AI\\ABMinimaxTile.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\AI\\ABMinimaxTile.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\ABMinimaxTile.cs",
               "RelativeToolTip": "Scripts\\Core\\AI\\ABMinimaxTile.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCYAAAAiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAowAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:07:20.516Z"
+              "WhenOpened": "2025-03-09T03:07:20.516Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "ABMinimaxInitialMovement.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\AI\\ABMinimaxInitialMovement.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\AI\\ABMinimaxInitialMovement.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\AI\\ABMinimaxInitialMovement.cs",
-              "RelativeToolTip": "Scripts\\Core\\AI\\ABMinimaxInitialMovement.cs",
-              "ViewState": "AgIAAHoBAAAAAAAAAAAAAIYBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:07:15.484Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "MonteCarloInitialMovement.cs",
-              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
-              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
               "RelativeToolTip": "Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAowFQAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:05:28.5Z"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 122,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+              "WhenOpened": "2025-03-09T03:05:28.5Z",
+              "EditorCaption": ""
             }
           ]
         }

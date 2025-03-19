@@ -1,10 +1,11 @@
-﻿<Project Sdk="Godot.NET.Sdk/4.3.0">
+﻿<Project Sdk="Godot.NET.Sdk/4.4.0">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'android' ">net8.0</TargetFramework>
     <TargetFramework Condition=" '$(GodotTargetPlatform)' == 'ios' ">net8.0</TargetFramework>
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>Capstone25</RootNamespace>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <None Include="Scripts\about_page.gd" />
@@ -17,5 +18,8 @@
     <None Include="Scripts\settings.gd" />
     <None Include="Scripts\tutorial_pg_1.gd" />
     <None Include="Scripts\waterHex.gd" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>

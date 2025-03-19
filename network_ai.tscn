@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc7663f0ucp35"]
+
+[ext_resource type="Script" uid="uid://dmdex2h1gmawn" path="res://Scripts/Core/Networking/NetworkAi.cs" id="1_issvq"]
+
+[node name="NetworkAi" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_issvq")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]

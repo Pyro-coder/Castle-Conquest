@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://csny3if363son"]
 
-[ext_resource type="Script" uid="uid://buax0w8kwhttp" path="res://paused_menu.gd" id="1_jypes"]
+[ext_resource type="Script" uid="uid://v8xbdobdntl0" path="res://paused_menu.gd" id="1_jypes"]
 [ext_resource type="Texture2D" uid="uid://5q375qr4476d" path="res://Assets/wood1.png" id="2_rc272"]
 [ext_resource type="Shader" uid="uid://dx71dpo0jac3j" path="res://Scenes/paused_menu.gdshader" id="2_w03cf"]
 

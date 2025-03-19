@@ -5,8 +5,9 @@ enum GameState { TURN_ORDER, TILE_PLACEMENT, INITIAL_PLACEMENT, MOVE_PHASE, GAME
 
 # UI nodes.
 @onready var message_label: Label = $MessageLabel
-@onready var input_field: LineEdit = $InputField
-@onready var submit_button: Button = $SubmitButton
+
+@onready var wait_timer = $Wait_Timer
+
 @onready var board: Node = get_parent()  # Assumes the parent node contains an update_from_state(state) method.
 
 # Game and AI objects.
@@ -17,7 +18,7 @@ var monte_carlo_ai                # Instance of MonteCarloInitialMovement.
 var human_first: bool = true
 var players = []                  # Array of Player objects.
 var turn_order = []               # Turn order array.
-
+var first_player_first
 # For tracking the tile placement phase.
 var tile_round: int = 1
 var tile_turn_index: int = 0
@@ -33,15 +34,21 @@ var game_state = GameState.TURN_ORDER
 
 var ai_moved: bool
 
-
 func _ready():
+
+	first_player_first = GlobalVars.first_player_moves_first
 	game_engine = GameEngine.new()
 	# Connect the submit button's pressed signal to our handler.
-	submit_button.pressed.connect(_on_submit_pressed)
+	
+	# Ask the user if they want to go first.
+
 	# Setup the game with the desired difficulty.
 	setup_game()  # For example, using difficulty level 3.
-
+func _on_wait_timeout() -> void:
+	pass
+	
 func setup_game():
+
 	var difficulty_level = GlobalVars.difficulty
 	print("Difficulty: ", difficulty_level)
 	# Set AI parameters based on difficulty.
@@ -70,19 +77,15 @@ func setup_game():
 	players = [human_player, ai_player]
 	turn_order = players.duplicate()  # Copy the array.
 	
-	# Ask the user if they want to go first.
+	
+
 	message_label.text = "Do you want to go first? (y/n)"
-	input_field.text = ""
-	input_field.show()
-	submit_button.show()
+	if first_player_first == 1:
+		process_input("y")
+	else:
+		process_input("n")
 
 # This function is called when the submit button is pressed.
-func _on_submit_pressed():
-	var input_text = input_field.text.strip_edges().to_lower()
-	# Clear the input field.
-	input_field.text = ""
-	# Dispatch input based on the current game state.
-	process_input(input_text)
 
 # Dispatch the input to the appropriate handler.
 func process_input(input_text: String) -> void:
@@ -101,8 +104,7 @@ func process_turn_order(input_text: String) -> void:
 	if not human_first:
 		turn_order.reverse()
 	message_label.text = "Starting Local PvAI Game..."
-	input_field.hide()
-	submit_button.hide()
+
 	game_engine.StartGame()
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)

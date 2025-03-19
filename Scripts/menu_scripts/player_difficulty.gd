@@ -41,5 +41,5 @@ func _on_conquer_button_pressed() -> void:
 		"King":
 			GlobalVars.difficulty = 3
 
-	get_tree().change_scene_to_file("res://Scenes/board.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menus/coinflipscreen.tscn")
 	

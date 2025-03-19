@@ -1,16 +1,43 @@
-[gd_scene load_steps=7 format=3 uid="uid://c68lvhr8ewsej"]
+[gd_scene load_steps=11 format=3 uid="uid://c68lvhr8ewsej"]
 
 [ext_resource type="Script" path="res://Scripts/menu_scripts/coinflipscreen.gd" id="1_5ih67"]
 [ext_resource type="Shader" path="res://Assets/Shaders/pixelate.gdshader" id="1_tktfm"]
 [ext_resource type="Texture2D" uid="uid://dn62p177n757l" path="res://Assets/InGameUIAssets/banners-large-cropped-main.png" id="2_dk1n8"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_w8q2y"]
 [ext_resource type="PackedScene" uid="uid://cihrmbx3hcrmq" path="res://Scenes/Menus/coinflip.tscn" id="4_i53mw"]
+[ext_resource type="Script" path="res://Scenes/Menus/fakeboard.gd" id="6_3y37e"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e6r3s"]
+sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
+sky_horizon_color = Color(0.514926, 0.661726, 0.884476, 1)
+ground_bottom_color = Color(0.0823529, 0.196078, 0.482353, 1)
+ground_horizon_color = Color(0.0823529, 0.196078, 0.482353, 1)
+sun_angle_max = 272.35
+
+[sub_resource type="Sky" id="Sky_xn7db"]
+sky_material = SubResource("ProceduralSkyMaterial_e6r3s")
+
+[sub_resource type="Environment" id="Environment_56wtf"]
+background_mode = 2
+sky = SubResource("Sky_xn7db")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lrqhg"]
 shader = ExtResource("1_tktfm")
 shader_parameter/amount = 40
 
-[node name="coinflipscreen" type="Control"]
+[node name="fakeboard" type="Node3D"]
+script = ExtResource("6_3y37e")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.766044, 0.642788, 0, 0.642788, 0.766044, -1, 3.34849e-08, -2.80971e-08, -40, 13, -50)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_56wtf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.979575, -0.200821, -0.0101731, 0, -0.0505929, 0.998719, -0.201078, -0.978321, -0.0495595, 0, 0, 0)
+
+[node name="coinflipscreen" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,13 +46,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5ih67")
 
-[node name="Banners-large-cropped-main" type="Sprite2D" parent="."]
+[node name="Banners-large-cropped-main" type="Sprite2D" parent="coinflipscreen"]
 material = SubResource("ShaderMaterial_lrqhg")
 position = Vector2(588, 169)
 scale = Vector2(1.97506, 1.89726)
 texture = ExtResource("2_dk1n8")
 
-[node name="bannerlabel" type="Label" parent="Banners-large-cropped-main"]
+[node name="bannerlabel" type="Label" parent="coinflipscreen/Banners-large-cropped-main"]
 offset_left = -116.0
 offset_top = -36.0
 offset_right = 116.0
@@ -35,5 +62,9 @@ theme_override_fonts/font = ExtResource("3_w8q2y")
 theme_override_font_sizes/font_size = 20
 text = "Press space to flip the coin"
 
-[node name="coinflip" parent="." instance=ExtResource("4_i53mw")]
+[node name="coinflip" parent="coinflipscreen" instance=ExtResource("4_i53mw")]
 position = Vector2(511, 347)
+
+[node name="WaitTimer" type="Timer" parent="coinflipscreen"]
+wait_time = 3.0
+one_shot = true

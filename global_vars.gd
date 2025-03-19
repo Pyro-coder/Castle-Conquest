@@ -12,3 +12,7 @@ var castle_coords:Vector2i
 var valid_move_tiles:Array
 
 var num_pieces_selected: int = 8
+
+var first_player_moves_first:  int = 0
+
+var is_coin_done_spinning: int = 1

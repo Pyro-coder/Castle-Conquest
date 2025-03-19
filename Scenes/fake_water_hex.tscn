@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://d4n12ib5t8mf2"]
+
+[ext_resource type="ArrayMesh" uid="uid://xd4rhjstdb7n" path="res://Assets/OBJ format/water.obj" id="1_iwf4e"]
+[ext_resource type="Shader" path="res://Assets/Shaders/water_animate.gdshader" id="2_pc74a"]
+[ext_resource type="Shader" path="res://Assets/Shaders/invisible.gdshader" id="3_1y1bd"]
+[ext_resource type="Script" path="res://Scripts/menu_scripts/fake_water_hex.gd" id="4_fpl3f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_exdhd"]
+render_priority = 0
+shader = ExtResource("2_pc74a")
+shader_parameter/albedo_color = Vector4(0.4, 0.8, 0.9, 1)
+shader_parameter/time = 0.0
+shader_parameter/oscillation_frequency = 0.5
+shader_parameter/max_angle = 0.175
+shader_parameter/phase_offset = 0.0
+shader_parameter/roundness = 0.5
+shader_parameter/transparency = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtocd"]
+render_priority = 0
+shader = ExtResource("3_1y1bd")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_4este"]
+data = PackedVector3Array(0, 0.1, 0.5774, 0.5, 0.1, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0.1, -0.2887, 0, 0.1, 0.5774, 0, 0.1, -0.5774, 0, 0.1, -0.5774, 0, 0.1, 0.5774, -0.5, 0.1, 0.2887, 0, 0.1, -0.5774, -0.5, 0.1, 0.2887, -0.5, 0.1, -0.2887, -0.5, 0.1, -0.2887, -0.5, 0, 0.2887, -0.5, 0, -0.2887, -0.5, 0, 0.2887, -0.5, 0.1, -0.2887, -0.5, 0.1, 0.2887, 0, 0, 0.5774, 0.5, 0.1, 0.2887, 0.5, 0, 0.2887, 0.5, 0.1, 0.2887, 0, 0, 0.5774, 0, 0.1, 0.5774, -0.5, 0, 0.2887, 0, 0.1, 0.5774, 0, 0, 0.5774, 0, 0.1, 0.5774, -0.5, 0, 0.2887, -0.5, 0.1, 0.2887, 0.5, 0, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0.1, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0, -0.2887, 0.5, 0, 0.2887, 0, 0, -0.5774, -0.5, 0.1, -0.2887, -0.5, 0, -0.2887, -0.5, 0.1, -0.2887, 0, 0, -0.5774, 0, 0.1, -0.5774, 0.5, 0, -0.2887, 0, 0.1, -0.5774, 0, 0, -0.5774, 0, 0.1, -0.5774, 0.5, 0, -0.2887, 0.5, 0.1, -0.2887, 0.5, 0, -0.2887, 0, 0, 0.5774, 0.5, 0, 0.2887, 0, 0, 0.5774, 0.5, 0, -0.2887, 0, 0, -0.5774, 0, 0, 0.5774, 0, 0, -0.5774, -0.5, 0, 0.2887, -0.5, 0, 0.2887, 0, 0, -0.5774, -0.5, 0, -0.2887, 0, 0.1, 0.5774, 0.5, 0.1, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0.1, -0.2887, 0, 0.1, 0.5774, 0, 0.1, -0.5774, 0, 0.1, -0.5774, 0, 0.1, 0.5774, -0.5, 0.1, 0.2887, 0, 0.1, -0.5774, -0.5, 0.1, 0.2887, -0.5, 0.1, -0.2887, -0.5, 0.1, -0.2887, -0.5, 0, 0.2887, -0.5, 0, -0.2887, -0.5, 0, 0.2887, -0.5, 0.1, -0.2887, -0.5, 0.1, 0.2887, 0, 0, 0.5774, 0.5, 0.1, 0.2887, 0.5, 0, 0.2887, 0.5, 0.1, 0.2887, 0, 0, 0.5774, 0, 0.1, 0.5774, -0.5, 0, 0.2887, 0, 0.1, 0.5774, 0, 0, 0.5774, 0, 0.1, 0.5774, -0.5, 0, 0.2887, -0.5, 0.1, 0.2887, 0.5, 0, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0.1, -0.2887, 0.5, 0.1, 0.2887, 0.5, 0, -0.2887, 0.5, 0, 0.2887, 0, 0, -0.5774, -0.5, 0.1, -0.2887, -0.5, 0, -0.2887, -0.5, 0.1, -0.2887, 0, 0, -0.5774, 0, 0.1, -0.5774, 0.5, 0, -0.2887, 0, 0.1, -0.5774, 0, 0, -0.5774, 0, 0.1, -0.5774, 0.5, 0, -0.2887, 0.5, 0.1, -0.2887, 0.5, 0, -0.2887, 0, 0, 0.5774, 0.5, 0, 0.2887, 0, 0, 0.5774, 0.5, 0, -0.2887, 0, 0, -0.5774, 0, 0, 0.5774, 0, 0, -0.5774, -0.5, 0, 0.2887, -0.5, 0, 0.2887, 0, 0, -0.5774, -0.5, 0, -0.2887)
+
+[node name="waterHex" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
+mesh = ExtResource("1_iwf4e")
+surface_material_override/0 = SubResource("ShaderMaterial_exdhd")
+surface_material_override/1 = SubResource("ShaderMaterial_rtocd")
+script = ExtResource("4_fpl3f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4este")
+
+[connection signal="input_event" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_static_body_3d_input_event"]
+[connection signal="mouse_entered" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_static_body_3d_mouse_entered"]
+[connection signal="mouse_exited" from="MeshInstance3D/StaticBody3D" to="MeshInstance3D" method="_on_static_body_3d_mouse_exited"]

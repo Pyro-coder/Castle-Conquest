@@ -45,7 +45,6 @@ shader = ExtResource("1_4t0ia")
 shader_parameter/amount = 40
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k3l7p"]
-load_path = "res://.godot/imported/Knight_SW_die_7.png-f7917a7e304ce5c1e7f949e14394679a.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8q6xp"]
 animations = [{
@@ -377,15 +376,14 @@ scale = Vector2(0.207333, 0.207333)
 texture = ExtResource("4_74sw4")
 
 [node name="blueLabel" type="Label" parent="BlueWood"]
-offset_left = -308.682
-offset_top = -106.109
-offset_right = 180.318
-offset_bottom = 88.8906
+offset_left = -376.206
+offset_top = -96.4632
+offset_right = 112.794
+offset_bottom = 98.5368
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_vh2kd")
 theme_override_font_sizes/font_size = 150
-text = "Player 1
-"
+text = "Player 1"
 
 [node name="RedWood" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_sxvqv")

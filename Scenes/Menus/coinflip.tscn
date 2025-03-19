@@ -261,7 +261,7 @@ animations = [{
 
 [node name="coinflip" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="coin" type="AnimatedSprite2D" parent="."]
 position = Vector2(72, 72)
 scale = Vector2(5.5, 5.5)
 sprite_frames = SubResource("SpriteFrames_mgqw6")

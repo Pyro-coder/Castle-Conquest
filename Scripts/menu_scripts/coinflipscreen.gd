@@ -1,35 +1,49 @@
 extends Control
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+@onready var node: Node2D =$coinflip
 @onready var bannerlabel = $"Banners-large-cropped-main/bannerlabel"
+@onready var wait_timer = $WaitTimer
+var sprite 
 var flipcount = 0
+var result = -1
+
+func _ready() -> void:
+	sprite = node.get_child(0)
+	wait_timer.connect("timeout", Callable(self, "_on_wait_timeout"))
+	sprite.connect("animation_finished", Callable(self, "_on_animation_finished"))
+
+
+
+
 
 func _input(event):
-	if event.is_action_pressed("ui_select") && flipcount == 0:
-		var result  = coin_flip()
-		result = 1 
-		if result == 0:
-			print("heads")
-			get_node("coinflip").get_child(0).play("flipheads")
-			if !(get_node("coinflip").get_child(0).is_playing()):
-				bannerlabel.text = "Player 1 moves first" 
-				
+	if event.is_action_pressed("ui_select") and flipcount == 0:
+		result = coin_flip()
+	
+		if result == 1:
+			
+			sprite.play("flipheads")
 		else:
-			print("tails")
-			get_node("coinflip").get_child(0).play("fliptails")
-			
-			if !(get_node("coinflip").get_child(0).is_playing()):
-				bannerlabel.text = "Player 1 moves last"  
-					
-			
+		
+			sprite.play("fliptails")
+		flipcount += 1  # defer logic until animation finishes
 
-func coin_flip():
+func _on_animation_finished() -> void:
+	if result == 1:
+		bannerlabel.text = "Player 1 moves first"
+	else:
+		bannerlabel.text = "Player 1 moves last"
+	GlobalVars.first_player_moves_first = result
+	wait_timer.start()
+	
+
+
+func coin_flip() -> int:
 	return floor(randf_range(0, 2))
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_wait_timeout() -> void:
+
+	GlobalVars.is_coin_done_spinning = 0
+	get_tree().change_scene_to_file("res://Scenes/board.tscn")
+	
+	

@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bf5nwd8pspm3u"]
+[gd_scene load_steps=16 format=3 uid="uid://bf5nwd8pspm3u"]
 
 [ext_resource type="Script" uid="uid://doa7vv27gb3xt" path="res://Scripts/menu_scripts/player_mode_menu.gd" id="1_rfso3"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_7mog6"]
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_eipc5"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="4_qhost"]
 [ext_resource type="Texture2D" uid="uid://ccrd5mhlku4nu" path="res://Assets/player selection/singleplayer.png" id="5_uwjup"]
+[ext_resource type="Script" uid="uid://bya8vjp53msrs" path="res://Scenes/Menus/singleplayer.gd" id="6_7mog6"]
 [ext_resource type="Texture2D" uid="uid://b8tq4e5kekxdo" path="res://Assets/player selection/multiplayer.png" id="6_ac18x"]
+[ext_resource type="Script" uid="uid://djvnkyiodomd0" path="res://Scenes/Menus/multiplayer.gd" id="8_eipc5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oor2m"]
 shader = ExtResource("3_eipc5")
@@ -76,6 +78,7 @@ material = SubResource("ShaderMaterial_yh0q3")
 position = Vector2(159, -61)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_uwjup")
+script = ExtResource("6_7mog6")
 
 [node name="Control2" type="Control" parent="MenuTemplate/VBoxContainer"]
 layout_mode = 2
@@ -104,6 +107,7 @@ material = SubResource("ShaderMaterial_tjvii")
 position = Vector2(159, -70)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_ac18x")
+script = ExtResource("8_eipc5")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_c8grt")

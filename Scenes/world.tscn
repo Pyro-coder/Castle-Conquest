@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dvy7s6wfutupg"]
 
 [ext_resource type="MeshLibrary" uid="uid://dyymujlo3ml6" path="res://Scenes/Blcoks.tres" id="1_tyue0"]
-[ext_resource type="Script" uid="uid://hgy6xsr7e6hn" path="res://Scenes/menu_camera.gd" id="2_rg8tt"]
+[ext_resource type="Script" uid="uid://dn8hjtxf2vf1h" path="res://Scenes/menu_camera.gd" id="2_rg8tt"]
 
 [sub_resource type="GDScript" id="GDScript_xly3f"]
 script/source = "extends Node3D

@@ -30,9 +30,9 @@ func _input(event):
 
 func _on_animation_finished() -> void:
 	if result == 1:
-		bannerlabel.text = "Player 1 moves first"
+		bannerlabel.text = "Player 1 moves first!"
 	else:
-		bannerlabel.text = "Player 1 moves last"
+		bannerlabel.text = "Player 2 moves first!"
 	GlobalVars.first_player_moves_first = result
 	wait_timer.start()
 	

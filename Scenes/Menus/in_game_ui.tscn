@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dn62p177n757l" path="res://Assets/InGameUIAssets/banners-large-cropped-main.png" id="2_jujhd"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_vh2kd"]
 [ext_resource type="Texture2D" uid="uid://cmsnligvb4ixn" path="res://Assets/InGameUIAssets/blueWood.png" id="4_74sw4"]
-[ext_resource type="Shader" uid="uid://g87ex1hrlogb" path="res://Assets/Shaders/3dPixelate.gdshader" id="4_rt54k"]
+[ext_resource type="Shader" uid="uid://di2kp7d1ads57" path="res://Assets/Shaders/3dPixelate.gdshader" id="4_rt54k"]
 [ext_resource type="Texture2D" uid="uid://c504mdg4mhpe8" path="res://Assets/InGameUIAssets/redWood.png" id="5_1o7vr"]
 [ext_resource type="Texture2D" uid="uid://fl3h47n17kxi" path="res://Assets/InGameUIAssets/goldwood.png" id="6_8rrnw"]
 [ext_resource type="Texture2D" uid="uid://6dwcatrj7ext" path="res://Assets/InGameUIAssets/Knight_SW_attack1_1.png" id="7_xy8ad"]
@@ -409,12 +409,12 @@ scale = Vector2(0.595694, 0.595694)
 texture = ExtResource("6_8rrnw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Goldwood"]
-position = Vector2(6.71485, -11.751)
+position = Vector2(-3.35742, -15.1084)
 scale = Vector2(3.56366, 3.56366)
 sprite_frames = SubResource("SpriteFrames_8q6xp")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.556357
+frame_progress = 0.891128
 
 [node name="Goldwood2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tcoe6")
@@ -426,7 +426,13 @@ texture = ExtResource("6_8rrnw")
 position = Vector2(2.19629, -11.6617)
 scale = Vector2(3.06591, 3.06591)
 sprite_frames = SubResource("SpriteFrames_dlnws")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
-frame = 7
-frame_progress = 1.0
+frame_progress = 0.947959
+flip_h = true
+
+[node name="pausewood3" type="Sprite2D" parent="."]
+position = Vector2(581, 600)
+rotation = 1.5708
+scale = Vector2(0.199553, 0.203148)
+texture = ExtResource("6_8rrnw")

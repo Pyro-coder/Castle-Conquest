@@ -25,5 +25,5 @@ func play_easy_music():
 func play_medium_music():
 	play_music(mediumMusic)
 
-func hard_medium_music():
+func play_hard_music():
 	play_music(hardMusic)

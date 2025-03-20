@@ -16,7 +16,7 @@ void fragment()
    uv *= pixel_count;
    uv = floor(uv);
    uv = uv / pixel_count;
-   
+
    // COLOR parameter is provided by Godot. If we modify it, we control what color is displayed by each pixel.
    // We use a "texture" function to sample colors from "TEXTURE" parameter.
    // "TEXTURE" is another parameter provided by Godot. In this case, it points to our SubViewport texture.

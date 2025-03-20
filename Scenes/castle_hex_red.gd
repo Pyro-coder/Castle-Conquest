@@ -34,7 +34,9 @@ func _ready() -> void:
 			# Apply the modified material as an override.
 			child_node.material_override = new_material
 
-
+func update_piece_count(piece_count):
+	var count_label = $TokenCount
+	count_label.text = var_to_str(piece_count)
 
 # func _process(delta: float) -> void:
 	if GlobalVars.hex_selected != coordsfromboard:

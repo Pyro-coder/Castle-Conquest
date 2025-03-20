@@ -10,6 +10,7 @@ func setcoords(vector):
 
 func _ready() -> void:
 	add_to_group("Pieces")
+	
 
 func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if Input.is_action_pressed("ui_click") and GlobalVars.player_turn:
@@ -47,7 +48,11 @@ func _process(delta: float) -> void:
 		var original_material = load("res://Assets/obj/buildings/blue/building_castle_blue.obj")
 		child_node.material_override = original_material
 
-
+func update_piece_count(piece_count):
+	var count_label = $TokenCount
+	
+	count_label.text = var_to_str(piece_count)
+	
 func get_valid_move_locations():
 	var moves = controller.get_valid()
 	

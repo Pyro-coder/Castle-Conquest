@@ -349,10 +349,10 @@ func update_from_state(board_state: Array) -> void:
 				tile_type = "forest"
 		else:
 			tile_type = "forest"
-		change_tile(Vector2i(q, r), tile_type)
+		change_tile(Vector2i(q, r), tile_type,piece_count)
 
 
-func change_tile(coords: Vector2i, type: String) -> void:
+func change_tile(coords: Vector2i, type: String,piece_count) -> void:
 	if tile_map.has(coords):
 		var old_tile = tile_map[coords]
 		# Check if the tile was already modified.
@@ -363,60 +363,95 @@ func change_tile(coords: Vector2i, type: String) -> void:
 			"blue-castle":
 				new_tile = BLUE_CASTLE.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
 			"blue-barracks":
 				new_tile = BLUE_BARRACKS.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"blue-tower":
 				new_tile = BLUE_TOWER.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"blue-church":
 				new_tile = BLUE_CHURCH.instantiate()
 				new_tile.setcoords(coords)	
+				new_tile.update_piece_count(piece_count)
+				
 			"blue-market":
 				new_tile = BLUE_MARKET.instantiate()
 				new_tile.setcoords(coords)	
+				new_tile.update_piece_count(piece_count)
+				
 			"blue-tavern":
 				new_tile = BLUE_TAVERN.instantiate()
 				new_tile.setcoords(coords)	
+				new_tile.update_piece_count(piece_count)
+				
 			"blue-blacksmith":
 				new_tile = BLUE_BLACKSMITH.instantiate()
 				new_tile.setcoords(coords)	
+				new_tile.update_piece_count(piece_count)
+				
 			"blue-largehouse":
 				new_tile = BLUE_LARGEHOUSE.instantiate()
 				new_tile.setcoords(coords)	
+				new_tile.update_piece_count(piece_count)
+				
 			"blue-smallhouse":
 				new_tile = BLUE_SMALLHOUSE.instantiate()
 				new_tile.setcoords(coords)	
+				new_tile.update_piece_count(piece_count)
+				
 				
 			
 				
 			"red-castle":
 				new_tile = RED_CASTLE.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"red-barracks":
 				new_tile = RED_BARRACKS.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"red-tower":
 				new_tile = RED_TOWER.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"red-church":
 				new_tile = RED_CHURCH.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"red-market":
 				new_tile = RED_MARKET.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"red-market":
 				new_tile = RED_TAVERN.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"red-blacksmith":
 				new_tile = RED_BLACKSMITH.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"red-largehouse":
 				new_tile = RED_LARGEHOUSE.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 			"red-smallhouse":
 				new_tile = RED_SMALLHOUSE.instantiate()
 				new_tile.setcoords(coords)
+				new_tile.update_piece_count(piece_count)
+				
 				
 				
 				
@@ -427,6 +462,8 @@ func change_tile(coords: Vector2i, type: String) -> void:
 			"default":
 				new_tile = HEX_TILE.instantiate()
 			_:
+				
+				
 				return
 		
 		# Copy the transform from the old tile.

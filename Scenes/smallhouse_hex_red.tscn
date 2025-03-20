@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://dr64jjmf5kegb"]
+[gd_scene load_steps=11 format=3 uid="uid://dr64jjmf5kegb"]
 
 [ext_resource type="Script" uid="uid://cr84jbuvrjrcf" path="res://Scenes/castle_hex_red.gd" id="1_7p5hg"]
 [ext_resource type="Shader" uid="uid://bcoc4yel4e1n1" path="res://Assets/Shaders/pixelateion3d.gdshader" id="2_nqwyb"]
 [ext_resource type="ArrayMesh" uid="uid://cgclj7kseqikf" path="res://Assets/obj/buildings/red/building_home_A_red.obj" id="3_7p5hg"]
 [ext_resource type="ArrayMesh" uid="uid://n10i8i8gibar" path="res://Assets/OBJ format/grass.obj" id="4_vhpy8"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="5_nqwyb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wwxv"]
 render_priority = 0
@@ -47,6 +48,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_rhbcl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_v72bp")
+
+[node name="TokenCount" type="Label3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 1.41421, 1.41421, 0, -1.41421, 1.41421, 0, 0.75, 0)
+text = "1"
+font = ExtResource("5_nqwyb")
 
 [connection signal="input_event" from="BuildingSmallhouseRed/StaticBody3D" to="." method="_on_static_body_3d_input_event"]
 [connection signal="mouse_exited" from="BuildingSmallhouseRed/StaticBody3D" to="." method="_on_static_body_3d_mouse_exited"]

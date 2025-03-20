@@ -52,6 +52,7 @@ script = ExtResource("4_npwrj")
 layout_mode = 1
 
 [node name="MessageLabel" type="Label" parent="GameControl"]
+visible = false
 layout_mode = 0
 offset_left = 12.0
 offset_top = 272.0

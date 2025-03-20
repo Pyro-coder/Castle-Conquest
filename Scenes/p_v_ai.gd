@@ -19,6 +19,13 @@ var human_first: bool = true
 var players = []                  # Array of Player objects.
 var turn_order = []               # Turn order array.
 var first_player_first
+
+#For updating text in colored banners
+var p1Tilesleft = 4
+var p2Tilesleft = 4
+
+var p1TilesCovered = 1
+var p2TilesCovered = 1
 # For tracking the tile placement phase.
 var tile_round: int = 1
 var tile_turn_index: int = 0
@@ -34,10 +41,17 @@ var game_state = GameState.TURN_ORDER
 
 var ai_moved: bool
 
+@onready var ingameui = $InGameUI
 func _ready():
 
 	first_player_first = GlobalVars.first_player_moves_first
 	game_engine = GameEngine.new()
+	var ingameui = $InGameUI
+	ingameui.UpdateP1Label("tiles left to Place" + var_to_str(p1Tilesleft) )
+	ingameui.UpdateP2Label("tiles left to Place" + var_to_str(p2Tilesleft) )
+	
+	
+	
 	# Connect the submit button's pressed signal to our handler.
 	
 	# Ask the user if they want to go first.
@@ -123,9 +137,14 @@ func start_tile_placement():
 	if tile_round <= 4:
 		message_label.text = "Tile Placement Round %d" % tile_round
 		tile_turn_index = 0
+	
+		ingameui.UpdateP1Label("Tiles left to place %d" % p1Tilesleft)
+		ingameui.UpdateP2Label("Tiles left to place %d" % p2Tilesleft)
 		await process_tile_turn()  # Make sure to await if process_tile_turn is async.
 	else:
 		# When tile placement rounds are complete, start initial piece placement.
+
+		ingameui.UpdateMainLabel("Conquer")
 		game_state = GameState.INITIAL_PLACEMENT
 		init_turn_index = 0
 		start_initial_piece_placement()
@@ -165,8 +184,12 @@ func process_tile_input(q: int, r: int, orientation: int):
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
 		GlobalVars.player_turn = false
+		
 		tile_turn_index += 1
+		p1Tilesleft -= 1
 		# Process the next turn.
+
+		ingameui.UpdateP1Label("Tiles left to place %d" % p1Tilesleft)
 		process_tile_turn()
 	else:
 		message_label.text = "Invalid tile placement. Please try again."
@@ -181,7 +204,9 @@ func ai_place_tile():
 	message_label.text = "AI placed tile at (%d, %d) with orientation %d" % [best_tile["q"], best_tile["r"], best_tile["orientation"]]
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
-	
+
+	p2Tilesleft -= 1
+	ingameui.UpdateP2Label("Tiles left to place %d" % p2Tilesleft)
 	tile_turn_index += 1
 
 #############################################
@@ -294,6 +319,7 @@ func _on_BestMovementReady(result):
 func end_game():
 	game_state = GameState.GAME_OVER
 	message_label.text = "Game Over. Final Board State:"
+	
 	GlobalVars.player_turn = false
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=66 format=3 uid="uid://7p8dxs2ubagd"]
+[gd_scene load_steps=67 format=3 uid="uid://7p8dxs2ubagd"]
 
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
+[ext_resource type="Script" uid="uid://nf4wa8q2hem6" path="res://Scenes/Menus/in_game_ui.gd" id="1_hngs1"]
 [ext_resource type="Texture2D" uid="uid://dn62p177n757l" path="res://Assets/InGameUIAssets/banners-large-cropped-main.png" id="2_jujhd"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_vh2kd"]
 [ext_resource type="Texture2D" uid="uid://cmsnligvb4ixn" path="res://Assets/InGameUIAssets/blueWood.png" id="4_74sw4"]
-[ext_resource type="Shader" uid="uid://di2kp7d1ads57" path="res://Assets/Shaders/3dPixelate.gdshader" id="4_rt54k"]
+[ext_resource type="Shader" uid="uid://g87ex1hrlogb" path="res://Assets/Shaders/3dPixelate.gdshader" id="4_rt54k"]
 [ext_resource type="Texture2D" uid="uid://c504mdg4mhpe8" path="res://Assets/InGameUIAssets/redWood.png" id="5_1o7vr"]
 [ext_resource type="Texture2D" uid="uid://fl3h47n17kxi" path="res://Assets/InGameUIAssets/goldwood.png" id="6_8rrnw"]
 [ext_resource type="Texture2D" uid="uid://6dwcatrj7ext" path="res://Assets/InGameUIAssets/Knight_SW_attack1_1.png" id="7_xy8ad"]
@@ -354,6 +355,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hngs1")
 
 [node name="Banners-large-cropped-main" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2vwgs")
@@ -377,10 +379,10 @@ scale = Vector2(0.207333, 0.207333)
 texture = ExtResource("4_74sw4")
 
 [node name="blueLabel" type="Label" parent="BlueWood"]
-offset_left = -376.206
-offset_top = -96.4632
-offset_right = 112.794
-offset_bottom = 98.5368
+offset_left = -578.779
+offset_top = -115.756
+offset_right = -89.7791
+offset_bottom = 79.2442
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_vh2kd")
 theme_override_font_sizes/font_size = 150
@@ -393,10 +395,10 @@ scale = Vector2(0.19006, 0.225304)
 texture = ExtResource("5_1o7vr")
 
 [node name="redLabel" type="Label" parent="RedWood"]
-offset_left = -318.32
-offset_top = -101.807
-offset_right = 201.68
-offset_bottom = 93.1931
+offset_left = -618.226
+offset_top = -92.93
+offset_right = -98.226
+offset_bottom = 102.07
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_vh2kd")
 theme_override_font_sizes/font_size = 150

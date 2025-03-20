@@ -57,10 +57,15 @@ func _on_conquer_button_pressed() -> void:
 	match selected.name:
 		"Peasant":
 			GlobalVars.difficulty = 1
+			AudioPlayer.play_easy_music()
 		"Knight":
 			GlobalVars.difficulty = 2
+			AudioPlayer.play_medium_music()
+			
 		"King":
 			GlobalVars.difficulty = 3
+			AudioPlayer.play_hard_music()
+			
 
 	get_tree().change_scene_to_file("res://Scenes/Menus/coinflipscreen.tscn")
 	

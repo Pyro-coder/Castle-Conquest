@@ -106,5 +106,10 @@ namespace BattleSheepCore.Game
         {
             return _gameManager.GetFurthestUnoccupiedHex(startQ, startR, directionIndex);
         }
+
+        public void InitializeCell(int q, int r)
+        {
+            InitializeCell(q, r);
+        }
     }
 }

@@ -261,6 +261,11 @@ namespace BattleSheepCore.Board
             return true;
         }
 
+        public void InitializeCell(int q, int r)
+        {
+            _board[(q, r)].InitializeCell();
+        }
+
 
 
         /// <summary>

@@ -53,6 +53,10 @@
           "SelectedChildIndex": 2,
           "Children": [
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "GameManager.cs",
@@ -62,12 +66,7 @@
               "RelativeToolTip": "Scripts\\Core\\Game\\GameManager.cs",
               "ViewState": "AgIAAB0BAAAAAAAAAAAiwCwBAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T01:54:59.779Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "WhenOpened": "2025-03-15T01:54:59.779Z"
             },
             {
               "$type": "Document",
@@ -77,7 +76,7 @@
               "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameEngine.cs",
               "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameEngine.cs",
               "RelativeToolTip": "Scripts\\Core\\Game\\GameEngine.cs",
-              "ViewState": "AgIAAAABAAAAAAAAAAAQwCgBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAkwGAAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-14T17:49:07.217Z",
               "EditorCaption": ""
@@ -104,8 +103,7 @@
               "RelativeToolTip": "Scripts\\Core\\Game\\GameController.cs",
               "ViewState": "AgIAAFUAAAAAAAAAAAAUwGgAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:08:09.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-09T03:08:09.026Z"
             },
             {
               "$type": "Document",
@@ -129,8 +127,7 @@
               "RelativeToolTip": "Scripts\\Core\\Board\\HexCell.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:07:59.48Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-09T03:07:59.48Z"
             },
             {
               "$type": "Document",
@@ -142,8 +139,7 @@
               "RelativeToolTip": "Scripts\\Core\\Board\\BoardManager.cs",
               "ViewState": "AgIAAAgBAAAAAAAAAAAQwCUBAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:07:36.753Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-09T03:07:36.753Z"
             },
             {
               "$type": "Document",

@@ -197,6 +197,11 @@ namespace BattleSheepCore.Game
             return arrayOfDicts;
         }
 
+        public void InitializeCell(int q, int r)
+        {
+            _gameController.InitializeCell(q, r);
+        }
+
         /// <summary>
         /// Gets the valid initial piece placements on the board.
         /// </summary>

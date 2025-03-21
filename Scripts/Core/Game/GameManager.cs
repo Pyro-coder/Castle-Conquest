@@ -298,6 +298,7 @@ namespace BattleSheepCore.Game
         }
 
 
+
         public HexCell GetFurthestUnoccupiedHex(int startQ, int startR, int directionIndex)
         {
             // Define the six possible hex direction vectors.

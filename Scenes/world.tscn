@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvy7s6wfutupg"]
+[gd_scene load_steps=15 format=3 uid="uid://dvy7s6wfutupg"]
 
 [ext_resource type="MeshLibrary" uid="uid://dyymujlo3ml6" path="res://Scenes/Blcoks.tres" id="1_tyue0"]
 [ext_resource type="Script" uid="uid://dn8hjtxf2vf1h" path="res://Scenes/menu_camera.gd" id="2_rg8tt"]
+[ext_resource type="Texture2D" uid="uid://c1a67ik8cmsr4" path="res://Assets/fx_cloudalphas/FX_CloudAlpha04.png" id="3_8j60k"]
+[ext_resource type="Script" uid="uid://b5022bfuys227" path="res://Scenes/Cloud_spawner.gd" id="4_fo5ed"]
 
 [sub_resource type="GDScript" id="GDScript_xly3f"]
 script/source = "extends Node3D
@@ -16,9 +18,15 @@ func _process(delta):
 	camera_pivot.rotation_degrees.y += delta * rotation_speed
 "
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5ukr8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o06y3"]
+noise = SubResource("FastNoiseLite_5ukr8")
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fo615"]
 sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
 sky_horizon_color = Color(0.514926, 0.661726, 0.884476, 1)
+sky_cover = SubResource("NoiseTexture2D_o06y3")
 ground_bottom_color = Color(0.0823529, 0.196078, 0.482353, 1)
 ground_horizon_color = Color(0.0823529, 0.196078, 0.482353, 1)
 sun_angle_max = 272.35
@@ -29,6 +37,26 @@ sky_material = SubResource("ProceduralSkyMaterial_fo615")
 [sub_resource type="Environment" id="Environment_emw23"]
 background_mode = 2
 sky = SubResource("Sky_4gvus")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k7acu"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 2, 4)
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5v1tr"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("3_8j60k")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_0fj1v"]
+material = SubResource("StandardMaterial3D_5v1tr")
+size = Vector2(5, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ikia7"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0)
 
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_xly3f")
@@ -57,3 +85,15 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 current = true
 fov = 51.2819
 script = ExtResource("2_rg8tt")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 50
+lifetime = 30.0
+explosiveness = 0.98
+process_material = SubResource("ParticleProcessMaterial_k7acu")
+draw_pass_1 = SubResource("QuadMesh_0fj1v")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(5.991, 4.602, 4.647)
+material = SubResource("StandardMaterial3D_ikia7")
+script = ExtResource("4_fo5ed")

@@ -26,13 +26,30 @@ func peer_disconnected(id):
 
 func connected_to_server():
 	print("Connected to server!")
+	SendPlayerInformation.rpc_id(1, $LineEdit.text, multiplayer.get_unique_id())
 
 func connection_failed():
 	print("Couldn't connect")
+	
+	
+@rpc("any_peer")
+func SendPlayerInformation(username, id):
+	print("Received player info:", username, id)
+	print("Current players before:", GamePlayerManager.Players)
+	
+	if !GamePlayerManager.Players.has(id):
+		GamePlayerManager.Players[id]={
+			"name" : username,
+			"id" : id
+		}
+	print("Current players after:", GamePlayerManager.Players)
+	if multiplayer.is_server():
+		for i in GamePlayerManager.Players:
+			SendPlayerInformation.rpc(GamePlayerManager.Players[i].name, i)
 
 @rpc("any_peer", "call_local")
 func StartGame():
-	var scene = load("res://Scenes/board.tscn") #figure out what to put in here to play the game
+	var scene = load("res://Scenes/board.tscn").instantiate() #figure out what to put in here to play the game
 	
 	if scene == null:
 		print("Failed to load the scene.")
@@ -51,7 +68,7 @@ func StartGame():
 	get_tree().root.add_child(instance)
 	self.hide()
 
-func _on_host_button_down() -> void:
+func _on_host_button_button_down():
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port, 2)
 	if error != OK:
@@ -60,16 +77,17 @@ func _on_host_button_down() -> void:
 	
 	multiplayer.set_multiplayer_peer(peer)
 	print("Waiting for players!")
+	SendPlayerInformation($LineEdit.text, multiplayer.get_unique_id())
 	pass # Replace with function body.
 
 
-func _on_join_button_down() -> void:
+func _on_join_button_button_down() -> void:
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(Address, port)
 	multiplayer.set_multiplayer_peer(peer)
 	pass # Replace with function body.
 
 
-func _on_start_game_button_down() -> void:
+func _on_start_game_button_down():
 	StartGame.rpc()
 	pass # Replace with function body.

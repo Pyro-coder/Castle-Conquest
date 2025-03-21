@@ -13,7 +13,7 @@ void vertex() {
     // Existing rotation code
     float pitch_offset = sin(time * oscillation_frequency + phase_offset) * max_angle;
     float roll_offset = cos(time * oscillation_frequency + phase_offset) * max_angle;
-
+	
     mat3 rotX = mat3(
         vec3(1.0, 0.0, 0.0),
         vec3(0.0, cos(pitch_offset), -sin(pitch_offset)),

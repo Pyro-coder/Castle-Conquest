@@ -58,6 +58,7 @@ func _on_conquer_button_pressed() -> void:
 		"Peasant":
 			GlobalVars.difficulty = 1
 			AudioPlayer.play_easy_music()
+#			set_water_oscillation_speed(1.0)
 		"Knight":
 			GlobalVars.difficulty = 2
 			AudioPlayer.play_medium_music()
@@ -68,6 +69,9 @@ func _on_conquer_button_pressed() -> void:
 			
 
 	get_tree().change_scene_to_file("res://Scenes/Menus/coinflipscreen.tscn")
+	
+	#func set_water_oscillation_speed(speed):
+		
 	
 func on_backBtn_mouse_entered() -> void:
 	if backBtn:

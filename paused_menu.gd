@@ -24,3 +24,7 @@ func _on_quit_btn_pressed() -> void:
 func _on_back_2_main_btn_pressed() -> void:
 	_is_paused = false
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
+
+
+func _on_texture_button_pressed() -> void:
+	pass # Replace with function body.

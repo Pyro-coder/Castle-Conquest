@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://7p8dxs2ubagd"]
+[gd_scene load_steps=70 format=3 uid="uid://7p8dxs2ubagd"]
 
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
 [ext_resource type="Script" uid="uid://nf4wa8q2hem6" path="res://Scenes/Menus/in_game_ui.gd" id="1_hngs1"]
@@ -29,6 +29,9 @@
 [ext_resource type="Texture2D" uid="uid://duocof7cu22ox" path="res://Assets/InGameUIAssets/redIdle.png" id="20_efkxi"]
 [ext_resource type="Texture2D" uid="uid://dtaecqiunk8y5" path="res://Assets/InGameUIAssets/Knight_SW_die_6.png" id="20_i35tb"]
 [ext_resource type="Texture2D" uid="uid://clkvuyfepgwkh" path="res://Assets/InGameUIAssets/reddeath.png" id="26_3ltxf"]
+[ext_resource type="Texture2D" uid="uid://d57ybp8mq73m" path="res://Assets/wood_assets/Screenshot 2025-03-22 000409.png" id="30_3b0kf"]
+[ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="31_3b0kf"]
+[ext_resource type="Script" uid="uid://v8xbdobdntl0" path="res://paused_menu.gd" id="32_8xpas"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2vwgs"]
 shader = ExtResource("1_4t0ia")
@@ -433,8 +436,28 @@ autoplay = "idle"
 frame_progress = 0.947959
 flip_h = true
 
-[node name="pausewood3" type="Sprite2D" parent="."]
-position = Vector2(581, 600)
-rotation = 1.5708
-scale = Vector2(0.199553, 0.203148)
-texture = ExtResource("6_8rrnw")
+[node name="TextureButton" type="TextureButton" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -66.0
+offset_right = 141.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("30_3b0kf")
+script = ExtResource("31_3b0kf")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("32_8xpas")
+
+[connection signal="pressed" from="TextureButton" to="Control" method="_on_texture_button_pressed"]

@@ -1,6 +1,5 @@
 extends Control
 
-
 @onready var onePlayer = $MenuTemplate/VBoxContainer/OnePlayerButton
 @onready var twoPlayer = $MenuTemplate/VBoxContainer/TwoPlayerButton
 @onready var backBtn = $MenuTemplate/HBoxContainer/BackButton

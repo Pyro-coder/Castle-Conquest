@@ -62,9 +62,9 @@ offset_bottom = 311.0
 [node name="WoodPanel" type="TextureRect" parent="GameControl"]
 layout_mode = 0
 offset_left = 483.0
-offset_top = 596.0
+offset_top = 537.0
 offset_right = 683.0
-offset_bottom = 631.0
+offset_bottom = 572.0
 texture = ExtResource("5_s4i1f")
 
 [node name="Left Buffer" type="HBoxContainer" parent="GameControl/WoodPanel"]

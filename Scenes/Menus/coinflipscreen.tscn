@@ -55,12 +55,12 @@ texture = ExtResource("2_dk1n8")
 [node name="bannerlabel" type="Label" parent="coinflipscreen/Banners-large-cropped-main"]
 offset_left = -116.0
 offset_top = -36.0
-offset_right = 116.0
+offset_right = 174.0
 offset_bottom = -9.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_w8q2y")
-theme_override_font_sizes/font_size = 20
-text = "Press space to flip the coin"
+theme_override_font_sizes/font_size = 16
+text = "Press space to see who goes first"
 
 [node name="coinflip" parent="coinflipscreen" instance=ExtResource("4_i53mw")]
 position = Vector2(511, 347)

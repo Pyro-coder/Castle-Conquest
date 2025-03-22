@@ -31,7 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://clkvuyfepgwkh" path="res://Assets/InGameUIAssets/reddeath.png" id="26_3ltxf"]
 [ext_resource type="Texture2D" uid="uid://d57ybp8mq73m" path="res://Assets/wood_assets/Screenshot 2025-03-22 000409.png" id="30_3b0kf"]
 [ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="31_3b0kf"]
-[ext_resource type="Script" uid="uid://v8xbdobdntl0" path="res://paused_menu.gd" id="32_8xpas"]
+[ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="32_8xpas"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2vwgs"]
 shader = ExtResource("1_4t0ia")
@@ -419,7 +419,8 @@ scale = Vector2(3.56366, 3.56366)
 sprite_frames = SubResource("SpriteFrames_8q6xp")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.891128
+frame = 2
+frame_progress = 0.552447
 
 [node name="Goldwood2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tcoe6")
@@ -433,7 +434,6 @@ scale = Vector2(3.06591, 3.06591)
 sprite_frames = SubResource("SpriteFrames_dlnws")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.947959
 flip_h = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
@@ -445,19 +445,14 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -15.0
-offset_top = -66.0
+offset_top = -51.0
 offset_right = 141.0
-offset_bottom = 97.0
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("30_3b0kf")
 script = ExtResource("31_3b0kf")
 
-[node name="Control" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("32_8xpas")
-
-[connection signal="pressed" from="TextureButton" to="Control" method="_on_texture_button_pressed"]
+[node name="PausedMenu" parent="." instance=ExtResource("32_8xpas")]
+layout_mode = 1

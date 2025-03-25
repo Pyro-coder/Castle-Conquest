@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpxi4gr4pqdgy"]
+
+[ext_resource type="Script" uid="uid://cso8r7m5pn52w" path="res://Scenes/loading_screen.gd" id="1_m6rkq"]
+[ext_resource type="Texture2D" uid="uid://cwjgqggsjppuf" path="res://Assets/ConquestSplash.png" id="1_xoop3"]
+[ext_resource type="AudioStream" uid="uid://1mgh7jhxim1j" path="res://Assets/Music/loading screen.wav" id="2_m6rkq"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_m6rkq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = -3.0
+offset_right = 1113.0
+offset_bottom = 1749.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xoop3")
+expand_mode = 4
+stretch_mode = 4
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TextureRect"]
+stream = ExtResource("2_m6rkq")
+autoplay = true

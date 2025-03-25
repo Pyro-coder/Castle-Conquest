@@ -454,5 +454,16 @@ scale = Vector2(0.2, 0.2)
 texture_normal = ExtResource("30_3b0kf")
 script = ExtResource("31_3b0kf")
 
-[node name="PausedMenu" parent="." instance=ExtResource("32_8xpas")]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("32_8xpas")]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 257.0
+offset_right = 318.0
+offset_bottom = 319.0
+theme_override_fonts/font = ExtResource("3_vh2kd")
+theme_override_font_sizes/font_size = 22
+text = "Hint: [Space] to rotate tile placement"

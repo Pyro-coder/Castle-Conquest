@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://l6ubg68vxx38"]
+[gd_scene load_steps=11 format=3 uid="uid://l6ubg68vxx38"]
 
 [ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_1wluw"]
 [ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_rkaem"]
-[ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="3_cwopn"]
 [ext_resource type="Script" uid="uid://276gg21mowur" path="res://Scenes/p_v_ai.gd" id="4_npwrj"]
 [ext_resource type="Texture2D" uid="uid://b456wrsaj5ixr" path="res://Assets/WoodGui.png" id="5_s4i1f"]
 [ext_resource type="Script" uid="uid://umip4dnym153" path="res://Scenes/piece_selection_slider.gd" id="6_bh37u"]
@@ -36,10 +35,6 @@ environment = SubResource("Environment_p0gk8")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.979575, -0.20082, -0.0101731, 0, -0.0505929, 0.998719, -0.201078, -0.978321, -0.0495596, 0, 0, 0)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("3_cwopn")]
 
 [node name="GameControl" type="Control" parent="."]
 layout_mode = 3

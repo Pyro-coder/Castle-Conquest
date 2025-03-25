@@ -1,13 +1,10 @@
 extends Control
 
-@onready var resumeBtn = $GridContainer/ResumeBtn
 @onready var settingsBtn = $GridContainer/SettingsBtn
 @onready var quitBtn = $GridContainer/QuitBtn
 @onready var mainBtn = $GridContainer2/Back2MainBtn
+@onready var resumeBtn = $GridContainer/ResumeBtn
 
-var _is_paused:bool = false:
-	set = set_paused
-	
 func _ready() -> void:
 	if resumeBtn:
 		resumeBtn.connect("mouse_entered", resumeBtnHvrd)
@@ -22,21 +19,10 @@ func _ready() -> void:
 		mainBtn.connect("mouse_entered", mainHvrd)
 		mainBtn.connect("mouse_exited", mainExt)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		set_paused(!_is_paused)
-		
-func click_unhandled_input(event: InputEvent) -> void:
-	if event.is_action("mouseclick"):
-		set_paused(!_is_paused)
-	
-func set_paused(value:bool) ->void:
-	visible = _is_paused
-	_is_paused = value
-	get_tree().paused = _is_paused
-
 func _on_resume_btn_pressed() -> void:
-	set_paused(false)
+	var inGameUI = get_tree().get_first_node_in_group("InGameUI")
+	if inGameUI:
+		inGameUI.toggle_pause()
 
 func _on_settings_btn_pressed() -> void:
 	pass # Replace with function body.
@@ -45,7 +31,8 @@ func _on_quit_btn_pressed() -> void:
 	get_tree().quit()
 
 func _on_back_2_main_btn_pressed() -> void:
-	set_paused(false)
+	#set_paused(false)
+	get_parent().toggle_pause()
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://7p8dxs2ubagd"]
+[gd_scene load_steps=73 format=3 uid="uid://7p8dxs2ubagd"]
 
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
 [ext_resource type="Script" uid="uid://nf4wa8q2hem6" path="res://Scenes/Menus/in_game_ui.gd" id="1_hngs1"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://fl3h47n17kxi" path="res://Assets/InGameUIAssets/goldwood.png" id="6_8rrnw"]
 [ext_resource type="Texture2D" uid="uid://6dwcatrj7ext" path="res://Assets/InGameUIAssets/Knight_SW_attack1_1.png" id="7_xy8ad"]
 [ext_resource type="Texture2D" uid="uid://bdtptw55sqtfp" path="res://Assets/InGameUIAssets/Knight_SW_attack1_2.png" id="8_m0kcb"]
+[ext_resource type="Shader" uid="uid://r31ybx26olls" path="res://Scenes/Menus/GlowBlue.gdshader" id="9_3vuke"]
 [ext_resource type="Texture2D" uid="uid://b4e62rcjdxww5" path="res://Assets/InGameUIAssets/Knight_SW_attack1_3.png" id="9_6k8js"]
 [ext_resource type="Texture2D" uid="uid://cl4fiwbni4wll" path="res://Assets/InGameUIAssets/Knight_SW_attack1_4.png" id="10_marjj"]
 [ext_resource type="Texture2D" uid="uid://y4m7rwidg8ro" path="res://Assets/InGameUIAssets/Knight_SW_attack1_5.png" id="11_q1r8l"]
@@ -29,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://duocof7cu22ox" path="res://Assets/InGameUIAssets/redIdle.png" id="20_efkxi"]
 [ext_resource type="Texture2D" uid="uid://dtaecqiunk8y5" path="res://Assets/InGameUIAssets/Knight_SW_die_6.png" id="20_i35tb"]
 [ext_resource type="Texture2D" uid="uid://clkvuyfepgwkh" path="res://Assets/InGameUIAssets/reddeath.png" id="26_3ltxf"]
+[ext_resource type="Script" uid="uid://cnawnsx5tuup6" path="res://Scenes/Menus/GlowBlue.gd" id="28_8nevq"]
 [ext_resource type="Texture2D" uid="uid://d57ybp8mq73m" path="res://Assets/wood_assets/Screenshot 2025-03-22 000409.png" id="30_3b0kf"]
 [ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="31_3b0kf"]
 [ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="32_8xpas"]
@@ -48,6 +50,12 @@ shader_parameter/pixel_count = Vector2(280, 80)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ynf82"]
 shader = ExtResource("1_4t0ia")
 shader_parameter/amount = 40
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1yrx7"]
+shader = ExtResource("9_3vuke")
+shader_parameter/glow_color = Color(1, 1, 0, 1)
+shader_parameter/glow_strength = 1.0
+shader_parameter/blur_radius = 2.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k3l7p"]
 
@@ -414,6 +422,7 @@ scale = Vector2(0.595694, 0.595694)
 texture = ExtResource("6_8rrnw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Goldwood"]
+material = SubResource("ShaderMaterial_1yrx7")
 position = Vector2(-3.35742, -15.1084)
 scale = Vector2(3.56366, 3.56366)
 sprite_frames = SubResource("SpriteFrames_8q6xp")
@@ -421,6 +430,7 @@ animation = &"idle"
 autoplay = "idle"
 frame = 2
 frame_progress = 0.552447
+script = ExtResource("28_8nevq")
 
 [node name="Goldwood2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tcoe6")

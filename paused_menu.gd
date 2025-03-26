@@ -20,19 +20,26 @@ func _ready() -> void:
 		mainBtn.connect("mouse_exited", mainExt)
 
 func _on_resume_btn_pressed() -> void:
+	$buttonPress.play()
 	var inGameUI = get_tree().get_first_node_in_group("InGameUI")
 	if inGameUI:
 		inGameUI.toggle_pause()
 
 func _on_settings_btn_pressed() -> void:
+	$buttonPress.play()
+	
 	pass # Replace with function body.
 
 func _on_quit_btn_pressed() -> void:
+	$buttonPress.play()
+	
 	get_tree().quit()
 
 func _on_back_2_main_btn_pressed() -> void:
 	#set_paused(false)
 	#get_parent().toggle_pause()
+	$buttonPress.play()
+	
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	
 	

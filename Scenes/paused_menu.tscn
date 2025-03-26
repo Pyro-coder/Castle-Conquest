@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://csny3if363son"]
+[gd_scene load_steps=7 format=3 uid="uid://csny3if363son"]
 
 [ext_resource type="Script" uid="uid://v8xbdobdntl0" path="res://paused_menu.gd" id="1_jypes"]
 [ext_resource type="Texture2D" uid="uid://5q375qr4476d" path="res://Assets/wood1.png" id="2_rc272"]
 [ext_resource type="Shader" uid="uid://dx71dpo0jac3j" path="res://Scenes/paused_menu.gdshader" id="2_w03cf"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_npcx0"]
+[ext_resource type="AudioStream" uid="uid://c1gmd3qphxeq5" path="res://Assets/SFX/uiButton.wav" id="5_8mj5x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cetyb"]
 shader = ExtResource("2_w03cf")
@@ -102,6 +103,9 @@ theme_type_variation = &"FlatButton"
 theme_override_fonts/font = ExtResource("3_npcx0")
 text = "Main Menu"
 flat = true
+
+[node name="buttonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8mj5x")
 
 [connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="GridContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]

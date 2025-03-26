@@ -50,6 +50,7 @@ offset_left = 403.0
 offset_top = 139.0
 offset_right = 721.0
 offset_bottom = 481.0
+theme_override_constants/separation = 75
 
 [node name="Control" type="Control" parent="MenuTemplate/VBoxContainer"]
 layout_mode = 2
@@ -59,7 +60,7 @@ size_flags_vertical = 3
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_qhost")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 theme_override_styles/focus = SubResource("StyleBoxEmpty_i2kw2")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_i2kw2")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_i2kw2")
@@ -75,8 +76,8 @@ text = "Go Thee Alone"
 
 [node name="Singleplayer" type="Sprite2D" parent="MenuTemplate/VBoxContainer/OnePlayerButton"]
 material = SubResource("ShaderMaterial_yh0q3")
-position = Vector2(159, -61)
-scale = Vector2(0.25, 0.25)
+position = Vector2(158, -43)
+scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_uwjup")
 script = ExtResource("6_7mog6")
 
@@ -88,7 +89,7 @@ size_flags_vertical = 3
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_qhost")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 35
 theme_override_styles/focus = SubResource("StyleBoxEmpty_v4dh5")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_v4dh5")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_v4dh5")
@@ -100,11 +101,11 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_v4dh5")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_v4dh5")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_v4dh5")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_v4dh5")
-text = "Take Thy Firends"
+text = "Take Thy Friends"
 
 [node name="Multiplayer" type="Sprite2D" parent="MenuTemplate/VBoxContainer/TwoPlayerButton"]
 material = SubResource("ShaderMaterial_tjvii")
-position = Vector2(159, -70)
+position = Vector2(159, -50)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("6_ac18x")
 script = ExtResource("8_eipc5")

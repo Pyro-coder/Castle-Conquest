@@ -1,6 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://cihrmbx3hcrmq"]
+[gd_scene load_steps=26 format=3 uid="uid://cihrmbx3hcrmq"]
 
 [ext_resource type="Texture2D" uid="uid://cf6nuelpiatsi" path="res://Assets/Coin/Coin_Silver-Sheet.png" id="1_jk7xb"]
+[ext_resource type="AudioStream" uid="uid://vuw1kc1soa0x" path="res://Assets/coinFlip.wav" id="2_rome0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bvgb7"]
 atlas = ExtResource("1_jk7xb")
@@ -266,5 +267,8 @@ position = Vector2(72, 72)
 scale = Vector2(5.5, 5.5)
 sprite_frames = SubResource("SpriteFrames_mgqw6")
 animation = &"fliptails"
-frame = 22
-frame_progress = 1.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(72, 72)
+scale = Vector2(5.5, 5.5)
+stream = ExtResource("2_rome0")

@@ -4,9 +4,10 @@ extends CanvasLayer
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
+	AudioPlayer.stop()
 	audio_player.play()
 
-func set_tile(win: bool):
+func set_title(win: bool):
 	if win:
 		title.text = "Victory is yours!"
 	else:

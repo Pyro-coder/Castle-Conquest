@@ -1,7 +1,7 @@
 extends Control
 
 @onready var node: Node2D =$coinflip
-@onready var bannerlabel = $"Banners-large-cropped-main/bannerlabel"
+@onready var bannerlabel =$bannerlabel
 @onready var wait_timer = $WaitTimer
 var sprite 
 var flipcount = 0

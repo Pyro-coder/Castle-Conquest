@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dvy7s6wfutupg"]
 
 [ext_resource type="MeshLibrary" uid="uid://dyymujlo3ml6" path="res://Scenes/Blcoks.tres" id="1_tyue0"]
-[ext_resource type="Script" uid="uid://dn8hjtxf2vf1h" path="res://Scenes/menu_camera.gd" id="2_rg8tt"]
+[ext_resource type="Script" uid="uid://hgy6xsr7e6hn" path="res://Scenes/menu_camera.gd" id="2_rg8tt"]
 [ext_resource type="Texture2D" uid="uid://c1a67ik8cmsr4" path="res://Assets/fx_cloudalphas/FX_CloudAlpha04.png" id="3_8j60k"]
 [ext_resource type="Script" uid="uid://b5022bfuys227" path="res://Scenes/Cloud_spawner.gd" id="4_fo5ed"]
 

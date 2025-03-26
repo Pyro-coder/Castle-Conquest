@@ -36,18 +36,23 @@ func _process(delta: float) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	$MenuTemplate.buttonPress()
+	
 	get_tree().change_scene_to_file("res://Scenes/Menus/player_mode_menu.tscn")
 	
 	
 
 
 func _on_quit_button_pressed() -> void:
+	$MenuTemplate.buttonPress()
+	
 	get_tree().quit()
 
 
 func _on_conquer_button_pressed() -> void:
 	var group = $MenuTemplate/VBoxContainer/Peasant.button_group
 	var selected = group.get_pressed_button()
+	
 
 	if selected == null:
 		# No button is selected. Optionally, show a message to the user.
@@ -57,17 +62,14 @@ func _on_conquer_button_pressed() -> void:
 	match selected.name:
 		"Peasant":
 			GlobalVars.difficulty = 1
-			AudioPlayer.play_easy_music()
 #			set_water_oscillation_speed(1.0)
 		"Knight":
 			GlobalVars.difficulty = 2
-			AudioPlayer.play_medium_music()
 			
 		"King":
 			GlobalVars.difficulty = 3
-			AudioPlayer.play_hard_music()
 			
-
+	$MenuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/coinflipscreen.tscn")
 	
 	#func set_water_oscillation_speed(speed):
@@ -123,3 +125,15 @@ func on_king_exited() -> void:
 		king.modulate = Color(1, 1, 1)
 		king.scale = Vector2(1, 1)
 		
+
+
+func _on_peasant_button_down() -> void:
+	$MenuTemplate.buttonPress()
+
+
+
+func _on_knight_button_down() -> void:
+	$MenuTemplate.buttonPress()
+	
+func _on_king_button_down() -> void:
+	$MenuTemplate.buttonPress()

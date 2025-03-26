@@ -166,6 +166,7 @@ func process_tile_turn():
 		message_label.text = "AI's turn to place a tile."
 		# AI places its tile asynchronously.
 		await ai_place_tile()
+
 		# After the AI move, continue processing the next turn.
 		await process_tile_turn()
 
@@ -181,6 +182,8 @@ func process_tile_input(q: int, r: int, orientation: int):
 
 	if is_valid:
 		game_engine.PlaceTile(1, q, r, orientation)
+		$"../boardPlace".play()
+		
 		ingameui.P1TurnCompleteAnimation()
 		
 		var state = game_engine.GetCurrentBoardState()
@@ -201,6 +204,8 @@ func ai_place_tile():
 	
 	# Simulate AI thinking time without blocking the engine.
 	await get_tree().create_timer(1.0).timeout
+	
+	$"../boardPlace".play()
 	ingameui.P2TurnCompleteAnimation()
 	
 	game_engine.PlaceTile(2, best_tile["q"], best_tile["r"], best_tile["orientation"])
@@ -242,6 +247,7 @@ func process_initial_input(q: int, r: int):
 
 	if is_valid:
 		ingameui.P1TurnCompleteAnimation()
+		$"../tokenMove".play()
 		game_engine.PlaceInitialPieces(1, q, r)
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
@@ -257,6 +263,8 @@ func ai_place_initial_piece():
 func _on_BestInitialPlacementReady(result):
 	game_engine.PlaceInitialPieces(2, result["q"], result["r"])
 	ingameui.P2TurnCompleteAnimation()
+	$"../tokenMove".play()
+	
 	
 	message_label.text = "AI placed its initial piece at (%d, %d)" % [result["q"], result["r"]]
 	var state = game_engine.GetCurrentBoardState()
@@ -308,6 +316,7 @@ func process_move_turn():
 func process_move_input(q: int, r: int, num_pieces: int, direction: int):
 	print(q, " ", r, " ",num_pieces, " ", direction)
 	game_engine.MovePieces(1, q, r, num_pieces, direction)
+	$"../tokenMove".play()
 	ingameui.P1TurnCompleteAnimation()
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
@@ -327,6 +336,7 @@ func ai_move():
 func _on_BestMovementReady(result):
 	game_engine.MovePieces(2, result["startRow"], result["startCol"], result["count"], result["directionIndex"])
 	ingameui.P2TurnCompleteAnimation()
+	$"../tokenMove".play()
 	message_label.text = "AI moved %d pieces from (%d, %d) in direction %d" % [result["count"], result["startRow"], result["startCol"], result["directionIndex"]]
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)

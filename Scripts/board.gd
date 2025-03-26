@@ -1,7 +1,7 @@
 extends Node3D
 
 const TILE_SIZE := 1.0
-const HEX_TILE = preload("res://Scenes/water_hex.tscn")
+const WATER_TILE = preload("res://Scenes/water_hex.tscn")
 const FOREST_TILE = preload("res://Scenes/forest_hex.tscn")
 const BLUE_CASTLE = preload("res://Scenes/castle_hex_blue.tscn")
 const BLUE_BARRACKS = preload("res://Scenes/barracks_hex_blue.tscn")
@@ -78,7 +78,7 @@ func OnBoardPlaceHover(hoveredtilecoords,color):
 		if is_valid:
 			tempColor = Color(0, 1, 0, 1)
 			vertNeighborCoords(hoveredtilecoords,tempColor)
-		elif control_node.tile_turn_index == 0 && control_node.tile_round == 1:
+		elif control_node.tile_turn_index == 0 and control_node.tile_round == 1:
 			tempColor = Color(0, 1, 0, 1)
 			vertNeighborCoords(hoveredtilecoords,tempColor)
 		else:
@@ -94,7 +94,7 @@ func OnBoardPlaceHover(hoveredtilecoords,color):
 		if is_valid:
 			tempColor = Color(0, 1, 0, 1)
 			rightNeighborCoords(hoveredtilecoords,tempColor)
-		elif control_node.tile_turn_index == 0 && control_node.tile_round == 1:
+		elif control_node.tile_turn_index == 0 and control_node.tile_round == 1:
 			tempColor = Color(0, 1, 0, 1)
 			rightNeighborCoords(hoveredtilecoords,tempColor)
 		else:
@@ -110,7 +110,7 @@ func OnBoardPlaceHover(hoveredtilecoords,color):
 		if is_valid:
 			tempColor = Color(0, 1, 0, 1)
 			leftNeighborCoords(hoveredtilecoords,tempColor)
-		elif control_node.tile_turn_index == 0 && control_node.tile_round == 1:
+		elif control_node.tile_turn_index == 0 and control_node.tile_round == 1:
 			tempColor = Color(0, 1, 0, 1)
 			leftNeighborCoords(hoveredtilecoords,tempColor)
 		else:
@@ -135,7 +135,7 @@ func OnBoardPlaceHoverExit(hoveredtilecoords,color):
 
 func OnBoardPlaceClick(hoveredtilecoords):
 	hoveredTile = hoveredtilecoords
-	if (control_node.tile_turn_index == 0 && control_node.tile_round == 1):
+	if (control_node.tile_turn_index == 0 and control_node.tile_round == 1):
 		hoveredTile.x = 0
 		hoveredTile.y = 0
 		
@@ -268,7 +268,7 @@ func _generate_grid() -> void:
 		var r_min = max(-grid_size, -q - grid_size)
 		var r_max = min(grid_size, -q + grid_size)
 		for r in range(r_min, r_max + 1):
-			var tile = HEX_TILE.instantiate()
+			var tile = WATER_TILE.instantiate()
 			tile.rotation_degrees = Vector3.ZERO  # Reset rotation.
 			var coords = Vector2i(q, r)
 			
@@ -460,10 +460,8 @@ func change_tile(coords: Vector2i, type: String,piece_count) -> void:
 				new_tile = FOREST_TILE.instantiate()
 				new_tile.get_child(0).setcoords(coords)
 			"default":
-				new_tile = HEX_TILE.instantiate()
+				new_tile = WATER_TILE.instantiate()
 			_:
-				
-				
 				return
 		
 		# Copy the transform from the old tile.

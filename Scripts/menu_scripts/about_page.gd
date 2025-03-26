@@ -1,9 +1,13 @@
 extends Control
 
+@onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if backBtn:
+		backBtn.connect("mouse_entered", backBtnHvrd)
+		backBtn.connect("mouse_exited", backBtnExt)
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,3 +20,11 @@ func _on_back_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+	
+func backBtnHvrd() -> void:
+	if backBtn:
+		backBtn.scale = Vector2(1.1, 1.1)
+		
+func backBtnExt() -> void:
+	if backBtn:
+		backBtn.scale = Vector2(1, 1)

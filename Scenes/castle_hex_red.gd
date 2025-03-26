@@ -12,7 +12,7 @@ func _ready() -> void:
 
 # func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	var board = get_parent()
-	if Input.is_action_pressed("ui_click"):
+	if Input.is_action_pressed("ui_click") and !GlobalVars.player_turn:
 		print("castle clicked")
 		GlobalVars.hex_selected = coordsfromboard
 		# Get the first child and cast it to MeshInstance3D

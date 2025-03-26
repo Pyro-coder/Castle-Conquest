@@ -432,7 +432,7 @@ func change_tile(coords: Vector2i, type: String,piece_count) -> void:
 				new_tile.setcoords(coords)
 				new_tile.update_piece_count(piece_count)
 				
-			"red-market":
+			"red-tavern":
 				new_tile = RED_TAVERN.instantiate()
 				new_tile.setcoords(coords)
 				new_tile.update_piece_count(piece_count)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://7p8dxs2ubagd"]
+[gd_scene load_steps=72 format=3 uid="uid://7p8dxs2ubagd"]
 
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
 [ext_resource type="Script" uid="uid://nf4wa8q2hem6" path="res://Scenes/Menus/in_game_ui.gd" id="1_hngs1"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://duocof7cu22ox" path="res://Assets/InGameUIAssets/redIdle.png" id="20_efkxi"]
 [ext_resource type="Texture2D" uid="uid://dtaecqiunk8y5" path="res://Assets/InGameUIAssets/Knight_SW_die_6.png" id="20_i35tb"]
 [ext_resource type="Texture2D" uid="uid://clkvuyfepgwkh" path="res://Assets/InGameUIAssets/reddeath.png" id="26_3ltxf"]
+[ext_resource type="Texture2D" uid="uid://bgywno6nwyrjj" path="res://Assets/wood_assets/wood_message.png" id="27_8utw6"]
 [ext_resource type="Texture2D" uid="uid://d57ybp8mq73m" path="res://Assets/wood_assets/Screenshot 2025-03-22 000409.png" id="30_3b0kf"]
 [ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="31_3b0kf"]
 [ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="32_8xpas"]
@@ -78,9 +79,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("14_0srtm")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -104,7 +105,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("CompressedTexture2D_k3l7p")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -125,6 +126,10 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vuke"]
+shader = ExtResource("1_4t0ia")
+shader_parameter/amount = 200
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tcoe6"]
 shader = ExtResource("1_4t0ia")
@@ -275,7 +280,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -317,7 +322,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ey84d")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }, {
@@ -366,14 +371,15 @@ position = Vector2(578, 75)
 texture = ExtResource("2_jujhd")
 
 [node name="MainLabel" type="Label" parent="Banners-large-cropped-main"]
-offset_left = -82.0
-offset_top = -51.0
-offset_right = 87.0
+offset_left = -126.0
+offset_top = -55.0
+offset_right = 123.0
 offset_bottom = 2.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_vh2kd")
 theme_override_font_sizes/font_size = 40
 text = "Terraform"
+horizontal_alignment = 1
 
 [node name="BlueWood" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_hs3qg")
@@ -417,10 +423,26 @@ texture = ExtResource("6_8rrnw")
 position = Vector2(-3.35742, -15.1084)
 scale = Vector2(3.56366, 3.56366)
 sprite_frames = SubResource("SpriteFrames_8q6xp")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
-frame = 2
-frame_progress = 0.552447
+frame = 7
+frame_progress = 1.0
+
+[node name="WoodMessage" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3vuke")
+position = Vector2(206, 454)
+scale = Vector2(0.178466, 0.178466)
+texture = ExtResource("27_8utw6")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 439.0
+offset_right = 361.0
+offset_bottom = 483.0
+theme_override_fonts/font = ExtResource("3_vh2kd")
+theme_override_font_sizes/font_size = 20
+text = "Hint: [Space] to rotate tile placement"
+horizontal_alignment = 1
 
 [node name="Goldwood2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tcoe6")
@@ -432,8 +454,10 @@ texture = ExtResource("6_8rrnw")
 position = Vector2(2.19629, -11.6617)
 scale = Vector2(3.06591, 3.06591)
 sprite_frames = SubResource("SpriteFrames_dlnws")
-animation = &"idle"
+animation = &"attack"
 autoplay = "idle"
+frame = 7
+frame_progress = 1.0
 flip_h = true
 
 [node name="TextureButton" type="TextureButton" parent="."]
@@ -458,12 +482,5 @@ script = ExtResource("31_3b0kf")
 
 [node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("32_8xpas")]
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 257.0
-offset_right = 318.0
-offset_bottom = 319.0
-theme_override_fonts/font = ExtResource("3_vh2kd")
-theme_override_font_sizes/font_size = 22
-text = "Hint: [Space] to rotate tile placement"
+[connection signal="animation_finished" from="Goldwood/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="Goldwood2/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

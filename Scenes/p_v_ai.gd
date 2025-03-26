@@ -181,6 +181,8 @@ func process_tile_input(q: int, r: int, orientation: int):
 
 	if is_valid:
 		game_engine.PlaceTile(1, q, r, orientation)
+		ingameui.P1TurnCompleteAnimation()
+		
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
 		GlobalVars.player_turn = false
@@ -199,6 +201,7 @@ func ai_place_tile():
 	
 	# Simulate AI thinking time without blocking the engine.
 	await get_tree().create_timer(1.0).timeout
+	ingameui.P2TurnCompleteAnimation()
 	
 	game_engine.PlaceTile(2, best_tile["q"], best_tile["r"], best_tile["orientation"])
 	message_label.text = "AI placed tile at (%d, %d) with orientation %d" % [best_tile["q"], best_tile["r"], best_tile["orientation"]]
@@ -221,6 +224,7 @@ func start_initial_piece_placement():
 			GlobalVars.player_turn = true
 		else:
 			ai_place_initial_piece()
+			
 	else:
 		# After initial placements, move to the move phase.
 		game_state = GameState.MOVE_PHASE
@@ -237,6 +241,7 @@ func process_initial_input(q: int, r: int):
 			break
 
 	if is_valid:
+		ingameui.P1TurnCompleteAnimation()
 		game_engine.PlaceInitialPieces(1, q, r)
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
@@ -251,6 +256,8 @@ func ai_place_initial_piece():
 
 func _on_BestInitialPlacementReady(result):
 	game_engine.PlaceInitialPieces(2, result["q"], result["r"])
+	ingameui.P2TurnCompleteAnimation()
+	
 	message_label.text = "AI placed its initial piece at (%d, %d)" % [result["q"], result["r"]]
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
@@ -271,6 +278,8 @@ func start_move_phase():
 
 func process_move_turn():
 	# Check win conditions.
+	var state = game_engine.GetCurrentBoardState()
+	board.update_from_state(state)
 	if game_engine.CheckForWin():
 		end_game()
 		return
@@ -278,7 +287,14 @@ func process_move_turn():
 	var current_player = turn_order[move_turn_index]
 	# Check if the current player can move.
 	if not game_engine.CanPlayerMove(current_player.Id):
-		message_label.text = "%s cannot move. Game over." % current_player.name
+		message_label.text = "%s cannot move. Game over." % current_player.name	
+		if not game_engine.CanPlayerMove(1):
+			message_label.text = "AI cannot move. Game over."
+			ingameui.UpdateMainLabel("Player 2 wins!")
+			ingameui.P1LoseAnimation()
+		else:
+			ingameui.UpdateMainLabel("Player 1 wins!")
+			ingameui.P2LoseAnimation()
 		end_game()
 		return
 
@@ -292,6 +308,7 @@ func process_move_turn():
 func process_move_input(q: int, r: int, num_pieces: int, direction: int):
 	print(q, " ", r, " ",num_pieces, " ", direction)
 	game_engine.MovePieces(1, q, r, num_pieces, direction)
+	ingameui.P1TurnCompleteAnimation()
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
 	GlobalVars.player_turn = false
@@ -302,12 +319,14 @@ func process_move_input(q: int, r: int, num_pieces: int, direction: int):
 func ai_move():
 	if not game_engine.CanPlayerMove(2):
 		message_label.text = "AI cannot move. Game over."
+		ingameui.UpdateMainLabel("Player 1 wins!")
 		end_game()
 		return
 	monte_carlo_ai.StartBestMovement(game_engine)
 	
 func _on_BestMovementReady(result):
 	game_engine.MovePieces(2, result["startRow"], result["startCol"], result["count"], result["directionIndex"])
+	ingameui.P2TurnCompleteAnimation()
 	message_label.text = "AI moved %d pieces from (%d, %d) in direction %d" % [result["count"], result["startRow"], result["startCol"], result["directionIndex"]]
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)

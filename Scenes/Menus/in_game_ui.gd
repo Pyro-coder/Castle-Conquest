@@ -3,7 +3,8 @@ extends Control
 @onready var pauseBtn = $TextureButton
 @onready var pauseMenu = $CanvasLayer/PausedMenu
 @onready var resumeBtn = $CanvasLayer/PausedMenu/GridContainer/ResumeBtn
-
+@onready var blueSprite = $Goldwood/AnimatedSprite2D
+@onready var redSprite = $Goldwood2/AnimatedSprite2D
 var _is_paused: bool = false:
 	set = set_paused
 
@@ -17,6 +18,20 @@ func _ready() -> void:
 	if resumeBtn:
 		resumeBtn.connect("pressed", _on_resume_btn_pressed)
 		
+
+func P1LoseAnimation():
+	blueSprite.play("death")
+
+func P1TurnCompleteAnimation():
+	blueSprite.play("attack")
+	
+	
+func P2LoseAnimation():
+	redSprite.play("death")
+	
+func P2TurnCompleteAnimation():
+	redSprite.play("attack")
+
 
 func UpdateMainLabel(textInput):
 	var Main_Banner = $"Banners-large-cropped-main/MainLabel"
@@ -69,3 +84,10 @@ func _on_back_2_main_btn_pressed() -> void:
 func _on_texture_button_pressed() -> void:
 	toggle_pause()
 	
+
+
+func animation_finished() -> void:
+	if redSprite.animation == "attack":
+		redSprite.play("idle")
+	elif blueSprite.animation == "attack":
+		blueSprite.play("idle")

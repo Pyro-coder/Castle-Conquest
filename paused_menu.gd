@@ -32,7 +32,7 @@ func _on_quit_btn_pressed() -> void:
 
 func _on_back_2_main_btn_pressed() -> void:
 	#set_paused(false)
-	get_parent().toggle_pause()
+	#get_parent().toggle_pause()
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	
 	

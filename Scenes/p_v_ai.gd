@@ -342,6 +342,13 @@ func end_game():
 	GlobalVars.player_turn = false
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
+	
+	# Display game over scene
+	var game_over_scene_packed = load("res://Scenes/Menus/game_over_screen.tscn")
+	var game_over_scene_instance = game_over_scene_packed.instantiate()
+	add_child(game_over_scene_instance)
+	
+	#get_tree().change_scene_to_file("res://Scenes/Menus/game_over_screen.tscn")
 
 func get_valid():
 	match game_state:

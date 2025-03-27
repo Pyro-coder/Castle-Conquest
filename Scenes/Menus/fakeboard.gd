@@ -16,6 +16,13 @@ var tempColor
 
 
 func _ready() -> void:
+	if GlobalVars.difficulty == 1:
+		AudioPlayer.play_easy_music()
+	if GlobalVars.difficulty == 2:
+		AudioPlayer.play_medium_music()
+	if GlobalVars.difficulty == 3:
+		AudioPlayer.play_hard_music()
+	
 	_generate_grid()
   
 	# update_from_state(example_board_state)

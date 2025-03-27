@@ -134,6 +134,7 @@ func OnBoardPlaceHoverExit(hoveredtilecoords,color):
 
 
 func OnBoardPlaceClick(hoveredtilecoords):
+	
 	hoveredTile = hoveredtilecoords
 	if (control_node.tile_turn_index == 0 and control_node.tile_round == 1):
 		hoveredTile.x = 0

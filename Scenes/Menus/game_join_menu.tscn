@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_nb33g"]
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_nvum6"]
 [ext_resource type="ButtonGroup" uid="uid://dy41ywmmtdylm" path="res://Scripts/menu_scripts/buttons/game_join_buttons.tres" id="4_tw4g0"]
-[ext_resource type="Script" uid="uid://cncwoexyehojn" path="res://Scripts/menu_scripts/buttons/select_parrent_check.gd" id="5_4q0dx"]
+[ext_resource type="Script" uid="uid://ctqiw56hledk4" path="res://Scripts/menu_scripts/buttons/select_parrent_check.gd" id="5_4q0dx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3lv6u"]
 shader = ExtResource("3_nvum6")
@@ -150,3 +150,6 @@ script = ExtResource("5_4q0dx")
 
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/ConquerButton" to="." method="_on_conquer_button_pressed"]
+[connection signal="button_down" from="MenuTemplate/VBoxContainer/Local" to="." method="_on_local_button_down"]
+[connection signal="button_down" from="MenuTemplate/VBoxContainer/Join" to="." method="_on_join_button_down"]
+[connection signal="button_down" from="MenuTemplate/VBoxContainer/Host" to="." method="_on_host_button_down"]

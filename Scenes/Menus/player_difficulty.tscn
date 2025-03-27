@@ -94,7 +94,7 @@ offset_bottom = 444.0
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_x644m")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 30
 button_group = ExtResource("4_2fxua")
 text = "Peasant: Easy"
 
@@ -102,7 +102,7 @@ text = "Peasant: Easy"
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_x644m")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 30
 button_group = ExtResource("4_2fxua")
 text = "Knight: Medium"
 
@@ -110,9 +110,23 @@ text = "Knight: Medium"
 use_parent_material = true
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_x644m")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 30
 button_group = ExtResource("4_2fxua")
 text = "King: Hard"
 
+[node name="Label" type="Label" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 100.0
+offset_right = 647.0
+offset_bottom = 156.0
+theme_override_fonts/font = ExtResource("3_x644m")
+theme_override_font_sizes/font_size = 40
+text = "Difficulty"
+autowrap_mode = 3
+
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/ConquerButton" to="." method="_on_conquer_button_pressed"]
+[connection signal="button_down" from="MenuTemplate/VBoxContainer/Peasant" to="." method="_on_peasant_button_down"]
+[connection signal="button_down" from="MenuTemplate/VBoxContainer/Knight" to="." method="_on_knight_button_down"]
+[connection signal="button_down" from="MenuTemplate/VBoxContainer/King" to="." method="_on_king_button_down"]

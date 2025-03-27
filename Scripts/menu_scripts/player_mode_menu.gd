@@ -23,6 +23,8 @@ func _process(delta: float) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	$MenuTemplate.buttonPress()
+	
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 
 
@@ -31,10 +33,13 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_one_player_button_pressed() -> void:
+	$MenuTemplate.buttonPress()
+	
 	get_tree().change_scene_to_file("res://Scenes/Menus/player_difficulty.tscn")
 
-
 func _on_two_player_button_pressed() -> void:
+	$MenuTemplate.buttonPress()
+	
 	get_tree().change_scene_to_file("res://Scenes/Menus/game_join_menu.tscn")
 	
 	

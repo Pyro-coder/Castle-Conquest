@@ -23,16 +23,21 @@ func _process(delta: float) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	$MenuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/player_mode_menu.tscn")
 	
 
 
 
 func _on_quit_button_pressed() -> void:
+	$MenuTemplate.buttonPress()
+	
 	get_tree().quit()
 
 
 func _on_conquer_button_pressed() -> void:
+	$MenuTemplate.buttonPress()
+	
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_game.tscn")
 	
 #Button Hover Effects
@@ -55,3 +60,13 @@ func _on_conquerbtn_mouse_exited() -> void:
 	if conquerBtn:
 		conquerBtn.modulate = Color(1, 1, 1)
 		conquerBtn.scale = Vector2(1, 1)
+
+
+func _on_local_button_down() -> void:
+	$MenuTemplate.buttonPress()
+
+func _on_join_button_down() -> void:
+	$MenuTemplate.buttonPress()
+
+func _on_host_button_down() -> void:
+	$MenuTemplate.buttonPress()

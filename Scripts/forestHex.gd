@@ -51,11 +51,11 @@ func change_to_token_hex(building_type):
 	
 func _on_area_3d_mouse_entered() -> void:
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
-	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
+	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn or (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.is_local_pvp)):
 		
 		# Use the tile’s meta to get its coordinate.
 		board.OnBoardPlaceHover(coordsfromboard, Color(0.8, 0.1, 0.1, 1.0))
-	elif board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and GlobalVars.player_turn:
+	elif board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and GlobalVars.player_turn or board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and GlobalVars.is_local_pvp:
 		var valid_moves = board.control_node.get_valid()
 		var is_valid = false
 		
@@ -70,7 +70,7 @@ func _on_area_3d_mouse_entered() -> void:
 
 func _on_area_3d_mouse_exited() -> void:
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
-	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
+	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn or (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.is_local_pvp)):
 		board.OnBoardPlaceHoverExit(coordsfromboard, Color(0.12, 0.28, 0.66, 1.0))
 	elif board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT:
 		_change_color(Color(0.3, 0.6, 0.3, 1))
@@ -81,14 +81,14 @@ func _on_area_3d_mouse_exited() -> void:
 
 func _on_area_3d_input_event(camera, event, position, normal, shape_idx) -> void:
 	if Input.is_action_pressed("ui_click"):		
-		if is_valid_tile() and board.control_node.game_state == board.control_node.GameState.MOVE_PHASE and GlobalVars.player_turn:
+		if is_valid_tile() and board.control_node.game_state == board.control_node.GameState.MOVE_PHASE and GlobalVars.player_turn or is_valid_tile() and board.control_node.game_state == board.control_node.GameState.MOVE_PHASE and GlobalVars.is_local_pvp:
 			# If this is a valid tile in the piece movement phase, and everything is set, move tiles
 			board.control_node.process_move_input(GlobalVars.castle_coords.x, GlobalVars.castle_coords.y, GlobalVars.num_pieces_selected, valid_index)
 		GlobalVars.hex_selected = coordsfromboard
 		GlobalVars.castle_selected = false
 		GlobalVars.valid_move_tiles = []
 		
-	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and GlobalVars.player_turn:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and GlobalVars.player_turn or event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and board.control_node.game_state == board.control_node.GameState.INITIAL_PLACEMENT and GlobalVars.is_local_pvp:
 		board.control_node.process_initial_input(coordsfromboard.x, coordsfromboard.y)
 		
 	

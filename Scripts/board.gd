@@ -48,7 +48,7 @@ func _ready() -> void:
 	
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") and control_node.game_state == control_node.GameState.TILE_PLACEMENT and GlobalVars.player_turn:
+	if event.is_action_pressed("ui_accept") and control_node.game_state == control_node.GameState.TILE_PLACEMENT and GlobalVars.player_turn or event.is_action_pressed("ui_accept") and control_node.game_state == control_node.GameState.TILE_PLACEMENT and GlobalVars.is_local_pvp:
 		print("spacebar push")
 		OnBoardPlaceHoverExit(hoveredTile,Color(0.12, 0.28, 0.66, 1.0))
 		if(orientation == "vert"):

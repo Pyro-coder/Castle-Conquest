@@ -50,7 +50,7 @@ func _ready():
 	ingameui.UpdateP1Label("tiles left to Place" + var_to_str(p1Tilesleft) )
 	ingameui.UpdateP2Label("tiles left to Place" + var_to_str(p2Tilesleft) )
 	
-	
+	GlobalVars.is_local_pvp = false
 	
 	# Connect the submit button's pressed signal to our handler.
 	

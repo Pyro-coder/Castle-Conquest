@@ -22,7 +22,7 @@ func _ready() -> void:
 func _on_timer_timeout() -> void:
 	if GlobalVars.castle_selected == true:
 		get_parent().show()
-		if control_node.game_state == control_node.GameState.MOVE_PHASE and GlobalVars.player_turn:
+		if control_node.game_state == control_node.GameState.MOVE_PHASE and GlobalVars.player_turn or control_node.game_state == control_node.GameState.MOVE_PHASE and GlobalVars.is_local_pvp:
 			var valid_moves = control_node.get_valid()
 			
 			# Filter moves matching GlobalVars.hex_selected (assume x corresponds to startRow and y to startCol)

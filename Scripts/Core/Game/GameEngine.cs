@@ -31,7 +31,7 @@ namespace BattleSheepCore.Game
         /// <param name="players">The list of players participating in the game.</param>
         public GameEngine()
         {
-            this.boardSize = 22;
+            this.boardSize = 24;
             var humanPlayer = new Player();
             humanPlayer.Initialize(1, "Human");
             var aiPlayer = new Player();

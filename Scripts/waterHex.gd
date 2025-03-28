@@ -37,7 +37,7 @@ func setcoords(vector):
 
 func _on_static_body_3d_mouse_entered() -> void:
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
-	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
+	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn or (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT and GlobalVars.is_local_pvp)):
 		if type() == "water":
 			board.OnBoardPlaceHover(coordsfromboard,Color(0.8, 0.1, 0.1, 1.0))
 			#_change_color(Color(0.8, 0.1, 0.1, 1.0))  # Change to red.
@@ -50,7 +50,7 @@ func _on_static_body_3d_mouse_exited() -> void:
 	var control = board.control_node
 	
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
-	if control.game_state == control.GameState.TILE_PLACEMENT and GlobalVars.player_turn:
+	if control.game_state == control.GameState.TILE_PLACEMENT and GlobalVars.player_turn or (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT and GlobalVars.is_local_pvp):
 		_apply_to_neighbors("_change_color", Color(0.12, 0.28, 0.66, 1.0))
 		board.OnBoardPlaceHoverExit(coordsfromboard,Color(0.12, 0.28, 0.66, 1.0))
 		#_change_color(Color(0.12, 0.28, 0.66, 1.0))  # Change back to blue.
@@ -67,7 +67,7 @@ func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_posit
 		
 	_on_static_body_3d_mouse_entered()
 	# Only allow placing tiles in the tile placement phase, and when it is the current user's turn
-	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn):
+	if (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT && GlobalVars.player_turn or (board.control_node.game_state == board.control_node.GameState.TILE_PLACEMENT and GlobalVars.is_local_pvp)):
 		if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			board.OnBoardPlaceClick(coordsfromboard)
 			

@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if Input.is_action_pressed("ui_click") and GlobalVars.player_turn:
-		if self.get_child(0) == $"smallhouseCastleBlue":
+		if self.get_child(0).name == "smallhouseCastleBlue":
 			return
 		GlobalVars.hex_selected = coordsfromboard
 		# Get the first child and cast it to MeshInstance3D

@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://dnua2kocgyige"]
+
+[ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_mqndi"]
+[ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_bnwfp"]
+[ext_resource type="Script" uid="uid://dmw8ne13o1b3i" path="res://Scenes/p_v_p.gd" id="3_mqndi"]
+[ext_resource type="PackedScene" uid="uid://7p8dxs2ubagd" path="res://Scenes/Menus/in_game_ui.tscn" id="4_jw4eg"]
+[ext_resource type="Texture2D" uid="uid://b456wrsaj5ixr" path="res://Assets/WoodGui.png" id="5_y1gag"]
+[ext_resource type="Script" uid="uid://umip4dnym153" path="res://Scenes/piece_selection_slider.gd" id="6_vjqkl"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="7_yllyv"]
+[ext_resource type="AudioStream" uid="uid://dc3eyuup2hffq" path="res://Assets/SFX/minecraftPop.mp3" id="8_frjh0"]
+[ext_resource type="AudioStream" uid="uid://bhfma0x8j5j5x" path="res://Assets/SFX/tokenMove.wav" id="9_2ihkf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]
+sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
+sky_horizon_color = Color(0.514926, 0.661726, 0.884476, 1)
+ground_bottom_color = Color(0.0823529, 0.196078, 0.482353, 1)
+ground_horizon_color = Color(0.0823529, 0.196078, 0.482353, 1)
+sun_angle_max = 272.35
+
+[sub_resource type="Sky" id="Sky_hviba"]
+sky_material = SubResource("ProceduralSkyMaterial_4r3ic")
+
+[sub_resource type="Environment" id="Environment_p0gk8"]
+background_mode = 2
+sky = SubResource("Sky_hviba")
+
+[node name="board" type="Node3D"]
+script = ExtResource("1_mqndi")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.766045, 0.642788, 0, 0.642788, 0.766045, -1, 3.34849e-08, -2.80971e-08, -40, 13, -50)
+fov = 74.5992
+script = ExtResource("2_bnwfp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p0gk8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.979575, -0.20082, -0.0101731, 0, -0.0505929, 0.998719, -0.201078, -0.978321, -0.0495596, 0, 0, 0)
+
+[node name="GameControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_mqndi")
+
+[node name="InGameUI" parent="GameControl" instance=ExtResource("4_jw4eg")]
+layout_mode = 1
+
+[node name="MessageLabel" type="Label" parent="GameControl"]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 272.0
+offset_right = 150.0
+offset_bottom = 311.0
+
+[node name="WoodPanel" type="TextureRect" parent="GameControl"]
+layout_mode = 0
+offset_left = 483.0
+offset_top = 537.0
+offset_right = 683.0
+offset_bottom = 572.0
+texture = ExtResource("5_y1gag")
+
+[node name="Left Buffer" type="HBoxContainer" parent="GameControl/WoodPanel"]
+layout_mode = 0
+offset_left = -66.0
+offset_top = -3.0
+offset_right = 7.0
+offset_bottom = 37.0
+
+[node name="HSlider" type="HSlider" parent="GameControl/WoodPanel"]
+layout_mode = 2
+offset_left = 11.0
+offset_top = 3.0
+offset_right = 168.0
+offset_bottom = 29.0
+min_value = 1.0
+max_value = 15.0
+value = 8.0
+script = ExtResource("6_vjqkl")
+
+[node name="NumPiecesLabel" type="Label" parent="GameControl/WoodPanel"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 1.0
+offset_right = 191.0
+offset_bottom = 34.0
+theme_override_fonts/font = ExtResource("7_yllyv")
+theme_override_font_sizes/font_size = 25
+
+[node name="Right Buffer" type="HBoxContainer" parent="GameControl/WoodPanel"]
+layout_mode = 0
+offset_left = 195.0
+offset_top = -4.0
+offset_right = 279.0
+offset_bottom = 36.0
+
+[node name="Wait_Timer" type="Timer" parent="GameControl"]
+
+[node name="boardPlace" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_frjh0")
+volume_db = 2.0
+
+[node name="tokenMove" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_2ihkf")

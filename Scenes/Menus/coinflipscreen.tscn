@@ -67,5 +67,5 @@ text = "Press space to see who goes first"
 position = Vector2(511, 347)
 
 [node name="WaitTimer" type="Timer" parent="coinflipscreen"]
-wait_time = 1.733
+wait_time = 0.05
 one_shot = true

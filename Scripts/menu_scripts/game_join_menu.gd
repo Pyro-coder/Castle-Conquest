@@ -3,6 +3,7 @@ extends Control
 @onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
 @onready var conquerBtn = $MenuTemplate/HBoxContainer/ConquerButton
 
+var gamemode: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,8 +38,8 @@ func _on_quit_button_pressed() -> void:
 
 func _on_conquer_button_pressed() -> void:
 	$MenuTemplate.buttonPress()
-	
-	get_tree().change_scene_to_file("res://Scenes/Menus/main_game.tscn")
+	if gamemode == 0:
+		get_tree().change_scene_to_file("res://Scenes/pvp_board.tscn")
 	
 #Button Hover Effects
 func _on_backbtn_mouse_entered() -> void:
@@ -64,9 +65,12 @@ func _on_conquerbtn_mouse_exited() -> void:
 
 func _on_local_button_down() -> void:
 	$MenuTemplate.buttonPress()
+	gamemode = 0
 
 func _on_join_button_down() -> void:
 	$MenuTemplate.buttonPress()
+	gamemode = 1
 
 func _on_host_button_down() -> void:
 	$MenuTemplate.buttonPress()
+	gamemode = 2

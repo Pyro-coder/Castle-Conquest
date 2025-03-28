@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bg76cqrxcrguy"]
+
+[ext_resource type="Texture2D" uid="uid://bgmjhy8pw8nyb" path="res://Assets/InGameUIAssets/blue_hex.png" id="1_xna2o"]
+
+[node name="blue_hex" type="Node2D"]
+
+[node name="BlueHex" type="Sprite2D" parent="."]
+position = Vector2(256, 0)
+texture = ExtResource("1_xna2o")
+
+[node name="BlueHex2" type="Sprite2D" parent="."]
+position = Vector2(128, 224)
+texture = ExtResource("1_xna2o")
+
+[node name="BlueHex3" type="Sprite2D" parent="."]
+position = Vector2(-128, 224)
+scale = Vector2(1.00429, 1)
+texture = ExtResource("1_xna2o")
+
+[node name="BlueHex4" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+texture = ExtResource("1_xna2o")

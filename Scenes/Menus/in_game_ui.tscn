@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://7p8dxs2ubagd"]
+[gd_scene load_steps=74 format=3 uid="uid://7p8dxs2ubagd"]
 
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
 [ext_resource type="Script" uid="uid://nf4wa8q2hem6" path="res://Scenes/Menus/in_game_ui.gd" id="1_hngs1"]
@@ -33,6 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://d57ybp8mq73m" path="res://Assets/wood_assets/Screenshot 2025-03-22 000409.png" id="30_3b0kf"]
 [ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="31_3b0kf"]
 [ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="32_8xpas"]
+[ext_resource type="PackedScene" uid="uid://bg76cqrxcrguy" path="res://Scenes/Menus/blue_hex.tscn" id="34_8nevq"]
+[ext_resource type="PackedScene" uid="uid://dsxuhh04gpjr0" path="res://Scenes/Menus/red_hex.tscn" id="35_1yrx7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2vwgs"]
 shader = ExtResource("1_4t0ia")
@@ -482,6 +484,51 @@ script = ExtResource("31_3b0kf")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("32_8xpas")]
+
+[node name="BlueHexContainer" type="HBoxContainer" parent="."]
+layout_direction = 2
+offset_left = 54.0
+offset_top = 143.0
+offset_right = 476.0
+offset_bottom = 191.0
+
+[node name="blue_hex" parent="BlueHexContainer" instance=ExtResource("34_8nevq")]
+position = Vector2(7.62939e-06, 0)
+scale = Vector2(0.12, 0.12)
+
+[node name="blue_hex2" parent="BlueHexContainer" instance=ExtResource("34_8nevq")]
+position = Vector2(80, 0)
+scale = Vector2(0.12, 0.12)
+
+[node name="blue_hex3" parent="BlueHexContainer" instance=ExtResource("34_8nevq")]
+position = Vector2(160, 0)
+scale = Vector2(0.12, 0.12)
+
+[node name="blue_hex4" parent="BlueHexContainer" instance=ExtResource("34_8nevq")]
+position = Vector2(240, 0)
+scale = Vector2(0.12, 0.12)
+
+[node name="RedHexContainer" type="HBoxContainer" parent="."]
+layout_direction = 2
+offset_left = 857.0
+offset_top = 137.0
+offset_right = 857.0
+offset_bottom = 137.0
+
+[node name="red_hex" parent="RedHexContainer" instance=ExtResource("35_1yrx7")]
+position = Vector2(241, 0)
+scale = Vector2(0.12, 0.12)
+
+[node name="red_hex2" parent="RedHexContainer" instance=ExtResource("35_1yrx7")]
+position = Vector2(160, 0)
+scale = Vector2(0.12, 0.12)
+
+[node name="red_hex3" parent="RedHexContainer" instance=ExtResource("35_1yrx7")]
+position = Vector2(80, 0)
+scale = Vector2(0.12, 0.12)
+
+[node name="red_hex4" parent="RedHexContainer" instance=ExtResource("35_1yrx7")]
+scale = Vector2(0.12, 0.12)
 
 [connection signal="animation_finished" from="Goldwood/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="Goldwood2/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

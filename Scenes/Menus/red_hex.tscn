@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsxuhh04gpjr0"]
+
+[ext_resource type="Texture2D" uid="uid://b3ll8ygxggmw" path="res://Assets/InGameUIAssets/red_hex.png" id="1_lwf7q"]
+
+[node name="red_hex" type="Node2D"]
+
+[node name="RedHex" type="Sprite2D" parent="."]
+position = Vector2(256, 0)
+texture = ExtResource("1_lwf7q")
+
+[node name="RedHex2" type="Sprite2D" parent="."]
+position = Vector2(128, 224)
+texture = ExtResource("1_lwf7q")
+
+[node name="RedHex3" type="Sprite2D" parent="."]
+position = Vector2(-128, 224)
+scale = Vector2(1.00429, 1)
+texture = ExtResource("1_lwf7q")
+
+[node name="RedHex4" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+texture = ExtResource("1_lwf7q")

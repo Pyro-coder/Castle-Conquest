@@ -13,6 +13,7 @@ script = ExtResource("1_h4tbg")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -25,50 +26,51 @@ theme_override_constants/margin_bottom = 40
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 200
+theme_override_constants/separation = 440
 
 [node name="Title" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 z_index = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_bjvkm")
-theme_override_font_sizes/font_size = 64
-text = "CONQUEST OVER"
+theme_override_font_sizes/font_size = 45
+text = "Player One Conquers All!"
 horizontal_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 60
+theme_override_constants/separation = 500
+alignment = 2
 
-[node name="RestartBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="RestartBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 z_index = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_bjvkm")
 theme_override_font_sizes/font_size = 34
-text = "START NEW CONQUEST
+text = "START NEW CONQUEST            
 "
 flat = true
 
-[node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+position = Vector2(163, 30)
+scale = Vector2(0.166769, 0.237094)
+texture = ExtResource("3_6w14e")
+
+[node name="Sprite2D2" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+position = Vector2(950, 26)
+scale = Vector2(0.166769, 0.237094)
+texture = ExtResource("3_6w14e")
+
+[node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 z_index = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_bjvkm")
 theme_override_font_sizes/font_size = 34
-text = "GIVE UP"
+text = "        GIVE UP            "
 flat = true
-
-[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
-position = Vector2(162.812, 31.1875)
-scale = Vector2(0.166769, 0.237094)
-texture = ExtResource("3_6w14e")
-
-[node name="Sprite2D2" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
-position = Vector2(167, 143)
-scale = Vector2(0.166769, 0.237094)
-texture = ExtResource("3_6w14e")
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer"]
 position = Vector2(542, 77)
@@ -78,5 +80,5 @@ texture = ExtResource("4_1stjc")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_hy17y")
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/RestartBtn" to="." method="_on_restart_btn_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]

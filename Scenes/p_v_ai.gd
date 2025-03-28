@@ -24,8 +24,8 @@ var first_player_first
 var p1Tilesleft = 4
 var p2Tilesleft = 4
 
-var p1TilesCovered = 1
-var p2TilesCovered = 1
+var p1TilesCovered = 0
+var p2TilesCovered = 0
 # For tracking the tile placement phase.
 var tile_round: int = 1
 var tile_turn_index: int = 0
@@ -41,6 +41,7 @@ var game_state = GameState.TURN_ORDER
 
 var ai_moved: bool
 
+var p1won: bool
 @onready var ingameui = $InGameUI
 func _ready():
 
@@ -193,7 +194,7 @@ func process_tile_input(q: int, r: int, orientation: int):
 		tile_turn_index += 1
 		p1Tilesleft -= 1
 		# Process the next turn.
-
+		ingameui.erase_blue_hex(p1Tilesleft)
 		ingameui.UpdateP1Label("Tiles left to place %d" % p1Tilesleft)
 		process_tile_turn()
 	else:
@@ -214,6 +215,7 @@ func ai_place_tile():
 	board.update_from_state(state)
 
 	p2Tilesleft -= 1
+	ingameui.erase_red_hex(p2Tilesleft)
 	ingameui.UpdateP2Label("Tiles left to place %d" % p2Tilesleft)
 	tile_turn_index += 1
 
@@ -248,6 +250,9 @@ func process_initial_input(q: int, r: int):
 	if is_valid:
 		ingameui.P1TurnCompleteAnimation()
 		$"../tokenMove".play()
+		p1TilesCovered += 1
+		ingameui.UpdateP1Label("Tiles Conquered %d" % p1TilesCovered)
+
 		game_engine.PlaceInitialPieces(1, q, r)
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
@@ -264,7 +269,8 @@ func _on_BestInitialPlacementReady(result):
 	game_engine.PlaceInitialPieces(2, result["q"], result["r"])
 	ingameui.P2TurnCompleteAnimation()
 	$"../tokenMove".play()
-	
+	p2TilesCovered += 1
+	ingameui.UpdateP2Label("Tiles Conquered %d" % p2TilesCovered)
 	
 	message_label.text = "AI placed its initial piece at (%d, %d)" % [result["q"], result["r"]]
 	var state = game_engine.GetCurrentBoardState()
@@ -300,6 +306,7 @@ func process_move_turn():
 			message_label.text = "AI cannot move. Game over."
 			ingameui.UpdateMainLabel("Player 2 wins!")
 			ingameui.P1LoseAnimation()
+			p1won = false
 		else:
 			ingameui.UpdateMainLabel("Player 1 wins!")
 			ingameui.P2LoseAnimation()
@@ -317,6 +324,9 @@ func process_move_input(q: int, r: int, num_pieces: int, direction: int):
 	print(q, " ", r, " ",num_pieces, " ", direction)
 	game_engine.MovePieces(1, q, r, num_pieces, direction)
 	$"../tokenMove".play()
+	p1TilesCovered += 1
+	ingameui.UpdateP1Label("Tiles Conquered %d" % p1TilesCovered)
+
 	ingameui.P1TurnCompleteAnimation()
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
@@ -329,6 +339,7 @@ func ai_move():
 	if not game_engine.CanPlayerMove(2):
 		message_label.text = "AI cannot move. Game over."
 		ingameui.UpdateMainLabel("Player 1 wins!")
+		p1won = true
 		end_game()
 		return
 	monte_carlo_ai.StartBestMovement(game_engine)
@@ -337,6 +348,8 @@ func _on_BestMovementReady(result):
 	game_engine.MovePieces(2, result["startRow"], result["startCol"], result["count"], result["directionIndex"])
 	ingameui.P2TurnCompleteAnimation()
 	$"../tokenMove".play()
+	p2TilesCovered += 1
+	ingameui.UpdateP2Label("Tiles Conquered %d" % p2TilesCovered)
 	message_label.text = "AI moved %d pieces from (%d, %d) in direction %d" % [result["count"], result["startRow"], result["startCol"], result["directionIndex"]]
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
@@ -357,6 +370,9 @@ func end_game():
 	var game_over_scene_packed = load("res://Scenes/Menus/game_over_screen.tscn")
 	var game_over_scene_instance = game_over_scene_packed.instantiate()
 	add_child(game_over_scene_instance)
+	game_over_scene_instance.set_title(p1won)
+	self.visible = false
+	
 	
 	#get_tree().change_scene_to_file("res://Scenes/Menus/game_over_screen.tscn")
 

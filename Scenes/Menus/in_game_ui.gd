@@ -19,6 +19,15 @@ func _ready() -> void:
 		resumeBtn.connect("pressed", _on_resume_btn_pressed)
 		
 
+
+
+func erase_blue_hex(hex_count):
+	
+	$BlueHexContainer.get_child(hex_count).visible = false
+	
+func erase_red_hex(hex_count):
+	$RedHexContainer.get_child(hex_count).visible = false
+	
 func P1LoseAnimation():
 	blueSprite.play("death")
 

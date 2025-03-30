@@ -15,6 +15,7 @@ using static Godot.WebSocketPeer;
 using BattleSheepCore;
 using System.Reflection.Metadata;
 using System.Collections.Generic;
+using System.Runtime.Intrinsics.X86;
 
 
 namespace Capstone25.Scripts.Core.Networking
@@ -22,7 +23,7 @@ namespace Capstone25.Scripts.Core.Networking
 	[GlobalClass]
 	public partial class NetworkAi : Node
 	{
-	  
+
 		private class Game
 		{
 			public string State { get; set; }
@@ -44,79 +45,234 @@ namespace Capstone25.Scripts.Core.Networking
 			}
 		}
 
+		public override void _Ready()
+		{
+			GD.Print("NetworkAi initialized!");
+
+			_ = Client.ProcessGameLogic();
+		}
+
 		private class Client
 		{
 
 			private static Game game = new();
-			private static GameEngine gameEngine = new GameEngine();
+			//private static GameEngine gameEngine = new GameEngine();
 
 
 			private static readonly string baseUrl = "https://softserve.harding.edu/";
 			private static readonly System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
 
-			public static async Task Main(string[] args)
+		   
+			public static async Task ProcessGameLogic()
 			{
+		
+				//Game game = new Game();
+				string winner = "none";
 				string loggedState = ""; // this is so i am able to compare to the previous state
 
-				//Get an initial state from the server
-				// dynamic initialState = await GetInitialStateAsync();
-
-				//get a state and action_id from the server
 				dynamic playState = await GetPlayStateAsync();
+				string State = playState.state;
+				char turn = State[State.Length - 1];
+				GD.Print(State);
+				int[,] parsedState = ParseState(State);
+
+				while (winner == "none")
+				{
+					//SET UP THE GAME ENGINE
+
+					string state = playState.state;
+					turn = State[State.Length - 1];
+
+					parsedState = ParseState(state);
+
+					var gameEngine = SetUpGameEngine(parsedState);
+
+					
+					
+					//DETERMINE ACTION TO PLAY BASED ON STATE 
+					int gamePhase = DetermineGamePhase(state);
+					string moveString = "";
+					GD.Print(gamePhase);
 
 
-				//calculate last move based on state and determine move to make
-				string selectedAction = GetMove(loggedState, playState.State);
+					if (gamePhase == 1)
+					{
+						//tile placement
+						moveString = GetBestTilePlacementFromAI(gameEngine);
+						GD.Print(moveString);
+					}
+					else if (gamePhase == 2)
+					{
+						//initial stack placement
+						moveString = GetBestInitialStackPlacementFromAI(gameEngine);
+						GD.Print(moveString);
+					}
+					else if (gamePhase == 3)
+					{
+						//movement
+						GD.Print("I am in phase 3");
+						moveString = await GetBestMovementFromAI(gameEngine, turn);
+						GD.Print(moveString);
+					}
 
-				loggedState = playState.state;
 
-				//submit action to the server and get the resulting state
-				await SubmitActionAsync(playState.state, selectedAction, playState.action_id);
+					winner = await SubmitActionAsync(moveString, playState.action_id);
+
+					playState = await GetPlayStateAsync();
+					State = playState.state;
+					GD.Print(State);
+				}
 			}
 
-			private static async Task<dynamic> GetInitialStateAsync()
+
+			private static async Task<string> GetBestMovementFromAI(GameEngine gameEngine, char turn)
 			{
-				HttpResponseMessage response = await client.GetAsync(baseUrl + "state/initial");
-				response.EnsureSuccessStatusCode();
-				var responseBody = await response.Content.ReadAsStringAsync();
-				dynamic json = JsonConvert.DeserializeObject(responseBody);
-				//submit state to the game engine
-				gameEngine = json.state;
-				return json;
+				GD.Print("I am getting the best move from the AI");
+				//int id = ((game.movementAi.aiPlayerId + 1) % 2) +1;
+				if (turn == 'h')
+				{
+					game.movementAi.aiPlayerId = 1;
+				}
+				else
+				{
+					game.movementAi.aiPlayerId = 2;
+				}
+				GD.Print("ID: " + game.movementAi.aiPlayerId);
+
+
+				var move = await Task.Run(() => game.movementAi.GetBestMovement(gameEngine));
+				int q = (int)move["startRow"];
+				int r = (int)move["startCol"];
+				int count  = (int)move["count"];
+				int direction = (int)move["directionIndex"];
+
+				Godot.Collections.Dictionary<string, int> MovedTo = new Godot.Collections.Dictionary<string, int>();
+				MovedTo = gameEngine.GetFurthestUnoccupiedHexCoords(q, r, direction);
+
+				string movestring = q + "," + r + "|" + count + "|" + MovedTo["q"] + "," + MovedTo["r"];
+				return movestring;
+			}
+			 
+			private static string GetBestInitialStackPlacementFromAI(GameEngine gameEngine)
+			{
+				var move = game.movementAi.GetBestInitialPlacement(gameEngine);
+				int q = (int)move["q"];
+				int r = (int)move["r"];
+
+				string placement = q + "," + r;
+				return placement;
+			}
+
+			private static string GetBestTilePlacementFromAI(GameEngine gameEngine)
+			{
+				// Get the best tile placement from the AI
+				var move = game.tileAI.GetBestTilePlacement(gameEngine);
+			
+				// Convert the move dictionary to a string representation
+				int q = (int)move["q"];
+
+				int r = (int)move["r"];
+
+				int orientation = (int)move["orientation"];
+
+				var coordinates = GetHexCoordinates(q,r ,orientation );
+				string movestring = "";
+				foreach (var coord in coordinates)
+				{
+					if (movestring.Length > 0)
+						movestring += "|";
+
+					movestring += coord.q + "," + coord.r;
+				}
+
+				return movestring;
+			}
+			private static GameEngine SetUpGameEngine(int[,] parsedState)
+			{
+				GameEngine gameEngine = new GameEngine();
+				gameEngine.StartGame();
+
+				//initialize the game engine with the state
+				for (int i = 0; i < parsedState.GetLength(0); i++)
+				{
+					int q = parsedState[i, 0];
+					int r = parsedState[i, 1];
+					int piececount = parsedState[i, 2];
+					int owner = parsedState[i, 3];
+
+					if (piececount == 0)
+					{
+						gameEngine.InitializeCell(q, r);
+					}
+					else
+					{
+						gameEngine.PlacePieces(owner, q, r, piececount);
+					}
+
+				}
+
+				gameEngine.changeNotFirstTilePlacement();
+
+				return gameEngine;
 			}
 
 			private static async Task<dynamic> GetPlayStateAsync()
 			{
-				HttpResponseMessage response = await client.GetAsync(baseUrl + "aivai/play-state");
-				response.EnsureSuccessStatusCode();
-				var responseBody = await response.Content.ReadAsStringAsync();
-				dynamic json = JsonConvert.DeserializeObject(responseBody);
-				//submit state to the game engine
-				gameEngine = json.state;
-				return json;
-			}
+				string @event = "mirror";
+				string player = game.player;
 
-			private static async Task SubmitActionAsync(string state, string action, int action_id)
-			{
 				var requestData = new
 				{
-					state,
-					action,
-					action_id
+					@event,
+					player
 				};
 
 				string json = JsonConvert.SerializeObject(requestData);
 				HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-				HttpResponseMessage response = await client.PostAsync(baseUrl + "aivai/submit-action", content);
-
+				HttpResponseMessage response = await client.PostAsync(baseUrl + "aivai/play-state", content);
+				// Console.WriteLine(response);
 				response.EnsureSuccessStatusCode();
 				var responseBody = await response.Content.ReadAsStringAsync();
 				dynamic jsonResponse = JsonConvert.DeserializeObject(responseBody);
+				//submit state to the game engine
+				GD.Print("State: " + jsonResponse.state + "\n" + "ID: " + jsonResponse.action_id);
+				return jsonResponse;
+			}
 
-				//get the resulting state after the action
-				string loggedState = await GetResultingState(state, action);
-				//return loggedState;
+			private static async Task<dynamic> SubmitActionAsync( string action, dynamic actionId)
+			{
+
+				int action_id = actionId;
+				string player = game.player;
+
+				var requestData = new
+				{
+					action,
+					player,
+					action_id
+				};
+
+				GD.Print("submitting action");
+				string json = JsonConvert.SerializeObject(requestData);
+				HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+				HttpResponseMessage response = await client.PostAsync(baseUrl + "aivai/submit-action", content);
+
+				
+				 response.EnsureSuccessStatusCode();
+				if (response.StatusCode != System.Net.HttpStatusCode.OK)
+				{
+					GD.Print("FAIL");
+				}
+				else{
+					GD.Print("SUCCESS");
+				}
+				
+				var responseBody = await response.Content.ReadAsStringAsync();
+				dynamic jsonResponse = JsonConvert.DeserializeObject(responseBody);
+				GD.Print(jsonResponse);
+				return jsonResponse.winner;
 			}
 
 			private static async Task<string> GetResultingState(string state, string action)
@@ -131,29 +287,82 @@ namespace Capstone25.Scripts.Core.Networking
 				return newState;
 			}
 
-			private static string FindMoveMade(string loggedState, string currentState)
+			static bool ContainsElement(int[,] array, int x, int y)
 			{
-				//find move that opponent made and pass it to the game engine
-				List<string> changedRows = new List<string>();
-
-				string[] A = loggedState.Split('|');
-				string[] B = currentState.Split('|');
-
-				foreach (string a in A)
+				for (int i = 0; i < array.GetLength(0); i++)
 				{
-					if (!B.Contains(a))
+					if (array[i, 0] == x && array[i, 1] == y)
 					{
-						changedRows.Add(a);
+						return true; // Coordinate already exists
+					}
+				}
+				return false;
+			}
+			
+			public static int[,] ParseState(string state)
+			{
+				string[] components = state.Split('|');
+				int validCount = 0;
+
+				foreach (string component in components)
+				{
+					if (!string.IsNullOrEmpty(component) && component != "t" && component != "h")
+					{
+						validCount++;
 					}
 				}
 
-				string c = changedRows[0];
-				string d = changedRows[1];
+				int[,] result = new int[validCount, 4];
 
-				string action = $"{c[0]}, {c[1]}|{d[2]}|{d[0]}, {d[1]}";
+				int index = 0;
 
-				return action;
+				foreach (string component in components)
+				{
+				
+					if (component == "h" || component == "t")
+					{
+						continue;
+					}
+					else
+					{
+						if (component.Contains("h") || component.Contains("t"))
+						{
+							string[] parts = component.Split(new[] { 'h', 't' });
+							string coord = parts[0];
+							char ownerType = component[component.IndexOfAny(new[] { 'h', 't' })];
+							int owner = ownerType == 'h' ? 1 : 2;
+							int count = int.Parse(parts[1]);
+
+							int p = int.Parse(coord.Split(',')[0]);
+							int q = int.Parse(coord.Split(',')[1]);
+
+							result[index, 0] = p;
+							result[index, 1] = q;
+							result[index, 2] = count;
+							result[index, 3] = owner;
+						}
+						else
+						{
+							string[] coord = component.Split(',');
+							int p = int.Parse(coord[0]); // p
+							int q = int.Parse(coord[1]); // q
+							if (!ContainsElement(result, p, q))
+							{
+								result[index, 0] = p;
+								result[index, 1] = q;
+								result[index, 2] = 0; // # of pieces (default to 0)
+								result[index, 3] = 0; // piece owner (default to 0)
+							}
+						}
+
+						index++;
+					}
+				}
+
+				return result;
 			}
+
+
 
 			private static int DetermineGamePhase(string currentState)
 			{
@@ -167,7 +376,7 @@ namespace Capstone25.Scripts.Core.Networking
 				{
 					return 1;
 				}
-				else if (state.Length == 32 || state.Length == 33)
+				else if (state.Length == 32 || state.Length == 33 || state.Length == 34)
 				{
 					return 2;
 				}
@@ -177,37 +386,44 @@ namespace Capstone25.Scripts.Core.Networking
 				}
 			}
 
-			private static string GetMove(string loggedState, string currentState)
+			// Predefined orientations as in the original Tile class
+			private static readonly List<List<(int q, int r)>> _orientations = new List<List<(int q, int r)>>
 			{
-				//find move that opponent made and pass it to the game engine
-				string moveMade = FindMoveMade(loggedState, currentState);
-
-				//send move to the AI to determine the next move, depending on game phase
-				int phase = DetermineGamePhase(currentState);
-
-				if (phase == 1)
+				new List<(int q, int r)>
 				{
-					//tile placement
-					Godot.Collections.Dictionary move = game.tileAI.GetBestTilePlacement(gameEngine);
-					//move will be a coordinate with orientation
-					return null;
+					(0, 0), (1, 0), (1, -1), (2, -1) // Original orientation
+				},
+				new List<(int q, int r)>
+				{
+					(0, 0), (0, 1), (-1, 1), (-1, 2) // Rotated 120° clockwise
+				},
+				new List<(int q, int r)>
+				{
+					(0, 0), (-1, 0), (0, -1), (-1, -1) // Rotated 240° clockwise
+				}
+			};
 
-				}
-				else if (phase == 2)
+			public static List<(int q, int r)> GetHexCoordinates(int q, int r, int orientationIndex)
+			{
+				// Ensure the orientation index is valid
+				if (orientationIndex < 0 || orientationIndex >= _orientations.Count)
 				{
-					//initial stack placement
-					Godot.Collections.Dictionary<string, int> move = game.movementAi.GetBestInitialPlacement(gameEngine);
-					//move will be a coordinate
-					string placement = $"{move["q"]}, {move["r"]}";
-					return placement;
+					throw new ArgumentException("Invalid orientation index.");
 				}
-				else
+
+				// Get the orientation cells for the given index
+				var orientationCells = _orientations[orientationIndex];
+
+				// Create a list to hold the coordinates
+				List<(int q, int r)> hexCoordinates = new List<(int q, int r)>();
+
+				// Calculate the coordinates of each hex by adding the base q, r to the cell's q, r
+				foreach (var (cellQ, cellR) in orientationCells)
 				{
-					//movement
-					Godot.Collections.Dictionary<string, int> move = game.movementAi.GetBestMovement(gameEngine);
-					//move will be a coordinate and direction with number of tokens to move
-					return null;
+					hexCoordinates.Add((q + cellQ, r + cellR));
 				}
+
+				return hexCoordinates;
 			}
 		}
 	}

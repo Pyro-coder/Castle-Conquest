@@ -197,6 +197,19 @@ namespace BattleSheepCore.Game
 			return arrayOfDicts;
 		}
 
+		// THESE TWO FUNCTIONS ARE IMPORTANT FOR IVY
+		public void PlacePieces(int playerId, int q, int r, int count)
+		{
+			Player player = new Player();
+			player.Initialize(playerId, "user");
+			_gameController.PlacePieces(player, q, r, count);
+		}
+
+		public void InitializeCell(int q, int r)
+		{
+			_gameController.InitializeCell(q, r);
+		}
+
 		/// <summary>
 		/// Gets the valid initial piece placements on the board.
 		/// </summary>
@@ -292,6 +305,12 @@ namespace BattleSheepCore.Game
 			};
 
 			return returnValue;
+		}
+
+		public void changeNotFirstTilePlacement()
+		{
+			_gameController.changeNotFirstTilePlacement();
+
 		}
 	}
 }

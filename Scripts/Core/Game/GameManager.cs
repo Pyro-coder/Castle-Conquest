@@ -322,5 +322,10 @@ namespace BattleSheepCore.Game
 			// Call the existing method that takes a direction vector.
 			return _boardManager.GetFurthestUnoccupiedHex(startQ, startR, dq, dr);
 		}
+
+		public void changeNotFirstTilePlacement()
+		{
+			_boardManager._isFirstPlacement = false;
+		}
 	}
 }

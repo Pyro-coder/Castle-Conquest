@@ -18,7 +18,7 @@ namespace BattleSheepCore.AI
 		public delegate void BestMovementReadyEventHandler(Godot.Collections.Dictionary<string, int> result);
 
 		private int simulationsPerMove;
-		private int aiPlayerId;
+		public int aiPlayerId;
 		private Random rand;
 
 		public MonteCarloInitialMovement()
@@ -129,7 +129,7 @@ namespace BattleSheepCore.AI
 					{ "count", bestMove.count },
 					{ "directionIndex", bestMove.directionIndex }
 				};
-
+				GD.Print(result);
 				return result;
 			}).GetAwaiter().GetResult();
 		}

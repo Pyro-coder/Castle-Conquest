@@ -49,7 +49,7 @@ func SendPlayerInformation(username, id):
 
 @rpc("any_peer", "call_local")
 func StartGame():
-	var scene = load("res://Scenes/board.tscn").instantiate() #figure out what to put in here to play the game
+	var scene = load("res://Scenes/board.tscn") #figure out what to put in here to play the game
 	
 	if scene == null:
 		print("Failed to load the scene.")
@@ -67,6 +67,7 @@ func StartGame():
 		
 	get_tree().root.add_child(instance)
 	self.hide()
+	print("Game started successfully!")
 
 func _on_host_button_button_down():
 	peer = ENetMultiplayerPeer.new()
@@ -89,5 +90,9 @@ func _on_join_button_button_down() -> void:
 
 
 func _on_start_game_button_down():
+	if multiplayer.get_peers().size() < 1:
+		print("Not enough players to start")
+		return
+		
 	StartGame.rpc()
 	pass # Replace with function body.

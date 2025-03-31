@@ -1,14 +1,10 @@
 extends Control
 
-@onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
-@onready var conquerBtn = $MenuTemplate/HBoxContainer/ConquerButton
-
-var gamemode: int
-
 @export var Address = '127.0.0.1'
 @export var port = 1234
 
 var peer
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	multiplayer.peer_connected.connect(peer_connected)
@@ -16,6 +12,11 @@ func _ready() -> void:
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
 	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 
 func peer_connected(id):
 	print("Player Connected" + str(id))
@@ -29,34 +30,8 @@ func connected_to_server():
 
 func connection_failed():
 	print("Couldn't connect")
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_back_button_pressed() -> void:
-	$MenuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/player_mode_menu.tscn")
 	
-
-
-
-func _on_quit_button_pressed() -> void:
-	$MenuTemplate.buttonPress()
 	
-	get_tree().quit()
-
-
-func _on_conquer_button_pressed() -> void:
-	if multiplayer.get_peers().size() < 1:
-		print("Not enough players to start")
-		return
-		
-	StartGame.rpc()
-	#get_tree().change_scene_to_file("res://Scenes/Menus/main_game.tscn")
-	
-
 @rpc("any_peer")
 func SendPlayerInformation(username, id):
 	print("Received player info:", username, ", ", id)
@@ -71,7 +46,6 @@ func SendPlayerInformation(username, id):
 	if multiplayer.is_server():
 		for i in GamePlayerManager.Players:
 			SendPlayerInformation.rpc(GamePlayerManager.Players[i].name, i)
-
 
 @rpc("any_peer", "call_local")
 func StartGame():
@@ -95,8 +69,7 @@ func StartGame():
 	self.hide()
 	print("Game started successfully!")
 
-
-func _on_host_pressed() -> void:
+func _on_host_button_button_down():
 	peer = ENetMultiplayerPeer.new()
 	var error = peer.create_server(port, 2)
 	if error != OK:
@@ -105,12 +78,21 @@ func _on_host_pressed() -> void:
 	
 	multiplayer.set_multiplayer_peer(peer)
 	print("Waiting for players!")
-	#SendPlayerInformation($LineEdit.text, multiplayer.get_unique_id())
+	SendPlayerInformation($LineEdit.text, multiplayer.get_unique_id())
 	pass # Replace with function body.
 
 
-func _on_join_pressed() -> void:
+func _on_join_button_button_down() -> void:
 	peer = ENetMultiplayerPeer.new()
 	peer.create_client(Address, port)
 	multiplayer.set_multiplayer_peer(peer)
+	pass # Replace with function body.
+
+
+func _on_start_game_button_down():
+	if multiplayer.get_peers().size() < 1:
+		print("Not enough players to start")
+		return
+		
+	StartGame.rpc()
 	pass # Replace with function body.

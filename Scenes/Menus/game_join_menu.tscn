@@ -153,3 +153,5 @@ script = ExtResource("5_4q0dx")
 [connection signal="button_down" from="MenuTemplate/VBoxContainer/Local" to="." method="_on_local_button_down"]
 [connection signal="button_down" from="MenuTemplate/VBoxContainer/Join" to="." method="_on_join_button_down"]
 [connection signal="button_down" from="MenuTemplate/VBoxContainer/Host" to="." method="_on_host_button_down"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/Host" to="." method="_on_host_pressed"]

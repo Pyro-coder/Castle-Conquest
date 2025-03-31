@@ -17,7 +17,7 @@ namespace BattleSheepCore.Board
 		private Dictionary<(int q, int r), HexCell> _board;
 		private readonly List<(int q, int r, Tile tile)> _placedTiles = new List<(int q, int r, Tile tile)>();
 		private readonly List<(int q, int r, char player, int count)> _stacks = new List<(int q, int r, char player, int count)>();
-		private bool _isFirstPlacement = true;
+		public bool _isFirstPlacement = true;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BoardManager"/> class.

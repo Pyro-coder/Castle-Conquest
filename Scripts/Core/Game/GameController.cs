@@ -107,9 +107,19 @@ namespace BattleSheepCore.Game
 			return _gameManager.GetFurthestUnoccupiedHex(startQ, startR, directionIndex);
 		}
 
+		public void PlacePieces(Player player, int q, int r, int count)
+		{
+			_gameManager.PlacePieces(player, q, r, count);
+		}
+
 		public void InitializeCell(int q, int r)
 		{
-			InitializeCell(q, r);
+			_gameManager.InitializeCell(q, r);
+		}
+
+		public void changeNotFirstTilePlacement()
+		{
+			_gameManager.changeNotFirstTilePlacement();
 		}
 	}
 }

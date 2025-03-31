@@ -1,7 +1,7 @@
-﻿namespace BattleSheepCore
+namespace BattleSheepCore
 {
-    public interface IGameMode
-    {
-        void RunGame();
-    }
+	public interface IGameMode
+	{
+		void RunGame();
+	}
 }

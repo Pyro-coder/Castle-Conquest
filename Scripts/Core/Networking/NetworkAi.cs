@@ -68,17 +68,18 @@ namespace Capstone25.Scripts.Core.Networking
 		
 				//Game game = new Game();
 				string winner = "none";
-				string loggedState = ""; // this is so i am able to compare to the previous state
 
-				dynamic playState = await GetPlayStateAsync();
-				string State = playState.state;
-				char turn = State[State.Length - 1];
-				GD.Print(State);
-				int[,] parsedState = ParseState(State);
+				dynamic playState;
+				string State;
+				char turn;
+				int[,] parsedState;
 
 				while (winner == "none")
 				{
 					//SET UP THE GAME ENGINE
+					playState = await GetPlayStateAsync();
+					State = playState.state;
+					GD.Print(State);
 
 					string state = playState.state;
 					turn = State[State.Length - 1];
@@ -92,18 +93,18 @@ namespace Capstone25.Scripts.Core.Networking
 					//DETERMINE ACTION TO PLAY BASED ON STATE 
 					int gamePhase = DetermineGamePhase(state);
 					string moveString = "";
-					GD.Print(gamePhase);
-
 
 					if (gamePhase == 1)
 					{
 						//tile placement
+						GD.Print("I am in phase 1");
 						moveString = GetBestTilePlacementFromAI(gameEngine);
 						GD.Print(moveString);
 					}
 					else if (gamePhase == 2)
 					{
 						//initial stack placement
+						GD.Print("I am in phase 2");
 						moveString = GetBestInitialStackPlacementFromAI(gameEngine);
 						GD.Print(moveString);
 					}
@@ -117,10 +118,6 @@ namespace Capstone25.Scripts.Core.Networking
 
 
 					winner = await SubmitActionAsync(moveString, playState.action_id);
-
-					playState = await GetPlayStateAsync();
-					State = playState.state;
-					GD.Print(State);
 				}
 			}
 
@@ -137,8 +134,6 @@ namespace Capstone25.Scripts.Core.Networking
 				{
 					game.movementAi.aiPlayerId = 2;
 				}
-				GD.Print("ID: " + game.movementAi.aiPlayerId);
-
 
 				var move = await Task.Run(() => game.movementAi.GetBestMovement(gameEngine));
 				int q = (int)move["startRow"];
@@ -271,7 +266,7 @@ namespace Capstone25.Scripts.Core.Networking
 				
 				var responseBody = await response.Content.ReadAsStringAsync();
 				dynamic jsonResponse = JsonConvert.DeserializeObject(responseBody);
-				GD.Print(jsonResponse);
+				GD.Print("Winner: " + jsonResponse.winner);
 				return jsonResponse.winner;
 			}
 

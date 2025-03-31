@@ -34,7 +34,7 @@ func connection_failed():
 	
 @rpc("any_peer")
 func SendPlayerInformation(username, id):
-	print("Received player info:", username, id)
+	print("Received player info:", username, ", ", id)
 	print("Current players before:", GamePlayerManager.Players)
 	
 	if !GamePlayerManager.Players.has(id):

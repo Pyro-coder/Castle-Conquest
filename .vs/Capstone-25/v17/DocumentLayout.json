@@ -7,44 +7,19 @@
       "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\networking\\networkai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\ai\\abminimaxtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\ai\\abminimaxtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\gamemodes\\gamemodefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\gamemodes\\gamemodefactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\board\\hexcell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\board\\hexcell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\board\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\board\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\game\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\players\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\players\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\ai\\abminimaxtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\ai\\abminimaxtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\gamemodes\\localpvaimode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\gamemodes\\localpvaimode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\ai\\montecarloinitialmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\ai\\montecarloinitialmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|c:\\users\\ihend\\documents\\github\\capstone-2025\\scripts\\core\\board\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\board\\boardmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ihend\\AppData\\Local\\Temp\\VSGeneratedDocuments\\09787106-2a0c-54f5-eccc-6c530f758ac8\\BattleSheepCore.AI.MonteCarloInitialMovement_ScriptSignals.generated.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -53,9 +28,74 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 80,
-          "SelectedChildIndex": 5,
+          "DockedWidth": 113,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NetworkAi.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Networking\\NetworkAi.cs",
+              "RelativeDocumentMoniker": "Scripts\\Core\\Networking\\NetworkAi.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Networking\\NetworkAi.cs",
+              "RelativeToolTip": "Scripts\\Core\\Networking\\NetworkAi.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAiwFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T22:52:57.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameEngine.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameEngine.cs",
+              "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameEngine.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameEngine.cs",
+              "RelativeToolTip": "Scripts\\Core\\Game\\GameEngine.cs",
+              "ViewState": "AgIAACkBAAAAAAAAAAAowDgBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T23:44:14.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameController.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameController.cs",
+              "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameController.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameController.cs",
+              "RelativeToolTip": "Scripts\\Core\\Game\\GameController.cs",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAqwGoAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T23:44:00.069Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BattleSheepCore.AI.MonteCarloInitialMovement_ScriptSignals.generated.cs [generated]",
+              "DocumentMoniker": "C:\\Users\\ihend\\AppData\\Local\\Temp\\VSGeneratedDocuments\\09787106-2a0c-54f5-eccc-6c530f758ac8\\BattleSheepCore.AI.MonteCarloInitialMovement_ScriptSignals.generated.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\VSGeneratedDocuments\\09787106-2a0c-54f5-eccc-6c530f758ac8\\BattleSheepCore.AI.MonteCarloInitialMovement_ScriptSignals.generated.cs",
+              "ToolTip": "BattleSheepCore.AI.MonteCarloInitialMovement_ScriptSignals.generated.cs [generated by Godot.SourceGenerators.ScriptSignalsGenerator]",
+              "ViewState": "AgIAACgAAAAAAAAAAAAMwDUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "OverriddenToolTip": "BattleSheepCore.AI.MonteCarloInitialMovement_ScriptSignals.generated.cs [generated by Godot.SourceGenerators.ScriptSignalsGenerator]",
+              "WhenOpened": "2025-03-29T23:29:06.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ABMinimaxTile.cs",
+              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\ABMinimaxTile.cs",
+              "RelativeDocumentMoniker": "Scripts\\Core\\AI\\ABMinimaxTile.cs",
+              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\ABMinimaxTile.cs",
+              "RelativeToolTip": "Scripts\\Core\\AI\\ABMinimaxTile.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwCcAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-29T20:55:56.771Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
@@ -67,143 +107,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:2:0:{08a1bf1d-7967-4afc-8253-1790862ab8c9}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GameModeFactory.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\GameModes\\GameModeFactory.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\GameModes\\GameModeFactory.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\GameModes\\GameModeFactory.cs",
-              "RelativeToolTip": "Scripts\\Core\\GameModes\\GameModeFactory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-18T19:05:12.03Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NetworkAi.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Networking\\NetworkAi.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\Networking\\NetworkAi.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Networking\\NetworkAi.cs",
-              "RelativeToolTip": "Scripts\\Core\\Networking\\NetworkAi.cs",
-              "ViewState": "AgIAAL4AAAAAAAAAAAAkwNYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T22:52:57.356Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "LocalPvAIMode.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\GameModes\\LocalPvAIMode.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\GameModes\\LocalPvAIMode.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\GameModes\\LocalPvAIMode.cs",
-              "RelativeToolTip": "Scripts\\Core\\GameModes\\LocalPvAIMode.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-17T23:15:16.886Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GameEngine.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameEngine.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameEngine.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameEngine.cs",
-              "RelativeToolTip": "Scripts\\Core\\Game\\GameEngine.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T17:49:07.217Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Players\\Player.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\Players\\Player.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Players\\Player.cs",
-              "RelativeToolTip": "Scripts\\Core\\Players\\Player.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:28:25.491Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GameController.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameController.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameController.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Game\\GameController.cs",
-              "RelativeToolTip": "Scripts\\Core\\Game\\GameController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:08:09.026Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Tile.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\Tile.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\Board\\Tile.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\Tile.cs",
-              "RelativeToolTip": "Scripts\\Core\\Board\\Tile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:08:04.798Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "HexCell.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\HexCell.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\Board\\HexCell.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\HexCell.cs",
-              "RelativeToolTip": "Scripts\\Core\\Board\\HexCell.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:07:59.48Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "BoardManager.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\BoardManager.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\Board\\BoardManager.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\Board\\BoardManager.cs",
-              "RelativeToolTip": "Scripts\\Core\\Board\\BoardManager.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:07:36.753Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ABMinimaxTile.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\ABMinimaxTile.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\AI\\ABMinimaxTile.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\ABMinimaxTile.cs",
-              "RelativeToolTip": "Scripts\\Core\\AI\\ABMinimaxTile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAowAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:07:20.516Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "MonteCarloInitialMovement.cs",
-              "DocumentMoniker": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
-              "RelativeDocumentMoniker": "Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
-              "ToolTip": "C:\\Users\\ihend\\Documents\\GitHub\\Capstone-2025\\Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
-              "RelativeToolTip": "Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAowFQAAAA5AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:05:28.5Z"
             }
           ]
         }

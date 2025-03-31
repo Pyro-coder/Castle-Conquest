@@ -40,6 +40,7 @@ namespace BattleSheepCore.AI
 			var validPlacements = gameEngine.GetValidTilePlacements(tile);
 			foreach (var placement in validPlacements)
 			{
+				//GD.Print(placement.q +","+ placement.r + ","+placement.orientation);
 				var simulatedGame = gameEngine.Clone();
 				try
 				{

@@ -4,7 +4,8 @@
 
 [node name="NetworkAi" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchor_right = 0.28
+anchor_bottom = 0.159
+offset_right = -322.56
+offset_bottom = -103.032
 script = ExtResource("1_issvq")
-
-[node name="HTTPRequest" type="HTTPRequest" parent="."]

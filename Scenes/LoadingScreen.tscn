@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dpxi4gr4pqdgy"]
 
 [ext_resource type="Script" uid="uid://cso8r7m5pn52w" path="res://Scenes/loading_screen.gd" id="1_m6rkq"]
-[ext_resource type="Texture2D" uid="uid://cwjgqggsjppuf" path="res://Assets/ConquestSplash.png" id="1_xoop3"]
 [ext_resource type="AudioStream" uid="uid://1mgh7jhxim1j" path="res://Assets/Music/loading screen.wav" id="2_m6rkq"]
+[ext_resource type="Texture2D" uid="uid://jrhjnknb1kt4" path="res://Assets/NewConquestSplashScreen.png" id="2_qjj4j"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -16,13 +16,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -5.0
-offset_top = -3.0
-offset_right = 1113.0
-offset_bottom = 1749.0
+offset_left = -76.0
+offset_top = -85.0
+offset_right = 1177.0
+offset_bottom = 1667.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_xoop3")
+texture = ExtResource("2_qjj4j")
 expand_mode = 4
 stretch_mode = 4
 

@@ -20,4 +20,4 @@ func _on_restart_btn_pressed() -> void:
 
 
 func _on_quit_btn_pressed() -> void:
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")

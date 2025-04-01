@@ -2,7 +2,7 @@ extends Control
 
 @onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
 @onready var conquerBtn = $MenuTemplate/HBoxContainer/ConquerButton
-
+@onready var GamePlayerManager = "res://Scenes/GamePlayerManager.gd"
 var gamemode: int
 
 @export var Address = '127.0.0.1'
@@ -15,6 +15,7 @@ func _ready() -> void:
 	multiplayer.peer_disconnected.connect(peer_disconnected)
 	multiplayer.connected_to_server.connect(connected_to_server)
 	multiplayer.connection_failed.connect(connection_failed)
+	
 	pass # Replace with function body.
 
 func peer_connected(id):
@@ -74,6 +75,7 @@ func SendPlayerInformation(username, id):
 
 
 @rpc("any_peer", "call_local")
+
 func StartGame():
 	var scene = load("res://Scenes/board.tscn") #figure out what to put in here to play the game
 	

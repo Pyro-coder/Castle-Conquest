@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2kt847vmj8ei"]
+[gd_scene load_steps=8 format=3 uid="uid://d2kt847vmj8ei"]
 
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="1_bjvkm"]
 [ext_resource type="Script" uid="uid://deg8hu3fgop71" path="res://Scenes/Menus/game_over_screen.gd" id="1_h4tbg"]
@@ -6,16 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://dn62p177n757l" path="res://Assets/InGameUIAssets/banners-large-cropped-main.png" id="4_1stjc"]
 [ext_resource type="AudioStream" uid="uid://clyqrff7465s5" path="res://Assets/Music/You won.wav" id="5_hy17y"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hy17y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_st1k0"]
+
 [node name="GameOverScreen" type="CanvasLayer"]
 script = ExtResource("1_h4tbg")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -48,8 +54,11 @@ alignment = 2
 [node name="RestartBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 z_index = 1
 layout_mode = 2
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0.0431373)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0.0117647)
 theme_override_fonts/font = ExtResource("1_bjvkm")
 theme_override_font_sizes/font_size = 34
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hy17y")
 text = "START NEW CONQUEST            
 "
 flat = true
@@ -67,9 +76,12 @@ texture = ExtResource("3_6w14e")
 [node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 z_index = 1
 layout_mode = 2
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("1_bjvkm")
 theme_override_font_sizes/font_size = 34
-text = "        GIVE UP            "
+theme_override_styles/focus = SubResource("StyleBoxEmpty_st1k0")
+text = "     Main Menu           "
 flat = true
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer"]

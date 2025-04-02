@@ -15,32 +15,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	backBtn.connect("mouse_entered", _on_back_button_mouse_entered)
-	backBtn.connect("mouse_exited", _on_back_button_mouse_exited)
-	
-	nextBtn.connect("mouse_entered", _on_next_button_mouse_entered)
-	nextBtn.connect("mouse_exited", _on_next_button_mouse_exited)
-	
-	modeSelect.connect("mouse_entered", _on_mode_selection_mouse_entered)
-	modeSelect.connect("mouse_exited", _on_mode_selection_mouse_exited)
-	
-	coinFlip.connect("mouse_entered", _on_coin_flip_mouse_entered)
-	coinFlip.connect("mouse_exited", _on_coin_flip_mouse_exited)
-	
-	boardPlace.connect("mouse_entered", _on_board_placement_mouse_entered)
-	boardPlace.connect("mouse_exited", _on_board_placement_mouse_exited)
-	
-	boardRotate.connect("mouse_entered", _on_board_rotation_mouse_entered)
-	boardRotate.connect("mouse_exited", _on_board_rotation_mouse_exited)
-	
-	initialPlace.connect("mouse_entered", _on_initial_placement_mouse_entered)
-	initialPlace.connect("mouse_exited", _on_initial_placement_mouse_exited)
-	
-	movement.connect("mouse_entered", _on_token_movement_mouse_entered)
-	movement.connect("mouse_exited", _on_token_movement_mouse_exited)
-	
-	ending.connect("mouse_entered", _on_ending_game_mouse_entered)
-	ending.connect("mouse_exited", _on_ending_game_mouse_exited)
+
 	pass # Replace with function body.
 
 

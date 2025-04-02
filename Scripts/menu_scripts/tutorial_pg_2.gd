@@ -4,10 +4,7 @@ extends Control
 @onready var nextBtn = $MenuTemplate/HBoxContainer/NextButton
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	backBtn.connect("mouse_entered", _on_back_button_mouse_entered)
-	backBtn.connect("mouse_exited", _on_back_button_mouse_exited)
-	nextBtn.connect("mouse_entered", _on_next_button_mouse_entered)
-	nextBtn.connect("mouse_exited", _on_next_button_mouse_exited)
+
 	pass # Replace with function body.
 
 

@@ -1,31 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://bneps1brnw5s1"]
+[gd_scene load_steps=9 format=3 uid="uid://dmb7jew2gnmie"]
 
-[ext_resource type="Script" uid="uid://kfr0e5xgqvpx" path="res://Scripts/menu_scripts/tutorial_pg_1.gd" id="1_75y2n"]
-[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="1_ujvu6"]
-[ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="2_cvcir"]
-[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_rngty"]
-[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="4_7eub2"]
+[ext_resource type="Script" uid="uid://c5y8ncmygwjar" path="res://Scripts/menu_scripts/tutorial_pg_7.gd" id="1_3v2im"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_dva8x"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_k21lq"]
+[ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="4_pdscc"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="5_cmfb5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_epeud"]
-shader = ExtResource("3_rngty")
+shader = ExtResource("3_k21lq")
 shader_parameter/amount = 400
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gqhd8"]
-shader = ExtResource("3_rngty")
+shader = ExtResource("3_k21lq")
 shader_parameter/amount = 300
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpkj0"]
 
-[node name="TutorialPg1" type="Control"]
+[node name="TutorialPg7" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_75y2n")
+script = ExtResource("1_3v2im")
 
-[node name="MenuTemplate" parent="." instance=ExtResource("1_ujvu6")]
+[node name="MenuTemplate" parent="." instance=ExtResource("2_dva8x")]
 layout_mode = 1
 
 [node name="Label" type="Label" parent="MenuTemplate"]
@@ -35,9 +35,9 @@ offset_left = 416.0
 offset_top = 126.0
 offset_right = 751.0
 offset_bottom = 167.0
-theme_override_fonts/font = ExtResource("2_cvcir")
+theme_override_fonts/font = ExtResource("4_pdscc")
 theme_override_font_sizes/font_size = 27
-text = "Mode Selection"
+text = "Ending  The Game"
 autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="MenuTemplate"]
@@ -46,37 +46,25 @@ offset_left = 420.0
 offset_top = 179.0
 offset_right = 700.0
 offset_bottom = 228.0
-theme_override_fonts/font = ExtResource("4_7eub2")
-text = "There are several game modes to choose from. "
-autowrap_mode = 3
+theme_override_fonts/font = ExtResource("5_cmfb5")
+text = "The game will end when one player can no longer move.
 
-[node name="Label3" type="Label" parent="MenuTemplate"]
-layout_mode = 0
-offset_left = 420.0
-offset_top = 256.0
-offset_right = 700.0
-offset_bottom = 403.0
-theme_override_fonts/font = ExtResource("4_7eub2")
-text = "To play alone against a computer, Select \"Go Thee Alone\" and choose a difficulty level.
-
-To play against a friend, either locally or over a network, select \"Take Thy Friends\". (need more information on hosting and joining)"
+the final board will be shown, with options for an immediate rematch or to procede to the main menu. "
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_gqhd8")
 layout_mode = 0
-offset_left = 432.0
-offset_top = 528.0
-offset_right = 696.0
-offset_bottom = 571.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 150
+offset_left = 425.0
+offset_top = 519.0
+offset_right = 703.0
+offset_bottom = 562.0
+theme_override_constants/separation = 85
 
 [node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_7eub2")
+theme_override_fonts/font = ExtResource("5_cmfb5")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -95,7 +83,7 @@ text = "Back
 [node name="NextButton" type="Button" parent="MenuTemplate/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_7eub2")
+theme_override_fonts/font = ExtResource("5_cmfb5")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -108,12 +96,8 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
-text = "Next
+text = "Main Menu
 "
 
-[connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_entered"]
-[connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_exited"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
-[connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_mouse_entered"]
-[connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_mouse_exited"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

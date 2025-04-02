@@ -52,7 +52,7 @@ func _on_quit_button_pressed() -> void:
 func _on_tutorial_button_pressed() -> void:
 	menu_template.buttonPress()
 	
-	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_1.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_contents.tscn")
 
 
 func _on_about_button_pressed() -> void:

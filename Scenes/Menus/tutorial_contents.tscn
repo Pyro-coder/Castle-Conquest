@@ -1,0 +1,259 @@
+[gd_scene load_steps=9 format=3 uid="uid://dshf8je7nfgcn"]
+
+[ext_resource type="Script" uid="uid://dejwmmfc2ogbx" path="res://Scripts/menu_scripts/tutorial_contents.gd" id="1_5menc"]
+[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_nn7vi"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_genwg"]
+[ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="4_t7usb"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="5_rnq6u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_epeud"]
+shader = ExtResource("3_genwg")
+shader_parameter/amount = 400
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpkj0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqhd8"]
+shader = ExtResource("3_genwg")
+shader_parameter/amount = 300
+
+[node name="TutorialContents" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5menc")
+
+[node name="MenuTemplate" parent="." instance=ExtResource("2_nn7vi")]
+layout_mode = 1
+
+[node name="Label" type="Label" parent="MenuTemplate"]
+material = SubResource("ShaderMaterial_epeud")
+layout_mode = 0
+offset_left = 426.0
+offset_top = 127.0
+offset_right = 761.0
+offset_bottom = 168.0
+theme_override_fonts/font = ExtResource("4_t7usb")
+theme_override_font_sizes/font_size = 27
+text = "Table of Contents"
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuTemplate"]
+layout_direction = 2
+layout_mode = 1
+offset_left = 408.0
+offset_top = 170.0
+offset_right = 715.0
+offset_bottom = 533.0
+theme_override_constants/separation = 25
+
+[node name="ModeSelection" type="Button" parent="MenuTemplate/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
+text = "1. Mode Selection
+"
+
+[node name="CoinFlip" type="Button" parent="MenuTemplate/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
+text = "2. Coin Flip"
+
+[node name="BoardPlacement" type="Button" parent="MenuTemplate/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
+text = "3. Board Piece Placement
+"
+
+[node name="BoardRotation" type="Button" parent="MenuTemplate/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
+text = "4. Board Piece Rotation
+"
+
+[node name="InitialPlacement" type="Button" parent="MenuTemplate/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
+text = "5. Initial Placement
+"
+
+[node name="TokenMovement" type="Button" parent="MenuTemplate/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
+text = "6. Token Movement
+"
+
+[node name="EndingGame" type="Button" parent="MenuTemplate/VBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
+text = "7. Ending the Game
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
+material = SubResource("ShaderMaterial_gqhd8")
+layout_mode = 0
+offset_left = 432.0
+offset_top = 528.0
+offset_right = 696.0
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 150
+
+[node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
+text = "Back
+"
+
+[node name="NextButton" type="Button" parent="MenuTemplate/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
+text = "Next
+"
+
+[connection signal="mouse_entered" from="MenuTemplate/VBoxContainer/ModeSelection" to="." method="_on_mode_selection_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/VBoxContainer/ModeSelection" to="." method="_on_mode_selection_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/ModeSelection" to="." method="_on_mode_selection_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/VBoxContainer/CoinFlip" to="." method="_on_coin_flip_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/VBoxContainer/CoinFlip" to="." method="_on_coin_flip_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/CoinFlip" to="." method="_on_coin_flip_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/VBoxContainer/BoardPlacement" to="." method="_on_board_placement_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/VBoxContainer/BoardPlacement" to="." method="_on_board_placement_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/BoardPlacement" to="." method="_on_board_placement_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/VBoxContainer/BoardRotation" to="." method="_on_board_rotation_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/VBoxContainer/BoardRotation" to="." method="_on_board_rotation_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/BoardRotation" to="." method="_on_board_rotation_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/VBoxContainer/InitialPlacement" to="." method="_on_initial_placement_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/VBoxContainer/InitialPlacement" to="." method="_on_initial_placement_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/InitialPlacement" to="." method="_on_initial_placement_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/VBoxContainer/TokenMovement" to="." method="_on_token_movement_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/VBoxContainer/TokenMovement" to="." method="_on_token_movement_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/TokenMovement" to="." method="_on_token_movement_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/VBoxContainer/EndingGame" to="." method="_on_ending_game_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/VBoxContainer/EndingGame" to="." method="_on_ending_game_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/EndingGame" to="." method="_on_ending_game_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

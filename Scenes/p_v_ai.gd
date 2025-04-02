@@ -251,7 +251,7 @@ func process_initial_input(q: int, r: int):
 		ingameui.P1TurnCompleteAnimation()
 		$"../tokenMove".play()
 		p1TilesCovered += 1
-		ingameui.UpdateP1Label("Tiles Conquered %d" % p1TilesCovered)
+		ingameui.UpdateP1Label("Tiles Conquered: %d" % p1TilesCovered)
 
 		game_engine.PlaceInitialPieces(1, q, r)
 		var state = game_engine.GetCurrentBoardState()
@@ -270,7 +270,7 @@ func _on_BestInitialPlacementReady(result):
 	ingameui.P2TurnCompleteAnimation()
 	$"../tokenMove".play()
 	p2TilesCovered += 1
-	ingameui.UpdateP2Label("Tiles Conquered %d" % p2TilesCovered)
+	ingameui.UpdateP2Label("Tiles Conquered: %d" % p2TilesCovered)
 	
 	message_label.text = "AI placed its initial piece at (%d, %d)" % [result["q"], result["r"]]
 	var state = game_engine.GetCurrentBoardState()
@@ -325,7 +325,7 @@ func process_move_input(q: int, r: int, num_pieces: int, direction: int):
 	game_engine.MovePieces(1, q, r, num_pieces, direction)
 	$"../tokenMove".play()
 	p1TilesCovered += 1
-	ingameui.UpdateP1Label("Tiles Conquered %d" % p1TilesCovered)
+	ingameui.UpdateP1Label("Tiles Conquered: %d" % p1TilesCovered)
 
 	ingameui.P1TurnCompleteAnimation()
 	var state = game_engine.GetCurrentBoardState()
@@ -349,7 +349,7 @@ func _on_BestMovementReady(result):
 	ingameui.P2TurnCompleteAnimation()
 	$"../tokenMove".play()
 	p2TilesCovered += 1
-	ingameui.UpdateP2Label("Tiles Conquered %d" % p2TilesCovered)
+	ingameui.UpdateP2Label("Tiles Conquered: %d" % p2TilesCovered)
 	message_label.text = "AI moved %d pieces from (%d, %d) in direction %d" % [result["count"], result["startRow"], result["startCol"], result["directionIndex"]]
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)

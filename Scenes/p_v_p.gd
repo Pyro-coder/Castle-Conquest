@@ -113,9 +113,12 @@ func process_tile_input(q: int, r: int, orientation: int):
 			ingameui.P1TurnCompleteAnimation()
 			p1Tilesleft -= 1
 			ingameui.UpdateP1Label("Tiles left to place: %d" % p1Tilesleft)
+			ingameui.erase_blue_hex(p1Tilesleft)
+
 		else:
 			ingameui.P2TurnCompleteAnimation()
 			p2Tilesleft -= 1
+			ingameui.erase_red_hex(p2Tilesleft)
 			ingameui.UpdateP2Label("Tiles left to place: %d" % p2Tilesleft)
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
@@ -154,8 +157,12 @@ func process_initial_input(q: int, r: int):
 		$"../tokenMove".play()
 		if current_player.Id == 1:
 			ingameui.P1TurnCompleteAnimation()
+			ingameui.UpdateP1Label("Tiles Conquered: %d" % p1TilesCovered)
+
 		else:
 			ingameui.P2TurnCompleteAnimation()
+			ingameui.UpdateP2Label("Tiles Conquered: %d" % p2TilesCovered)
+
 		var state = game_engine.GetCurrentBoardState()
 		board.update_from_state(state)
 		GlobalVars.player_turn = false
@@ -202,9 +209,15 @@ func process_move_input(q: int, r: int, num_pieces: int, direction: int):
 	game_engine.MovePieces(current_player.Id, q, r, num_pieces, direction)
 	$"../tokenMove".play()
 	if current_player.Id == 1:
+		p1TilesCovered += 1
 		ingameui.P1TurnCompleteAnimation()
+		ingameui.UpdateP2Label("Tiles Conquered: %d" % p1TilesCovered)
+
 	else:
+		p2TilesCovered+=1
 		ingameui.P2TurnCompleteAnimation()
+		ingameui.UpdateP2Label("Tiles Conquered: %d" % p1TilesCovered)
+
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
 	GlobalVars.player_turn = false

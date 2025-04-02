@@ -1,4 +1,5 @@
 extends Control
+@onready var menuTemplate = $MenuTemplate
 
 @onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
 @onready var nextBtn = $MenuTemplate/HBoxContainer/NextButton
@@ -14,6 +15,8 @@ func _process(delta: float) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	menuTemplate.buttonPress()
+
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_3.tscn")
 	
 
@@ -22,6 +25,8 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_next_button_pressed() -> void:
+	menuTemplate.buttonPress()
+
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_5.tscn")
 
 

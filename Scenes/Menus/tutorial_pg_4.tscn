@@ -5,7 +5,7 @@
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_dpah7"]
 [ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="4_q1xbm"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="5_vyq7s"]
-[ext_resource type="VideoStream" path="res://Assets/tutorial screen recordings/boardRotate.ogv" id="6_i0aqi"]
+[ext_resource type="VideoStream" uid="uid://7yi3u33x54t" path="res://Assets/tutorial screen recordings/boardRotate.ogv" id="6_i0aqi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_epeud"]
 shader = ExtResource("3_dpah7")

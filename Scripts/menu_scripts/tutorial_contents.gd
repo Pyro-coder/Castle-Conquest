@@ -1,4 +1,5 @@
 extends Control
+@onready var menuTemplate = $MenuTemplate
 
 @onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
 @onready var nextBtn = $MenuTemplate/HBoxContainer/NextButton
@@ -25,6 +26,7 @@ func _process(delta: float) -> void:
 
 
 func _on_back_button_pressed() -> void:
+	menuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	
 
@@ -33,6 +35,7 @@ func _on_quit_button_pressed() -> void:
 
 
 func _on_next_button_pressed() -> void:
+	menuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_1.tscn")
 
 
@@ -66,10 +69,12 @@ func _on_mode_selection_mouse_exited() -> void:
 	modeSelect.scale = Vector2(1, 1)
 
 func _on_mode_selection_pressed() -> void:
+	menuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_1.tscn")
 
 
 func _on_coin_flip_pressed() -> void:
+	menuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_2.tscn")
 	
 
@@ -84,6 +89,7 @@ func _on_coin_flip_mouse_exited() -> void:
 	coinFlip.scale = Vector2(1, 1)
 
 func _on_board_placement_pressed() -> void:
+	menuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_3.tscn")
 
 
@@ -99,6 +105,7 @@ func _on_board_placement_mouse_exited() -> void:
 
 
 func _on_board_rotation_pressed() -> void:
+	menuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_4.tscn")
 
 
@@ -112,6 +119,7 @@ func _on_board_rotation_mouse_exited() -> void:
 	boardRotate.scale = Vector2(1, 1)
 
 func _on_initial_placement_pressed() -> void:
+	menuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_5.tscn")
 
 
@@ -126,6 +134,7 @@ func _on_initial_placement_mouse_exited() -> void:
 
 
 func _on_token_movement_pressed() -> void:
+	menuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_6.tscn")
 
 
@@ -139,6 +148,7 @@ func _on_token_movement_mouse_exited() -> void:
 	movement.scale = Vector2(1, 1)
 
 func _on_ending_game_pressed() -> void:
+	menuTemplate.buttonPress()
 	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_7.tscn")
 
 

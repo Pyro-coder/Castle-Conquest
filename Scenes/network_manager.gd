@@ -43,14 +43,14 @@ func discover_servers() -> void:
 func _process(delta: float) -> void:
 	while udp_socket.get_available_packet_count() > 0:
 		var data = udp_socket.get_packet()
-		var sender_ip = udp_socket.get_packet_ip()
+		var sender = udp_socket.get_packet_ip()
 		var message = data.get_string_from_utf8()
 		# If this is a host and receives a discovery message, send a response.
 		if message == DISCOVERY_MESSAGE and is_server():
 			# For this example, we send back a join code.
 			var join_code = generate_join_code()
 			var response = "SERVER_RESPONSE:" + join_code
-			udp_socket.send_packet(sender, response.to_utf8())
+			udp_socket.send_packet(sender, response.to_utf8_buffer())
 			print("Responded to discovery from ", sender)
 		elif message.begins_with("SERVER_RESPONSE:"):
 			# Client receives a server response.

@@ -1,14 +1,14 @@
 extends CSGBox3D
 
 @export var clouds_to_spawn : int = 3
-@export var cloud_scene_path : String # Export a String to hold the path.
+#@export var cloud_scene_path : String # Export a String to hold the path.
 var _cloud : PackedScene
 
 func _ready():
-	_cloud = load(cloud_scene_path) as PackedScene # Load the scene from the path.
-	if _cloud == null:
-		print("Error: Failed to load cloud scene from path:", cloud_scene_path)
-		return
+	#_cloud = load(cloud_scene_path) as PackedScene # Load the scene from the path.
+	#if _cloud == null:
+	#	print("Error: Failed to load cloud scene from path:", cloud_scene_path)
+	#	return
 	spawn_clouds()
 
 var rng = RandomNumberGenerator.new()

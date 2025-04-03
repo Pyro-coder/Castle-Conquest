@@ -140,6 +140,14 @@ offset_right = 107.0
 offset_bottom = 105.0
 text = "Join"
 
+[node name="DiscoverButton" type="Button" parent="GameControl/NetworkTestPanel"]
+layout_mode = 0
+offset_left = 118.0
+offset_top = 39.0
+offset_right = 193.0
+offset_bottom = 70.0
+text = "Discover"
+
 [node name="MoveTimeoutTimer" type="Timer" parent="GameControl"]
 
 [node name="boardPlace" type="AudioStreamPlayer" parent="."]

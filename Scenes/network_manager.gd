@@ -33,7 +33,10 @@ func setup_udp_discovery() -> void:
 # Client: Broadcast discovery message on the LAN.
 func discover_servers() -> void:
 	var packet = DISCOVERY_MESSAGE.to_utf8_buffer()
-	udp_socket.broadcast(DISCOVERY_PORT, packet)
+	udp_socket.set_broadcast_enabled(true)
+	udp_socket.connect_to_host("255.255.255.255", DISCOVERY_PORT)
+	udp_socket.put_packet(packet)
+
 	print("Broadcasted discovery message.")
 
 # Process incoming UDP packets.

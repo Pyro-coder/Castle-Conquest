@@ -312,6 +312,7 @@ func end_game() -> void:
 	add_child(game_over_scene_instance)
 	game_over_scene_instance.set_title(p1TilesCovered > p2TilesCovered)
 	self.visible = false
+	GlobalVars.is_host = true
 
 func get_valid() -> Array:
 	match game_state:

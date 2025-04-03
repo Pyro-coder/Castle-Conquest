@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Castle-Conquest\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\gamemodes\\localpvpmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\gamemodes\\localpvpmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -50,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 80,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,7 +62,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "LocalPvPMode.cs",
+              "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\GameModes\\LocalPvPMode.cs",
+              "RelativeDocumentMoniker": "Scripts\\Core\\GameModes\\LocalPvPMode.cs",
+              "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\GameModes\\LocalPvPMode.cs",
+              "RelativeToolTip": "Scripts\\Core\\GameModes\\LocalPvPMode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T15:43:42.34Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "GameManager.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameManager.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameManager.cs",
@@ -66,12 +83,11 @@
               "RelativeToolTip": "Scripts\\Core\\Game\\GameManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAL8AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T01:54:59.779Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-15T01:54:59.779Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GameEngine.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameEngine.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameEngine.cs",
@@ -84,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Player.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Players\\Player.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Players\\Player.cs",
@@ -96,7 +112,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "GameController.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameController.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameController.cs",
@@ -108,7 +124,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Tile.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Board\\Tile.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Board\\Tile.cs",
@@ -120,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "HexCell.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Board\\HexCell.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Board\\HexCell.cs",
@@ -132,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "BoardManager.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Board\\BoardManager.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Board\\BoardManager.cs",
@@ -144,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ABMinimaxTile.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\AI\\ABMinimaxTile.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\AI\\ABMinimaxTile.cs",
@@ -156,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ABMinimaxInitialMovement.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\AI\\ABMinimaxInitialMovement.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\AI\\ABMinimaxInitialMovement.cs",
@@ -168,7 +184,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "MonteCarloInitialMovement.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\AI\\MonteCarloInitialMovement.cs",

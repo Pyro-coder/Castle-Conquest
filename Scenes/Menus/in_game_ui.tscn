@@ -487,10 +487,11 @@ script = ExtResource("31_3b0kf")
 
 [node name="BlueHexContainer" type="HBoxContainer" parent="."]
 layout_direction = 2
+layout_mode = 0
 offset_left = 54.0
 offset_top = 143.0
-offset_right = 476.0
-offset_bottom = 191.0
+offset_right = 327.0
+offset_bottom = 165.0
 
 [node name="blue_hex" parent="BlueHexContainer" instance=ExtResource("34_8nevq")]
 position = Vector2(7.62939e-06, 0)
@@ -510,6 +511,7 @@ scale = Vector2(0.12, 0.12)
 
 [node name="RedHexContainer" type="HBoxContainer" parent="."]
 layout_direction = 2
+layout_mode = 0
 offset_left = 857.0
 offset_top = 137.0
 offset_right = 857.0

@@ -18,3 +18,7 @@ var first_player_moves_first:  int = 0
 var is_coin_done_spinning: int = 1
 
 var is_local_pvp: bool = false
+
+
+
+var is_host: bool = true

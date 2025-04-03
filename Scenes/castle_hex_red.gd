@@ -10,8 +10,9 @@ func _ready() -> void:
 
 func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	# Only respond to clicks when it's not the current player's turn.
-	if Input.is_action_pressed("ui_click") and !GlobalVars.player_turn and GlobalVars.is_local_pvp:
-		print("castle clicked")
+	if Input.is_action_pressed("ui_click") and !GlobalVars.player_turn and GlobalVars.is_local_pvp or Input.is_action_pressed("ui_click") and GlobalVars.player_turn and !GlobalVars.is_host:
+		if self.get_child(0).name == "BuildingSmallhouseRed":
+			return
 		GlobalVars.hex_selected = coordsfromboard
 		
 		var child_node = self.get_child(0) as MeshInstance3D
@@ -25,7 +26,7 @@ func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_posit
 			new_material.emission_enabled = true
 			# Choose emission color based on local PvP mode:
 			# In local PvP, mimic blue castle behavior but swap the blue glow for a red glow.
-			if GlobalVars.is_local_pvp:
+			if GlobalVars.is_local_pvp or !GlobalVars.is_host:
 				new_material.emission = Color(0.7, 0.1, 0.1)
 			else:
 				new_material.emission = Color(0.5, 0.1, 0.1)
@@ -33,7 +34,7 @@ func _on_static_body_3d_input_event(camera: Node, event: InputEvent, event_posit
 			child_node.material_override = new_material
 			
 			# In local PvP mode, do additional steps like the blue castle:
-			if GlobalVars.is_local_pvp:
+			if GlobalVars.is_local_pvp or !GlobalVars.is_host:
 				GlobalVars.castle_selected = true
 				var board = get_parent()
 				# If the game is in the MOVE_PHASE, update castle coordinates and highlight moves.

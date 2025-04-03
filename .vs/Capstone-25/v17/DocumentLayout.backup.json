@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "D:\\Castle-Conquest\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\game\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\game\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gamecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|solutionrelative:scripts\\core\\game\\gameengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{55A5008C-DCAC-4EBB-9612-7C57B91D1606}|Capstone-25.csproj|d:\\castle-conquest\\scripts\\core\\players\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 80,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,26 +58,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GameManager.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameManager.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameManager.cs",
               "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameManager.cs",
               "RelativeToolTip": "Scripts\\Core\\Game\\GameManager.cs",
-              "ViewState": "AgIAAMYAAAAAAAAAAAAwwL8AAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAL8AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-15T01:54:59.779Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "GameEngine.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameEngine.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameEngine.cs",
               "ToolTip": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameEngine.cs",
               "RelativeToolTip": "Scripts\\Core\\Game\\GameEngine.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAQwLYAAABIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-14T17:49:07.217Z",
               "EditorCaption": ""
@@ -96,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GameController.cs",
               "DocumentMoniker": "D:\\Castle-Conquest\\Scripts\\Core\\Game\\GameController.cs",
               "RelativeDocumentMoniker": "Scripts\\Core\\Game\\GameController.cs",
@@ -104,8 +104,7 @@
               "RelativeToolTip": "Scripts\\Core\\Game\\GameController.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAA1wEEAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T03:08:09.026Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-09T03:08:09.026Z"
             },
             {
               "$type": "Document",

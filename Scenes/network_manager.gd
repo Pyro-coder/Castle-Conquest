@@ -43,7 +43,7 @@ func discover_servers() -> void:
 func _process(delta: float) -> void:
 	while udp_socket.get_available_packet_count() > 0:
 		var data = udp_socket.get_packet()
-		var sender = udp_socket.get_packet_address()
+		var sender_ip = udp_socket.get_packet_ip()
 		var message = data.get_string_from_utf8()
 		# If this is a host and receives a discovery message, send a response.
 		if message == DISCOVERY_MESSAGE and is_server():

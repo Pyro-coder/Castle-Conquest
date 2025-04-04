@@ -5,11 +5,16 @@ signal connection_timeout
 signal server_discovered(server_ip, join_code)
 
 var network_peer: ENetMultiplayerPeer
-var udp_socket: PacketPeerUDP
-const DISCOVERY_PORT = 4242
-const DISCOVERY_MESSAGE = "DISCOVER_SERVER"
+var udp_broadcaster := PacketPeerUDP.new()
+var udp_listener := PacketPeerUDP.new()
+var broadcast_port := 54545  # The UDP port to send broadcasts
+var broadcast_timer: Timer
+var expected_join_code: String = ""
+var is_host_connected = false
 
 @onready var status_label: Label = $StatusLabel
+
+var is_host = false
 
 func _ready() -> void:
 	print("NetworkManager ready.")
@@ -76,10 +81,78 @@ func host_game(join_code: String) -> void:
 		if status_label:
 			status_label.text = "Hosting on port " + str(port)
 		start_connection_timeout(30.0)
+		start_broadcasting(port, join_code)  # Start broadcasting host's IP
+		is_host_connected = true 
 	else:
 		print("Failed to host game. Error code: ", result)
 		if status_label:
 			status_label.text = "Failed to host game."
+
+func start_broadcasting(port: int, join_code: String) -> void:
+	udp_broadcaster.set_broadcast_enabled(true)
+	
+	broadcast_timer = Timer.new()
+	broadcast_timer.wait_time = 2.0  # Broadcast every 2 seconds
+	broadcast_timer.one_shot = false
+	broadcast_timer.timeout.connect(func():
+		if !is_host_connected:
+			var ip = get_local_ip()
+			if ip != "":
+				var message = "%s:%d:%s" % [ip, 54545, join_code]
+				udp_broadcaster.set_dest_address("255.255.255.255", broadcast_port)
+				udp_broadcaster.put_packet(message.to_utf8_buffer())
+				print("Broadcasting host IP: ", message)
+		else:
+			# Stop broadcasting once the host is connected
+			udp_broadcaster.set_broadcast_enabled(false)
+			print("Host is connected. Stopped broadcasting.")
+			broadcast_timer.stop()  # Stop the broadcast timer as well
+	)
+	add_child(broadcast_timer)
+	broadcast_timer.start()
+
+func get_local_ip() -> String:
+	var ip = ""
+	for addr in IP.get_local_addresses():
+	   # Filter for local network addresses (IPv4)
+		if addr.begins_with("192.168.") or addr.begins_with("10.") or addr.begins_with("172."):
+			ip = addr
+			break  # Stop after finding the first valid local IP
+	return ip
+
+func join_code_to_port(join_code: String) -> int:
+	if join_code.length() > 32:
+		join_code = join_code.substr(0, 32)
+	var hash_val = 0
+	for i in range(join_code.length()):
+		hash_val = (hash_val * 31 + join_code.unicode_at(i))
+	var port_range = 60000 - 1024
+	var port = 1024 + (hash_val % port_range)
+	print("Join code '%s' converted to port %d" % [join_code, port])
+	return port
+
+func start_listening_for_broadcasts() -> void:
+	udp_listener.set_broadcast_enabled(true)
+	udp_listener.listen(broadcast_port)
+	print("Listening for broadcasts on port %d" % broadcast_port)
+	set_process(true)
+
+func _process(delta: float) -> void:
+	if udp_listener.get_available_packet_count() > 0:
+		var packet = udp_listener.get_packet()
+		var message = packet.get_string_from_utf8()
+		print("Received broadcast: ", message)
+		parse_broadcast(message)
+
+func parse_broadcast(message: String) -> void:
+	var parts = message.split(":")
+	if parts.size() == 3:
+		var host_ip = parts[0]
+		var host_port = int(parts[1])
+		var join_code = parts[2]
+		print("Received host IP: %s, Port: %d, Join Code: %s" % [host_ip, host_port, join_code])
+		join_game(host_ip, join_code)  # Automatically attempt to join the game
+
 
 # Called by the joiner (client).
 func join_game(host_ip: String, join_code: String) -> void:

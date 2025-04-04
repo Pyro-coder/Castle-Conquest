@@ -36,6 +36,7 @@ func host_game(join_code: String) -> void:
 		print("Hosting game on port %d" % port)
 		if status_label:
 			status_label.text = "Hosting on port " + str(port)
+		is_host_connected = false
 		start_connection_timeout(30.0)
 		start_broadcasting(port, join_code)
 		  # Set host as connected after successfully hosting
@@ -189,6 +190,7 @@ func _on_peer_connected(id: int) -> void:
 	print("Client connected with ID: %d" % id)
 	if status_label:
 		status_label.text = "Client connected (ID: " + str(id) + ")"
+	is_host_connected = true
 	emit_signal("connection_established")
 
 # Called on the client when it successfully connects to the host.

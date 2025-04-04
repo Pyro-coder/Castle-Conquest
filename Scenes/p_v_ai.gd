@@ -79,7 +79,15 @@ func setup_game():
 	ai_tile = ABMinimaxTile.new()
 	ai_tile.Initialize(max_depth + 5, 2)
 	monte_carlo_ai = MonteCarloInitialMovement.new()
-	monte_carlo_ai.Initialize(250 * (max_depth / 2), 2)
+	
+	# Set the AI difficulty
+	if difficulty_level == 1:
+		monte_carlo_ai.Initialize(3, 2)
+	elif difficulty_level == 2:
+		monte_carlo_ai.Initialize(20, 2)
+	elif difficulty_level == 3:
+		monte_carlo_ai.Initialize(750, 2)
+	
 	monte_carlo_ai.connect("BestInitialPlacementReady", _on_BestInitialPlacementReady)
 	monte_carlo_ai.connect("BestMovementReady", _on_BestMovementReady)
 	

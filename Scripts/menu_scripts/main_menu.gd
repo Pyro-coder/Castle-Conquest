@@ -8,6 +8,7 @@ extends Control
 @onready var menu_template = $MenuTemplate
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	reset_globals()
 	AudioPlayer.play_menu_music()
 	if play_button:
 		play_button.connect("mouse_entered", _on_play_button_mouse_entered)
@@ -112,3 +113,18 @@ func _on_quit_button_mouse_exited() -> void:
 	if quit_button:
 		quit_button.modulate = Color(1, 1, 1)     # Reset to original color
 		quit_button.scale = Vector2(1, 1)         # Reset to original sc
+		
+		
+func reset_globals():
+	print("Resetting global vars")
+	GlobalVars.difficulty = 3
+	GlobalVars.player_turn = false
+	GlobalVars.hex_selected = Vector2i()
+	GlobalVars.castle_selected = false
+	GlobalVars.castle_coords = Vector2i()
+	GlobalVars.valid_move_tiles = Array()
+	GlobalVars.num_pieces_selected = 8
+	GlobalVars.first_player_moves_first = 0
+	GlobalVars.is_coin_done_spinning = 1
+	GlobalVars.is_local_pvp = false
+	GlobalVars.is_host = true

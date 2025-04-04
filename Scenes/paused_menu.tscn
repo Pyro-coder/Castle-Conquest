@@ -1,18 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://csny3if363son"]
+[gd_scene load_steps=9 format=3 uid="uid://csny3if363son"]
 
 [ext_resource type="Script" uid="uid://v8xbdobdntl0" path="res://paused_menu.gd" id="1_jypes"]
 [ext_resource type="Texture2D" uid="uid://5q375qr4476d" path="res://Assets/wood1.png" id="2_rc272"]
 [ext_resource type="Shader" uid="uid://dx71dpo0jac3j" path="res://Scenes/paused_menu.gdshader" id="2_w03cf"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_npcx0"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="4_dmf0p"]
 [ext_resource type="AudioStream" uid="uid://c1gmd3qphxeq5" path="res://Assets/SFX/uiButton.wav" id="5_8mj5x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cetyb"]
 shader = ExtResource("2_w03cf")
 shader_parameter/amount = 3.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmf0p"]
+shader = ExtResource("4_dmf0p")
+shader_parameter/amount = 170
+
 [node name="PausedMenu" type="Control"]
 process_mode = 3
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,6 +89,7 @@ expand_icon = true
 [node name="Wood1" type="Sprite2D" parent="."]
 show_behind_parent = true
 z_index = 1
+material = SubResource("ShaderMaterial_dmf0p")
 position = Vector2(584, 329)
 scale = Vector2(0.307185, 0.233525)
 texture = ExtResource("2_rc272")

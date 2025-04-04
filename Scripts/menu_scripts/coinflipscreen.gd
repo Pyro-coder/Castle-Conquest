@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func _input(event):
-	if event.is_action_pressed("ui_select") and flipcount == 0:
+	if event.is_action_pressed("flip_coin") and flipcount == 0:
 		result = coin_flip()
 	
 		if result == 1:

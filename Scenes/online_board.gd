@@ -45,7 +45,7 @@ func _ready() -> void:
 	# update_from_state(example_board_state)
 
 func _input(event):
-	if event.is_action_pressed("ui_accept") and control_node.game_state == control_node.GameState.TILE_PLACEMENT and GlobalVars.player_turn:
+	if event.is_action_pressed("rotate_tile") and control_node.game_state == control_node.GameState.TILE_PLACEMENT and GlobalVars.player_turn:
 		print("Rotation key pressed.")
 		OnBoardPlaceHoverExit(hoveredTile, Color(0.12, 0.28, 0.66, 1.0))
 		if orientation == "vert":

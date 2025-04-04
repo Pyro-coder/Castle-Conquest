@@ -15,6 +15,8 @@ var is_client_connected = false
 
 @onready var status_label: Label = $StatusLabel
 
+var is_host = false
+
 func _ready() -> void:
 	print("NetworkManager ready.")
 	var multiplayer = get_tree().get_multiplayer()
@@ -43,31 +45,36 @@ func host_game(join_code: String) -> void:
 			status_label.text = "Failed to host game."
 
 func start_broadcasting(port: int, join_code: String) -> void:
-	# Stop broadcasting if either the client or the host is connected
-	if is_client_connected or is_host_connected:
-		print("Either client or host already connected. Stopping broadcasting.")
-		udp_broadcaster.set_broadcast_enabled(false)
-		return
-
 	udp_broadcaster.set_broadcast_enabled(true)
-
+	
 	broadcast_timer = Timer.new()
 	broadcast_timer.wait_time = 2.0  # Broadcast every 2 seconds
 	broadcast_timer.one_shot = false
 	broadcast_timer.timeout.connect(func():
-		var ip = ""
-		for addr in IP.get_local_addresses():
-			if addr.begins_with("192.168.") or addr.begins_with("10.") or addr.begins_with("172."):
-				ip = addr
-				break  # Stop after finding the first valid local IP 
-		if ip.length() > 0:
-			var message = "%s:%d:%s" % [ip, port, join_code]
-			udp_broadcaster.set_dest_address("255.255.255.255", broadcast_port)
-			udp_broadcaster.put_packet(message.to_utf8_buffer())
-			print("Broadcasting host IP: ", message)
-	)    
+		if !is_host_connected:
+			var ip = get_local_ip()
+			if ip != "":
+				var message = "%s:%d:%s" % [ip, 54545, join_code]
+				udp_broadcaster.set_dest_address("255.255.255.255", broadcast_port)
+				udp_broadcaster.put_packet(message.to_utf8_buffer())
+				print("Broadcasting host IP: ", message)
+		else:
+			# Stop broadcasting once the host is connected
+			udp_broadcaster.set_broadcast_enabled(false)
+			print("Host is connected. Stopped broadcasting.")
+			broadcast_timer.stop()  # Stop the broadcast timer as well
+	)
 	add_child(broadcast_timer)
 	broadcast_timer.start()
+
+func get_local_ip() -> String:
+	var ip = ""
+	for addr in IP.get_local_addresses():
+	   # Filter for local network addresses (IPv4)
+		if addr.begins_with("192.168.") or addr.begins_with("10.") or addr.begins_with("172."):
+			ip = addr
+			break  # Stop after finding the first valid local IP
+	return ip
 
 # Called by the joiner (client).
 func join_game(host_ip: String, join_code: String) -> void:
@@ -138,6 +145,15 @@ func join_code_to_port(join_code: String) -> int:
 	var port = 1024 + (hash_val % port_range)
 	print("Join code '%s' converted to port %d" % [join_code, port])
 	return port
+
+func parse_broadcast(message: String) -> void:
+	var parts = message.split(":")
+	if parts.size() == 3:
+		var host_ip = parts[0]
+		var host_port = int(parts[1])
+		var join_code = parts[2]
+		print("Received host IP: %s, Port: %d, Join Code: %s" % [host_ip, host_port, join_code])
+		join_game(host_ip, join_code)  # Automatically attempt to join the game
 
 # Sets up a timer that disconnects if no connection is made.
 func start_connection_timeout(seconds: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2kt847vmj8ei"]
+[gd_scene load_steps=9 format=3 uid="uid://d2kt847vmj8ei"]
 
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="1_bjvkm"]
 [ext_resource type="Script" uid="uid://deg8hu3fgop71" path="res://Scenes/Menus/game_over_screen.gd" id="1_h4tbg"]
@@ -9,6 +9,8 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hy17y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_st1k0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3eorv"]
 
 [node name="GameOverScreen" type="CanvasLayer"]
 script = ExtResource("1_h4tbg")
@@ -73,7 +75,7 @@ position = Vector2(950, 26)
 scale = Vector2(0.166769, 0.237094)
 texture = ExtResource("3_6w14e")
 
-[node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+[node name="MenuBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 z_index = 1
 layout_mode = 2
 theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
@@ -84,6 +86,25 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_st1k0")
 text = "     Main Menu           "
 flat = true
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="QuitBtn" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer2"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("1_bjvkm")
+theme_override_font_sizes/font_size = 29
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3eorv")
+text = "Quit"
+flat = true
+
+[node name="WoodMessage" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer2"]
+position = Vector2(31.5, 25)
+scale = Vector2(0.0362568, 0.147954)
+texture = ExtResource("3_6w14e")
+
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer"]
 position = Vector2(542, 77)
 scale = Vector2(1.95962, 1.46918)
@@ -93,4 +114,5 @@ texture = ExtResource("4_1stjc")
 stream = ExtResource("5_hy17y")
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/RestartBtn" to="." method="_on_restart_btn_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/MenuBtn" to="." method="_on_menu_btn_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer2/QuitBtn" to="." method="_on_quit_btn_pressed"]

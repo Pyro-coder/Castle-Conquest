@@ -85,7 +85,7 @@ func start_tile_placement_phase() -> void:
 		ingameui.UpdateP2Label("Tiles left: %d" % p2Tilesleft)
 		update_tile_turn()
 	else:
-		ingameui.UpdateMainLabel("Place Initial Pieces")
+		ingameui.UpdateMainLabel("Conquer")
 		game_state = GameState.INITIAL_PLACEMENT
 		init_turn_index = 0
 		start_initial_placement_phase()
@@ -302,15 +302,24 @@ func rpc_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 #############################################
 # GAME OVER
 #############################################
-func end_game() -> void:
+func end_game():
 	game_state = GameState.GAME_OVER
-	message_label.text = "Game Over. Final Board State:"
 	GlobalVars.player_turn = false
-	board.update_from_state(game_engine.GetCurrentBoardState())
+	
+	# Update the board with the final state.
+	var state = game_engine.GetCurrentBoardState()
+	board.update_from_state(state)
+	
+	# Determine the winner using the game engine's getWinner() function.
+	var winner = game_engine.GetWinner()
+	
+	print("winner: ", winner)
+	
+	# Load and display the game over scene.
 	var game_over_scene_packed = load("res://Scenes/Menus/game_over_screen.tscn")
 	var game_over_scene_instance = game_over_scene_packed.instantiate()
 	add_child(game_over_scene_instance)
-	game_over_scene_instance.set_title(p1TilesCovered > p2TilesCovered)
+	game_over_scene_instance.set_title(winner)
 	self.visible = false
 	GlobalVars.is_host = true
 

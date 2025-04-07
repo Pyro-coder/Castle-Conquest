@@ -189,14 +189,6 @@ func process_move_turn():
 
 	var current_player = turn_order[move_turn_index]
 	if not game_engine.CanPlayerMove(current_player.Id):
-		message_label.text = "%s cannot move. Game over." % current_player.name
-		if not game_engine.CanPlayerMove(1):
-			message_label.text = "Player 1 cannot move. Game over."
-			ingameui.UpdateMainLabel("Player 2 wins!")
-			ingameui.P1LoseAnimation()
-		else:
-			ingameui.UpdateMainLabel("Player 1 wins!")
-			ingameui.P2LoseAnimation()
 		end_game()
 		return
 
@@ -226,15 +218,23 @@ func process_move_input(q: int, r: int, num_pieces: int, direction: int):
 
 func end_game():
 	game_state = GameState.GAME_OVER
-	message_label.text = "Game Over. Final Board State:"
 	GlobalVars.player_turn = false
+	
+	# Update the board with the final state.
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
 	
-	# Display game over scene.
+	# Determine the winner using the game engine's getWinner() function.
+	var winner = game_engine.GetWinner()
+	
+	print("winner: ", winner)
+	
+	# Load and display the game over scene.
 	var game_over_scene_packed = load("res://Scenes/Menus/game_over_screen.tscn")
 	var game_over_scene_instance = game_over_scene_packed.instantiate()
 	add_child(game_over_scene_instance)
+	game_over_scene_instance.set_title(winner)
+	self.visible = false
 
 func get_valid():
 	match game_state:

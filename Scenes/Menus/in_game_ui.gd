@@ -45,6 +45,7 @@ func P2TurnCompleteAnimation():
 func UpdateMainLabel(textInput):
 	var Main_Banner = $"Banners-large-cropped-main/MainLabel"
 	Main_Banner.text = textInput
+	
 
 func UpdateP1Label(input):
 	var P1Label = $BlueWood/blueLabel

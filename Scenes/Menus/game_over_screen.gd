@@ -11,11 +11,14 @@ func _ready() -> void:
 	audio_player.play()
 
 
-func set_title(win: bool):
-	if win:
-		title.text = "Player One Conquers All!"
-	else:
-		title.text = "Player Two Conquers All!"
+func set_title(winner: int):
+	match winner:
+		0:
+			title.text = "Its a Tie"
+		1:
+			title.text = "Player One Conquers All!"
+		2:
+			title.text = "Player Two Conquers All!"
 		
 
 func _on_restart_btn_pressed() -> void:

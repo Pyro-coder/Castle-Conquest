@@ -312,5 +312,78 @@ namespace BattleSheepCore.Game
 			_gameController.changeNotFirstTilePlacement();
 
 		}
+
+        /// <summary>
+        /// Gets the total number of pieces placed by player 1 and player 2.
+        /// </summary>
+        /// <returns>
+        /// A tuple containing the piece counts as (player1PieceCount, player2PieceCount).
+        /// </returns>
+        public (int player1PieceCount, int player2PieceCount) GetPlayerPieceCounts()
+        {
+            int player1Count = 0;
+            int player2Count = 0;
+
+            // Retrieve the current board state.
+            var boardState = _gameController.GetCurrentBoardState();
+
+            // Aggregate the piece counts based on the playerId.
+            foreach (var cell in boardState)
+            {
+                if (cell.playerId == 1)
+                {
+                    player1Count ++;
+                }
+                else if (cell.playerId == 2)
+                {
+                    player2Count ++;
+                }
+            }
+
+            return (player1Count, player2Count);
+        }
+
+		// Returns -1 if no winner, 0 if tie, 1 if 1 won, and 2 if two won
+        public int GetWinner()
+		{
+            var (player1Size, player2Size) = GetPlayerPieceCounts();
+
+            GD.Print("P1 size", player1Size);
+            GD.Print("P2 size", player2Size);
+
+            if (player1Size > player2Size)
+			{
+				return 1;
+			}
+			else if (player2Size > player1Size)
+			{
+				return 2;
+			}
+
+			// If both players have the same number of pieces, find who has largest connected area
+			else
+			{
+				var player1_largest = GetLargestConnectedSectionSize(1);
+				var player2_largest = GetLargestConnectedSectionSize(2);
+
+
+				GD.Print("P1 largest", player1_largest);
+				GD.Print("P2 largest", player2_largest);
+
+
+				if (player1_largest > player2_largest)
+				{
+					return 1;
+				}
+				else if (player2_largest > player1_largest)
+				{
+					return 2;
+				}
+				else
+				{
+					return 0;
+				}
+			}  
+		}
 	}
 }

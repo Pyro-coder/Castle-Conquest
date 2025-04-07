@@ -346,6 +346,16 @@ namespace BattleSheepCore.Game
 		// Returns -1 if no winner, 0 if tie, 1 if 1 won, and 2 if two won
         public int GetWinner()
 		{
+            // Check which player can still move
+            bool p1CanMove = CanPlayerMove(1);
+            bool p2CanMove = CanPlayerMove(2);
+            if (p1CanMove ^ p2CanMove) // XOR
+            {
+				GD.Print(p1CanMove ? 1 : 2, " can still move");
+                return p1CanMove ? 1 : 2;
+            }
+
+
             var (player1Size, player2Size) = GetPlayerPieceCounts();
 
             GD.Print("P1 size", player1Size);

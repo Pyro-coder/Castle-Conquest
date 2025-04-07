@@ -31,7 +31,7 @@ func _on_join_pressed() -> void:
 		return
 	GlobalVars.is_host = false
 	# For testing, this example uses localhost.
-	NetworkManager.join_game("127.0.0.1", join_code)
+	NetworkManager.join_game("", join_code)
 	print("Joining game with join code:", join_code)
 	joinCodeLabel.text = "Attempting to join..."
 

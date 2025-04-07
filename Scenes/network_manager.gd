@@ -39,7 +39,7 @@ func host_game(join_code: String) -> void:
 		is_host_connected = false
 		start_connection_timeout(30.0)
 		start_broadcasting(port, join_code)
-		is_host_connected = true  # Set host as connected after successfully hosting
+		  # Set host as connected after successfully hosting
 	else:
 		print("Failed to host game. Error code: ", result)
 		if status_label:

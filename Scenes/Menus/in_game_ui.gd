@@ -5,8 +5,22 @@ extends Control
 @onready var resumeBtn = $CanvasLayer/PausedMenu/GridContainer/ResumeBtn
 @onready var blueSprite = $Goldwood/AnimatedSprite2D
 @onready var redSprite = $Goldwood2/AnimatedSprite2D
+
+var blue_shader: ShaderMaterial
+var red_shader: ShaderMaterial
+
 var _is_paused: bool = false:
 	set = set_paused
+
+var isBlueTurn: bool
+var glow_power = 2.0
+var glow_shift = 1.0
+var glowradius = 1.0
+var noshift = 0.0
+var noradius = 0.0
+var noglow = 0.0
+
+var shaderMaterial : ShaderMaterial
 
 func _ready() -> void:
 	if pauseBtn:
@@ -18,7 +32,32 @@ func _ready() -> void:
 	if resumeBtn:
 		resumeBtn.connect("pressed", _on_resume_btn_pressed)
 		
+	var glow_shader_source = load("res://Scenes/Menus/glow.gdshader")
+	blue_shader = ShaderMaterial.new()
+	red_shader = ShaderMaterial.new()
 
+	blue_shader.shader = glow_shader_source
+	red_shader.shader = glow_shader_source
+
+	blueSprite.material = blue_shader
+	redSprite.material = red_shader
+	updateShaderVisibility()
+
+func updateShaderVisibility() -> void:
+	if isBlueTurn:
+		blue_shader.set_shader_parameter("glow_power", glow_power)
+		blue_shader.set_shader_parameter("glow_shift", glow_shift)
+		blue_shader.set_shader_parameter("glow_radius", glowradius)
+		red_shader.set_shader_parameter("glow_power", noglow)
+		red_shader.set_shader_parameter("glow_shift", noshift)
+		red_shader.set_shader_parameter("glow_radius", noradius)
+	else:
+		blue_shader.set_shader_parameter("glow_power", noglow)
+		blue_shader.set_shader_parameter("glow_shift", noshift)
+		blue_shader.set_shader_parameter("glow_radius", noradius)
+		red_shader.set_shader_parameter("glow_power", glow_power)
+		red_shader.set_shader_parameter("glow_shift", glow_shift)
+		red_shader.set_shader_parameter("glow_radius", glowradius)
 
 
 func erase_blue_hex(hex_count):
@@ -33,6 +72,8 @@ func P1LoseAnimation():
 
 func P1TurnCompleteAnimation():
 	blueSprite.play("attack")
+	isBlueTurn = false
+	updateShaderVisibility()
 	
 	
 func P2LoseAnimation():
@@ -40,6 +81,8 @@ func P2LoseAnimation():
 	
 func P2TurnCompleteAnimation():
 	redSprite.play("attack")
+	isBlueTurn = true
+	updateShaderVisibility()
 
 
 func UpdateMainLabel(textInput):
@@ -93,7 +136,6 @@ func _on_back_2_main_btn_pressed() -> void:
 func _on_texture_button_pressed() -> void:
 	toggle_pause()
 	
-
 
 func animation_finished() -> void:
 	if redSprite.animation == "attack":

@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://7p8dxs2ubagd"]
+[gd_scene load_steps=77 format=3 uid="uid://7p8dxs2ubagd"]
 
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
 [ext_resource type="Script" uid="uid://nf4wa8q2hem6" path="res://Scenes/Menus/in_game_ui.gd" id="1_hngs1"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://fl3h47n17kxi" path="res://Assets/InGameUIAssets/goldwood.png" id="6_8rrnw"]
 [ext_resource type="Texture2D" uid="uid://6dwcatrj7ext" path="res://Assets/InGameUIAssets/Knight_SW_attack1_1.png" id="7_xy8ad"]
 [ext_resource type="Texture2D" uid="uid://bdtptw55sqtfp" path="res://Assets/InGameUIAssets/Knight_SW_attack1_2.png" id="8_m0kcb"]
+[ext_resource type="Shader" uid="uid://bj3bg440i8s2v" path="res://Scenes/Menus/glow.gdshader" id="9_1yrx7"]
 [ext_resource type="Texture2D" uid="uid://b4e62rcjdxww5" path="res://Assets/InGameUIAssets/Knight_SW_attack1_3.png" id="9_6k8js"]
 [ext_resource type="Texture2D" uid="uid://cl4fiwbni4wll" path="res://Assets/InGameUIAssets/Knight_SW_attack1_4.png" id="10_marjj"]
 [ext_resource type="Texture2D" uid="uid://y4m7rwidg8ro" path="res://Assets/InGameUIAssets/Knight_SW_attack1_5.png" id="11_q1r8l"]
@@ -51,6 +52,13 @@ shader_parameter/pixel_count = Vector2(280, 80)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ynf82"]
 shader = ExtResource("1_4t0ia")
 shader_parameter/amount = 40
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_umu5n"]
+shader = ExtResource("9_1yrx7")
+shader_parameter/glow_color = Color(1, 1, 1, 0.623529)
+shader_parameter/glow_power = 1.9
+shader_parameter/glow_shift = 1.0
+shader_parameter/glow_radius = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k3l7p"]
 
@@ -136,6 +144,13 @@ shader_parameter/amount = 200
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tcoe6"]
 shader = ExtResource("1_4t0ia")
 shader_parameter/amount = 40
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1yrx7"]
+shader = ExtResource("9_1yrx7")
+shader_parameter/glow_color = Color(0.999503, 0.90246, 0.916972, 1)
+shader_parameter/glow_power = 2.0
+shader_parameter/glow_shift = 1.0
+shader_parameter/glow_radius = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2xmfp"]
 atlas = ExtResource("19_fn7u1")
@@ -422,13 +437,12 @@ scale = Vector2(0.595694, 0.595694)
 texture = ExtResource("6_8rrnw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Goldwood"]
+material = SubResource("ShaderMaterial_umu5n")
 position = Vector2(-3.35742, -15.1084)
 scale = Vector2(3.56366, 3.56366)
 sprite_frames = SubResource("SpriteFrames_8q6xp")
 animation = &"attack"
 autoplay = "idle"
-frame = 7
-frame_progress = 1.0
 
 [node name="WoodMessage" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3vuke")
@@ -454,6 +468,7 @@ scale = Vector2(0.595694, 0.595694)
 texture = ExtResource("6_8rrnw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Goldwood2"]
+material = SubResource("ShaderMaterial_1yrx7")
 position = Vector2(2.19629, -11.6617)
 scale = Vector2(3.06591, 3.06591)
 sprite_frames = SubResource("SpriteFrames_dlnws")
@@ -484,6 +499,7 @@ script = ExtResource("31_3b0kf")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PausedMenu" parent="CanvasLayer" instance=ExtResource("32_8xpas")]
+visible = false
 
 [node name="BlueHexContainer" type="HBoxContainer" parent="."]
 layout_direction = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://0oxqfyv4036f"]
+[gd_scene load_steps=11 format=3 uid="uid://0oxqfyv4036f"]
 
 [ext_resource type="Script" uid="uid://bxvdq02u5o72a" path="res://Scripts/menu_scripts/tutorial_pg_2.gd" id="1_ekiwj"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_ipwnw"]
@@ -16,6 +16,8 @@ shader = ExtResource("3_y0yxr")
 shader_parameter/amount = 300
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpkj0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ekiwj"]
 
 [node name="TutorialPg2" type="Control"]
 layout_mode = 3
@@ -60,7 +62,7 @@ offset_right = 696.0
 offset_bottom = 571.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 150
+theme_override_constants/separation = 30
 
 [node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
 use_parent_material = true
@@ -79,6 +81,25 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
 text = "Back
+"
+
+[node name="mainBtn" type="Button" parent="MenuTemplate/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_rmo7d")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_ekiwj")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ekiwj")
+text = "Main Menu
 "
 
 [node name="NextButton" type="Button" parent="MenuTemplate/HBoxContainer"]
@@ -112,5 +133,10 @@ autoplay = true
 expand = true
 loop = true
 
+[connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_exited"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/mainBtn" to="." method="_on_main_btn_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/mainBtn" to="." method="_on_main_btn_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/mainBtn" to="." method="_on_main_btn_pressed"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

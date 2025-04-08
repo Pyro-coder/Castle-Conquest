@@ -27,7 +27,7 @@ func _on_resume_btn_pressed() -> void:
 	gameControl.togglePause()
 	
 
-func _on_settings_btn_pressed() -> void:
+func _on_help_btn_pressed() -> void:
 	$buttonPress.play()
 	
 	pass # Replace with function body.

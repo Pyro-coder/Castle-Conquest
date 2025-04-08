@@ -69,6 +69,7 @@ func togglePause():
 	if is_pause_visible: 
 		$PausedMenu.visible = false
 		is_pause_visible = false
+		
 	else: 
 		is_pause_visible = true
 		$PausedMenu.visible = true

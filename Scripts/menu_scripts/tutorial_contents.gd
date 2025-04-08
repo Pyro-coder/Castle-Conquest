@@ -3,6 +3,7 @@ extends Control
 
 @onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
 @onready var nextBtn = $MenuTemplate/HBoxContainer/NextButton
+@onready var mainBtn = $MenuTemplate/HBoxContainer/mainBtn
 
 @onready var modeSelect = $MenuTemplate/VBoxContainer/ModeSelection
 @onready var coinFlip = $MenuTemplate/VBoxContainer/CoinFlip
@@ -160,3 +161,18 @@ func _on_ending_game_mouse_entered() -> void:
 func _on_ending_game_mouse_exited() -> void:
 	ending.modulate = Color(1, 1, 1)     # Reset to original color
 	ending.scale = Vector2(1, 1)
+
+
+func _on_main_btn_pressed() -> void:
+	menuTemplate.buttonPress()
+	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
+
+
+func _on_main_btn_mouse_entered() -> void:
+	mainBtn.modulate = Color(1.2, 1.2, 1.2) # Slightly brighten the button
+	mainBtn.scale = Vector2(1.1, 1.1)
+
+
+func _on_main_btn_mouse_exited() -> void:
+	mainBtn.modulate = Color(1, 1, 1)     # Reset to original color
+	mainBtn.scale = Vector2(1, 1)

@@ -52,6 +52,7 @@ func _process(delta: float) -> void:
 
 func update_piece_count(piece_count):
 	var count_label = $TokenCount
+	count_label.modulate = Color(0,128,204)
 	count_label.text = var_to_str(piece_count)
 	
 func get_valid_move_locations():

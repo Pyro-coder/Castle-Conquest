@@ -51,6 +51,7 @@ shape = SubResource("ConcavePolygonShape3D_jig15")
 
 [node name="TokenCount" type="Label3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 1.41421, 1.41421, 0, -1.41421, 1.41421, 0, 2, 0)
+modulate = Color(0, 0.501961, 0.8, 1)
 text = "16"
 font = ExtResource("5_e1mlq")
 

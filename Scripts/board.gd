@@ -43,6 +43,7 @@ var tempColor
 
 func _ready() -> void:
 	_generate_grid()
+	
   
 	# update_from_state(example_board_state)
 	

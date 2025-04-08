@@ -4,8 +4,10 @@ extends Control
 @onready var quitBtn = $GridContainer/QuitBtn
 @onready var mainBtn = $GridContainer2/Back2MainBtn
 @onready var resumeBtn = $GridContainer/ResumeBtn
+@onready var buttonGrid = $GridContainer
 
 func _ready() -> void:
+	buttonGrid.set_position(Vector2(510,190))
 	if resumeBtn:
 		resumeBtn.connect("mouse_entered", resumeBtnHvrd)
 		resumeBtn.connect("mouse_exited", resumeBtnExt)
@@ -21,9 +23,9 @@ func _ready() -> void:
 
 func _on_resume_btn_pressed() -> void:
 	$buttonPress.play()
-	var inGameUI = get_tree().get_first_node_in_group("InGameUI")
-	if inGameUI:
-		inGameUI.toggle_pause()
+	var gameControl = get_parent()
+	gameControl.togglePause()
+	
 
 func _on_settings_btn_pressed() -> void:
 	$buttonPress.play()
@@ -42,6 +44,8 @@ func _on_back_2_main_btn_pressed() -> void:
 	
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	
+func togglePause():
+	get_parent().togglePause()
 	
 func resumeBtnHvrd() -> void:
 	if resumeBtn:

@@ -10,6 +10,7 @@ enum GameState { TURN_ORDER, TILE_PLACEMENT, INITIAL_PLACEMENT, MOVE_PHASE, GAME
 
 @onready var board: Node = get_parent()  # Assumes the parent node contains an update_from_state(state) method.
 
+@onready var pauseBtn = $pauseBtn
 # Game and AI objects.
 var game_engine: GameEngine       # Your GameEngine instance.
 var difficulty: int
@@ -43,6 +44,7 @@ var ai_moved: bool
 
 var p1won: bool
 @onready var ingameui = $InGameUI
+var is_pause_visible = false
 func _ready():
 
 	first_player_first = GlobalVars.first_player_moves_first
@@ -61,6 +63,35 @@ func _ready():
 	setup_game()  # For example, using difficulty level 3.
 func _on_wait_timeout() -> void:
 	pass
+	
+
+func togglePause():
+	if is_pause_visible: 
+		$PausedMenu.visible = false
+		is_pause_visible = false
+	else: 
+		is_pause_visible = true
+		$PausedMenu.visible = true
+
+func _input(event):
+	# Check if the event is a key press
+	if event is InputEventKey and event.pressed:
+	# Check if the key pressed is 'P' or 'Escape'
+		if event.as_text() == "P" or Input.is_action_pressed("ui_cancel"):
+			togglePause()
+				
+
+func pauseHvrd() -> void:
+	if pauseBtn: 
+		pauseBtn.modulate = Color(1.2, 1.2, 1.2)
+		pauseBtn.scale = Vector2(.23, .23)
+		
+func pauseExt() -> void:
+	if pauseBtn:
+		pauseBtn.modulate = Color(1, 1, 1)
+		pauseBtn.scale = Vector2(.2, .2)
+		
+	
 	
 func setup_game():
 

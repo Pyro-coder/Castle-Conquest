@@ -35,6 +35,32 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.266667, 0.266667, 0.266667, 0.705882)
 
+[node name="Wood1" type="Sprite2D" parent="."]
+show_behind_parent = true
+z_index = 1
+material = SubResource("ShaderMaterial_dmf0p")
+position = Vector2(584, 329)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_rc272")
+
+[node name="GridContainer2" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 460.0
+offset_right = 717.0
+offset_bottom = 500.0
+
+[node name="Back2MainBtn" type="Button" parent="GridContainer2"]
+z_index = 2
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("3_npcx0")
+text = "Main Menu"
+flat = true
+
+[node name="buttonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8mj5x")
+
 [node name="GridContainer" type="GridContainer" parent="."]
 z_index = 2
 layout_mode = 1
@@ -43,10 +69,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -65.5
+offset_top = -142.0
+offset_right = 65.5
+offset_bottom = 56.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/v_separation = 10
@@ -86,33 +112,7 @@ text = "Quit
 flat = true
 expand_icon = true
 
-[node name="Wood1" type="Sprite2D" parent="."]
-show_behind_parent = true
-z_index = 1
-material = SubResource("ShaderMaterial_dmf0p")
-position = Vector2(584, 329)
-scale = Vector2(0.307185, 0.233525)
-texture = ExtResource("2_rc272")
-
-[node name="GridContainer2" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 439.0
-offset_top = 460.0
-offset_right = 717.0
-offset_bottom = 500.0
-
-[node name="Back2MainBtn" type="Button" parent="GridContainer2"]
-z_index = 2
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_fonts/font = ExtResource("3_npcx0")
-text = "Main Menu"
-flat = true
-
-[node name="buttonPress" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_8mj5x")
-
+[connection signal="pressed" from="GridContainer2/Back2MainBtn" to="." method="_on_back_2_main_btn_pressed"]
 [connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
 [connection signal="pressed" from="GridContainer/SettingsBtn" to="." method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="GridContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
-[connection signal="pressed" from="GridContainer2/Back2MainBtn" to="." method="_on_back_2_main_btn_pressed"]

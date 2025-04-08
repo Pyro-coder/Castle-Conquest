@@ -111,7 +111,7 @@ func listen_for_host(join_code: String) -> void:
 	udp_listener.bind(listening_port)
 	
 	var timer = Timer.new()
-	timer.wait_time = 5.0  # Listen for 5 seconds
+	timer.wait_time = 30.0  # Listen for 5 seconds
 	timer.one_shot = true
 	timer.timeout.connect(func():
 		if udp_listener.get_available_packet_count() > 0:

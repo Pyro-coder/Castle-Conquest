@@ -110,29 +110,44 @@ func listen_for_host(join_code: String) -> void:
 	udp_listener.close()
 	udp_listener.bind(listening_port)
 	
+	# Set up a repeated timer to poll for broadcasts every 0.5 seconds.
+	var poll_interval := 0.5
+	var elapsed_time := 0.0
+	var timeout_duration := 30.0
+
 	var timer = Timer.new()
-	timer.wait_time = 5.0  # Listen for 5 seconds
-	timer.one_shot = true
+	timer.wait_time = poll_interval
+	timer.one_shot = false
 	timer.timeout.connect(func():
+		elapsed_time += poll_interval  # Update elapsed time.
+		
+		# Check if we have received any UDP packets.
 		if udp_listener.get_available_packet_count() > 0:
 			var packet = udp_listener.get_packet()
 			var message = packet.get_string_from_utf8()
 			print("Received broadcast:", message)
 			var parts = message.split(":")
 			if parts.size() == 3 and parts[2] == expected_join_code:
-				# Found matching host, join the game
+				# Found matching host; stop further polling.
 				var host_ip = parts[0]
 				var port = int(parts[1])
 				print("Found matching host at %s:%d" % [host_ip, port])
 				join_game(host_ip, expected_join_code)
-		else:
+				timer.stop()   # Stop the timer early.
+				udp_listener.close()
+				return  # Exit the callback early.
+		
+		# If we've polled long enough, finish up.
+		if elapsed_time >= timeout_duration:
 			print("Timeout reached. No host found.")
-		udp_listener.close()
+			timer.stop()
+			udp_listener.close()
 	)
 	add_child(timer)
 	timer.start()
-	
+
 	set_process(true)
+
 
 # Converts a join code to a port number.
 func join_code_to_port(join_code: String) -> int:

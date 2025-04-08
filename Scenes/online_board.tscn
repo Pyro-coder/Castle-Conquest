@@ -103,6 +103,7 @@ offset_bottom = 36.0
 [node name="Wait_Timer" type="Timer" parent="GameControl"]
 
 [node name="NetworkTestPanel" type="Panel" parent="GameControl"]
+visible = false
 layout_mode = 0
 offset_left = 9.0
 offset_top = 228.0

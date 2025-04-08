@@ -128,3 +128,4 @@ func reset_globals():
 	GlobalVars.is_coin_done_spinning = 1
 	GlobalVars.is_local_pvp = false
 	GlobalVars.is_host = true
+	GlobalVars.game_code = ""

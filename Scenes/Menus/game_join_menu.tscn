@@ -127,6 +127,17 @@ theme_override_font_sizes/font_size = 12
 placeholder_text = "Game to Join?"
 script = ExtResource("5_4q0dx")
 
+[node name="Error" type="Label" parent="MenuTemplate/VBoxContainer/Join"]
+visible = false
+modulate = Color(0.989844, 5.48691e-06, 9.62615e-07, 1)
+layout_mode = 0
+offset_left = -0.5
+offset_top = 100.0
+offset_right = 197.5
+offset_bottom = 123.0
+theme_override_fonts/font = ExtResource("2_nb33g")
+text = "Please enter a code"
+
 [node name="Control" type="Control" parent="MenuTemplate/VBoxContainer"]
 layout_mode = 2
 
@@ -148,10 +159,21 @@ theme_override_font_sizes/font_size = 12
 placeholder_text = "Name your Game"
 script = ExtResource("5_4q0dx")
 
+[node name="Error" type="Label" parent="MenuTemplate/VBoxContainer/Host"]
+visible = false
+modulate = Color(0.989844, 5.48691e-06, 9.62615e-07, 1)
+layout_mode = 0
+offset_left = -0.5
+offset_top = 99.0
+offset_right = 197.5
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("2_nb33g")
+text = "Please enter a code"
+
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/ConquerButton" to="." method="_on_conquer_button_pressed"]
 [connection signal="button_down" from="MenuTemplate/VBoxContainer/Local" to="." method="_on_local_button_down"]
-[connection signal="button_down" from="MenuTemplate/VBoxContainer/Join" to="." method="_on_join_button_down"]
-[connection signal="pressed" from="MenuTemplate/VBoxContainer/Join" to="." method="_on_join_pressed"]
-[connection signal="button_down" from="MenuTemplate/VBoxContainer/Host" to="." method="_on_host_button_down"]
-[connection signal="pressed" from="MenuTemplate/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/Join" to="." method="_on_join_button_down"]
+[connection signal="focus_entered" from="MenuTemplate/VBoxContainer/Join/JoinName" to="." method="_on_join_button_down"]
+[connection signal="pressed" from="MenuTemplate/VBoxContainer/Host" to="." method="_on_host_button_down"]
+[connection signal="focus_entered" from="MenuTemplate/VBoxContainer/Host/HostName" to="." method="_on_host_button_down"]

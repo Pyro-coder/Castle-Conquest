@@ -22,3 +22,6 @@ var is_local_pvp: bool = false
 
 
 var is_host: bool = true
+
+
+var game_code: String = ""

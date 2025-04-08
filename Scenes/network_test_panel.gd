@@ -12,10 +12,15 @@ func _ready() -> void:
 	hostButton.connect("pressed", Callable(self, "_on_host_pressed"))
 	joinButton.connect("pressed", Callable(self, "_on_join_pressed"))
 	discoverButton.connect("pressed", Callable(self, "_on_discover_pressed"))
-	NetworkManager.connect("server_discovered", Callable(self, "_on_server_discovered"))
+	# NetworkManager.connect("server_discovered", Callable(self, "_on_server_discovered"))
+	if GlobalVars.is_host:
+		_on_host_pressed()
+	else:
+		_on_join_pressed()
 
 func _on_host_pressed() -> void:
-	var join_code: String = joinCodeLineEdit.text.strip_edges()
+	var join_code: String = GlobalVars.game_code
+	print("Hosting with code: ", join_code)
 	if join_code == "":
 		joinCodeLabel.text = "Please enter a join code."
 		return
@@ -25,7 +30,8 @@ func _on_host_pressed() -> void:
 	joinCodeLabel.text = "Hosting game..."
 
 func _on_join_pressed() -> void:
-	var join_code: String = joinCodeLineEdit.text.strip_edges()
+	var join_code: String = GlobalVars.game_code
+	print("Joining with code: ", join_code)
 	if join_code == "":
 		joinCodeLabel.text = "Please enter a join code."
 		return

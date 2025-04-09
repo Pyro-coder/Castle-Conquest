@@ -139,4 +139,6 @@ loop = true
 [connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/mainBtn" to="." method="_on_main_btn_mouse_entered"]
 [connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/mainBtn" to="." method="_on_main_btn_mouse_exited"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/mainBtn" to="." method="_on_main_btn_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_mouse_exited"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

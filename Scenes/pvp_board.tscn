@@ -25,7 +25,7 @@ sky_material = SubResource("ProceduralSkyMaterial_4r3ic")
 background_mode = 2
 sky = SubResource("Sky_hviba")
 
-[node name="board" type="Node3D"]
+[node name="board2" type="Node3D"]
 script = ExtResource("1_mqndi")
 
 [node name="Camera3D" type="Camera3D" parent="."]

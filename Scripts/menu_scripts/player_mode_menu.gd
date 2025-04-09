@@ -45,24 +45,20 @@ func _on_two_player_button_pressed() -> void:
 	
 	
 func playerHovered() -> void:
-	if onePlayer:
-		onePlayer.modulate = Color(0.8, 0.6, 0.2)
-		onePlayer.scale = Vector2(1.1, 1.1)
+	onePlayer.modulate = Color(0.8, 0.6, 0.2)
+	onePlayer.scale = Vector2(1.1, 1.1)
 		
 func playerExited() -> void: 
-	if onePlayer:
-		onePlayer.modulate = Color(1, 1, 1)
-		onePlayer.scale = Vector2(1, 1)
+	onePlayer.modulate = Color(1, 1, 1)
+	onePlayer.scale = Vector2(1, 1)
 		
 func twoPlayerHovered() -> void:
-	if twoPlayer:
-		twoPlayer.modulate = Color(1.2, 1.2, 1.2)
-		twoPlayer.scale = Vector2(1.1, 1.1)
+	twoPlayer.modulate = Color(0.8, 0.6, 0.2)
+	twoPlayer.scale = Vector2(1.1, 1.1)
 
 func twoPlayerExited() -> void: 
-	if twoPlayer:
-		twoPlayer.modulate = Color(1, 1, 1)
-		twoPlayer.scale = Vector2(1, 1)
+	twoPlayer.modulate = Color(1, 1, 1)
+	twoPlayer.scale = Vector2(1, 1)
 
 func backBtnHovered() -> void: 
 	if backBtn:

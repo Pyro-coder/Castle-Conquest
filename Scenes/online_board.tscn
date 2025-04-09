@@ -32,7 +32,7 @@ sky = SubResource("Sky_hviba")
 shader = ExtResource("9_1l3qu")
 shader_parameter/amount = 3.0
 
-[node name="board" type="Node3D"]
+[node name="board2" type="Node3D"]
 script = ExtResource("1_80qdv")
 
 [node name="Camera3D" type="Camera3D" parent="."]

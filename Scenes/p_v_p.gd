@@ -96,6 +96,8 @@ func start_tile_placement():
 	else:
 		# When tile placement rounds are complete, start initial piece placement.
 		ingameui.UpdateMainLabel("Conquer")
+		ingameui.update_phase_num(2)
+		
 		game_state = GameState.INITIAL_PLACEMENT
 		init_turn_index = 0
 		start_initial_piece_placement()
@@ -195,6 +197,7 @@ func process_initial_input(q: int, r: int):
 func start_move_phase():
 	message_label.text = "Move Phase - Starting Moves"
 	move_turn_index = 0
+	ingameui.update_phase_num(3)
 	process_move_turn()
 
 func process_move_turn():

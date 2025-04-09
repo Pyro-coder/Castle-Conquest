@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvo44du5bpkbq"]
+[gd_scene load_steps=18 format=3 uid="uid://bvo44du5bpkbq"]
 
 [ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_80qdv"]
 [ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_eafhi"]
 [ext_resource type="Script" uid="uid://cof8acd11t0we" path="res://Scenes/online_play.gd" id="3_eafhi"]
 [ext_resource type="PackedScene" uid="uid://7p8dxs2ubagd" path="res://Scenes/Menus/in_game_ui.tscn" id="4_1l3qu"]
+[ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="4_riaai"]
 [ext_resource type="Texture2D" uid="uid://b456wrsaj5ixr" path="res://Assets/WoodGui.png" id="5_riaai"]
 [ext_resource type="Script" uid="uid://umip4dnym153" path="res://Scenes/piece_selection_slider.gd" id="6_xdost"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="7_5mqdr"]
@@ -52,8 +53,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_eafhi")
 
+[node name="PausedMenu" parent="GameControl" instance=ExtResource("4_riaai")]
+visible = false
+layout_mode = 1
+
 [node name="InGameUI" parent="GameControl" instance=ExtResource("4_1l3qu")]
 layout_mode = 1
+
+[node name="Wait_Timer" type="Timer" parent="GameControl/InGameUI"]
+wait_time = 4.0
 
 [node name="MessageLabel" type="Label" parent="GameControl"]
 visible = false
@@ -181,3 +189,5 @@ offset_left = 25.0
 offset_top = 349.0
 offset_right = 126.0
 offset_bottom = 372.0
+
+[connection signal="timeout" from="GameControl/InGameUI/Wait_Timer" to="GameControl/InGameUI" method="_on_wait_timer_timeout"]

@@ -59,13 +59,29 @@ text = "Back
 [node name="Label" type="Label" parent="MenuTemplate"]
 use_parent_material = true
 layout_mode = 2
-offset_left = 412.0
+offset_left = 424.0
 offset_top = 130.0
-offset_right = 580.0
-offset_bottom = 149.0
+offset_right = 704.0
+offset_bottom = 547.0
 theme_override_fonts/font = ExtResource("3_echs6")
 theme_override_font_sizes/font_size = 20
-text = "Placeholder text for where information will 
-go on the creators,  (cannot mention any PII)"
+text = "This game is based on the board game, Battle Sheep, and it was a capstone project to show case the skills we have learned.
+
+Group Leader, Ai and Gamecore Lead
+	   - Redacted
+
+Networking Lead
+   - Redacted
+
+Ui Leads
+   - Redacted and Redacted
+
+
+We sincerly hope you enjoy our game.
+
+So Go Forth And Conquer!
+
+"
+autowrap_mode = 3
 
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

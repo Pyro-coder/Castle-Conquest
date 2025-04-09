@@ -29,6 +29,9 @@ var move_turn_index: int = 0
 
 var game_state = GameState.TURN_ORDER
 
+#Is pause menu visible
+var is_pause_visible =  false
+
 # Helper: Return our role (1 for host, 2 for client) based on MultiplayerAPI.
 func get_local_player_role() -> int:
 	var uid = get_tree().get_multiplayer().get_unique_id()
@@ -50,6 +53,24 @@ func _ready() -> void:
 	print("GameController ready on unique id: ", get_tree().get_multiplayer().get_unique_id())
 	NetworkManager.connect("connection_established", Callable(self, "setup_game"))
 	message_label.text = "Waiting for network connection..."
+
+
+func togglePause():
+	if is_pause_visible: 
+		$PausedMenu.visible = false
+		is_pause_visible = false
+		
+	else: 
+		is_pause_visible = true
+		$PausedMenu.visible = true
+
+func _input(event):
+	# Check if the event is a key press
+	if event is InputEventKey and event.pressed:
+	# Check if the key pressed is 'P' or 'Escape'
+		if event.as_text() == "P" or Input.is_action_pressed("ui_cancel"):
+			togglePause()
+				
 
 #############################################
 # SETUP GAME – Host always goes first.
@@ -88,6 +109,7 @@ func start_tile_placement_phase() -> void:
 		ingameui.UpdateMainLabel("Conquer")
 		game_state = GameState.INITIAL_PLACEMENT
 		init_turn_index = 0
+		ingameui.update_phase_num(2)
 		start_initial_placement_phase()
 
 func update_tile_turn() -> void:
@@ -186,6 +208,8 @@ func start_initial_placement_phase() -> void:
 		game_state = GameState.MOVE_PHASE
 		move_turn_index = 0
 		start_move_phase()
+		ingameui.update_phase_num(3)
+		
 
 func process_initial_input(q: int, r: int) -> void:
 	var valid_moves = get_valid()

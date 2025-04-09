@@ -446,17 +446,16 @@ material = SubResource("ShaderMaterial_3vuke")
 position = Vector2(206, 454)
 scale = Vector2(0.178466, 0.178466)
 texture = ExtResource("27_8utw6")
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="."]
+[node name="message_label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 439.0
-offset_right = 361.0
+offset_left = 36.0
+offset_top = 442.0
+offset_right = 415.0
 offset_bottom = 483.0
 theme_override_fonts/font = ExtResource("3_vh2kd")
 theme_override_font_sizes/font_size = 20
-text = "Hint: [Space] to rotate tile placement"
-horizontal_alignment = 1
 
 [node name="Goldwood2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tcoe6")

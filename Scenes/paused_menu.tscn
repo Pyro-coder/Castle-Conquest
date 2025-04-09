@@ -55,6 +55,7 @@ z_index = 2
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 theme_override_fonts/font = ExtResource("3_npcx0")
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 flat = true
 
@@ -69,10 +70,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -65.5
-offset_top = -142.0
-offset_right = 65.5
-offset_bottom = 56.0
+offset_left = -86.0
+offset_top = -154.0
+offset_right = 89.0
+offset_bottom = 73.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/v_separation = 10
@@ -80,7 +81,7 @@ theme_override_constants/v_separation = 10
 [node name="Label" type="Label" parent="GridContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_npcx0")
-theme_override_font_sizes/font_size = 41
+theme_override_font_sizes/font_size = 40
 text = "Paused"
 horizontal_alignment = 1
 
@@ -90,7 +91,7 @@ theme_type_variation = &"FlatButton"
 theme_override_colors/font_hover_pressed_color = Color(0.988489, 0.656476, 7.70092e-07, 1)
 theme_override_colors/icon_hover_color = Color(0.804422, 0.55664, 1.92523e-07, 1)
 theme_override_fonts/font = ExtResource("3_npcx0")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 30
 text = "Resume Game"
 flat = true
 
@@ -98,7 +99,7 @@ flat = true
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 theme_override_fonts/font = ExtResource("3_npcx0")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 30
 text = "Help"
 flat = true
 
@@ -106,13 +107,21 @@ flat = true
 layout_mode = 2
 theme_type_variation = &"FlatButton"
 theme_override_fonts/font = ExtResource("3_npcx0")
-theme_override_font_sizes/font_size = 22
+theme_override_font_sizes/font_size = 30
 text = "Main Menu
 "
 flat = true
 expand_icon = true
 
+[connection signal="mouse_entered" from="GridContainer2/QuitBtn" to="." method="_on_quit_btn_mouse_entered"]
+[connection signal="mouse_exited" from="GridContainer2/QuitBtn" to="." method="_on_quit_btn_mouse_exited"]
 [connection signal="pressed" from="GridContainer2/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="mouse_entered" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_mouse_entered"]
+[connection signal="mouse_exited" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_mouse_exited"]
 [connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="mouse_entered" from="GridContainer/helpBtn" to="." method="_on_help_btn_mouse_entered"]
+[connection signal="mouse_exited" from="GridContainer/helpBtn" to="." method="_on_help_btn_mouse_exited"]
 [connection signal="pressed" from="GridContainer/helpBtn" to="." method="_on_help_btn_pressed"]
+[connection signal="mouse_entered" from="GridContainer/Back2MainBtn" to="." method="_on_back_2_main_btn_mouse_entered"]
+[connection signal="mouse_exited" from="GridContainer/Back2MainBtn" to="." method="_on_back_2_main_btn_mouse_exited"]
 [connection signal="pressed" from="GridContainer/Back2MainBtn" to="." method="_on_back_2_main_btn_pressed"]

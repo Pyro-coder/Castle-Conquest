@@ -30,6 +30,8 @@ var move_turn_index: int = 0
 # Overall game state.
 var game_state = GameState.TURN_ORDER
 
+var is_pause_visible = false
+
 func _ready():
 	# Create game engine.
 	game_engine = GameEngine.new()
@@ -39,6 +41,22 @@ func _ready():
 	GlobalVars.is_local_pvp = true
 	# Setup the game with fixed turn order: Player 1 always goes first.
 	setup_game()
+
+func _input(event):
+	# Check if the event is a key press
+	if event is InputEventKey and event.pressed:
+	# Check if the key pressed is 'P' or 'Escape'
+		if event.as_text() == "P" or Input.is_action_pressed("ui_cancel"):
+			togglePause()
+			
+func togglePause():
+	if is_pause_visible: 
+		$PausedMenu.visible = false
+		is_pause_visible = false
+		
+	else: 
+		is_pause_visible = true
+		$PausedMenu.visible = true
 
 func _on_wait_timeout() -> void:
 	pass

@@ -1,25 +1,14 @@
 extends Control
 
-@onready var settingsBtn = $GridContainer/SettingsBtn
-@onready var quitBtn = $GridContainer/QuitBtn
-@onready var mainBtn = $GridContainer2/Back2MainBtn
+@onready var helpBtn = $GridContainer/helpBtn
+@onready var quitBtn = $GridContainer2/QuitBtn
+@onready var mainBtn = $GridContainer/Back2MainBtn
 @onready var resumeBtn = $GridContainer/ResumeBtn
 @onready var buttonGrid = $GridContainer
 
 func _ready() -> void:
-	buttonGrid.set_position(Vector2(510,190))
-	if resumeBtn:
-		resumeBtn.connect("mouse_entered", resumeBtnHvrd)
-		resumeBtn.connect("mouse_exited", resumeBtnExt)
-	if settingsBtn:
-		settingsBtn.connect("mouse_entered", settingsBtnHvrd)
-		settingsBtn.connect("mouse_exited", settingsBtnExt)
-	if quitBtn:
-		quitBtn.connect("mouse_entered", quitBtnHvrd)
-		quitBtn.connect("mouse_exited", quitBtnExt)
-	if mainBtn:
-		mainBtn.connect("mouse_entered", mainHvrd)
-		mainBtn.connect("mouse_exited", mainExt)
+	buttonGrid.set_position(Vector2(490,170))
+	
 
 func _on_resume_btn_pressed() -> void:
 	$buttonPress.play()
@@ -46,35 +35,42 @@ func _on_back_2_main_btn_pressed() -> void:
 	
 func togglePause():
 	get_parent().togglePause()
-	
-func resumeBtnHvrd() -> void:
-	if resumeBtn:
-		resumeBtn.scale = Vector2(1.1, 1.1)
-		
-func resumeBtnExt() -> void:
-	if resumeBtn:
-		resumeBtn.scale = Vector2(1, 1)
-		
-func settingsBtnHvrd() -> void:
-	if settingsBtn:
-		settingsBtn.scale = Vector2(1.1, 1.1)
 
-func settingsBtnExt() -> void:
-	if settingsBtn:
-		settingsBtn.scale = Vector2(1, 1)		
-		
-func quitBtnHvrd() -> void: 
-	if quitBtn:
-		quitBtn.scale = Vector2(1.1, 1.1)
 
-func quitBtnExt() -> void:
-	if quitBtn:
-		quitBtn.scale = Vector2(1, 1)
-		
-func mainHvrd() -> void:
-	if mainBtn:
-		mainBtn.scale = Vector2(1.1, 1.1)
+func _on_help_btn_mouse_entered() -> void:
+	helpBtn.modulate = Color(1.2, 1.2, 1.2) 
+	helpBtn.scale = Vector2(1.1, 1.1)
 
-func mainExt() -> void:
-	if mainBtn:
-		mainBtn.scale = Vector2(1, 1)
+
+func _on_help_btn_mouse_exited() -> void:
+	helpBtn.modulate = Color(1, 1, 1)
+	helpBtn.scale = Vector2(1, 1)
+
+
+func _on_back_2_main_btn_mouse_entered() -> void:
+	mainBtn.modulate = Color(1.2, 1.2, 1.2) 
+	mainBtn.scale = Vector2(1.1, 1.1)
+
+
+func _on_resume_btn_mouse_entered() -> void:
+	resumeBtn.modulate = Color(1.2, 1.2, 1.2) 
+	resumeBtn.scale = Vector2(1.1, 1.1)
+
+func _on_quit_btn_mouse_entered() -> void:
+	quitBtn.modulate = Color(1.2, 1.2, 1.2) 
+	quitBtn.scale = Vector2(1.1, 1.1)
+
+
+func _on_quit_btn_mouse_exited() -> void:
+	quitBtn.modulate = Color(1, 1, 1)
+	quitBtn.scale = Vector2(1, 1)
+
+
+func _on_resume_btn_mouse_exited() -> void:
+	resumeBtn.modulate = Color(1, 1, 1)
+	resumeBtn.scale = Vector2(1, 1)
+
+
+func _on_back_2_main_btn_mouse_exited() -> void:
+	mainBtn.modulate = Color(1, 1, 1)
+	mainBtn.scale = Vector2(1, 1)

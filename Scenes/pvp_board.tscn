@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnua2kocgyige"]
+[gd_scene load_steps=14 format=3 uid="uid://dnua2kocgyige"]
 
 [ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_mqndi"]
 [ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_bnwfp"]
 [ext_resource type="Script" uid="uid://dmw8ne13o1b3i" path="res://Scenes/p_v_p.gd" id="3_mqndi"]
+[ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="4_bnwfp"]
 [ext_resource type="PackedScene" uid="uid://7p8dxs2ubagd" path="res://Scenes/Menus/in_game_ui.tscn" id="4_jw4eg"]
 [ext_resource type="Texture2D" uid="uid://b456wrsaj5ixr" path="res://Assets/WoodGui.png" id="5_y1gag"]
 [ext_resource type="Script" uid="uid://umip4dnym153" path="res://Scenes/piece_selection_slider.gd" id="6_vjqkl"]
@@ -44,6 +45,10 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_mqndi")
+
+[node name="PausedMenu" parent="GameControl" instance=ExtResource("4_bnwfp")]
+visible = false
+layout_mode = 1
 
 [node name="InGameUI" parent="GameControl" instance=ExtResource("4_jw4eg")]
 layout_mode = 1

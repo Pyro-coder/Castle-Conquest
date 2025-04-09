@@ -119,6 +119,7 @@ func process_tile_input(q: int, r: int, orientation: int) -> void:
 		update_tile_placement(q, r, orientation)
 		tile_turn_index += 1
 		update_tile_turn()  # Advance the turn.
+		
 	else:
 		message_label.text = "Invalid tile placement. Try again."
 
@@ -131,9 +132,11 @@ func update_tile_placement(q: int, r: int, orientation: int) -> void:
 		p1Tilesleft -= 1
 		ingameui.erase_blue_hex(p1Tilesleft)
 		ingameui.UpdateP1Label("Tiles left: %d" % p1Tilesleft)
+		ingameui.P1TurnCompleteAnimation()
 	else:
 		p2Tilesleft -= 1
 		ingameui.erase_red_hex(p2Tilesleft)
+		ingameui.P2TurnCompleteAnimation()
 		ingameui.UpdateP2Label("Tiles left: %d" % p2Tilesleft)
 	board.update_from_state(game_engine.GetCurrentBoardState())
 	
@@ -155,8 +158,12 @@ func rpc_tile_placement(q: int, r: int, orientation: int) -> void:
 		p1Tilesleft -= 1
 		ingameui.erase_blue_hex(p1Tilesleft)
 		ingameui.UpdateP1Label("Tiles left: %d" % p1Tilesleft)
+		ingameui.P1TurnCompleteAnimation()
+		
 	else:
 		p2Tilesleft -= 1
+		ingameui.P2TurnCompleteAnimation()
+		
 		ingameui.erase_red_hex(p2Tilesleft)
 		ingameui.UpdateP2Label("Tiles left: %d" % p2Tilesleft)
 	# Advance the turn counter and update UI accordingly.
@@ -269,9 +276,11 @@ func update_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 	if get_local_player_role() == 1:
 		p1TilesCovered += 1
 		ingameui.UpdateP1Label("Tiles Conquered %d" % p1TilesCovered)
+		ingameui.P1TurnCompleteAnimation()
 	else:
 		p2TilesCovered += 1
 		ingameui.UpdateP2Label("Tiles Conquered %d" % p2TilesCovered)
+		ingameui.P2TurnCompleteAnimation()
 	board.update_from_state(game_engine.GetCurrentBoardState())
 	GlobalVars.player_turn = false
 	var remote_id = get_remote_peer_id()
@@ -289,8 +298,10 @@ func rpc_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 	if remote_role == 1:
 		p1TilesCovered += 1
 		ingameui.UpdateP1Label("Tiles Conquered %d" % p1TilesCovered)
+		ingameui.P1TurnCompleteAnimation()
 	else:
 		p2TilesCovered += 1
+		ingameui.P2TurnCompleteAnimation()
 		ingameui.UpdateP2Label("Tiles Conquered %d" % p2TilesCovered)
 	board.update_from_state(game_engine.GetCurrentBoardState())
 	

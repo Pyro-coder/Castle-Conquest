@@ -6,7 +6,7 @@ enum GameState { TURN_ORDER, TILE_PLACEMENT, INITIAL_PLACEMENT, MOVE_PHASE, GAME
 # UI nodes.
 @onready var message_label: Label = $MessageLabel
 
-@onready var wait_timer = $Wait_Timer
+
 
 @onready var board: Node = get_parent()  # Assumes the parent node contains an update_from_state(state) method.
 
@@ -47,6 +47,7 @@ var p1won: bool
 var is_pause_visible = false
 func _ready():
 
+	
 	first_player_first = GlobalVars.first_player_moves_first
 	game_engine = GameEngine.new()
 	var ingameui = $InGameUI
@@ -61,8 +62,7 @@ func _ready():
 
 	# Setup the game with the desired difficulty.
 	setup_game()  # For example, using difficulty level 3.
-func _on_wait_timeout() -> void:
-	pass
+
 	
 
 func togglePause():
@@ -184,7 +184,7 @@ func start_tile_placement():
 		await process_tile_turn()  # Make sure to await if process_tile_turn is async.
 	else:
 		# When tile placement rounds are complete, start initial piece placement.
-
+		ingameui.update_phase_num(2)
 		ingameui.UpdateMainLabel("Conquer")
 		game_state = GameState.INITIAL_PLACEMENT
 		init_turn_index = 0
@@ -326,6 +326,8 @@ func _on_BestInitialPlacementReady(result):
 #############################################
 
 func start_move_phase():
+	ingameui.update_phase_num(3)
+	
 	message_label.text = "Move Phase - Starting Moves"
 	move_turn_index = 0
 	process_move_turn()

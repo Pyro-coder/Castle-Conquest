@@ -18,13 +18,13 @@ var tempColor
 func _ready() -> void:
 	if GlobalVars.difficulty == 1:
 		AudioPlayer.play_easy_music()
-		print("e")
+		
 	if GlobalVars.difficulty == 2:
-		print("m")
+		
 		
 		AudioPlayer.play_medium_music()
 	if GlobalVars.difficulty == 3:
-		print("d")
+		
 		AudioPlayer.play_hard_music()
 	
 	_generate_grid()

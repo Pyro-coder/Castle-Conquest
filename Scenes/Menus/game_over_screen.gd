@@ -16,9 +16,9 @@ func set_title(winner: int):
 		0:
 			title.text = "Its a Tie"
 		1:
-			title.text = "Player One Conquers All!"
+			title.text = "Blue Player Conquers All!"
 		2:
-			title.text = "Player Two Conquers All!"
+			title.text = "Red Player Conquers All!"
 		
 
 func _on_restart_btn_pressed() -> void:

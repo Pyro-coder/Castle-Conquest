@@ -126,6 +126,7 @@ func reset_globals():
 	GlobalVars.num_pieces_selected = 8
 	GlobalVars.first_player_moves_first = 0
 	GlobalVars.is_coin_done_spinning = 1
+	GlobalVars.is_local_pvai = false
 	GlobalVars.is_local_pvp = false
 	GlobalVars.is_host = true
 	GlobalVars.game_code = ""

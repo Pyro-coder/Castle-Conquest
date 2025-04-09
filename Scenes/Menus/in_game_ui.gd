@@ -22,7 +22,7 @@ var noglow = 0.0
 
 var shaderMaterial : ShaderMaterial
 
-
+var isP1Turn = GlobalVars.first_player_moves_first
 func _ready() -> void:
 	wait_timer.start()
 	
@@ -68,8 +68,12 @@ func P1LoseAnimation():
 	blueSprite.play("death")
 
 func P1TurnCompleteAnimation():
+	
+	$Goldwood2/redPanelContainer.visible = false
+	$Goldwood/bluePanelContainer.visible = true
 	blueSprite.play("attack")
 	redSprite.play("idle")
+	
 	isBlueTurn = false
 	updateShaderVisibility()
 	
@@ -78,8 +82,12 @@ func P2LoseAnimation():
 	redSprite.play("death")
 	
 func P2TurnCompleteAnimation():
+	
+	$Goldwood2/redPanelContainer.visible = true
+	$Goldwood/bluePanelContainer.visible = false
 	redSprite.play("attack")
 	blueSprite.play("idle")
+
 	isBlueTurn = true
 	updateShaderVisibility()
 
@@ -165,4 +173,8 @@ func _on_wait_timer_timeout() -> void:
 			message_label.text = "Hint: Arrow Keys Move The Camera"
 			
 	wait_timer.start()
+	
+
+func _on_timer_timeout() -> void:
+	pass
 	

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2kt847vmj8ei"]
+[gd_scene load_steps=11 format=3 uid="uid://d2kt847vmj8ei"]
 
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="1_bjvkm"]
 [ext_resource type="Script" uid="uid://deg8hu3fgop71" path="res://Scenes/Menus/game_over_screen.gd" id="1_h4tbg"]
 [ext_resource type="Texture2D" uid="uid://bgywno6nwyrjj" path="res://Assets/wood_assets/wood_message.png" id="3_6w14e"]
 [ext_resource type="Texture2D" uid="uid://dn62p177n757l" path="res://Assets/InGameUIAssets/banners-large-cropped-main.png" id="4_1stjc"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="4_st1k0"]
 [ext_resource type="AudioStream" uid="uid://clyqrff7465s5" path="res://Assets/Music/You won.wav" id="5_hy17y"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hy17y"]
@@ -11,6 +12,10 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_st1k0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3eorv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3eorv"]
+shader = ExtResource("4_st1k0")
+shader_parameter/amount = 40
 
 [node name="GameOverScreen" type="CanvasLayer"]
 script = ExtResource("1_h4tbg")
@@ -106,7 +111,8 @@ scale = Vector2(0.0362568, 0.147954)
 texture = ExtResource("3_6w14e")
 
 [node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer"]
-position = Vector2(542, 77)
+material = SubResource("ShaderMaterial_3eorv")
+position = Vector2(551.5, 61)
 scale = Vector2(1.95962, 1.46918)
 texture = ExtResource("4_1stjc")
 

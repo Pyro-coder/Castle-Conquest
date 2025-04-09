@@ -4,6 +4,7 @@ extends Control
 @onready var twoPlayer = $MenuTemplate/VBoxContainer/TwoPlayerButton
 @onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if onePlayer:

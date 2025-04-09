@@ -70,6 +70,7 @@ func _on_conquer_button_pressed() -> void:
 			GlobalVars.difficulty = 3
 			
 	$MenuTemplate.buttonPress()
+	GlobalVars.is_local_pvai = true
 	get_tree().change_scene_to_file("res://Scenes/Menus/coinflipscreen.tscn")
 	
 	#func set_water_oscillation_speed(speed):

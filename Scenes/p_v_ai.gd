@@ -67,12 +67,12 @@ func _ready():
 
 func togglePause():
 	if is_pause_visible: 
-		$PausedMenu.visible = false
+		$CanvasLayer/PausedMenu.visible = false
 		is_pause_visible = false
 		
 	else: 
 		is_pause_visible = true
-		$PausedMenu.visible = true
+		$CanvasLayer/PausedMenu.visible = true
 
 func _input(event):
 	# Check if the event is a key press

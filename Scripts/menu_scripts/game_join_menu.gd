@@ -42,6 +42,7 @@ func _on_conquer_button_pressed() -> void:
 		print("local ", gamemode)
 		$MenuTemplate/VBoxContainer/Join/Error.visible = false
 		$MenuTemplate/VBoxContainer/Host/Error.visible = false
+		GlobalVars.is_local_pvp = true
 		get_tree().change_scene_to_file("res://Scenes/pvp_board.tscn")
 	elif gamemode == 1:
 		$MenuTemplate/VBoxContainer/Host/Error.visible = false

@@ -38,6 +38,8 @@ var tile_map = {}
 var hoveredTile = Vector2i(0,0)
 var tempColor
 
+var isPauseHovered = false
+
 @onready var control_node = get_node("GameControl")
 
 
@@ -65,13 +67,16 @@ func _input(event):
 		OnBoardPlaceHover(hoveredTile,Color(0.8, 0.1, 0.1, 1.0))
 			
 
-
+func updatePauseHovered(isHovered):
+	if isHovered:
+		isPauseHovered = true
+	else:
+		isPauseHovered = false
 func OnBoardPlaceHover(hoveredtilecoords,color):
 	# Get valid moves for tile coloring
 	var valid_moves = control_node.get_valid()
 	var is_valid = false
 	hoveredTile = hoveredtilecoords
-	
 	if orientation == "vert":
 		for move in valid_moves:
 			if move["q"] == hoveredtilecoords.x and move["r"] == hoveredtilecoords.y and move["orientation"] == 1:
@@ -141,14 +146,14 @@ func OnBoardPlaceClick(hoveredtilecoords):
 	if (control_node.tile_turn_index == 0 and control_node.tile_round == 1):
 		hoveredTile.x = 0
 		hoveredTile.y = 0
+	if not isPauseHovered:	
+		if orientation == "vert":
+			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 1)
+		if orientation == "right":
+			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 0)
+		if orientation == "left":
+			control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 2)
 		
-	if orientation == "vert":
-		control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 1)
-	if orientation == "right":
-		control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 0)
-	if orientation == "left":
-		control_node.process_tile_input(hoveredTile.x, hoveredTile.y, 2)
-	
 
 func isNotForest(neighbor):
 	if neighbor.get_child(0).has_method("type"):

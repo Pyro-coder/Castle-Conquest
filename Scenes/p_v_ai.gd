@@ -10,7 +10,7 @@ enum GameState { TURN_ORDER, TILE_PLACEMENT, INITIAL_PLACEMENT, MOVE_PHASE, GAME
 
 @onready var board: Node = get_parent()  # Assumes the parent node contains an update_from_state(state) method.
 
-@onready var pauseBtn = $pauseBtn
+@onready var pauseBtn = $CanvasLayer2/pauseBtn
 # Game and AI objects.
 var game_engine: GameEngine       # Your GameEngine instance.
 var difficulty: int
@@ -68,10 +68,15 @@ func _ready():
 func togglePause():
 	if is_pause_visible: 
 		$CanvasLayer/PausedMenu.visible = false
+		$CanvasLayer/PanelContainer.visible= false
+		$CanvasLayer/PanelContainer.mouse_filter = MOUSE_FILTER_IGNORE
 		is_pause_visible = false
-		
+		$CanvasLayer2/pauseBtn.visible = true
 	else: 
 		is_pause_visible = true
+		$CanvasLayer2/pauseBtn.visible = false
+		$CanvasLayer/PanelContainer.mouse_filter = MOUSE_FILTER_STOP
+		$CanvasLayer/PanelContainer.visible= true
 		$CanvasLayer/PausedMenu.visible = true
 
 func _input(event):
@@ -86,9 +91,11 @@ func pauseHvrd() -> void:
 	if pauseBtn: 
 		pauseBtn.modulate = Color(1.2, 1.2, 1.2)
 		pauseBtn.scale = Vector2(.23, .23)
+		board.updatePauseHovered(true)
 		
 func pauseExt() -> void:
 	if pauseBtn:
+		board.updatePauseHovered(false)
 		pauseBtn.modulate = Color(1, 1, 1)
 		pauseBtn.scale = Vector2(.2, .2)
 		
@@ -421,3 +428,9 @@ func get_valid():
 			return game_engine.GodotGetValidMoves(1)
 		_:
 			pass
+
+
+func _on_pause_btn_pressed() -> void:
+	print("Pause Pressed")
+	
+	togglePause()

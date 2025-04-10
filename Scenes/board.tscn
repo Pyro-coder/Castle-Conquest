@@ -50,6 +50,11 @@ script = ExtResource("4_npwrj")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GameControl"]
 
+[node name="PanelContainer" type="PanelContainer" parent="GameControl/CanvasLayer"]
+visible = false
+offset_right = 1160.0
+offset_bottom = 653.0
+
 [node name="PausedMenu" parent="GameControl/CanvasLayer" instance=ExtResource("4_d7frl")]
 visible = false
 anchors_preset = 8
@@ -61,7 +66,6 @@ offset_left = -576.0
 offset_top = -324.0
 offset_right = -576.0
 offset_bottom = -324.0
-mouse_filter = 2
 
 [node name="InGameUI" parent="GameControl" instance=ExtResource("8_lqe6w")]
 layout_mode = 1
@@ -119,9 +123,17 @@ offset_top = -4.0
 offset_right = 279.0
 offset_bottom = 36.0
 
-[node name="pauseBtn" type="TextureButton" parent="GameControl"]
+[node name="CanvasLayer2" type="CanvasLayer" parent="GameControl"]
+
+[node name="pauseBtnPanel" type="PanelContainer" parent="GameControl/CanvasLayer2"]
+visible = false
+offset_left = 559.0
+offset_top = 595.0
+offset_right = 594.0
+offset_bottom = 631.0
+
+[node name="pauseBtn" type="TextureButton" parent="GameControl/CanvasLayer2"]
 top_level = true
-layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -145,3 +157,6 @@ volume_db = 2.0
 stream = ExtResource("9_vw4oq")
 
 [connection signal="timeout" from="GameControl/InGameUI/Wait_Timer" to="GameControl/InGameUI" method="_on_wait_timer_timeout"]
+[connection signal="mouse_entered" from="GameControl/CanvasLayer2/pauseBtn" to="GameControl" method="pauseHvrd"]
+[connection signal="mouse_exited" from="GameControl/CanvasLayer2/pauseBtn" to="GameControl" method="pauseExt"]
+[connection signal="pressed" from="GameControl/CanvasLayer2/pauseBtn" to="GameControl" method="_on_pause_btn_pressed"]

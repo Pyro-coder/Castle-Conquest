@@ -2,7 +2,10 @@ extends Node
 
 signal connection_established
 signal connection_timeout
+signal move_timeout
 
+@onready var move_timer: Timer
+var move_timeout_duration := 20.0  # Seconds allowed per move
 var network_peer: ENetMultiplayerPeer
 var udp_broadcaster := PacketPeerUDP.new()
 var broadcast_port := 54545  # The UDP port to send broadcasts
@@ -21,9 +24,43 @@ func _ready() -> void:
 	print("NetworkManager ready.")
 	var multiplayer = get_tree().get_multiplayer()
 	# Connect signals for when peers connect.
+	setup_move_timer()
+	
 	multiplayer.connect("peer_connected", Callable(self, "_on_peer_connected"))
 	multiplayer.connect("connected_to_server", Callable(self, "_on_connected_to_server"))
 	print("Local unique id in NetworkManager: ", multiplayer.get_unique_id())
+	
+
+
+func setup_move_timer() -> void:
+	if move_timer == null:
+		move_timer = Timer.new()
+		add_child(move_timer)
+	move_timer.wait_time = move_timeout_duration
+	move_timer.one_shot = true
+	move_timer.timeout.connect(_on_move_timeout)
+
+
+func reset_move_timer() -> void:
+	if move_timer != null:
+		move_timer.stop()
+		move_timer.start()
+	else:
+		print("Warning: move_timer is null. Cannot reset.")
+
+
+func _on_move_timeout() -> void:
+	print("Move timeout reached! No move made in time.")
+	emit_signal("move_timeout")
+
+	# Handle the timeout logic
+	if get_tree().get_multiplayer().is_server():
+		# Host (server) is handling the timeout for the current player
+		print("Host move timeout – handle forfeit or skip")
+	else:
+		# Client's move timeout – the client should also trigger the timeout handling.
+		print("Client move timeout – handle forfeit or skip")
+
 
 # Called by the host.
 func host_game(join_code: String) -> void:
@@ -62,7 +99,8 @@ func start_broadcasting(port: int, join_code: String) -> void:
 			# Stop broadcasting once the host is connected
 			udp_broadcaster.set_broadcast_enabled(false)
 			print("Host is connected. Stopped broadcasting.")
-			broadcast_timer.stop()  # Stop the broadcast timer as well
+			broadcast_timer.stop() 
+			# Stop the broadcast timer as well
 	)
 	add_child(broadcast_timer)
 	broadcast_timer.start()
@@ -197,7 +235,7 @@ func _on_connection_timeout() -> void:
 			emit_signal("connection_timeout")
 			if status_label:
 				status_label.text = "Timeout: Failed to connect to host."
-	queue_free()
+	#queue_free()
 
 # Called when a client connects to the host.
 func _on_peer_connected(id: int) -> void:

@@ -24,19 +24,19 @@ namespace BattleSheepCore.Game
 
 		public int BoardSize => boardSize;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GameEngine"/> class.
-        /// </summary>
-        /// <param name="boardSize">The size of the game board.</param>
-        /// <param name="players">The list of players participating in the game.</param>
-        public GameEngine()
-        {
-            this.boardSize = 24;
-            var humanPlayer = new Player();
-            humanPlayer.Initialize(1, "Human");
-            var aiPlayer = new Player();
-            aiPlayer.Initialize(2, "AI");
-            var players = new List<Player> { humanPlayer, aiPlayer };
+		/// <summary>
+		/// Initializes a new instance of the <see cref="GameEngine"/> class.
+		/// </summary>
+		/// <param name="boardSize">The size of the game board.</param>
+		/// <param name="players">The list of players participating in the game.</param>
+		public GameEngine()
+		{
+			this.boardSize = 24;
+			var humanPlayer = new Player();
+			humanPlayer.Initialize(1, "Human");
+			var aiPlayer = new Player();
+			aiPlayer.Initialize(2, "AI");
+			var players = new List<Player> { humanPlayer, aiPlayer };
 
 			_gameController = new GameController(boardSize, players);
 		}
@@ -313,55 +313,55 @@ namespace BattleSheepCore.Game
 
 		}
 
-        /// <summary>
-        /// Gets the total number of pieces placed by player 1 and player 2.
-        /// </summary>
-        /// <returns>
-        /// A tuple containing the piece counts as (player1PieceCount, player2PieceCount).
-        /// </returns>
-        public (int player1PieceCount, int player2PieceCount) GetPlayerPieceCounts()
-        {
-            int player1Count = 0;
-            int player2Count = 0;
+		/// <summary>
+		/// Gets the total number of pieces placed by player 1 and player 2.
+		/// </summary>
+		/// <returns>
+		/// A tuple containing the piece counts as (player1PieceCount, player2PieceCount).
+		/// </returns>
+		public (int player1PieceCount, int player2PieceCount) GetPlayerPieceCounts()
+		{
+			int player1Count = 0;
+			int player2Count = 0;
 
-            // Retrieve the current board state.
-            var boardState = _gameController.GetCurrentBoardState();
+			// Retrieve the current board state.
+			var boardState = _gameController.GetCurrentBoardState();
 
-            // Aggregate the piece counts based on the playerId.
-            foreach (var cell in boardState)
-            {
-                if (cell.playerId == 1)
-                {
-                    player1Count ++;
-                }
-                else if (cell.playerId == 2)
-                {
-                    player2Count ++;
-                }
-            }
+			// Aggregate the piece counts based on the playerId.
+			foreach (var cell in boardState)
+			{
+				if (cell.playerId == 1)
+				{
+					player1Count ++;
+				}
+				else if (cell.playerId == 2)
+				{
+					player2Count ++;
+				}
+			}
 
-            return (player1Count, player2Count);
-        }
+			return (player1Count, player2Count);
+		}
 
 		// Returns -1 if no winner, 0 if tie, 1 if 1 won, and 2 if two won
-        public int GetWinner()
+		public int GetWinner()
 		{
-            // Check which player can still move
-            bool p1CanMove = CanPlayerMove(1);
-            bool p2CanMove = CanPlayerMove(2);
-            if (p1CanMove ^ p2CanMove) // XOR
-            {
+			// Check which player can still move
+			bool p1CanMove = CanPlayerMove(1);
+			bool p2CanMove = CanPlayerMove(2);
+			if (p1CanMove ^ p2CanMove) // XOR
+			{
 				GD.Print(p1CanMove ? 1 : 2, " can still move");
-                return p1CanMove ? 1 : 2;
-            }
+				return p1CanMove ? 1 : 2;
+			}
 
 
-            var (player1Size, player2Size) = GetPlayerPieceCounts();
+			var (player1Size, player2Size) = GetPlayerPieceCounts();
 
-            GD.Print("P1 size", player1Size);
-            GD.Print("P2 size", player2Size);
+			GD.Print("P1 size", player1Size);
+			GD.Print("P2 size", player2Size);
 
-            if (player1Size > player2Size)
+			if (player1Size > player2Size)
 			{
 				return 1;
 			}

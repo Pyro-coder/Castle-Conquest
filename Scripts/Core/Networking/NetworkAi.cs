@@ -29,7 +29,10 @@ namespace Capstone25.Scripts.Core.Networking
 			public string State { get; set; }
 			public string action_id { get; set; }
 
-			public string player = "Castle Conquest";
+			public string player = "castleconquest";
+
+			public string token = "w_2jZ-tsd7MQFrd2Fs9K3XMKrSyJGDJ6DDz3JxQSjVI";
+
 
 			public GameEngine gameEngine = new GameEngine();
 
@@ -215,11 +218,13 @@ namespace Capstone25.Scripts.Core.Networking
 			{
 				string @event = "mirror";
 				string player = game.player;
+				string token = game.token;
 
 				var requestData = new
 				{
 					@event,
-					player
+					player,
+					token
 				};
 
 				string json = JsonConvert.SerializeObject(requestData);
@@ -240,11 +245,13 @@ namespace Capstone25.Scripts.Core.Networking
 
 				int action_id = actionId;
 				string player = game.player;
+				string token = game.token;
 
 				var requestData = new
 				{
 					action,
 					player,
+					token,
 					action_id
 				};
 

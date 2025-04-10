@@ -32,6 +32,8 @@ var game_state = GameState.TURN_ORDER
 #Is pause menu visible
 var is_pause_visible =  false
 
+var opponent_of_timeout: int = 0
+
 # Helper: Return our role (1 for host, 2 for client) based on MultiplayerAPI.
 func get_local_player_role() -> int:
 	var uid = get_tree().get_multiplayer().get_unique_id()
@@ -53,7 +55,19 @@ func _ready() -> void:
 	print("GameController ready on unique id: ", get_tree().get_multiplayer().get_unique_id())
 	NetworkManager.connect("connection_established", Callable(self, "setup_game"))
 	message_label.text = "Waiting for network connection..."
+	NetworkManager.connect("move_timeout", Callable(self, "_on_move_timer_timeout"))
 
+func _on_move_timer_timeout():
+	var current_player_id = turn_order[move_turn_index].Id
+	var opponent_id = get_opponent_id(current_player_id)
+	#if multiplayer.get_unique_id() == current_player_id:
+	print(current_player_id, " ran out of time!")
+	opponent_of_timeout = current_player_id  # Set the player who timed out
+	rpc_id(opponent_id, "notify_timeout")
+	end_game()  # End the game after timeout
+
+func get_opponent_id(player_id: int) -> int:
+	return 2 if player_id == 1 else 1
 
 func togglePause():
 	if is_pause_visible: 
@@ -77,6 +91,7 @@ func _input(event):
 #############################################
 func setup_game() -> void:
 	# For PvP, force the host to be Player 1.
+	
 	var human_player = Player.new()
 	human_player.Initialize(1, "Player 1")
 	var remote_player = Player.new()
@@ -88,7 +103,6 @@ func setup_game() -> void:
 	game_engine.StartGame()
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
-	
 	# Transition to tile placement.
 	game_state = GameState.TILE_PLACEMENT
 	tile_round = 1
@@ -166,8 +180,14 @@ func update_tile_placement(q: int, r: int, orientation: int) -> void:
 	var remote_id = get_remote_peer_id()
 	if remote_id != 0:
 		rpc_id(remote_id, "rpc_tile_placement", q, r, orientation)
+		rpc_reset_move_timer()
 	else:
 		print("Warning: No remote peer found when sending tile placement.")
+
+@rpc
+func notify_timeout() -> void:
+	print("Timeout notification received by the other player!")
+	end_game()
 
 @rpc("any_peer", "reliable")
 func rpc_tile_placement(q: int, r: int, orientation: int) -> void:
@@ -191,6 +211,12 @@ func rpc_tile_placement(q: int, r: int, orientation: int) -> void:
 	# Advance the turn counter and update UI accordingly.
 	tile_turn_index += 1
 	update_tile_turn()
+
+
+@rpc("any_peer", "call_local")
+func rpc_reset_move_timer():
+	NetworkManager.reset_move_timer()
+
 
 #############################################
 # INITIAL PIECE PLACEMENT PHASE
@@ -237,6 +263,7 @@ func update_initial_placement(q: int, r: int) -> void:
 	var remote_id = get_remote_peer_id()
 	if remote_id != 0:
 		rpc_id(remote_id, "rpc_initial_placement", q, r)
+		rpc_reset_move_timer()
 	else:
 		print("Warning: No remote peer found when sending initial placement.")
 
@@ -310,6 +337,7 @@ func update_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 	var remote_id = get_remote_peer_id()
 	if remote_id != 0:
 		rpc_id(remote_id, "rpc_move", q, r, num_pieces, direction)
+		rpc_reset_move_timer()
 	else:
 		print("Warning: No remote peer found when sending move.")
 
@@ -345,18 +373,26 @@ func end_game():
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
 	
-	# Determine the winner using the game engine's getWinner() function.
-	var winner = game_engine.GetWinner()
-	
-	print("winner: ", winner)
+	var winner
+	if opponent_of_timeout != 0:
+		# If a player timed out, the opponent wins
+		winner = opponent_of_timeout
+		print("Winner due to timeout: Player %d" % winner)
+	else:
+		# Determine the winner using the game engine's getWinner() function
+		winner = game_engine.GetWinner()
+		print("Winner: Player %d" % winner)
 	
 	# Load and display the game over scene.
 	var game_over_scene_packed = load("res://Scenes/Menus/game_over_screen.tscn")
 	var game_over_scene_instance = game_over_scene_packed.instantiate()
 	add_child(game_over_scene_instance)
 	game_over_scene_instance.set_title(winner)
+	
 	self.visible = false
 	GlobalVars.is_host = true
+	NetworkManager.queue_free()
+
 
 func get_valid() -> Array:
 	match game_state:

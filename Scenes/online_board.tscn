@@ -54,7 +54,6 @@ offset_bottom = 40.0
 script = ExtResource("3_eafhi")
 
 [node name="PausedMenu" parent="GameControl" instance=ExtResource("4_riaai")]
-visible = false
 layout_mode = 1
 
 [node name="InGameUI" parent="GameControl" instance=ExtResource("4_1l3qu")]

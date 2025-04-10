@@ -312,8 +312,6 @@ namespace BattleSheepCore.Game
 			_gameController.changeNotFirstTilePlacement();
 
 		}
-<<<<<<< Updated upstream
-=======
 
 		/// <summary>
 		/// Gets the total number of pieces placed by player 1 and player 2.
@@ -397,6 +395,5 @@ namespace BattleSheepCore.Game
 				}
 			}  
 		}
->>>>>>> Stashed changes
 	}
 }

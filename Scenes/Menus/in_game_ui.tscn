@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://7p8dxs2ubagd"]
+[gd_scene load_steps=79 format=3 uid="uid://7p8dxs2ubagd"]
 
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
 [ext_resource type="Script" uid="uid://nf4wa8q2hem6" path="res://Scenes/Menus/in_game_ui.gd" id="1_hngs1"]
@@ -30,9 +30,15 @@
 [ext_resource type="Texture2D" uid="uid://duocof7cu22ox" path="res://Assets/InGameUIAssets/redIdle.png" id="20_efkxi"]
 [ext_resource type="Texture2D" uid="uid://dtaecqiunk8y5" path="res://Assets/InGameUIAssets/Knight_SW_die_6.png" id="20_i35tb"]
 [ext_resource type="Texture2D" uid="uid://clkvuyfepgwkh" path="res://Assets/InGameUIAssets/reddeath.png" id="26_3ltxf"]
-[ext_resource type="Texture2D" uid="uid://bgywno6nwyrjj" path="res://Assets/wood_assets/wood_message.png" id="27_8utw6"]
+[ext_resource type="Texture2D" uid="uid://dtmpl6i3baamy" path="res://Assets/User_Prompts/tile_0289.png" id="34_1yrx7"]
 [ext_resource type="PackedScene" uid="uid://bg76cqrxcrguy" path="res://Scenes/Menus/blue_hex.tscn" id="34_8nevq"]
+[ext_resource type="Texture2D" uid="uid://c6ir1sr3arqmv" path="res://Assets/User_Prompts/tile_0358.png" id="34_v8yos"]
 [ext_resource type="PackedScene" uid="uid://dsxuhh04gpjr0" path="res://Scenes/Menus/red_hex.tscn" id="35_1yrx7"]
+[ext_resource type="Texture2D" uid="uid://2qjpj8kjhn74" path="res://Assets/User_Prompts/tile_0392.png" id="35_3csir"]
+[ext_resource type="Texture2D" uid="uid://dkf63olnj65j7" path="res://Assets/User_Prompts/tile_0111.png" id="35_umu5n"]
+[ext_resource type="Texture2D" uid="uid://b3k2gm11kuvxc" path="res://Assets/User_Prompts/tile_0393.png" id="36_qiddt"]
+[ext_resource type="Texture2D" uid="uid://dr42d02jg5my4" path="res://Assets/User_Prompts/tile_0112.png" id="36_ro6vx"]
+[ext_resource type="Texture2D" uid="uid://ontlnt8rked6" path="res://Assets/User_Prompts/tile_0394.png" id="37_mmy45"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2vwgs"]
 shader = ExtResource("1_4t0ia")
@@ -133,10 +139,6 @@ animations = [{
 "name": &"idle",
 "speed": 5.0
 }]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vuke"]
-shader = ExtResource("1_4t0ia")
-shader_parameter/amount = 200
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tcoe6"]
 shader = ExtResource("1_4t0ia")
@@ -436,7 +438,7 @@ horizontal_alignment = 1
 
 [node name="Goldwood" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ynf82")
-position = Vector2(110, 515)
+position = Vector2(104, 545)
 scale = Vector2(0.595694, 0.595694)
 texture = ExtResource("6_8rrnw")
 
@@ -454,25 +456,9 @@ offset_top = -101.0
 offset_right = 102.0
 offset_bottom = 92.0
 
-[node name="WoodMessage" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_3vuke")
-position = Vector2(206, 610)
-rotation = 0.00613852
-scale = Vector2(0.178466, 0.178466)
-texture = ExtResource("27_8utw6")
-
-[node name="message_label" type="Label" parent="."]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 590.0
-offset_right = 415.0
-offset_bottom = 631.0
-theme_override_fonts/font = ExtResource("3_vh2kd")
-theme_override_font_sizes/font_size = 20
-
 [node name="Goldwood2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_tcoe6")
-position = Vector2(1050, 515)
+position = Vector2(1050, 545)
 scale = Vector2(0.595694, 0.595694)
 texture = ExtResource("6_8rrnw")
 
@@ -542,6 +528,96 @@ scale = Vector2(0.12, 0.12)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.6
+
+[node name="UI Explanation" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 268.0
+offset_right = 160.0
+offset_bottom = 419.0
+alignment = 1
+
+[node name="ESC" type="HBoxContainer" parent="UI Explanation"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI Explanation/ESC"]
+position = Vector2(-30, 11)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("34_1yrx7")
+
+[node name="Label" type="Label" parent="UI Explanation/ESC"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vh2kd")
+text = "Pause Game"
+
+[node name="Control3" type="Control" parent="UI Explanation"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="WASD" type="HBoxContainer" parent="UI Explanation"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI Explanation/WASD"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vh2kd")
+text = "Move Camera"
+
+[node name="WASD" type="Sprite2D" parent="UI Explanation/WASD"]
+position = Vector2(-179, 5)
+
+[node name="W" type="Sprite2D" parent="UI Explanation/WASD/WASD"]
+position = Vector2(150, -5.5)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("34_v8yos")
+
+[node name="A" type="Sprite2D" parent="UI Explanation/WASD/WASD"]
+position = Vector2(131, 15)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("35_3csir")
+
+[node name="S" type="Sprite2D" parent="UI Explanation/WASD/WASD"]
+position = Vector2(150, 15)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("36_qiddt")
+
+[node name="D" type="Sprite2D" parent="UI Explanation/WASD/WASD"]
+position = Vector2(169, 15)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("37_mmy45")
+
+[node name="Control2" type="Control" parent="UI Explanation"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="M1" type="HBoxContainer" parent="UI Explanation"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI Explanation/M1"]
+position = Vector2(-30, 11)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("35_umu5n")
+
+[node name="Label" type="Label" parent="UI Explanation/M1"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vh2kd")
+text = "Place Piece"
+
+[node name="Control" type="Control" parent="UI Explanation"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="M2" type="HBoxContainer" parent="UI Explanation"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="UI Explanation/M2"]
+position = Vector2(-30, 11)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("36_ro6vx")
+
+[node name="Label" type="Label" parent="UI Explanation/M2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_vh2kd")
+text = "Rotate Piece"
 
 [connection signal="animation_finished" from="Goldwood/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="Goldwood2/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -8,7 +8,7 @@ var red_shader: ShaderMaterial
 
 
 @onready var wait_timer = $Wait_Timer
-@onready var message_label = $message_label
+# @onready var message_label = $message_label
 var messageNum = 1
 var phaseNum = 1
 
@@ -115,64 +115,64 @@ func animation_finished() -> void:
 		blueSprite.play("idle")
 
 
-func _on_wait_timer_timeout() -> void:
-	message_label.add_theme_font_size_override("font_size",20)
-	
-	if phaseNum == 1:
-		
-		if messageNum == 1:
-	
-			message_label.text = "Hint: [Space] To Rotate Board Pieces"
-			messageNum = 2
-		elif messageNum == 2:
-			message_label.text = "Hint: Green Tiles Are Valid Placements"
-			messageNum = 3
-			 
-		elif messageNum == 3: 
-			messageNum = 4
-			message_label.text = "Hint: Left Click To Place Board Pieces"
-			
-		elif messageNum == 4:
-			messageNum = 1
-			message_label.text = "Hint: Arrow Keys Move The Camera"
-			
-		
-			
-	elif phaseNum == 2:
-		if messageNum == 1:
-			message_label.text = "Hint: Place Castle At Board’s Edge"
-			messageNum = 2
-		elif messageNum == 2:
-			message_label.text = "Hint: Green Tiles Are Valid Placements"
-			messageNum = 3
-			 
-		elif messageNum == 3: 
-			messageNum = 4
-			message_label.text = "Hint: Left Click To Place Castle"
-			
-		elif messageNum == 4:
-			messageNum = 1
-			message_label.text = "Hint: Arrow Keys Move The Camera"
-			
-		
-	elif phaseNum == 3:
-		if messageNum == 1:
-			message_label.text = "Hint: Left Click To Select Buildings"
-			messageNum = 2
-		elif messageNum == 2:
-			message_label.add_theme_font_size_override("font_size",15)
-			message_label.text = "Hint: Use Slider To Select Number Tokens To Move"
-			messageNum = 3
-			 
-		elif messageNum == 3: 
-			messageNum = 4
-			message_label.text = "Hint: Left Click To Move Buildings"
-			
-		elif messageNum == 4:
-			messageNum = 1
-			message_label.text = "Hint: Arrow Keys Move The Camera"
-			
-	wait_timer.start()
+#func _on_wait_timer_timeout() -> void:
+	#message_label.add_theme_font_size_override("font_size",20)
+	#
+	#if phaseNum == 1:
+		#
+		#if messageNum == 1:
+	#
+			#message_label.text = "Hint: [Space] To Rotate Board Pieces"
+			#messageNum = 2
+		#elif messageNum == 2:
+			#message_label.text = "Hint: Green Tiles Are Valid Placements"
+			#messageNum = 3
+			 #
+		#elif messageNum == 3: 
+			#messageNum = 4
+			#message_label.text = "Hint: Left Click To Place Board Pieces"
+			#
+		#elif messageNum == 4:
+			#messageNum = 1
+			#message_label.text = "Hint: Arrow Keys Move The Camera"
+			#
+		#
+			#
+	#elif phaseNum == 2:
+		#if messageNum == 1:
+			#message_label.text = "Hint: Place Castle At Board’s Edge"
+			#messageNum = 2
+		#elif messageNum == 2:
+			#message_label.text = "Hint: Green Tiles Are Valid Placements"
+			#messageNum = 3
+			 #
+		#elif messageNum == 3: 
+			#messageNum = 4
+			#message_label.text = "Hint: Left Click To Place Castle"
+			#
+		#elif messageNum == 4:
+			#messageNum = 1
+			#message_label.text = "Hint: Arrow Keys Move The Camera"
+			#
+		#
+	#elif phaseNum == 3:
+		#if messageNum == 1:
+			#message_label.text = "Hint: Left Click To Select Buildings"
+			#messageNum = 2
+		#elif messageNum == 2:
+			#message_label.add_theme_font_size_override("font_size",15)
+			#message_label.text = "Hint: Use Slider To Select Number Tokens To Move"
+			#messageNum = 3
+			 #
+		#elif messageNum == 3: 
+			#messageNum = 4
+			#message_label.text = "Hint: Left Click To Move Buildings"
+			#
+		#elif messageNum == 4:
+			#messageNum = 1
+			#message_label.text = "Hint: Arrow Keys Move The Camera"
+			#
+	#wait_timer.start()
 	
 
 func _on_timer_timeout() -> void:

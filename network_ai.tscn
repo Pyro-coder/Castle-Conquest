@@ -1,11 +1,34 @@
-[gd_scene load_steps=2 format=3 uid="uid://bc7663f0ucp35"]
+[gd_scene load_steps=4 format=3 uid="uid://bc7663f0ucp35"]
 
 [ext_resource type="Script" uid="uid://dmdex2h1gmawn" path="res://Scripts/Core/Networking/NetworkAi.cs" id="1_issvq"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_hftt7"]
+[ext_resource type="Script" uid="uid://dckxfihmkx04t" path="res://backtomenufromaibutton.gd" id="3_rbdf5"]
 
 [node name="NetworkAi" type="Control"]
 layout_mode = 3
-anchor_right = 0.28
-anchor_bottom = 0.159
-offset_right = -322.56
-offset_bottom = -103.032
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
 script = ExtResource("1_issvq")
+
+[node name="label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 143.0
+offset_top = 1.0
+offset_right = 1006.0
+offset_bottom = 131.0
+theme_override_fonts/font = ExtResource("2_hftt7")
+theme_override_font_sizes/font_size = 100
+text = "AI IS PLAYING ONLINE"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 514.0
+offset_top = 546.0
+offset_right = 656.0
+offset_bottom = 619.0
+theme_override_fonts/font = ExtResource("2_hftt7")
+theme_override_font_sizes/font_size = 50
+text = "Cancel"
+script = ExtResource("3_rbdf5")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://i81pumhgpsx7"]
+[gd_scene load_steps=18 format=3 uid="uid://i81pumhgpsx7"]
 
 [ext_resource type="Script" uid="uid://n01c2i8qqp24" path="res://Scripts/menu_scripts/main_menu.gd" id="1_wpd8b"]
 [ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_lt155"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_3aj6u"]
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_w6ur7"]
+[ext_resource type="Script" uid="uid://gho3lo06l5lv" path="res://Scenes/Menus/ai_over_network_button.gd" id="5_5wi6m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8a6q5"]
 shader = ExtResource("3_w6ur7")
@@ -213,8 +214,18 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_kc6iu")
 text = "Quit
 "
 
+[node name="AI Over Network" type="Button" parent="MenuTemplate"]
+layout_mode = 0
+offset_left = 1287.0
+offset_top = 614.0
+offset_right = 1421.0
+offset_bottom = 645.0
+text = "AI over Network"
+script = ExtResource("5_5wi6m")
+
 [connection signal="pressed" from="MenuTemplate/VBoxContainer3/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MenuTemplate/VBoxContainer3/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="MenuTemplate/VBoxContainer3/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/AboutButton" to="." method="_on_about_button_pressed"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MenuTemplate/AI Over Network" to="." method="_on_ai_over_network_pressed"]

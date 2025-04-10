@@ -130,3 +130,9 @@ func reset_globals():
 	GlobalVars.is_local_pvp = false
 	GlobalVars.is_host = true
 	GlobalVars.game_code = ""
+
+
+func _on_ai_over_network_pressed() -> void:
+	menu_template.buttonPress()
+	
+	get_tree().change_scene_to_file("res://network_ai.tscn")

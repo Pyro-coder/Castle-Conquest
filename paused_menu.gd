@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _on_resume_btn_pressed() -> void:
 	$buttonPress.play()
-	var gameControl = get_parent().get_parent()
+	var gameControl = get_parent()
 	gameControl.togglePause()
 	
 

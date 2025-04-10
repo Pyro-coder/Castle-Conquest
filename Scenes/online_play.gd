@@ -9,7 +9,7 @@ enum GameState { TURN_ORDER, TILE_PLACEMENT, INITIAL_PLACEMENT, MOVE_PHASE, GAME
 @onready var board: Node = get_parent()  # Expects an update_from_state(state) method.
 @onready var ingameui: Control = $InGameUI
 @onready var NetworkManager = $"../NetworkManager"  # Adjust path as needed
-@onready var pauseBtn = $CanvasLayer2/pauseBtn
+
 # Game objects.
 var game_engine: GameEngine  # Your game engine instance.
 var players: Array = []      # Array of Player objects.
@@ -31,7 +31,6 @@ var game_state = GameState.TURN_ORDER
 
 #Is pause menu visible
 var is_pause_visible =  false
-
 
 # Helper: Return our role (1 for host, 2 for client) based on MultiplayerAPI.
 func get_local_player_role() -> int:
@@ -56,38 +55,15 @@ func _ready() -> void:
 	message_label.text = "Waiting for network connection..."
 
 
-
 func togglePause():
 	if is_pause_visible: 
-		$CanvasLayer/PausedMenu.visible = false
-		$CanvasLayer/PanelContainer.visible= false
-		$CanvasLayer/PanelContainer.mouse_filter = MOUSE_FILTER_IGNORE
+		$PausedMenu.visible = false
 		is_pause_visible = false
-		$CanvasLayer2/pauseBtn.visible = true
+		
 	else: 
 		is_pause_visible = true
-		$CanvasLayer2/pauseBtn.visible = false
-		$CanvasLayer/PanelContainer.mouse_filter = MOUSE_FILTER_STOP
-		$CanvasLayer/PanelContainer.visible= true
-		$CanvasLayer/PausedMenu.visible = true
+		$PausedMenu.visible = true
 
-func _on_pause_btn_pressed() -> void:
-	print("Pause Pressed")
-	
-	togglePause()
-	
-func pauseHvrd() -> void:
-	if pauseBtn: 
-		pauseBtn.modulate = Color(1.2, 1.2, 1.2)
-		pauseBtn.scale = Vector2(.23, .23)
-		board.updatePauseHovered(true)
-		
-func pauseExt() -> void:
-	if pauseBtn:
-		board.updatePauseHovered(false)
-		pauseBtn.modulate = Color(1, 1, 1)
-		pauseBtn.scale = Vector2(.2, .2)
-		
 func _input(event):
 	# Check if the event is a key press
 	if event is InputEventKey and event.pressed:

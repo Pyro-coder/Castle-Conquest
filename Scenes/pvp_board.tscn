@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://dnua2kocgyige"]
+[gd_scene load_steps=14 format=3 uid="uid://dnua2kocgyige"]
 
 [ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_mqndi"]
 [ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_bnwfp"]
 [ext_resource type="Script" uid="uid://dmw8ne13o1b3i" path="res://Scenes/p_v_p.gd" id="3_mqndi"]
+[ext_resource type="PackedScene" uid="uid://csny3if363son" path="res://Scenes/paused_menu.tscn" id="4_bnwfp"]
 [ext_resource type="PackedScene" uid="uid://7p8dxs2ubagd" path="res://Scenes/Menus/in_game_ui.tscn" id="4_jw4eg"]
 [ext_resource type="Texture2D" uid="uid://b456wrsaj5ixr" path="res://Assets/WoodGui.png" id="5_y1gag"]
 [ext_resource type="Script" uid="uid://umip4dnym153" path="res://Scenes/piece_selection_slider.gd" id="6_vjqkl"]
@@ -24,7 +25,7 @@ sky_material = SubResource("ProceduralSkyMaterial_4r3ic")
 background_mode = 2
 sky = SubResource("Sky_hviba")
 
-[node name="board" type="Node3D"]
+[node name="board2" type="Node3D"]
 script = ExtResource("1_mqndi")
 
 [node name="Camera3D" type="Camera3D" parent="."]
@@ -45,8 +46,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_mqndi")
 
+[node name="PausedMenu" parent="GameControl" instance=ExtResource("4_bnwfp")]
+visible = false
+layout_mode = 1
+
 [node name="InGameUI" parent="GameControl" instance=ExtResource("4_jw4eg")]
 layout_mode = 1
+
+[node name="Wait_Timer" type="Timer" parent="GameControl/InGameUI"]
+wait_time = 4.0
 
 [node name="MessageLabel" type="Label" parent="GameControl"]
 visible = false
@@ -98,11 +106,11 @@ offset_top = -4.0
 offset_right = 279.0
 offset_bottom = 36.0
 
-[node name="Wait_Timer" type="Timer" parent="GameControl"]
-
 [node name="boardPlace" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_frjh0")
 volume_db = 2.0
 
 [node name="tokenMove" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_2ihkf")
+
+[connection signal="timeout" from="GameControl/InGameUI/Wait_Timer" to="GameControl/InGameUI" method="_on_wait_timer_timeout"]

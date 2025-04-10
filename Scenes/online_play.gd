@@ -29,6 +29,11 @@ var move_turn_index: int = 0
 
 var game_state = GameState.TURN_ORDER
 
+#Is pause menu visible
+var is_pause_visible =  false
+
+var opponent_of_timeout: int = 0
+
 # Helper: Return our role (1 for host, 2 for client) based on MultiplayerAPI.
 func get_local_player_role() -> int:
 	var uid = get_tree().get_multiplayer().get_unique_id()
@@ -50,12 +55,43 @@ func _ready() -> void:
 	print("GameController ready on unique id: ", get_tree().get_multiplayer().get_unique_id())
 	NetworkManager.connect("connection_established", Callable(self, "setup_game"))
 	message_label.text = "Waiting for network connection..."
+	NetworkManager.connect("move_timeout", Callable(self, "_on_move_timer_timeout"))
+
+func _on_move_timer_timeout():
+	var current_player_id = turn_order[move_turn_index].Id
+	var opponent_id = get_opponent_id(current_player_id)
+	#if multiplayer.get_unique_id() == current_player_id:
+	print(current_player_id, " ran out of time!")
+	opponent_of_timeout = current_player_id  # Set the player who timed out
+	rpc_id(opponent_id, "notify_timeout")
+	end_game()  # End the game after timeout
+
+func get_opponent_id(player_id: int) -> int:
+	return 2 if player_id == 1 else 1
+
+func togglePause():
+	if is_pause_visible: 
+		$PausedMenu.visible = false
+		is_pause_visible = false
+		
+	else: 
+		is_pause_visible = true
+		$PausedMenu.visible = true
+
+func _input(event):
+	# Check if the event is a key press
+	if event is InputEventKey and event.pressed:
+	# Check if the key pressed is 'P' or 'Escape'
+		if event.as_text() == "P" or Input.is_action_pressed("ui_cancel"):
+			togglePause()
+				
 
 #############################################
 # SETUP GAME – Host always goes first.
 #############################################
 func setup_game() -> void:
 	# For PvP, force the host to be Player 1.
+	
 	var human_player = Player.new()
 	human_player.Initialize(1, "Player 1")
 	var remote_player = Player.new()
@@ -67,7 +103,6 @@ func setup_game() -> void:
 	game_engine.StartGame()
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
-	
 	# Transition to tile placement.
 	game_state = GameState.TILE_PLACEMENT
 	tile_round = 1
@@ -85,9 +120,10 @@ func start_tile_placement_phase() -> void:
 		ingameui.UpdateP2Label("Tiles left: %d" % p2Tilesleft)
 		update_tile_turn()
 	else:
-		ingameui.UpdateMainLabel("Place Initial Pieces")
+		ingameui.UpdateMainLabel("Conquer")
 		game_state = GameState.INITIAL_PLACEMENT
 		init_turn_index = 0
+		ingameui.update_phase_num(2)
 		start_initial_placement_phase()
 
 func update_tile_turn() -> void:
@@ -119,6 +155,7 @@ func process_tile_input(q: int, r: int, orientation: int) -> void:
 		update_tile_placement(q, r, orientation)
 		tile_turn_index += 1
 		update_tile_turn()  # Advance the turn.
+		
 	else:
 		message_label.text = "Invalid tile placement. Try again."
 
@@ -131,9 +168,11 @@ func update_tile_placement(q: int, r: int, orientation: int) -> void:
 		p1Tilesleft -= 1
 		ingameui.erase_blue_hex(p1Tilesleft)
 		ingameui.UpdateP1Label("Tiles left: %d" % p1Tilesleft)
+		ingameui.P1TurnCompleteAnimation()
 	else:
 		p2Tilesleft -= 1
 		ingameui.erase_red_hex(p2Tilesleft)
+		ingameui.P2TurnCompleteAnimation()
 		ingameui.UpdateP2Label("Tiles left: %d" % p2Tilesleft)
 	board.update_from_state(game_engine.GetCurrentBoardState())
 	
@@ -141,8 +180,14 @@ func update_tile_placement(q: int, r: int, orientation: int) -> void:
 	var remote_id = get_remote_peer_id()
 	if remote_id != 0:
 		rpc_id(remote_id, "rpc_tile_placement", q, r, orientation)
+		rpc_reset_move_timer()
 	else:
 		print("Warning: No remote peer found when sending tile placement.")
+
+@rpc
+func notify_timeout() -> void:
+	print("Timeout notification received by the other player!")
+	end_game()
 
 @rpc("any_peer", "reliable")
 func rpc_tile_placement(q: int, r: int, orientation: int) -> void:
@@ -155,13 +200,23 @@ func rpc_tile_placement(q: int, r: int, orientation: int) -> void:
 		p1Tilesleft -= 1
 		ingameui.erase_blue_hex(p1Tilesleft)
 		ingameui.UpdateP1Label("Tiles left: %d" % p1Tilesleft)
+		ingameui.P1TurnCompleteAnimation()
+		
 	else:
 		p2Tilesleft -= 1
+		ingameui.P2TurnCompleteAnimation()
+		
 		ingameui.erase_red_hex(p2Tilesleft)
 		ingameui.UpdateP2Label("Tiles left: %d" % p2Tilesleft)
 	# Advance the turn counter and update UI accordingly.
 	tile_turn_index += 1
 	update_tile_turn()
+
+
+@rpc("any_peer", "call_local")
+func rpc_reset_move_timer():
+	NetworkManager.reset_move_timer()
+
 
 #############################################
 # INITIAL PIECE PLACEMENT PHASE
@@ -179,6 +234,8 @@ func start_initial_placement_phase() -> void:
 		game_state = GameState.MOVE_PHASE
 		move_turn_index = 0
 		start_move_phase()
+		ingameui.update_phase_num(3)
+		
 
 func process_initial_input(q: int, r: int) -> void:
 	var valid_moves = get_valid()
@@ -206,6 +263,7 @@ func update_initial_placement(q: int, r: int) -> void:
 	var remote_id = get_remote_peer_id()
 	if remote_id != 0:
 		rpc_id(remote_id, "rpc_initial_placement", q, r)
+		rpc_reset_move_timer()
 	else:
 		print("Warning: No remote peer found when sending initial placement.")
 
@@ -269,14 +327,17 @@ func update_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 	if get_local_player_role() == 1:
 		p1TilesCovered += 1
 		ingameui.UpdateP1Label("Tiles Conquered %d" % p1TilesCovered)
+		ingameui.P1TurnCompleteAnimation()
 	else:
 		p2TilesCovered += 1
 		ingameui.UpdateP2Label("Tiles Conquered %d" % p2TilesCovered)
+		ingameui.P2TurnCompleteAnimation()
 	board.update_from_state(game_engine.GetCurrentBoardState())
 	GlobalVars.player_turn = false
 	var remote_id = get_remote_peer_id()
 	if remote_id != 0:
 		rpc_id(remote_id, "rpc_move", q, r, num_pieces, direction)
+		rpc_reset_move_timer()
 	else:
 		print("Warning: No remote peer found when sending move.")
 
@@ -289,8 +350,10 @@ func rpc_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 	if remote_role == 1:
 		p1TilesCovered += 1
 		ingameui.UpdateP1Label("Tiles Conquered %d" % p1TilesCovered)
+		ingameui.P1TurnCompleteAnimation()
 	else:
 		p2TilesCovered += 1
+		ingameui.P2TurnCompleteAnimation()
 		ingameui.UpdateP2Label("Tiles Conquered %d" % p2TilesCovered)
 	board.update_from_state(game_engine.GetCurrentBoardState())
 	
@@ -302,17 +365,34 @@ func rpc_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 #############################################
 # GAME OVER
 #############################################
-func end_game() -> void:
+func end_game():
 	game_state = GameState.GAME_OVER
-	message_label.text = "Game Over. Final Board State:"
 	GlobalVars.player_turn = false
-	board.update_from_state(game_engine.GetCurrentBoardState())
+	
+	# Update the board with the final state.
+	var state = game_engine.GetCurrentBoardState()
+	board.update_from_state(state)
+	
+	var winner
+	if opponent_of_timeout != 0:
+		# If a player timed out, the opponent wins
+		winner = opponent_of_timeout
+		print("Winner due to timeout: Player %d" % winner)
+	else:
+		# Determine the winner using the game engine's getWinner() function
+		winner = game_engine.GetWinner()
+		print("Winner: Player %d" % winner)
+	
+	# Load and display the game over scene.
 	var game_over_scene_packed = load("res://Scenes/Menus/game_over_screen.tscn")
 	var game_over_scene_instance = game_over_scene_packed.instantiate()
 	add_child(game_over_scene_instance)
-	game_over_scene_instance.set_title(p1TilesCovered > p2TilesCovered)
+	game_over_scene_instance.set_title(winner)
+	
 	self.visible = false
 	GlobalVars.is_host = true
+	NetworkManager.queue_free()
+
 
 func get_valid() -> Array:
 	match game_state:

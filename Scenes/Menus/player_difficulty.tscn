@@ -80,7 +80,7 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1wjwn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_1wjwn")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_1wjwn")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_1wjwn")
-text = "Conquer ->"
+text = "Conquer"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_b8dku")

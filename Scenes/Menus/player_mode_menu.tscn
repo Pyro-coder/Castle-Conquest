@@ -96,6 +96,7 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_v4dh5")
 text = "Take Thy Friends"
 
 [node name="TextureRect" type="TextureRect" parent="MenuTemplate/VBoxContainer/TwoPlayerButton"]
+layout_mode = 0
 offset_left = 83.0
 offset_top = -134.0
 offset_right = 595.0

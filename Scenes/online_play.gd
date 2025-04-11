@@ -9,7 +9,7 @@ enum GameState { TURN_ORDER, TILE_PLACEMENT, INITIAL_PLACEMENT, MOVE_PHASE, GAME
 @onready var board: Node = get_parent()  # Expects an update_from_state(state) method.
 @onready var ingameui: Control = $InGameUI
 @onready var NetworkManager = $"../NetworkManager"  # Adjust path as needed
-
+@onready var pauseBtn = $CanvasLayer2/pauseBtn
 # Game objects.
 var game_engine: GameEngine  # Your game engine instance.
 var players: Array = []      # Array of Player objects.
@@ -71,13 +71,35 @@ func get_opponent_id(player_id: int) -> int:
 
 func togglePause():
 	if is_pause_visible: 
-		$PausedMenu.visible = false
+		$CanvasLayer/PausedMenu.visible = false
+		$CanvasLayer/PanelContainer.visible= false
+		$CanvasLayer/PanelContainer.mouse_filter = MOUSE_FILTER_IGNORE
 		is_pause_visible = false
-		
+		$CanvasLayer2/pauseBtn.visible = true
 	else: 
 		is_pause_visible = true
-		$PausedMenu.visible = true
+		$CanvasLayer2/pauseBtn.visible = false
+		$CanvasLayer/PanelContainer.mouse_filter = MOUSE_FILTER_STOP
+		$CanvasLayer/PanelContainer.visible= true
+		$CanvasLayer/PausedMenu.visible = true
 
+func _on_pause_btn_pressed() -> void:
+	print("Pause Pressed")
+	
+	togglePause()
+	
+func pauseHvrd() -> void:
+	if pauseBtn: 
+		pauseBtn.modulate = Color(1.2, 1.2, 1.2)
+		pauseBtn.scale = Vector2(.23, .23)
+		board.updatePauseHovered(true)
+		
+func pauseExt() -> void:
+	if pauseBtn:
+		board.updatePauseHovered(false)
+		pauseBtn.modulate = Color(1, 1, 1)
+		pauseBtn.scale = Vector2(.2, .2)
+		
 func _input(event):
 	# Check if the event is a key press
 	if event is InputEventKey and event.pressed:
@@ -91,7 +113,6 @@ func _input(event):
 #############################################
 func setup_game() -> void:
 	# For PvP, force the host to be Player 1.
-	
 	var human_player = Player.new()
 	human_player.Initialize(1, "Player 1")
 	var remote_player = Player.new()
@@ -103,6 +124,7 @@ func setup_game() -> void:
 	game_engine.StartGame()
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
+	
 	# Transition to tile placement.
 	game_state = GameState.TILE_PLACEMENT
 	tile_round = 1
@@ -388,7 +410,6 @@ func end_game():
 	var game_over_scene_instance = game_over_scene_packed.instantiate()
 	add_child(game_over_scene_instance)
 	game_over_scene_instance.set_title(winner)
-	
 	self.visible = false
 	GlobalVars.is_host = true
 	NetworkManager.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnua2kocgyige"]
+[gd_scene load_steps=16 format=3 uid="uid://dnua2kocgyige"]
 
 [ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_mqndi"]
 [ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_bnwfp"]
@@ -10,6 +10,8 @@
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="7_yllyv"]
 [ext_resource type="AudioStream" uid="uid://dc3eyuup2hffq" path="res://Assets/SFX/minecraftPop.mp3" id="8_frjh0"]
 [ext_resource type="AudioStream" uid="uid://bhfma0x8j5j5x" path="res://Assets/SFX/tokenMove.wav" id="9_2ihkf"]
+[ext_resource type="Texture2D" uid="uid://d57ybp8mq73m" path="res://Assets/wood_assets/Screenshot 2025-03-22 000409.png" id="9_jw4eg"]
+[ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="10_y1gag"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]
 sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
@@ -46,9 +48,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_mqndi")
 
-[node name="PausedMenu" parent="GameControl" instance=ExtResource("4_bnwfp")]
+[node name="CanvasLayer" type="CanvasLayer" parent="GameControl"]
+
+[node name="PanelContainer" type="PanelContainer" parent="GameControl/CanvasLayer"]
 visible = false
-layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PausedMenu" parent="GameControl/CanvasLayer" instance=ExtResource("4_bnwfp")]
+visible = false
 
 [node name="InGameUI" parent="GameControl" instance=ExtResource("4_jw4eg")]
 layout_mode = 1
@@ -106,6 +114,32 @@ offset_top = -4.0
 offset_right = 279.0
 offset_bottom = 36.0
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="GameControl"]
+
+[node name="pauseBtnPanel" type="PanelContainer" parent="GameControl/CanvasLayer2"]
+visible = false
+offset_left = 559.0
+offset_top = 595.0
+offset_right = 594.0
+offset_bottom = 631.0
+
+[node name="pauseBtn" type="TextureButton" parent="GameControl/CanvasLayer2"]
+top_level = true
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -51.0
+offset_right = 141.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("9_jw4eg")
+script = ExtResource("10_y1gag")
+
 [node name="boardPlace" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_frjh0")
 volume_db = 2.0
@@ -114,3 +148,6 @@ volume_db = 2.0
 stream = ExtResource("9_2ihkf")
 
 [connection signal="timeout" from="GameControl/InGameUI/Wait_Timer" to="GameControl/InGameUI" method="_on_wait_timer_timeout"]
+[connection signal="mouse_entered" from="GameControl/CanvasLayer2/pauseBtn" to="GameControl" method="pauseHvrd"]
+[connection signal="mouse_exited" from="GameControl/CanvasLayer2/pauseBtn" to="GameControl" method="pauseExt"]
+[connection signal="pressed" from="GameControl/CanvasLayer2/pauseBtn" to="GameControl" method="_on_pause_btn_pressed"]

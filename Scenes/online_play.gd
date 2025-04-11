@@ -62,7 +62,7 @@ func _on_move_timer_timeout():
 	var opponent_id = get_opponent_id(current_player_id)
 	#if multiplayer.get_unique_id() == current_player_id:
 	print(current_player_id, " ran out of time!")
-	opponent_of_timeout = current_player_id  # Set the player who timed out
+	opponent_of_timeout = opponent_id  # Set the player who timed out
 	rpc_id(opponent_id, "notify_timeout")
 	end_game()  # End the game after timeout
 

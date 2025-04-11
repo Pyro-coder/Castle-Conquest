@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dmdex2h1gmawn" path="res://Scripts/Core/Networking/NetworkAi.cs" id="1_issvq"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="2_hftt7"]
-[ext_resource type="Script" uid="uid://dckxfihmkx04t" path="res://backtomenufromaibutton.gd" id="3_rbdf5"]
+[ext_resource type="Script" path="res://backtomenufromaibutton.gd" id="3_rbdf5"]
 
 [node name="NetworkAi" type="Control"]
 layout_mode = 3
@@ -11,6 +11,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -1152.0
 offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_issvq")
 
 [node name="label" type="Label" parent="."]

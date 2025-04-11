@@ -16,6 +16,7 @@ var udp_listener := PacketPeerUDP.new()
 var listening_port := 54545  # Same as broadcast_port
 var is_client_connected = false
 
+
 @onready var status_label: Label = $StatusLabel
 
 var is_host = false
@@ -145,6 +146,7 @@ func listen_for_host(join_code: String) -> void:
 	
 	expected_join_code = join_code
 	print("Listening for host broadcasts...")
+	start_connection_timeout(30)
 	udp_listener.close()
 	udp_listener.bind(listening_port)
 	
@@ -228,18 +230,22 @@ func _on_connection_timeout() -> void:
 			emit_signal("connection_timeout")
 			if status_label:
 				status_label.text = "Timeout: No joiner connected."
+			get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	else:
-		if peers.size() < 1:
+		if !is_client_connected:
 			print("Failed to connect to host within timeout. Disconnecting.")
 			get_tree().get_multiplayer().set_multiplayer_peer(null)
 			emit_signal("connection_timeout")
 			if status_label:
 				status_label.text = "Timeout: Failed to connect to host."
+			get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	#queue_free()
+	
 
 # Called when a client connects to the host.
 func _on_peer_connected(id: int) -> void:
 	print("Client connected with ID: %d" % id)
+	is_host_connected = true
 	if status_label:
 		status_label.text = "Client connected (ID: " + str(id) + ")"
 	emit_signal("connection_established")
@@ -247,6 +253,7 @@ func _on_peer_connected(id: int) -> void:
 # Called on the client when it successfully connects to the host.
 func _on_connected_to_server() -> void:
 	print("Successfully connected to host!")
+	is_client_connected = true
 	if status_label:
 		status_label.text = "Connected to host!"
 	emit_signal("connection_established")

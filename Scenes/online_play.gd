@@ -412,6 +412,7 @@ func end_game():
 	game_over_scene_instance.set_title(winner)
 	self.visible = false
 	GlobalVars.is_host = true
+	$CanvasLayer2/pauseBtn.visible = false
 	NetworkManager.queue_free()
 
 

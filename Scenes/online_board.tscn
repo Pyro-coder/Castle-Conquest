@@ -58,8 +58,12 @@ script = ExtResource("3_eafhi")
 [node name="CanvasLayer" type="CanvasLayer" parent="GameControl"]
 
 [node name="PanelContainer" type="PanelContainer" parent="GameControl/CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PausedMenu" parent="GameControl/CanvasLayer" instance=ExtResource("4_riaai")]
 visible = false
@@ -172,6 +176,7 @@ text = "Discover"
 [node name="MoveTimeoutTimer" type="Timer" parent="GameControl"]
 
 [node name="ColorRect" type="ColorRect" parent="GameControl"]
+visible = false
 material = SubResource("ShaderMaterial_riaai")
 layout_mode = 1
 anchors_preset = 15

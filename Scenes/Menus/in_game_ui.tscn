@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://7p8dxs2ubagd"]
+[gd_scene load_steps=88 format=3 uid="uid://7p8dxs2ubagd"]
 
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="1_4t0ia"]
 [ext_resource type="Script" uid="uid://nf4wa8q2hem6" path="res://Scenes/Menus/in_game_ui.gd" id="1_hngs1"]
@@ -39,6 +39,10 @@
 [ext_resource type="Texture2D" uid="uid://b3k2gm11kuvxc" path="res://Assets/User_Prompts/tile_0393.png" id="36_qiddt"]
 [ext_resource type="Texture2D" uid="uid://dr42d02jg5my4" path="res://Assets/User_Prompts/tile_0112.png" id="36_ro6vx"]
 [ext_resource type="Texture2D" uid="uid://ontlnt8rked6" path="res://Assets/User_Prompts/tile_0394.png" id="37_mmy45"]
+[ext_resource type="Texture2D" uid="uid://bgywno6nwyrjj" path="res://Assets/wood_assets/wood_message.png" id="40_nbtbc"]
+[ext_resource type="Texture2D" uid="uid://cdoosqm81tmvr" path="res://Assets/wood_assets/goldwood.png" id="41_cadei"]
+[ext_resource type="Texture2D" uid="uid://by3jubrpagjfp" path="res://Assets/wood_assets/helpQuestion.png" id="42_uk74b"]
+[ext_resource type="Texture2D" uid="uid://cnv3libkui7g0" path="res://Assets/wood_assets/backArrow.png" id="43_6eqll"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2vwgs"]
 shader = ExtResource("1_4t0ia")
@@ -372,6 +376,26 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oby1x"]
+shader = ExtResource("4_rt54k")
+shader_parameter/pixel_count = Vector2(280, 80)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nbtbc"]
+shader = ExtResource("4_rt54k")
+shader_parameter/pixel_count = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cadei"]
+shader = ExtResource("4_rt54k")
+shader_parameter/pixel_count = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uk74b"]
+shader = ExtResource("4_rt54k")
+shader_parameter/pixel_count = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6eqll"]
+shader = ExtResource("4_rt54k")
+shader_parameter/pixel_count = Vector2(64, 64)
+
 [node name="InGameUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -619,6 +643,95 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_vh2kd")
 text = "Rotate Piece"
 
+[node name="MessageContainer" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.52588e-05
+offset_top = -1.52588e-05
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WoodMessage" type="Sprite2D" parent="MessageContainer"]
+material = SubResource("ShaderMaterial_oby1x")
+position = Vector2(203, 222)
+scale = Vector2(0.18, 0.18)
+texture = ExtResource("40_nbtbc")
+
+[node name="messageBoard" type="Label" parent="MessageContainer"]
+offset_left = 34.0
+offset_top = 196.0
+offset_right = 354.0
+offset_bottom = 245.0
+theme_override_fonts/font = ExtResource("3_vh2kd")
+theme_override_font_sizes/font_size = 20
+text = "Instructions can be viewed here."
+
+[node name="QuestionMark" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -14.0
+offset_bottom = -14.0
+
+[node name="questionButton" type="Button" parent="QuestionMark"]
+modulate = Color(1, 1, 1, 0.00392157)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 208.0
+offset_right = 69.0
+offset_bottom = 250.0
+
+[node name="Goldwood3" type="Sprite2D" parent="QuestionMark"]
+material = SubResource("ShaderMaterial_nbtbc")
+position = Vector2(47, 230)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("41_cadei")
+
+[node name="HelpQuestion" type="Sprite2D" parent="QuestionMark"]
+material = SubResource("ShaderMaterial_cadei")
+position = Vector2(48, 229)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("42_uk74b")
+
+[node name="BackArrow" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 336.0
+offset_top = -19.0
+offset_right = 378.0
+offset_bottom = 19.0
+
+[node name="backArrow" type="Button" parent="BackArrow"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 27.0
+offset_top = 210.0
+offset_right = 74.0
+offset_bottom = 253.0
+
+[node name="Goldwood3" type="Sprite2D" parent="BackArrow"]
+material = SubResource("ShaderMaterial_uk74b")
+position = Vector2(50, 232)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("41_cadei")
+
+[node name="BackArrow" type="Sprite2D" parent="BackArrow"]
+material = SubResource("ShaderMaterial_6eqll")
+position = Vector2(50, 230)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("43_6eqll")
+
+[node name="messageTimer" type="Timer" parent="."]
+wait_time = 4.0
+
 [connection signal="animation_finished" from="Goldwood/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_finished" from="Goldwood2/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="QuestionMark/questionButton" to="." method="_on_question_button_mouse_entered"]
+[connection signal="mouse_exited" from="QuestionMark/questionButton" to="." method="_on_question_button_mouse_exited"]
+[connection signal="pressed" from="QuestionMark/questionButton" to="." method="_on_question_button_pressed"]
+[connection signal="mouse_entered" from="BackArrow/backArrow" to="." method="_on_back_arrow_mouse_entered"]
+[connection signal="mouse_exited" from="BackArrow/backArrow" to="." method="_on_back_arrow_mouse_exited"]
+[connection signal="pressed" from="BackArrow/backArrow" to="." method="_on_back_arrow_pressed"]
+[connection signal="timeout" from="messageTimer" to="." method="_on_message_timer_timeout"]

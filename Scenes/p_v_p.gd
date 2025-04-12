@@ -278,6 +278,7 @@ func end_game():
 	add_child(game_over_scene_instance)
 	game_over_scene_instance.set_title(winner)
 	self.visible = false
+	$CanvasLayer2/pauseBtn.visible = false
 
 func get_valid():
 	match game_state:

@@ -53,7 +53,8 @@ layout_mode = 2
 offset_top = 56.0
 offset_right = 200.0
 offset_bottom = 72.0
-max_value = 1.0
+max_value = 5.0
+step = 0.5
 tick_count = 10
 
 [node name="Label2" type="Label" parent="MenuTemplate/VBoxContainer"]

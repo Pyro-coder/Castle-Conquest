@@ -11,14 +11,19 @@ var whatIsPlaying = "menu"
 
 
 
-func play_music(music: AudioStream, volume = 0.0):
+func play_music(music: AudioStream, linear_volume = 1.0):
 	if stream == music:
 		return
 		
 	stream = music
-	volume_db = volume
+	volume_db = clamp(value_to_db(linear_volume), -80.0, 0.0)
 	play()
-	
+
+func value_to_db(value: float) -> float:
+	if value <= 0.0:
+		return -80.0
+	return clamp(20.0 * (log(value) / log(10)), -80.0, 0.0)
+
 func play_menu_music():
 	play_music(MenuMusic)
 	whatIsPlaying = "menu"

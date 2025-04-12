@@ -1,32 +1,38 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmb7jew2gnmie"]
+[gd_scene load_steps=12 format=3 uid="uid://ds1p6b7smb0tv"]
 
-[ext_resource type="Script" uid="uid://c5y8ncmygwjar" path="res://Scripts/menu_scripts/tutorial_pg_7.gd" id="1_3v2im"]
-[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_dva8x"]
-[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_k21lq"]
-[ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="4_pdscc"]
-[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="5_cmfb5"]
+[ext_resource type="Script" uid="uid://hlift2dqotxk" path="res://Scripts/menu_scripts/InGameTutorial/tutorial_pg_4.gd" id="1_l5c7w"]
+[ext_resource type="PackedScene" uid="uid://t5bsek4qov5a" path="res://Scenes/Menus/InGameTutorial/menutemplate_in_game.tscn" id="2_l5c7w"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_llpxb"]
+[ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="4_dc5f7"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="5_xbyyn"]
+[ext_resource type="VideoStream" uid="uid://7yi3u33x54t" path="res://Assets/tutorial screen recordings/boardRotate.ogv" id="6_n2ags"]
+[ext_resource type="Script" uid="uid://cywf5rrwodo5w" path="res://Scenes/Menus/InGameTutorial/video_stream_player.gd" id="7_va3bs"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_epeud"]
-shader = ExtResource("3_k21lq")
+shader = ExtResource("3_llpxb")
 shader_parameter/amount = 400
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gqhd8"]
-shader = ExtResource("3_k21lq")
+shader = ExtResource("3_llpxb")
 shader_parameter/amount = 300
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpkj0"]
 
-[node name="TutorialPg7" type="Control"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tylbi"]
+
+[node name="TutorialPg4" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3v2im")
+script = ExtResource("1_l5c7w")
 
-[node name="MenuTemplate" parent="." instance=ExtResource("2_dva8x")]
+[node name="MenuTemplate" parent="." instance=ExtResource("2_l5c7w")]
 layout_mode = 1
+offset_left = 0.0
+offset_right = 0.0
 
 [node name="Label" type="Label" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_epeud")
@@ -35,9 +41,9 @@ offset_left = 416.0
 offset_top = 126.0
 offset_right = 751.0
 offset_bottom = 167.0
-theme_override_fonts/font = ExtResource("4_pdscc")
+theme_override_fonts/font = ExtResource("4_dc5f7")
 theme_override_font_sizes/font_size = 27
-text = "Ending  The Game"
+text = "Board Piece Rotation"
 autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="MenuTemplate"]
@@ -46,27 +52,25 @@ offset_left = 420.0
 offset_top = 179.0
 offset_right = 700.0
 offset_bottom = 228.0
-theme_override_fonts/font = ExtResource("5_cmfb5")
-text = "The game will end when one player can no longer move.
-
-A winner is decided based on who has more area claimed, or in the case of a tie, who has the largest connected area of claimed land.
-
-Upon conclusion of the game, the final board will be shown, with options for an immediate rematch or to procede to the main menu. "
+theme_override_fonts/font = ExtResource("5_xbyyn")
+text = "You can rotate board pieces by pressing the space bar or right clicking."
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_gqhd8")
 layout_mode = 0
-offset_left = 425.0
-offset_top = 519.0
-offset_right = 703.0
-offset_bottom = 562.0
-theme_override_constants/separation = 85
+offset_left = 431.5
+offset_top = 528.0
+offset_right = 696.5
+offset_bottom = 571.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
 
 [node name="BackButton" type="Button" parent="MenuTemplate/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_cmfb5")
+theme_override_fonts/font = ExtResource("5_xbyyn")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -82,10 +86,29 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
 text = "Back
 "
 
+[node name="mainBtn" type="Button" parent="MenuTemplate/HBoxContainer"]
+use_parent_material = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_xbyyn")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_tylbi")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_tylbi")
+text = "Pause Menu
+"
+
 [node name="NextButton" type="Button" parent="MenuTemplate/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_cmfb5")
+theme_override_fonts/font = ExtResource("5_xbyyn")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -98,12 +121,30 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
-text = "Main Menu
+text = "Next
 "
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MenuTemplate"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="MenuTemplate/CanvasLayer"]
+visible = false
+offset_left = 422.0
+offset_top = 241.0
+offset_right = 703.0
+offset_bottom = 408.0
+stream = ExtResource("6_n2ags")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
+script = ExtResource("7_va3bs")
 
 [connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_exited"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/mainBtn" to="." method="_on_main_btn_mouse_entered"]
+[connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/mainBtn" to="." method="_on_main_btn_mouse_exited"]
+[connection signal="pressed" from="MenuTemplate/HBoxContainer/mainBtn" to="." method="_on_main_btn_pressed"]
 [connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_mouse_entered"]
 [connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_mouse_exited"]
 [connection signal="pressed" from="MenuTemplate/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]

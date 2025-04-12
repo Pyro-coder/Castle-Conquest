@@ -1,7 +1,7 @@
 extends Control
 @onready var menuTemplate = $MenuTemplate
 
-# @onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
+@onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
 @onready var nextBtn = $MenuTemplate/HBoxContainer/NextButton
 @onready var mainBtn = $MenuTemplate/HBoxContainer/mainBtn
 
@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 func _on_back_button_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
+	self.hide()
 	
 
 func _on_quit_button_pressed() -> void:
@@ -37,17 +37,17 @@ func _on_quit_button_pressed() -> void:
 
 func _on_next_button_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_1.tscn")
+	$"../TutorialPg1".show()
+	self.hide()
+
+func _on_back_button_mouse_entered() -> void:
+	backBtn.modulate = Color(1.2, 1.2, 1.2) # Slightly brighten the button
+	backBtn.scale = Vector2(1.1, 1.1)  
 
 
-#func _on_back_button_mouse_entered() -> void:
-	#backBtn.modulate = Color(1.2, 1.2, 1.2) # Slightly brighten the button
-	#backBtn.scale = Vector2(1.1, 1.1)  
-#
-#
-#func _on_back_button_mouse_exited() -> void:
-	#backBtn.modulate = Color(1, 1, 1)     # Reset to original color
-	#backBtn.scale = Vector2(1, 1)
+func _on_back_button_mouse_exited() -> void:
+	backBtn.modulate = Color(1, 1, 1)     # Reset to original color
+	backBtn.scale = Vector2(1, 1)
 
 
 func _on_next_button_mouse_entered() -> void:
@@ -71,12 +71,13 @@ func _on_mode_selection_mouse_exited() -> void:
 
 func _on_mode_selection_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_1.tscn")
-
+	$"../TutorialPg1".show()
+	self.hide()
 
 func _on_coin_flip_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_2.tscn")
+	$"../TutorialPg2".show()
+	self.hide()
 	
 
 
@@ -91,7 +92,8 @@ func _on_coin_flip_mouse_exited() -> void:
 
 func _on_board_placement_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_3.tscn")
+	$"../TutorialPg3".show()
+	self.hide()
 
 
 
@@ -107,8 +109,8 @@ func _on_board_placement_mouse_exited() -> void:
 
 func _on_board_rotation_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_4.tscn")
-
+	$"../TutorialPg4".show()
+	self.hide()
 
 
 func _on_board_rotation_mouse_entered() -> void:
@@ -121,7 +123,8 @@ func _on_board_rotation_mouse_exited() -> void:
 
 func _on_initial_placement_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_5.tscn")
+	$"../TutorialPg5".show()
+	self.hide()
 
 
 
@@ -136,7 +139,8 @@ func _on_initial_placement_mouse_exited() -> void:
 
 func _on_token_movement_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_6.tscn")
+	$"../TutorialPg6".show()
+	self.hide()
 
 
 
@@ -150,7 +154,8 @@ func _on_token_movement_mouse_exited() -> void:
 
 func _on_ending_game_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/tutorial_pg_7.tscn")
+	$"../TutorialPg7".show()
+	self.hide()
 
 
 
@@ -165,7 +170,7 @@ func _on_ending_game_mouse_exited() -> void:
 
 func _on_main_btn_pressed() -> void:
 	menuTemplate.buttonPress()
-	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
+	self.hide()
 
 
 func _on_main_btn_mouse_entered() -> void:

@@ -1,19 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://dshf8je7nfgcn"]
+[gd_scene load_steps=9 format=3 uid="uid://dfryx2u3dcwn7"]
 
-[ext_resource type="Script" uid="uid://dejwmmfc2ogbx" path="res://Scripts/menu_scripts/tutorial_contents.gd" id="1_5menc"]
-[ext_resource type="PackedScene" uid="uid://c0id1c01yo1ck" path="res://Scenes/Menus/menutemplate.tscn" id="2_nn7vi"]
-[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_genwg"]
-[ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="4_t7usb"]
-[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="5_rnq6u"]
+[ext_resource type="Script" uid="uid://dtp4wj02boc53" path="res://Scripts/menu_scripts/InGameTutorial/tutorial_contents.gd" id="1_swl0f"]
+[ext_resource type="PackedScene" uid="uid://t5bsek4qov5a" path="res://Scenes/Menus/InGameTutorial/menutemplate_in_game.tscn" id="2_swl0f"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_nj6ik"]
+[ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="4_ykgij"]
+[ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="5_rqh0f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_epeud"]
-shader = ExtResource("3_genwg")
+shader = ExtResource("3_nj6ik")
 shader_parameter/amount = 400
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpkj0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gqhd8"]
-shader = ExtResource("3_genwg")
+shader = ExtResource("3_nj6ik")
 shader_parameter/amount = 300
 
 [node name="TutorialContents" type="Control"]
@@ -23,10 +23,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5menc")
+script = ExtResource("1_swl0f")
 
-[node name="MenuTemplate" parent="." instance=ExtResource("2_nn7vi")]
+[node name="MenuTemplate" parent="." instance=ExtResource("2_swl0f")]
 layout_mode = 1
+offset_left = 0.0
+offset_right = 0.0
 
 [node name="Label" type="Label" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_epeud")
@@ -35,7 +37,7 @@ offset_left = 426.0
 offset_top = 127.0
 offset_right = 761.0
 offset_bottom = 168.0
-theme_override_fonts/font = ExtResource("4_t7usb")
+theme_override_fonts/font = ExtResource("4_ykgij")
 theme_override_font_sizes/font_size = 27
 text = "Table of Contents"
 autowrap_mode = 2
@@ -52,7 +54,7 @@ theme_override_constants/separation = 25
 [node name="ModeSelection" type="Button" parent="MenuTemplate/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_fonts/font = ExtResource("5_rqh0f")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -72,7 +74,7 @@ alignment = 0
 [node name="CoinFlip" type="Button" parent="MenuTemplate/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_fonts/font = ExtResource("5_rqh0f")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -91,7 +93,7 @@ alignment = 0
 [node name="BoardPlacement" type="Button" parent="MenuTemplate/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_fonts/font = ExtResource("5_rqh0f")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -111,7 +113,7 @@ alignment = 0
 [node name="BoardRotation" type="Button" parent="MenuTemplate/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_fonts/font = ExtResource("5_rqh0f")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -131,7 +133,7 @@ alignment = 0
 [node name="InitialPlacement" type="Button" parent="MenuTemplate/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_fonts/font = ExtResource("5_rqh0f")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -151,7 +153,7 @@ alignment = 0
 [node name="TokenMovement" type="Button" parent="MenuTemplate/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_fonts/font = ExtResource("5_rqh0f")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -171,7 +173,7 @@ alignment = 0
 [node name="EndingGame" type="Button" parent="MenuTemplate/VBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_fonts/font = ExtResource("5_rqh0f")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -191,9 +193,9 @@ alignment = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_gqhd8")
 layout_mode = 0
-offset_left = 432.0
+offset_left = 431.5
 offset_top = 528.0
-offset_right = 696.0
+offset_right = 696.5
 offset_bottom = 571.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -203,7 +205,7 @@ alignment = 2
 [node name="mainBtn" type="Button" parent="MenuTemplate/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_fonts/font = ExtResource("5_rqh0f")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")
@@ -216,13 +218,13 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
-text = "Main Menu
+text = "Pause Menu
 "
 
 [node name="NextButton" type="Button" parent="MenuTemplate/HBoxContainer"]
 use_parent_material = true
 layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rnq6u")
+theme_override_fonts/font = ExtResource("5_rqh0f")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_vpkj0")

@@ -1,13 +1,13 @@
 extends Control
 
 @onready var helpBtn = $GridContainer/helpBtn
-@onready var quitBtn = $GridContainer2/QuitBtn
+@onready var quitBtn = $GridContainer/QuitBtn
 @onready var mainBtn = $GridContainer/Back2MainBtn
 @onready var resumeBtn = $GridContainer/ResumeBtn
 @onready var buttonGrid = $GridContainer
 
-func _ready() -> void:
-	buttonGrid.set_position(Vector2(490,170))
+# func _ready() -> void:
+
 	
 
 func _on_resume_btn_pressed() -> void:
@@ -18,8 +18,7 @@ func _on_resume_btn_pressed() -> void:
 
 func _on_help_btn_pressed() -> void:
 	$buttonPress.play()
-	
-	pass # Replace with function body.
+	$TutorialContents.show()
 
 func _on_quit_btn_pressed() -> void:
 	$buttonPress.play()

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://t5bsek4qov5a"]
+
+[ext_resource type="Script" uid="uid://l3e7bncqj1i8" path="res://Scenes/Menus/menutemplate.gd" id="1_xqj1w"]
+[ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_620ty"]
+[ext_resource type="Texture2D" uid="uid://5q375qr4476d" path="res://Assets/wood1.png" id="4_oo7th"]
+[ext_resource type="AudioStream" uid="uid://c1gmd3qphxeq5" path="res://Assets/SFX/uiButton.wav" id="5_suanv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r3jjw"]
+shader = ExtResource("3_620ty")
+shader_parameter/amount = 150
+
+[node name="MenuTemplate" type="Control"]
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -271.0
+offset_right = -271.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xqj1w")
+
+[node name="Wood1" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_r3jjw")
+position = Vector2(572, 325)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_oo7th")
+metadata/_edit_lock_ = true
+
+[node name="buttonPress" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_suanv")
+volume_db = 6.933

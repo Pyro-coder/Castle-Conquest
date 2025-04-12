@@ -20,6 +20,7 @@ func _ready() -> void:
 		music_volume = musicSlider.value
 		musicSlider.connect("value_changed", musicSliderValueChanged)
 
+	if sfxSlider:
 		sfxSlider.value = loadSFXVolume()
 		sfx_volume = sfxSlider.value
 		sfxSlider.connect("value_changed", sfxSliderValueChanged)

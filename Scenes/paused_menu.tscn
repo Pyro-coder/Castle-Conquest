@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://csny3if363son"]
+[gd_scene load_steps=17 format=3 uid="uid://csny3if363son"]
 
 [ext_resource type="Script" uid="uid://v8xbdobdntl0" path="res://paused_menu.gd" id="1_jypes"]
 [ext_resource type="Texture2D" uid="uid://5q375qr4476d" path="res://Assets/wood1.png" id="2_rc272"]
@@ -6,6 +6,14 @@
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="3_npcx0"]
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="4_dmf0p"]
 [ext_resource type="AudioStream" uid="uid://c1gmd3qphxeq5" path="res://Assets/SFX/uiButton.wav" id="5_8mj5x"]
+[ext_resource type="PackedScene" uid="uid://dfryx2u3dcwn7" path="res://Scenes/Menus/InGameTutorial/tutorial_contents.tscn" id="7_gao4x"]
+[ext_resource type="PackedScene" uid="uid://bbakdi2mbgbea" path="res://Scenes/Menus/InGameTutorial/tutorial_pg_1.tscn" id="8_cf4x2"]
+[ext_resource type="PackedScene" uid="uid://bbuh680flkw4q" path="res://Scenes/Menus/InGameTutorial/tutorial_pg_2.tscn" id="9_lp358"]
+[ext_resource type="PackedScene" uid="uid://q4xei754e8mk" path="res://Scenes/Menus/InGameTutorial/tutorial_pg_3.tscn" id="10_yv6ar"]
+[ext_resource type="PackedScene" uid="uid://ds1p6b7smb0tv" path="res://Scenes/Menus/InGameTutorial/tutorial_pg_4.tscn" id="11_0eyed"]
+[ext_resource type="PackedScene" uid="uid://bi04sr84rc1vh" path="res://Scenes/Menus/InGameTutorial/tutorial_pg_5.tscn" id="12_py0k4"]
+[ext_resource type="PackedScene" uid="uid://ccesodxkkbes0" path="res://Scenes/Menus/InGameTutorial/tutorial_pg_6.tscn" id="13_0o8fn"]
+[ext_resource type="PackedScene" uid="uid://dwrrak36a5owc" path="res://Scenes/Menus/InGameTutorial/tutorial_pg_7.tscn" id="14_yheyx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cetyb"]
 shader = ExtResource("2_w03cf")
@@ -25,6 +33,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_jypes")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+z_index = 1
+layout_mode = 0
+offset_left = 474.0
+offset_top = 175.0
+offset_right = 649.0
+offset_bottom = 384.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_npcx0")
+theme_override_font_sizes/font_size = 40
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_hover_pressed_color = Color(0.988489, 0.656476, 7.70092e-07, 1)
+theme_override_colors/icon_hover_color = Color(0.804422, 0.55664, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("3_npcx0")
+theme_override_font_sizes/font_size = 30
+text = "Resume Game"
+flat = true
+
+[node name="helpBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("3_npcx0")
+theme_override_font_sizes/font_size = 30
+text = "Help"
+flat = true
+
+[node name="Back2MainBtn" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("3_npcx0")
+theme_override_font_sizes/font_size = 30
+text = "Main Menu
+"
+flat = true
+expand_icon = true
+
+[node name="QuitBtn" type="Button" parent="VBoxContainer"]
+z_index = 1
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("3_npcx0")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+flat = true
+
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_cetyb")
 layout_mode = 1
@@ -39,89 +99,54 @@ color = Color(0.266667, 0.266667, 0.266667, 0.705882)
 show_behind_parent = true
 z_index = 1
 material = SubResource("ShaderMaterial_dmf0p")
-position = Vector2(584, 329)
+position = Vector2(572, 326)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_rc272")
-
-[node name="GridContainer2" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 439.0
-offset_top = 513.0
-offset_right = 717.0
-offset_bottom = 543.0
-
-[node name="QuitBtn" type="Button" parent="GridContainer2"]
-z_index = 2
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_fonts/font = ExtResource("3_npcx0")
-theme_override_font_sizes/font_size = 30
-text = "Quit"
-flat = true
 
 [node name="buttonPress" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_8mj5x")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-z_index = 2
+[node name="TutorialContents" parent="." instance=ExtResource("7_gao4x")]
+visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -86.0
-offset_top = -154.0
-offset_right = 89.0
-offset_bottom = 73.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/v_separation = 10
 
-[node name="Label" type="Label" parent="GridContainer"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("3_npcx0")
-theme_override_font_sizes/font_size = 40
-text = "Paused"
-horizontal_alignment = 1
+[node name="TutorialPg1" parent="." instance=ExtResource("8_cf4x2")]
+visible = false
+layout_mode = 1
 
-[node name="ResumeBtn" type="Button" parent="GridContainer"]
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_hover_pressed_color = Color(0.988489, 0.656476, 7.70092e-07, 1)
-theme_override_colors/icon_hover_color = Color(0.804422, 0.55664, 1.92523e-07, 1)
-theme_override_fonts/font = ExtResource("3_npcx0")
-theme_override_font_sizes/font_size = 30
-text = "Resume Game"
-flat = true
+[node name="TutorialPg2" parent="." instance=ExtResource("9_lp358")]
+visible = false
+layout_mode = 1
 
-[node name="helpBtn" type="Button" parent="GridContainer"]
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_fonts/font = ExtResource("3_npcx0")
-theme_override_font_sizes/font_size = 30
-text = "Help"
-flat = true
+[node name="TutorialPg3" parent="." instance=ExtResource("10_yv6ar")]
+visible = false
+layout_mode = 1
 
-[node name="Back2MainBtn" type="Button" parent="GridContainer"]
-layout_mode = 2
-theme_type_variation = &"FlatButton"
-theme_override_fonts/font = ExtResource("3_npcx0")
-theme_override_font_sizes/font_size = 30
-text = "Main Menu
-"
-flat = true
-expand_icon = true
+[node name="TutorialPg4" parent="." instance=ExtResource("11_0eyed")]
+visible = false
+layout_mode = 1
 
-[connection signal="mouse_entered" from="GridContainer2/QuitBtn" to="." method="_on_quit_btn_mouse_entered"]
-[connection signal="mouse_exited" from="GridContainer2/QuitBtn" to="." method="_on_quit_btn_mouse_exited"]
-[connection signal="pressed" from="GridContainer2/QuitBtn" to="." method="_on_quit_btn_pressed"]
-[connection signal="mouse_entered" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_mouse_entered"]
-[connection signal="mouse_exited" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_mouse_exited"]
-[connection signal="pressed" from="GridContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
-[connection signal="mouse_entered" from="GridContainer/helpBtn" to="." method="_on_help_btn_mouse_entered"]
-[connection signal="mouse_exited" from="GridContainer/helpBtn" to="." method="_on_help_btn_mouse_exited"]
-[connection signal="pressed" from="GridContainer/helpBtn" to="." method="_on_help_btn_pressed"]
-[connection signal="mouse_entered" from="GridContainer/Back2MainBtn" to="." method="_on_back_2_main_btn_mouse_entered"]
-[connection signal="mouse_exited" from="GridContainer/Back2MainBtn" to="." method="_on_back_2_main_btn_mouse_exited"]
-[connection signal="pressed" from="GridContainer/Back2MainBtn" to="." method="_on_back_2_main_btn_pressed"]
+[node name="TutorialPg5" parent="." instance=ExtResource("12_py0k4")]
+visible = false
+layout_mode = 1
+
+[node name="TutorialPg6" parent="." instance=ExtResource("13_0o8fn")]
+visible = false
+layout_mode = 1
+
+[node name="TutorialPg7" parent="." instance=ExtResource("14_yheyx")]
+visible = false
+layout_mode = 1
+
+[connection signal="mouse_entered" from="VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/ResumeBtn" to="." method="_on_resume_btn_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/helpBtn" to="." method="_on_help_btn_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/helpBtn" to="." method="_on_help_btn_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/helpBtn" to="." method="_on_help_btn_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/Back2MainBtn" to="." method="_on_back_2_main_btn_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/Back2MainBtn" to="." method="_on_back_2_main_btn_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/Back2MainBtn" to="." method="_on_back_2_main_btn_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/QuitBtn" to="." method="_on_quit_btn_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/QuitBtn" to="." method="_on_quit_btn_mouse_exited"]
+[connection signal="pressed" from="VBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]

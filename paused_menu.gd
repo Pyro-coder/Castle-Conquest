@@ -1,10 +1,10 @@
 extends Control
 
-@onready var helpBtn = $VBoxContainer/helpBtn
-@onready var quitBtn = $VBoxContainer/QuitBtn
-@onready var mainBtn = $VBoxContainer/Back2MainBtn
-@onready var resumeBtn = $VBoxContainer/ResumeBtn
-@onready var buttonGrid = $VBoxContainer
+@onready var helpBtn = $GridContainer/helpBtn
+@onready var quitBtn = $GridContainer/QuitBtn
+@onready var mainBtn = $GridContainer/Back2MainBtn
+@onready var resumeBtn = $GridContainer/ResumeBtn
+@onready var buttonGrid = $GridContainer
 
 # func _ready() -> void:
 

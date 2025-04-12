@@ -10,14 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Capstone-25"
+config/name="Castle Conquest"
 run/main_scene="uid://dpxi4gr4pqdgy"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/image="uid://cwjgqggsjppuf"
-config/icon="res://icon.svg"
+config/icon="uid://b0ujp4wuwp5j8"
+config/windows_native_icon="res://Assets/AppIcon.ico"
 
 [autoload]
 

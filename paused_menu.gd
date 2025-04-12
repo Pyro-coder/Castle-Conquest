@@ -6,9 +6,9 @@ extends Control
 @onready var resumeBtn = $GridContainer/ResumeBtn
 @onready var buttonGrid = $GridContainer
 
-# func _ready() -> void:
-
-	
+func _ready() -> void:
+	buttonGrid.set_position(Vector2(475	,131))
+		
 
 func _on_resume_btn_pressed() -> void:
 	$buttonPress.play()

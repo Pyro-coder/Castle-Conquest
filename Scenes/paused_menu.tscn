@@ -69,6 +69,7 @@ offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/v_separation = 10
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="GridContainer"]
 layout_mode = 2

@@ -5,8 +5,9 @@ extends Control
 @onready var musicSlider = $MenuTemplate/VBoxContainer/Label2/MusicSlider
 @onready var sfxSlider = $MenuTemplate/VBoxContainer/Label/SFXSlider
 
-var music_volume = 1.0
-var sfx_volume = 1.0
+var music_volume = 0.5
+var sfx_volume = 0.5
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if backBtn:
@@ -19,7 +20,6 @@ func _ready() -> void:
 		musicSlider.value = loadMusicVolume()
 		music_volume = musicSlider.value
 		musicSlider.connect("value_changed", musicSliderValueChanged)
-
 	if sfxSlider:
 		sfxSlider.value = loadSFXVolume()
 		sfx_volume = sfxSlider.value
@@ -54,7 +54,7 @@ func musicSliderValueChanged(value: float) -> void:
 	if has_node("/root/AudioPlayer"):
 		var audio_player = get_node("/root/AudioPlayer")
 		audio_player.volume_db = value_to_db(music_volume)
-		
+
 func value_to_db(value: float) -> float:
 	if value <= 0.0:
 		return -80.0  # Minimum audible threshold
@@ -65,7 +65,6 @@ func _on_apply_button_pressed() -> void:
 	saveSFXVolume(sfx_volume)
 	saveMusicVolume(music_volume)
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
-
 
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
@@ -89,7 +88,6 @@ func applyExt() -> void:
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
 
-
 func saveMusicVolume(volume: float) -> void:
 	var config = ConfigFile.new()
 	config.load("user://settings.cfg")
@@ -102,7 +100,4 @@ func loadMusicVolume() -> float:
 	if config.has_section_key("audio", "music_volume"):
 		return config.get_value("audio", "music_volume")
 	else:
-		return 1.0
-	
- 
-	
+		return 0.5

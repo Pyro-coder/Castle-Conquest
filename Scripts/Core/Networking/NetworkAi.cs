@@ -77,10 +77,16 @@ namespace Capstone25.Scripts.Core.Networking
 				char turn;
 				int[,] parsedState;
 
-				while (winner == "none")
+				while (true)
 				{
 					//SET UP THE GAME ENGINE
 					playState = await GetPlayStateAsync();
+					
+					while(playState == null){
+						await Task.Delay(1000);
+						playState = await GetPlayStateAsync();
+					}
+					
 					State = playState.state;
 					GD.Print(State);
 
@@ -95,6 +101,7 @@ namespace Capstone25.Scripts.Core.Networking
 					
 					//DETERMINE ACTION TO PLAY BASED ON STATE 
 					int gamePhase = DetermineGamePhase(state);
+					GD.Print($"Detected game phase: {gamePhase}");
 					string moveString = "";
 
 					if (gamePhase == 1)
@@ -216,7 +223,7 @@ namespace Capstone25.Scripts.Core.Networking
 
 			private static async Task<dynamic> GetPlayStateAsync()
 			{
-				string @event = "mirror";
+				string @event = "mock-1";
 				string player = game.player;
 				string token = game.token;
 
@@ -231,7 +238,12 @@ namespace Capstone25.Scripts.Core.Networking
 				HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
 				HttpResponseMessage response = await client.PostAsync(baseUrl + "aivai/play-state", content);
-				// Console.WriteLine(response);
+				//Console.WriteLine(response);
+				//response.EnsureSuccessStatusCode();
+				if(response.StatusCode == System.Net.HttpStatusCode.NoContent){
+					GD.Print("Received 204 No Content. Waiting before retrying...");
+					return null; // wait 1 second before retrying
+				}
 				response.EnsureSuccessStatusCode();
 				var responseBody = await response.Content.ReadAsStringAsync();
 				dynamic jsonResponse = JsonConvert.DeserializeObject(responseBody);
@@ -376,14 +388,17 @@ namespace Capstone25.Scripts.Core.Networking
 
 				if (state.Length < 32)
 				{
+					GD.Print("Phase 1: tile placement");
 					return 1;
 				}
 				else if (state.Length == 32 || state.Length == 33 || state.Length == 34)
 				{
+					GD.Print("Phase 2: initial stack placement");
 					return 2;
 				}
 				else
 				{
+					GD.Print("Phase 3: movement");
 					return 3;
 				}
 			}

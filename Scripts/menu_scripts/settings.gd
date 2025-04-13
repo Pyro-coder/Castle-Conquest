@@ -5,11 +5,12 @@ extends Control
 @onready var musicSlider = $MenuTemplate/VBoxContainer/Label2/MusicSlider
 @onready var sfxSlider = $MenuTemplate/VBoxContainer/Label/SFXSlider
 
-var music_volume = 0.5
+var music_volume = 0.2
 var sfx_volume = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+
 	if backBtn:
 		backBtn.connect("mouse_entered", backBtnHvrd)
 		backBtn.connect("mouse_exited", backBtnExt)
@@ -29,6 +30,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func reset_music_settings():
+	var config = ConfigFile.new()
+	var config_path = "user://settings.cfg"
+	var err = config.load(config_path)
+	
+	if err == OK:
+		if config.has_section_key("audio", "music_volume"):
+			config.erase_section_key("audio", "music_volume")
+			config.save(config_path)
+
+
 func sfxSliderValueChanged(value: float) -> void:
 	sfx_volume = value
 	if has_node("/root/AudioPlayer"):  # or use a separate SFX player if needed
@@ -47,7 +59,7 @@ func loadSFXVolume() -> float:
 	if config.has_section_key("audio", "sfx_volume"):
 		return config.get_value("audio", "sfx_volume")
 	else:
-		return 1.0
+		return 0.2
 
 func musicSliderValueChanged(value: float) -> void:
 	music_volume = value
@@ -96,8 +108,8 @@ func saveMusicVolume(volume: float) -> void:
 	
 func loadMusicVolume() -> float:
 	var config = ConfigFile.new()
-	config.load("user://settings.cfg")
-	if config.has_section_key("audio", "music_volume"):
-		return config.get_value("audio", "music_volume")
-	else:
-		return 0.5
+	var config_path = "user://settings.cfg"
+	if config.load(config_path) == OK:
+		if config.has_section_key("audio", "music_volume"):
+			return config.get_value("audio", "music_volume")
+	return 0.2

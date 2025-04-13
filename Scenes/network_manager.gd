@@ -5,7 +5,7 @@ signal connection_timeout
 signal move_timeout
 
 @onready var move_timer: Timer
-var move_timeout_duration := 20.0  # Seconds allowed per move
+var move_timeout_duration := 90.0  # Seconds allowed per move
 var network_peer: ENetMultiplayerPeer
 var udp_broadcaster := PacketPeerUDP.new()
 var broadcast_port := 54545  # The UDP port to send broadcasts

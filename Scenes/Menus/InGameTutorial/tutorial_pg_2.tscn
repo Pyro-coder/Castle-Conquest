@@ -53,7 +53,7 @@ offset_top = 179.0
 offset_right = 700.0
 offset_bottom = 276.0
 theme_override_fonts/font = ExtResource("5_2c7rq")
-text = "When playing a single player game, A coin flip will decide the player who will make the first move. Press space to flip the coin."
+text = "When playing a single player game, a coin flip will decide the player who will make the first move. Press space to flip the coin."
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]

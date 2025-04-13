@@ -51,7 +51,7 @@ text = "The game will end when one player can no longer move.
 
 A winner is decided based on who has more area claimed, or in the case of a tie, who has the largest connected area of claimed land.
 
-Upon conclusion of the game, the final board will be shown, with options for an immediate rematch or to procede to the main menu. "
+Upon conclusion of the game, the final board will be shown, with options for an immediate rematch or to proceed to the main menu. "
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]

@@ -55,7 +55,7 @@ offset_bottom = 326.0
 theme_override_fonts/font = ExtResource("5_uub4y")
 text = "Create a board to conquer by hovering over the water. 
 
-If the water tiles are highlighted green, the tile placement is valid. If not the tiles will turn red."
+If the water tiles are highlighted green, the tile placement is valid. If not, the tiles will turn red."
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]

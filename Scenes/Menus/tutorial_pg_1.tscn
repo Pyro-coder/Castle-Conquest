@@ -59,9 +59,9 @@ offset_top = 256.0
 offset_right = 700.0
 offset_bottom = 403.0
 theme_override_fonts/font = ExtResource("4_7eub2")
-text = "To play alone against a computer, Select \"Go Thee Alone\" and choose a difficulty level.
+text = "To play alone against a computer, select \"Go Thee Alone\" and choose a difficulty level.
 
-To play against a friend, either locally or over a network, select \"Take Thy Friends\". (need more information on hosting and joining)"
+To play against a friend, either locally or over a network, select \"Take Thy Friends\". Host or join a known network and begin your conquest!"
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]

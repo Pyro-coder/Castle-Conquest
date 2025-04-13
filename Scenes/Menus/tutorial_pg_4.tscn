@@ -50,7 +50,7 @@ offset_top = 179.0
 offset_right = 700.0
 offset_bottom = 228.0
 theme_override_fonts/font = ExtResource("5_vyq7s")
-text = "You can rotate board pieces by pressing the space bar."
+text = "You can rotate board pieces BEFORE placing them by pressing the space bar or right clicking."
 autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
@@ -125,9 +125,9 @@ text = "Next
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
 offset_left = 148.0
-offset_top = 245.0
+offset_top = 264.0
 offset_right = 429.0
-offset_bottom = 412.0
+offset_bottom = 431.0
 stream = ExtResource("6_i0aqi")
 autoplay = true
 expand = true

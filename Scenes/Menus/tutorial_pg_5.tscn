@@ -50,7 +50,7 @@ offset_top = 179.0
 offset_right = 700.0
 offset_bottom = 228.0
 theme_override_fonts/font = ExtResource("5_3fp7a")
-text = "Start capturing land by placeing your stack of 16 tokens, represented by a castle, on the edge of the board.
+text = "Start capturing land by placing your stack of 16 tokens, represented by a castle, on the edge of the board.
 
 If your placement is valid, the board piece will be highlighted green, if not it will be red."
 autowrap_mode = 3

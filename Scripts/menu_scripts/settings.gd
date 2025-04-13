@@ -10,6 +10,8 @@ var sfx_volume = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	reset_music_settings()  # Reset music to default
+	reset_sfx_settings()    # Reset SFX to default
 
 	if backBtn:
 		backBtn.connect("mouse_entered", backBtnHvrd)
@@ -40,9 +42,20 @@ func reset_music_settings():
 			config.erase_section_key("audio", "music_volume")
 			config.save(config_path)
 
+func reset_sfx_settings():
+	var config = ConfigFile.new()
+	var config_path = "user://settings.cfg"
+	var err = config.load(config_path)
+
+	if err == OK:
+		if config.has_section_key("audio", "sfx_volume"):
+			config.erase_section_key("audio", "sfx_volume")
+			config.save(config_path)
+
 
 func sfxSliderValueChanged(value: float) -> void:
 	sfx_volume = value
+	GlobalSettings.sfx_volume = value
 	if has_node("/root/AudioPlayer"):  # or use a separate SFX player if needed
 		var audio_player = get_node("/root/AudioPlayer")
 		audio_player.set("sfx_volume_db", value_to_db(sfx_volume))
@@ -57,8 +70,11 @@ func loadSFXVolume() -> float:
 	var config = ConfigFile.new()
 	config.load("user://settings.cfg")
 	if config.has_section_key("audio", "sfx_volume"):
-		return config.get_value("audio", "sfx_volume")
+		var loaded = config.get_value("audio", "sfx_volume")
+		GlobalSettings.sfx_volume = loaded  # <-- Store globally
+		return loaded
 	else:
+		GlobalSettings.sfx_volume = 0.2
 		return 0.2
 
 func musicSliderValueChanged(value: float) -> void:

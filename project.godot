@@ -25,6 +25,7 @@ config/windows_native_icon="res://Assets/AppIcon.ico"
 AudioPlayer="*res://Scenes/GlobalScenes/AudioPlayer.tscn"
 GlobalMenuCamera="*res://Scripts/menu_scripts/GlobalMenuCamera.gd"
 GlobalVars="*res://global_vars.gd"
+GlobalSettings="*res://Scripts/menu_scripts/GlobalSettings.gd"
 
 [display]
 

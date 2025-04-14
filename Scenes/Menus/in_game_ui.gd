@@ -25,17 +25,7 @@ var is_first_move= true
 var isP1Turn = GlobalVars.first_player_moves_first
 func _ready() -> void:
 	wait_timer.start()
-	
-	var glow_shader_source = load("res://Scenes/Menus/glow.gdshader")
-	blue_shader = ShaderMaterial.new()
-	red_shader = ShaderMaterial.new()
 
-	blue_shader.shader = glow_shader_source
-	red_shader.shader = glow_shader_source
-
-	blueSprite.material = blue_shader
-	redSprite.material = red_shader
-	updateShaderVisibility()
 	if GlobalVars.first_player_moves_first:
 		P2TurnCompleteAnimation()
 	else:
@@ -44,21 +34,6 @@ func _ready() -> void:
 func update_phase_num(phaseNumFromBoard):
 	phaseNum = phaseNumFromBoard
 
-func updateShaderVisibility() -> void:
-	if isBlueTurn:
-		blue_shader.set_shader_parameter("glow_power", glow_power)
-		blue_shader.set_shader_parameter("glow_shift", glow_shift)
-		blue_shader.set_shader_parameter("glow_radius", glowradius)
-		red_shader.set_shader_parameter("glow_power", noglow)
-		red_shader.set_shader_parameter("glow_shift", noshift)
-		red_shader.set_shader_parameter("glow_radius", noradius)
-	else:
-		blue_shader.set_shader_parameter("glow_power", noglow)
-		blue_shader.set_shader_parameter("glow_shift", noshift)
-		blue_shader.set_shader_parameter("glow_radius", noradius)
-		red_shader.set_shader_parameter("glow_power", glow_power)
-		red_shader.set_shader_parameter("glow_shift", glow_shift)
-		red_shader.set_shader_parameter("glow_radius", glowradius)
 
 
 func erase_blue_hex(hex_count):
@@ -82,7 +57,6 @@ func P1TurnCompleteAnimation():
 	redSprite.play("idle")
 	
 	isBlueTurn = false
-	updateShaderVisibility()
 	
 	
 func P2LoseAnimation():
@@ -99,7 +73,6 @@ func P2TurnCompleteAnimation():
 	blueSprite.play("idle")
 
 	isBlueTurn = true
-	updateShaderVisibility()
 
 
 func UpdateMainLabel(textInput):
@@ -190,15 +163,11 @@ func _on_timer_timeout() -> void:
 	
 
 
-
-
 func _on_question_button_pressed() -> void:
 	$QuestionMark.visible = false
 	$MessageContainer.visible = true
 	$BackArrow.visible = true
 	
-
-
 
 func _on_back_arrow_pressed() -> void:
 	$QuestionMark.visible = true

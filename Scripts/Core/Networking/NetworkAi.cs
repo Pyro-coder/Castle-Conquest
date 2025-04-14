@@ -84,6 +84,7 @@ namespace Capstone25.Scripts.Core.Networking
 					
 					while(playState == null){
 						await Task.Delay(1000);
+						//GD.Print("Waiting for play state");
 						playState = await GetPlayStateAsync();
 					}
 					

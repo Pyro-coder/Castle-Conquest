@@ -72,6 +72,7 @@ func updatePauseHovered(isHovered):
 		isPauseHovered = true
 	else:
 		isPauseHovered = false
+
 func OnBoardPlaceHover(hoveredtilecoords,color):
 	# Get valid moves for tile coloring
 	var valid_moves = control_node.get_valid()

@@ -246,7 +246,7 @@ func process_move_input(q: int, r: int, num_pieces: int, direction: int):
 	if current_player.Id == 1:
 		p1TilesCovered += 1
 		ingameui.P1TurnCompleteAnimation()
-		ingameui.UpdateP2Label("Tiles Conquered: %d" % p1TilesCovered)
+		ingameui.UpdateP1Label("Tiles Conquered: %d" % p1TilesCovered)
 
 	else:
 		p2TilesCovered+=1

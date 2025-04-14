@@ -62,6 +62,8 @@ namespace BattleSheepCore.AI
 							continue;
 						}
 						totalScore += SimulateRandomPlayout(simState, aiPlayerId);
+
+                        simState.QueueFree();
 						simulationsRun++;
 					}
 					double avgScore = simulationsRun > 0 ? totalScore / simulationsRun : double.MinValue;
@@ -113,6 +115,7 @@ namespace BattleSheepCore.AI
 							continue;
 						}
 						totalScore += SimulateRandomPlayout(simState, aiPlayerId);
+                        simState.QueueFree();
 						simulationsRun++;
 					}
 					double avgScore = simulationsRun > 0 ? totalScore / simulationsRun : double.MinValue;

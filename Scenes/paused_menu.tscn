@@ -17,7 +17,6 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cetyb"]
 shader = ExtResource("2_w03cf")
-shader_parameter/amount = 3.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dmf0p"]
 shader = ExtResource("4_dmf0p")

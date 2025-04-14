@@ -36,7 +36,7 @@ namespace BattleSheepCore.AI
         }
 
         // Returns the best tile placement for the AI as (q, r, orientation)
-        public (int q, int r, int orientation) _GetBestTilePlacement(IGameEngine gameEngine)
+        public (int q, int r, int orientation) _GetBestTilePlacement(GameEngine gameEngine)
         {
             // NEW: Calculate if AI goes first once
             if (!aiGoesFirstCalculated)
@@ -64,6 +64,8 @@ namespace BattleSheepCore.AI
                     continue;
                 }
                 int score = Minimax(simulatedGame, maxDepth - 1, int.MinValue, int.MaxValue, false);
+                // Now that we've used newState, free it
+                simulatedGame.QueueFree();
                 if (score > bestScore)
                 {
                     bestScore = score;
@@ -73,7 +75,7 @@ namespace BattleSheepCore.AI
             return bestMove;
         }
 
-        private int Minimax(IGameEngine state, int depth, int alpha, int beta, bool maximizingPlayer)
+        private int Minimax(GameEngine state, int depth, int alpha, int beta, bool maximizingPlayer)
         {
             if (depth == 0 || state.CheckForWin())
                 return Evaluate(state);
@@ -95,6 +97,8 @@ namespace BattleSheepCore.AI
                         continue;
                     }
                     int eval = Minimax(newState, depth - 1, alpha, beta, false);
+                    // Now that we've used newState, free it
+                    newState.QueueFree();
                     maxEval = Math.Max(maxEval, eval);
                     alpha = Math.Max(alpha, eval);
                     if (beta <= alpha)
@@ -129,7 +133,7 @@ namespace BattleSheepCore.AI
             }
         }
 
-        private int Evaluate(IGameEngine state)
+        private int Evaluate(GameEngine state)
         {
             var boardState = state.AIGetCurrentBoardState();
             if (boardState.Count == 0)

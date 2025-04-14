@@ -658,6 +658,7 @@ theme_override_font_sizes/font_size = 20
 text = "Instructions can be viewed here."
 
 [node name="QuestionMark" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 332.0

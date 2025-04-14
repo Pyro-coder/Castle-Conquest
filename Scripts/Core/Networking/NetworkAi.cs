@@ -224,7 +224,7 @@ namespace Capstone25.Scripts.Core.Networking
 
 			private static async Task<dynamic> GetPlayStateAsync()
 			{
-				string @event = "mock-1";
+				string @event = "mirror";
 				string player = game.player;
 				string token = game.token;
 

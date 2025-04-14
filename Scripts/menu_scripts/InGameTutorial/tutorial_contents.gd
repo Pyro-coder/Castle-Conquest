@@ -1,7 +1,7 @@
 extends Control
 @onready var menuTemplate = $MenuTemplate
 
-@onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
+#@onready var backBtn = $MenuTemplate/HBoxContainer/BackButton
 @onready var nextBtn = $MenuTemplate/HBoxContainer/NextButton
 @onready var mainBtn = $MenuTemplate/HBoxContainer/mainBtn
 
@@ -40,14 +40,14 @@ func _on_next_button_pressed() -> void:
 	$"../TutorialPg1".show()
 	self.hide()
 
-func _on_back_button_mouse_entered() -> void:
-	backBtn.modulate = Color(1.2, 1.2, 1.2) # Slightly brighten the button
-	backBtn.scale = Vector2(1.1, 1.1)  
-
-
-func _on_back_button_mouse_exited() -> void:
-	backBtn.modulate = Color(1, 1, 1)     # Reset to original color
-	backBtn.scale = Vector2(1, 1)
+#func _on_back_button_mouse_entered() -> void:
+	#backBtn.modulate = Color(1.2, 1.2, 1.2) # Slightly brighten the button
+	#backBtn.scale = Vector2(1.1, 1.1)  
+#
+#
+#func _on_back_button_mouse_exited() -> void:
+	#backBtn.modulate = Color(1, 1, 1)     # Reset to original color
+	#backBtn.scale = Vector2(1, 1)
 
 
 func _on_next_button_mouse_entered() -> void:

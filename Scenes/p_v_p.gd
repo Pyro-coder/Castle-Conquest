@@ -5,7 +5,7 @@ enum GameState { TURN_ORDER, TILE_PLACEMENT, INITIAL_PLACEMENT, MOVE_PHASE, GAME
 
 # UI nodes.
 @onready var message_label: Label = $MessageLabel
-@onready var wait_timer = $Wait_Timer
+#@onready var wait_timer = $Wait_Timer
 @onready var board: Node = get_parent()  # Assumes the parent node contains an update_from_state(state) method.
 @onready var ingameui = $InGameUI
 @onready var pauseBtn = $CanvasLayer2/pauseBtn

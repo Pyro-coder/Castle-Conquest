@@ -1,4 +1,5 @@
 using System;
+using System.Buffers;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -15,6 +16,7 @@ using static Godot.WebSocketPeer;
 using BattleSheepCore;
 using System.Reflection.Metadata;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Runtime.Intrinsics.X86;
 
 
@@ -24,7 +26,9 @@ namespace Capstone25.Scripts.Core.Networking
 	public partial class NetworkAi : Node
 	{
 
-		private class Game
+        private bool _isRunning = false;
+
+        private class Game
 		{
 			public string State { get; set; }
 			public string action_id { get; set; }
@@ -46,16 +50,30 @@ namespace Capstone25.Scripts.Core.Networking
 				tileAI.Initialize(10, 1);
 				movementAi.Initialize(800, 1);
 			}
+
+            ~Game()
+            {
+				tileAI.QueueFree();
+				movementAi.QueueFree();
+            }
 		}
 
 		public override void _Ready()
 		{
-			GD.Print("NetworkAi initialized!");
+            _isRunning = true;
 
-			_ = Client.ProcessGameLogic();
+            GD.Print("NetworkAi initialized!");
+
+			_ = Client.ProcessGameLogic(this);
 		}
 
-		private class Client
+        public override void _ExitTree()
+        {
+            _isRunning = false;
+            GD.Print("Exiting scene, stopping game logic");
+        }
+
+        private class Client
 		{
 
 			private static Game game = new();
@@ -66,7 +84,7 @@ namespace Capstone25.Scripts.Core.Networking
 			private static readonly System.Net.Http.HttpClient client = new System.Net.Http.HttpClient();
 
 		   
-			public static async Task ProcessGameLogic()
+			public static async Task ProcessGameLogic(NetworkAi Owner)
 			{
 		
 				//Game game = new Game();
@@ -77,7 +95,7 @@ namespace Capstone25.Scripts.Core.Networking
 				char turn;
 				int[,] parsedState;
 
-				while (true)
+				while (Owner._isRunning)
 				{
 					//SET UP THE GAME ENGINE
 					playState = await GetPlayStateAsync();

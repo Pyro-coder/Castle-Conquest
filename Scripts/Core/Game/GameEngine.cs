@@ -84,7 +84,7 @@ namespace BattleSheepCore.Game
 
 		public void PrintBoard()
 		{
-			_gameController.PrintBoard();
+			//_gameController.PrintBoard();
 		}
 
 		/// <summary>

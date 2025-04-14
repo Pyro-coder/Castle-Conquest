@@ -354,7 +354,7 @@ namespace BattleSheepCore.Board
 		/// </summary>
 		public void PrintBoardHex()
 		{
-			// Loop over rows from -size to +size
+			/*// Loop over rows from -size to +size
 			for (int r = -size; r <= size; r++)
 			{
 				// Indent each row by |r|, multiplied by 2 for spacing
@@ -402,7 +402,7 @@ namespace BattleSheepCore.Board
 				// Move to the next row
 				Console.WriteLine();
 				Console.WriteLine();
-			}
+			}*/
 		}
 
 		/// <summary>

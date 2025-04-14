@@ -216,10 +216,10 @@ text = "Quit
 
 [node name="AI Over Network" type="Button" parent="MenuTemplate"]
 layout_mode = 0
-offset_left = 1287.0
-offset_top = 614.0
-offset_right = 1421.0
-offset_bottom = 645.0
+offset_left = 1397.0
+offset_top = 1.0
+offset_right = 1531.0
+offset_bottom = 32.0
 text = "AI over Network"
 script = ExtResource("5_5wi6m")
 

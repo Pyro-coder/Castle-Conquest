@@ -56,6 +56,7 @@ func _input(event):
 			orientation = "vert"
 		OnBoardPlaceHover(hoveredTile, Color(0.8, 0.1, 0.1, 1.0))
 
+
 func OnBoardPlaceHover(hoveredtilecoords, color):
 	var valid_moves = control_node.get_valid()
 	var is_valid = false

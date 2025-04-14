@@ -5,7 +5,7 @@ signal connection_timeout
 signal move_timeout
 
 @onready var move_timer: Timer
-var move_timeout_duration := 90.0  # Seconds allowed per move
+var move_timeout_duration := 60.0  # Seconds allowed per move
 var network_peer: ENetMultiplayerPeer
 var udp_broadcaster := PacketPeerUDP.new()
 var broadcast_port := 54545  # The UDP port to send broadcasts
@@ -65,6 +65,7 @@ func _on_move_timeout() -> void:
 
 # Called by the host.
 func host_game(join_code: String) -> void:
+	reset_network_state()
 	var port = join_code_to_port(join_code)
 	print("Attempting to host on port %d" % port)
 	network_peer = ENetMultiplayerPeer.new()
@@ -117,6 +118,7 @@ func get_local_ip() -> String:
 
 # Called by the joiner (client).
 func join_game(host_ip: String, join_code: String) -> void:
+	reset_network_state()
 	if host_ip == "":
 		listen_for_host(join_code)
 		return
@@ -230,7 +232,8 @@ func _on_connection_timeout() -> void:
 			emit_signal("connection_timeout")
 			if status_label:
 				status_label.text = "Timeout: No joiner connected."
-			get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
+			reset_network_state()
+			#get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	else:
 		if !is_client_connected:
 			print("Failed to connect to host within timeout. Disconnecting.")
@@ -238,7 +241,8 @@ func _on_connection_timeout() -> void:
 			emit_signal("connection_timeout")
 			if status_label:
 				status_label.text = "Timeout: Failed to connect to host."
-			get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
+			reset_network_state()
+			#get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 	#queue_free()
 	
 
@@ -257,3 +261,12 @@ func _on_connected_to_server() -> void:
 	if status_label:
 		status_label.text = "Connected to host!"
 	emit_signal("connection_established")
+
+
+func reset_network_state() -> void:
+	print("Resetting network state.")
+
+	# Disconnect network peer
+	var mp = get_tree().get_multiplayer()
+	if mp.get_multiplayer_peer() != null:
+		mp.set_multiplayer_peer(null)

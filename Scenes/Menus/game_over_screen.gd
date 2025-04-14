@@ -19,7 +19,10 @@ func set_title(winner: int):
 			title.text = "Blue Player Conquers All!"
 		2:
 			title.text = "Red Player Conquers All!"
-		
+		101:
+			title.text = "Red Player Timed Out!"
+		102: 
+			title.text = "Blue Player Timed Out!"
 
 func _on_restart_btn_pressed() -> void:
 	AudioPlayer.play()

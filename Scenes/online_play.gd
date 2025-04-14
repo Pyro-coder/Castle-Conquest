@@ -10,6 +10,7 @@ enum GameState { TURN_ORDER, TILE_PLACEMENT, INITIAL_PLACEMENT, MOVE_PHASE, GAME
 @onready var ingameui: Control = $InGameUI
 @onready var NetworkManager = $"../NetworkManager"  # Adjust path as needed
 @onready var pauseBtn = $CanvasLayer2/pauseBtn
+
 # Game objects.
 var game_engine: GameEngine  # Your game engine instance.
 var players: Array = []      # Array of Player objects.
@@ -32,7 +33,9 @@ var game_state = GameState.TURN_ORDER
 #Is pause menu visible
 var is_pause_visible =  false
 
-var opponent_of_timeout: int = 0
+var timeout_occured = false
+#var opponent_of_timeout: int = 0
+var first_move_made = false
 
 # Helper: Return our role (1 for host, 2 for client) based on MultiplayerAPI.
 func get_local_player_role() -> int:
@@ -54,15 +57,29 @@ func get_remote_peer_id() -> int:
 func _ready() -> void:
 	print("GameController ready on unique id: ", get_tree().get_multiplayer().get_unique_id())
 	NetworkManager.connect("connection_established", Callable(self, "setup_game"))
+
 	message_label.text = "Waiting for network connection..."
+	NetworkManager.connect("connection_timeout", Callable(self, "_on_connection_timeout"))
 	NetworkManager.connect("move_timeout", Callable(self, "_on_move_timer_timeout"))
 
+
+func _on_connection_timeout():
+	ingameui.UpdateMainLabel("No Contest")
+	await get_tree().create_timer(3.0).timeout
+	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
+
 func _on_move_timer_timeout():
-	var current_player_id = turn_order[move_turn_index].Id
-	var opponent_id = get_opponent_id(current_player_id)
-	#if multiplayer.get_unique_id() == current_player_id:
+	timeout_occured = true
+	var current_player_id
+	var opponent_id
+	if GlobalVars.is_host:
+		current_player_id = 1
+		opponent_id = 2
+	else:
+		current_player_id = 2
+		opponent_id = 1
+	
 	print(current_player_id, " ran out of time!")
-	opponent_of_timeout = opponent_id  # Set the player who timed out
 	rpc_id(opponent_id, "notify_timeout")
 	end_game()  # End the game after timeout
 
@@ -124,7 +141,7 @@ func setup_game() -> void:
 	game_engine.StartGame()
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
-	
+	rpc_reset_move_timer()
 	# Transition to tile placement.
 	game_state = GameState.TILE_PLACEMENT
 	tile_round = 1
@@ -209,11 +226,14 @@ func update_tile_placement(q: int, r: int, orientation: int) -> void:
 @rpc
 func notify_timeout() -> void:
 	print("Timeout notification received by the other player!")
+	ingameui.updateMainLabel("No Opponent Found")
+	
 	end_game()
 
 @rpc("any_peer", "reliable")
 func rpc_tile_placement(q: int, r: int, orientation: int) -> void:
 	var remote_role = 2 if get_local_player_role() == 1 else 1
+	rpc_reset_move_timer()
 	print("Remote RPC (tile placement) received on uid %s: q=%d, r=%d, orient=%d" % [str(get_tree().get_multiplayer().get_unique_id()), q, r, orientation])
 	game_engine.PlaceTile(remote_role, q, r, orientation)
 	$"../boardPlace".play()
@@ -292,6 +312,7 @@ func update_initial_placement(q: int, r: int) -> void:
 @rpc("any_peer", "reliable")
 func rpc_initial_placement(q: int, r: int) -> void:
 	var remote_role = 2 if get_local_player_role() == 1 else 1
+	rpc_reset_move_timer()
 	print("Remote RPC (initial placement) received: q=%d, r=%d" % [q, r])
 	game_engine.PlaceInitialPieces(remote_role, q, r)
 	$"../tokenMove".play()
@@ -366,6 +387,7 @@ func update_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 @rpc("any_peer", "reliable")
 func rpc_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 	var remote_role = 2 if get_local_player_role() == 1 else 1
+	rpc_reset_move_timer()
 	print("Remote RPC (move) received: q=%d, r=%d, pieces=%d, dir=%d" % [q, r, num_pieces, direction])
 	game_engine.MovePieces(remote_role, q, r, num_pieces, direction)
 	$"../tokenMove".play()
@@ -389,17 +411,24 @@ func rpc_move(q: int, r: int, num_pieces: int, direction: int) -> void:
 #############################################
 func end_game():
 	game_state = GameState.GAME_OVER
-	GlobalVars.player_turn = false
+	var winner
 	
 	# Update the board with the final state.
 	var state = game_engine.GetCurrentBoardState()
 	board.update_from_state(state)
-	
-	var winner
-	if opponent_of_timeout != 0:
-		# If a player timed out, the opponent wins
-		winner = opponent_of_timeout
-		print("Winner due to timeout: Player %d" % winner)
+
+	if timeout_occured:
+		if GlobalVars.is_host:
+			if GlobalVars.player_turn:
+				winner = 102
+			else:
+				winner = 101
+		else:
+			if GlobalVars.player_turn:
+				winner = 101
+			else:
+				winner = 102
+		print("Winner: ", winner)
 	else:
 		# Determine the winner using the game engine's getWinner() function
 		winner = game_engine.GetWinner()

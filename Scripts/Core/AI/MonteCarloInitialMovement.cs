@@ -32,59 +32,92 @@ namespace BattleSheepCore.AI
 			rand = new Random();
 		}
 
-		public Godot.Collections.Dictionary<string, int> GetBestInitialPlacement(GameEngine gameEngine)
-		{
-			return Task.Run(() =>
-			{
-				var validPlacements = gameEngine.GetValidInitialPiecePlacements();
-				// Create a cancellation token that cancels after 4 seconds.
-				var cts = new CancellationTokenSource(TimeSpan.FromSeconds(4));
-				CancellationToken token = cts.Token;
+        public Godot.Collections.Dictionary<string, int> GetBestInitialPlacement(GameEngine gameEngine)
+        {
+            return Task.Run(() =>
+            {
+                var validPlacements = gameEngine.GetValidInitialPiecePlacements();
 
-				int bestQ = 0;
-				int bestR = 0;
+                // Compute board extents from valid placements.
+                int minQ = validPlacements.Min(p => p.q);
+                int maxQ = validPlacements.Max(p => p.q);
+                int minR = validPlacements.Min(p => p.r);
+                int maxR = validPlacements.Max(p => p.r);
 
-				var candidateResults = validPlacements.AsParallel().Select(placement =>
-				{
-					double totalScore = 0;
-					int simulationsRun = 0;
-					for (int i = 0; i < simulationsPerMove; i++)
-					{
-						if (token.IsCancellationRequested)
-							break;
-						var simState = gameEngine.Clone();
-						try
-						{
-							simState.PlaceInitialPieces(aiPlayerId, placement.q, placement.r);
-						}
-						catch (Exception)
-						{
-							continue;
-						}
-						totalScore += SimulateRandomPlayout(simState, aiPlayerId);
+                // Compute center of board based on valid placements.
+                int centerQ = (minQ + maxQ) / 2;
+                int centerR = (minR + maxR) / 2;
 
+                // Compute the maximum hex distance from the center among valid placements.
+                int maxDistanceOverall = validPlacements.Max(p => HexDistance(p.q, p.r, centerQ, centerR));
+                double maxDistanceForBonus = maxDistanceOverall / 2.0; // Bonus is applied only if within half the maximum distance.
+
+                const double chokeWeight = 50.0;  // Tunable parameter for bonus strength.
+
+                // Create a cancellation token that cancels after 4 seconds.
+                var cts = new CancellationTokenSource(TimeSpan.FromSeconds(4));
+                CancellationToken token = cts.Token;
+
+                int bestQ = 0;
+                int bestR = 0;
+
+                var candidateResults = validPlacements.AsParallel().Select(placement =>
+                {
+                    double totalScore = 0;
+                    int simulationsRun = 0;
+                    for (int i = 0; i < simulationsPerMove; i++)
+                    {
+                        if (token.IsCancellationRequested)
+                            break;
+                        var simState = gameEngine.Clone();
+                        try
+                        {
+                            simState.PlaceInitialPieces(aiPlayerId, placement.q, placement.r);
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
+                        totalScore += SimulateRandomPlayout(simState, aiPlayerId);
                         simState.QueueFree();
-						simulationsRun++;
-					}
-					double avgScore = simulationsRun > 0 ? totalScore / simulationsRun : double.MinValue;
-					return (placement, avgScore);
-				}).ToList();
+                        simulationsRun++;
+                    }
+                    double avgScore = simulationsRun > 0 ? totalScore / simulationsRun : double.MinValue;
 
-				var bestCandidate = candidateResults.OrderByDescending(r => r.avgScore).FirstOrDefault();
-				bestQ = bestCandidate.placement.q;
-				bestR = bestCandidate.placement.r;
+                    // Compute the hex distance to the computed board center.
+                    int distance = HexDistance(placement.q, placement.r, centerQ, centerR);
+                    double bonus = (distance < maxDistanceForBonus)
+                        ? chokeWeight * (1 - ((double)distance / maxDistanceForBonus))
+                        : 0;
+                    double finalScore = avgScore + bonus;
+                    return (placement, finalScore);
+                }).ToList();
 
-				var result = new Godot.Collections.Dictionary<string, int>
-				{
-					{ "q", bestQ },
-					{ "r", bestR }
-				};
+                var bestCandidate = candidateResults.OrderByDescending(r => r.finalScore).FirstOrDefault();
+                bestQ = bestCandidate.placement.q;
+                bestR = bestCandidate.placement.r;
 
-				return result;
-			}).GetAwaiter().GetResult();
-		}
+                var result = new Godot.Collections.Dictionary<string, int>
+        {
+            { "q", bestQ },
+            { "r", bestR }
+        };
 
-		public Godot.Collections.Dictionary<string, int> GetBestMovement(GameEngine gameEngine)
+                return result;
+            }).GetAwaiter().GetResult();
+        }
+
+        // Helper: Compute hex grid distance between two axial coordinates.
+        private int HexDistance(int q1, int r1, int q2, int r2)
+        {
+            int dq = Math.Abs(q1 - q2);
+            int dr = Math.Abs(r1 - r2);
+            int ds = Math.Abs((-q1 - r1) - (-q2 - r2)); // since s = -q - r for axial coordinates.
+            return Math.Max(Math.Max(dq, dr), ds);
+        }
+
+
+        public Godot.Collections.Dictionary<string, int> GetBestMovement(GameEngine gameEngine)
 		{
 			return Task.Run(() =>
 			{

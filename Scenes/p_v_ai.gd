@@ -45,6 +45,12 @@ var ai_moved: bool
 var p1won: bool
 @onready var ingameui = $InGameUI
 var is_pause_visible = false
+
+func _exit_tree() -> void:
+	game_engine.queue_free()
+	monte_carlo_ai.queue_free()
+	ai_tile.queue_free()
+
 func _ready():
 
 	

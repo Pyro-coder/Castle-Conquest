@@ -164,7 +164,7 @@ namespace BattleSheepCore.AI
 
 		private int SimulateRandomPlayout(IGameEngine state, int currentPlayerId)
 		{
-			int simulationDepth = 15;
+			int simulationDepth = 10;
 			for (int d = 0; d < simulationDepth && !state.CheckForWin(); d++)
 			{
 				var moves = state.GetValidMoves(currentPlayerId);

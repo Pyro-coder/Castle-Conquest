@@ -37,22 +37,10 @@ namespace BattleSheepCore.AI
             return Task.Run(() =>
             {
                 var validPlacements = gameEngine.GetValidInitialPiecePlacements();
+                int totalFree = validPlacements.Count; // Total tiles available for initial placement.
 
-                // Compute board extents from valid placements.
-                int minQ = validPlacements.Min(p => p.q);
-                int maxQ = validPlacements.Max(p => p.q);
-                int minR = validPlacements.Min(p => p.r);
-                int maxR = validPlacements.Max(p => p.r);
-
-                // Compute center of board based on valid placements.
-                int centerQ = (minQ + maxQ) / 2;
-                int centerR = (minR + maxR) / 2;
-
-                // Compute the maximum hex distance from the center among valid placements.
-                int maxDistanceOverall = validPlacements.Max(p => HexDistance(p.q, p.r, centerQ, centerR));
-                double maxDistanceForBonus = maxDistanceOverall / 2.0; // Bonus is applied only if within half the maximum distance.
-
-                const double chokeWeight = 50.0;  // Tunable parameter for bonus strength.
+                // Tunable parameter: a high weight so that an ideal split will trump simulation differences.
+                const double splitBonusWeight = 1000.0;
 
                 // Create a cancellation token that cancels after 4 seconds.
                 var cts = new CancellationTokenSource(TimeSpan.FromSeconds(4));
@@ -63,6 +51,7 @@ namespace BattleSheepCore.AI
 
                 var candidateResults = validPlacements.AsParallel().Select(placement =>
                 {
+                    // Run standard Monte Carlo simulations.
                     double totalScore = 0;
                     int simulationsRun = 0;
                     for (int i = 0; i < simulationsPerMove; i++)
@@ -84,12 +73,32 @@ namespace BattleSheepCore.AI
                     }
                     double avgScore = simulationsRun > 0 ? totalScore / simulationsRun : double.MinValue;
 
-                    // Compute the hex distance to the computed board center.
-                    int distance = HexDistance(placement.q, placement.r, centerQ, centerR);
-                    double bonus = (distance < maxDistanceForBonus)
-                        ? chokeWeight * (1 - ((double)distance / maxDistanceForBonus))
-                        : 0;
-                    double finalScore = avgScore + bonus;
+                    // --- Compute the Split Bonus ---
+                    // Build a set of free tile coordinates (from valid placements).
+                    var freeTiles = new HashSet<(int, int)>(validPlacements.Select(vp => (vp.q, vp.r)));
+                    // Remove the candidate tile because the AI would take it.
+                    freeTiles.Remove((placement.q, placement.r));
+
+                    // Compute connected components in the free region.
+                    var componentSizes = ComputeComponentsSizes(freeTiles);
+                    double splitBonus = 0;
+                    // We only award a bonus if the candidate splits the region into exactly 2 components.
+                    if (componentSizes.Count == 2)
+                    {
+                        int comp1 = componentSizes[0];
+                        int comp2 = componentSizes[1];
+                        int diff = Math.Abs(comp1 - comp2);
+                        // When totalFree is even, removing one tile leaves an odd number.
+                        // The ideal split for an odd number (e.g. 31) is 16 and 15; ideal difference is 1.
+                        const int idealDiff = 1;
+                        // Maximum possible difference is when one component gets all the tiles.
+                        int maxDiff = (totalFree - 1) - idealDiff;
+                        double normalized = maxDiff > 0 ? (1.0 - ((double)Math.Abs(diff - idealDiff) / maxDiff)) : 1.0;
+                        splitBonus = splitBonusWeight * normalized;
+                    }
+                    // --- End Split Bonus Computation ---
+
+                    double finalScore = avgScore + splitBonus;
                     return (placement, finalScore);
                 }).ToList();
 
@@ -106,6 +115,57 @@ namespace BattleSheepCore.AI
                 return result;
             }).GetAwaiter().GetResult();
         }
+
+        // Helper: Compute the sizes of connected components (regions) in the free tile set.
+        private List<int> ComputeComponentsSizes(HashSet<(int, int)> freeTiles)
+        {
+            var sizes = new List<int>();
+            var visited = new HashSet<(int, int)>();
+
+            foreach (var tile in freeTiles)
+            {
+                if (!visited.Contains(tile))
+                {
+                    int size = BFSComponent(tile, freeTiles, visited);
+                    sizes.Add(size);
+                }
+            }
+            return sizes;
+        }
+
+        // BFS to compute the size of one connected component in a hex grid.
+        private int BFSComponent((int q, int r) start, HashSet<(int, int)> freeTiles, HashSet<(int, int)> visited)
+        {
+            int count = 0;
+            var queue = new Queue<(int, int)>();
+            queue.Enqueue(start);
+            visited.Add(start);
+
+            // Directions for axial hex grids.
+            (int dq, int dr)[] directions = new (int, int)[]
+            {
+        (1, 0), (1, -1), (0, -1),
+        (-1, 0), (-1, 1), (0, 1)
+            };
+
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+                count++;
+                foreach (var (dq, dr) in directions)
+                {
+                    var neighbor = (current.Item1 + dq, current.Item2 + dr);
+                    if (freeTiles.Contains(neighbor) && !visited.Contains(neighbor))
+                    {
+                        visited.Add(neighbor);
+                        queue.Enqueue(neighbor);
+                    }
+                }
+            }
+            return count;
+        }
+
+
 
         // Helper: Compute hex grid distance between two axial coordinates.
         private int HexDistance(int q1, int r1, int q2, int r2)

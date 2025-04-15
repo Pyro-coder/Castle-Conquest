@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://d57ybp8mq73m" path="res://Assets/wood_assets/Screenshot 2025-03-22 000409.png" id="9_vjyv8"]
 [ext_resource type="AudioStream" uid="uid://bhfma0x8j5j5x" path="res://Assets/SFX/tokenMove.wav" id="9_vw4oq"]
 [ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="10_hm3vq"]
-[ext_resource type="Script" uid="uid://yia2uj088qgy" path="res://Scripts/dragon.gd" id="13_hm3vq"]
+[ext_resource type="Script" uid="uid://c34wxpe4rxelx" path="res://Scenes/dragon_game.gd" id="13_hm3vq"]
 [ext_resource type="PackedScene" uid="uid://bdjlh2vowe56m" path="res://Assets/3dCharacters/Dragon2.glb" id="13_vjyv8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]

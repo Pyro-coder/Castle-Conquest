@@ -26,9 +26,9 @@ namespace Capstone25.Scripts.Core.Networking
 	public partial class NetworkAi : Node
 	{
 
-        private bool _isRunning = false;
+		private bool _isRunning = false;
 
-        private class Game
+		private class Game
 		{
 			public string State { get; set; }
 			public string action_id { get; set; }
@@ -51,29 +51,29 @@ namespace Capstone25.Scripts.Core.Networking
 				movementAi.Initialize(800, 1);
 			}
 
-            ~Game()
-            {
+			~Game()
+			{
 				tileAI.QueueFree();
 				movementAi.QueueFree();
-            }
+			}
 		}
 
 		public override void _Ready()
 		{
-            _isRunning = true;
+			_isRunning = true;
 
-            GD.Print("NetworkAi initialized!");
+			GD.Print("NetworkAi initialized!");
 
 			_ = Client.ProcessGameLogic(this);
 		}
 
-        public override void _ExitTree()
-        {
-            _isRunning = false;
-            GD.Print("Exiting scene, stopping game logic");
-        }
+		public override void _ExitTree()
+		{
+			_isRunning = false;
+			GD.Print("Exiting scene, stopping game logic");
+		}
 
-        private class Client
+		private class Client
 		{
 
 			private static Game game = new();
@@ -242,7 +242,7 @@ namespace Capstone25.Scripts.Core.Networking
 
 			private static async Task<dynamic> GetPlayStateAsync()
 			{
-				string @event = "mirror";
+				string @event = "aivai-final";
 				string player = game.player;
 				string token = game.token;
 

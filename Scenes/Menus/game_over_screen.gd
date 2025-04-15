@@ -3,12 +3,13 @@ extends CanvasLayer
 @onready var title = $PanelContainer/MarginContainer/VBoxContainer/Title
 @onready var restartBtn = $PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/RestartBtn
 @onready var menuBtn = $PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/MenuBtn
-@onready var quitBtn = $PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer2/QuitBtn
 @onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
 	AudioPlayer.stop()
 	audio_player.play()
+	if not GlobalVars.is_local_pvai and not GlobalVars.is_local_pvp:
+		restartBtn.hide()
 
 
 func set_title(winner: int):
@@ -39,7 +40,4 @@ func _on_menu_btn_pressed() -> void:
 	AudioPlayer.play()
 	
 	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
-	
-func _on_quit_btn_pressed() -> void:
-	get_tree().quit()
 	

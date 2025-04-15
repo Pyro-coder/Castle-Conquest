@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bvo44du5bpkbq"]
+[gd_scene load_steps=26 format=3 uid="uid://bvo44du5bpkbq"]
 
 [ext_resource type="Script" uid="uid://c683rweokjnfp" path="res://Scripts/board.gd" id="1_80qdv"]
 [ext_resource type="Script" uid="uid://bfim5786ax16d" path="res://Scenes/camera_3d.gd" id="2_eafhi"]
@@ -16,6 +16,8 @@
 [ext_resource type="Script" uid="uid://bj2b5en04xdl6" path="res://Scenes/network_manager.gd" id="10_eafhi"]
 [ext_resource type="Texture2D" uid="uid://d57ybp8mq73m" path="res://Assets/wood_assets/Screenshot 2025-03-22 000409.png" id="11_5mqdr"]
 [ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="12_f3v75"]
+[ext_resource type="Script" uid="uid://yia2uj088qgy" path="res://Scripts/dragon.gd" id="17_cmjm5"]
+[ext_resource type="PackedScene" uid="uid://bdjlh2vowe56m" path="res://Assets/3dCharacters/Dragon2.glb" id="18_iqpeq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]
 sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
@@ -39,7 +41,14 @@ shader = ExtResource("4_f3v75")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_riaai"]
 shader = ExtResource("9_1l3qu")
-shader_parameter/amount = 3.0
+
+[sub_resource type="Curve3D" id="Curve3D_ditnb"]
+closed = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -49.631, 0, 13.727, 0, 0, 0, 0, 0, 0, 26.006, 0, 18.045, 0, 0, 0, 0, 0, 0, -41.901, 0, -15.9, 0, 0, 0, 0, 0, 0, 20.573, 0, 36.624, 0, 0, 0, 0, 0, 0, -46.053, 0, 53.299, 0, 0, 0, 0, 0, 0, 25.614, 0, -12.23, 0, 0, 0, 0, 0, 0, -55.033, 0, 15.299, 0, 0, 0, 0, 0, 0, 9.492, 0, -44.737, 0, 0, 0, 0, 0, 0, -26.106, 0, 74.266, 0, 0, 0, 0, 0, 0, -22.876, 0, -35.247, 0, 0, 0, 0, 0, 0, 0.0902939, 0.520256, 65.3657),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 11
 
 [node name="board2" type="Node3D"]
 script = ExtResource("1_80qdv")
@@ -235,6 +244,19 @@ offset_left = 12.0
 offset_top = 618.0
 offset_right = 113.0
 offset_bottom = 641.0
+
+[node name="Dragon" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 5, -60.8563)
+script = ExtResource("17_cmjm5")
+
+[node name="Path3D" type="Path3D" parent="Dragon"]
+curve = SubResource("Curve3D_ditnb")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Dragon/Path3D"]
+transform = Transform3D(-0.0569947, 0, -0.998356, 0, 0.999995, 0, 0.998355, 0, -0.0569947, -49.631, 0, 13.727)
+
+[node name="Dragon2" parent="Dragon/Path3D/PathFollow3D" instance=ExtResource("18_iqpeq")]
+transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 0, 0)
 
 [connection signal="timeout" from="GameControl/InGameUI/Wait_Timer" to="GameControl/InGameUI" method="_on_wait_timer_timeout"]
 [connection signal="mouse_entered" from="GameControl/CanvasLayer2/pauseBtn" to="GameControl" method="pauseHvrd"]

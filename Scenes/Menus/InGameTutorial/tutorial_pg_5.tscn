@@ -1,12 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bi04sr84rc1vh"]
+[gd_scene load_steps=10 format=3 uid="uid://bi04sr84rc1vh"]
 
 [ext_resource type="Script" uid="uid://011wrr848wu" path="res://Scripts/menu_scripts/InGameTutorial/tutorial_pg_5.gd" id="1_yklxd"]
 [ext_resource type="PackedScene" uid="uid://t5bsek4qov5a" path="res://Scenes/Menus/InGameTutorial/menutemplate_in_game.tscn" id="2_yklxd"]
 [ext_resource type="Shader" uid="uid://4bsp6edg2ace" path="res://Assets/Shaders/pixelate.gdshader" id="3_4yjnl"]
 [ext_resource type="FontFile" uid="uid://bqm2v7i516jtc" path="res://Assets/OldeEnglish.ttf" id="4_xlxp4"]
 [ext_resource type="FontFile" uid="uid://c1852jjypyisc" path="res://Assets/The Centurion.otf" id="5_4ich8"]
-[ext_resource type="VideoStream" uid="uid://b82amcrh6reve" path="res://Assets/tutorial screen recordings/initialPlacement.ogv" id="6_x88sb"]
-[ext_resource type="Script" uid="uid://cywf5rrwodo5w" path="res://Scenes/Menus/InGameTutorial/video_stream_player.gd" id="7_1kwj1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_epeud"]
 shader = ExtResource("3_4yjnl")
@@ -125,21 +123,6 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_vpkj0")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_vpkj0")
 text = "Next
 "
-
-[node name="CanvasLayer" type="CanvasLayer" parent="MenuTemplate"]
-
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="MenuTemplate/CanvasLayer"]
-visible = false
-offset_left = 422.0
-offset_top = 361.0
-offset_right = 703.0
-offset_bottom = 511.0
-stream = ExtResource("6_x88sb")
-volume_db = -80.0
-autoplay = true
-expand = true
-loop = true
-script = ExtResource("7_1kwj1")
 
 [connection signal="mouse_entered" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_entered"]
 [connection signal="mouse_exited" from="MenuTemplate/HBoxContainer/BackButton" to="." method="_on_back_button_mouse_exited"]

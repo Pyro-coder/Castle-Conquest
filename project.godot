@@ -29,6 +29,7 @@ GlobalSettings="*res://Scripts/menu_scripts/GlobalSettings.gd"
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [dotnet]

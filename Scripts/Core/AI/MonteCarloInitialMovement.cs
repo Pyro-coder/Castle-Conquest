@@ -95,6 +95,15 @@ namespace BattleSheepCore.AI
                         int maxDiff = (totalFree - 1) - idealDiff;
                         double normalized = maxDiff > 0 ? (1.0 - ((double)Math.Abs(diff - idealDiff) / maxDiff)) : 1.0;
                         splitBonus = splitBonusWeight * normalized;
+
+                        if (diff is idealDiff or idealDiff + 1)
+                        {
+                            splitBonus = splitBonusWeight; // Maximum bonus
+                        }
+                        else
+                        {
+                            splitBonus = 0; // Otherwise, no bonus.
+                        }
                     }
                     // --- End Split Bonus Computation ---
 

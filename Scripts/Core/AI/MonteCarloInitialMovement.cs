@@ -33,88 +33,111 @@ namespace BattleSheepCore.AI
 		}
 
         public Godot.Collections.Dictionary<string, int> GetBestInitialPlacement(GameEngine gameEngine)
-        {
-            return Task.Run(() =>
-            {
-                var validPlacements = gameEngine.GetValidInitialPiecePlacements();
+		{
+			return Task.Run(() =>
+			{
+				var validPlacements = gameEngine.GetValidInitialPiecePlacements();
 
-                // Compute board extents from valid placements.
-                int minQ = validPlacements.Min(p => p.q);
-                int maxQ = validPlacements.Max(p => p.q);
-                int minR = validPlacements.Min(p => p.r);
-                int maxR = validPlacements.Max(p => p.r);
+				// Compute board extents from valid placements.
+				int minQ = validPlacements.Min(p => p.q);
+				int maxQ = validPlacements.Max(p => p.q);
+				int minR = validPlacements.Min(p => p.r);
+				int maxR = validPlacements.Max(p => p.r);
 
-                // Compute center of board based on valid placements.
-                int centerQ = (minQ + maxQ) / 2;
-                int centerR = (minR + maxR) / 2;
+				// Compute the board center based on extents.
+				int centerQ = (minQ + maxQ) / 2;
+				int centerR = (minR + maxR) / 2;
 
-                // Compute the maximum hex distance from the center among valid placements.
-                int maxDistanceOverall = validPlacements.Max(p => HexDistance(p.q, p.r, centerQ, centerR));
-                double maxDistanceForBonus = maxDistanceOverall / 2.0; // Bonus is applied only if within half the maximum distance.
+				// Tunable parameter for the split bonus.
+				const double splitWeight = 50.0;
 
-                const double chokeWeight = 50.0;  // Tunable parameter for bonus strength.
+				// Create a cancellation token that cancels after 4 seconds.
+				var cts = new CancellationTokenSource(TimeSpan.FromSeconds(4));
+				CancellationToken token = cts.Token;
 
-                // Create a cancellation token that cancels after 4 seconds.
-                var cts = new CancellationTokenSource(TimeSpan.FromSeconds(4));
-                CancellationToken token = cts.Token;
+				int bestQ = 0;
+				int bestR = 0;
 
-                int bestQ = 0;
-                int bestR = 0;
+				var candidateResults = validPlacements.AsParallel().Select(placement =>
+				{
+					double totalScore = 0;
+					int simulationsRun = 0;
+					for (int i = 0; i < simulationsPerMove; i++)
+					{
+						if (token.IsCancellationRequested)
+							break;
+						var simState = gameEngine.Clone();
+						try
+						{
+							simState.PlaceInitialPieces(aiPlayerId, placement.q, placement.r);
+						}
+						catch (Exception)
+						{
+							continue;
+						}
+						totalScore += SimulateRandomPlayout(simState, aiPlayerId);
+						simState.QueueFree();
+						simulationsRun++;
+					}
+					double avgScore = simulationsRun > 0 ? totalScore / simulationsRun : double.MinValue;
 
-                var candidateResults = validPlacements.AsParallel().Select(placement =>
-                {
-                    double totalScore = 0;
-                    int simulationsRun = 0;
-                    for (int i = 0; i < simulationsPerMove; i++)
-                    {
-                        if (token.IsCancellationRequested)
-                            break;
-                        var simState = gameEngine.Clone();
-                        try
-                        {
-                            simState.PlaceInitialPieces(aiPlayerId, placement.q, placement.r);
-                        }
-                        catch (Exception)
-                        {
-                            continue;
-                        }
-                        totalScore += SimulateRandomPlayout(simState, aiPlayerId);
-                        simState.QueueFree();
-                        simulationsRun++;
-                    }
-                    double avgScore = simulationsRun > 0 ? totalScore / simulationsRun : double.MinValue;
+					// Calculate split quality.
+					// The candidate's line is defined by the vector from the placement to the board center.
+					int countPos = 0, countNeg = 0;
+					foreach (var other in validPlacements)
+					{
+						// Skip the candidate itself.
+						if (other.q == placement.q && other.r == placement.r)
+							continue;
 
-                    // Compute the hex distance to the computed board center.
-                    int distance = HexDistance(placement.q, placement.r, centerQ, centerR);
-                    double bonus = (distance < maxDistanceForBonus)
-                        ? chokeWeight * (1 - ((double)distance / maxDistanceForBonus))
-                        : 0;
-                    double finalScore = avgScore + bonus;
-                    return (placement, finalScore);
-                }).ToList();
+						// Compute vector from candidate to center.
+						double vX = centerQ - placement.q;
+						double vY = centerR - placement.r;
+						// Compute vector from candidate to the other valid placement.
+						double wX = other.q - placement.q;
+						double wY = other.r - placement.r;
+						// Use the cross product to determine side.
+						double cross = vX * wY - vY * wX;
+						if (cross > 0)
+							countPos++;
+						else if (cross < 0)
+							countNeg++;
+					}
+					// The ideal even split is when the counts on either side are equal.
+					int diff = Math.Abs(countPos - countNeg);
+					// Maximum possible diff if all (validPlacements.Count - 1) points fall on one side.
+					double idealMaxDiff = validPlacements.Count - 1;
+					// Compute bonus: full bonus if diff is zero, tapering off linearly.
+					double splitBonus = splitWeight * (1 - (diff / idealMaxDiff));
 
-                var bestCandidate = candidateResults.OrderByDescending(r => r.finalScore).FirstOrDefault();
-                bestQ = bestCandidate.placement.q;
-                bestR = bestCandidate.placement.r;
+					double finalScore = avgScore + splitBonus;
+					return (placement, finalScore);
+				}).ToList();
 
-                var result = new Godot.Collections.Dictionary<string, int>
-        {
-            { "q", bestQ },
-            { "r", bestR }
-        };
+				var bestCandidate = candidateResults.OrderByDescending(r => r.finalScore).FirstOrDefault();
+				bestQ = bestCandidate.placement.q;
+				bestR = bestCandidate.placement.r;
 
-                return result;
-            }).GetAwaiter().GetResult();
-        }
+				var result = new Godot.Collections.Dictionary<string, int>
+				{
+					{ "q", bestQ },
+					{ "r", bestR }
+				};
 
-        // Helper: Compute hex grid distance between two axial coordinates.
-        private int HexDistance(int q1, int r1, int q2, int r2)
-        {
-            int dq = Math.Abs(q1 - q2);
-            int dr = Math.Abs(r1 - r2);
-            int ds = Math.Abs((-q1 - r1) - (-q2 - r2)); // since s = -q - r for axial coordinates.
-            return Math.Max(Math.Max(dq, dr), ds);
-        }
+				return result;
+			}).GetAwaiter().GetResult();
+		}
+
+		// Helper: Compute hex grid distance between two axial coordinates.
+		// (This function may still be useful elsewhere.)
+		private int HexDistance(int q1, int r1, int q2, int r2)
+		{
+			int dq = Math.Abs(q1 - q2);
+			int dr = Math.Abs(r1 - r2);
+			int ds = Math.Abs((-q1 - r1) - (-q2 - r2)); // since s = -q - r for axial coords.
+			return Math.Max(Math.Max(dq, dr), ds);
+		}
+
 
 
         public Godot.Collections.Dictionary<string, int> GetBestMovement(GameEngine gameEngine)

@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bhfma0x8j5j5x" path="res://Assets/SFX/tokenMove.wav" id="9_vw4oq"]
 [ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="10_hm3vq"]
 [ext_resource type="Script" uid="uid://c34wxpe4rxelx" path="res://Scenes/dragon_game.gd" id="13_hm3vq"]
-[ext_resource type="PackedScene" uid="uid://bdjlh2vowe56m" path="res://Assets/3dCharacters/Dragon2.glb" id="13_vjyv8"]
+[ext_resource type="PackedScene" uid="uid://cddvjpvsyelw8" path="res://dragon_2.tscn" id="14_hm3vq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]
 sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
@@ -181,7 +181,7 @@ curve = SubResource("Curve3D_hm3vq")
 [node name="PathFollow3D" type="PathFollow3D" parent="Dragon/Path3D"]
 transform = Transform3D(-0.0569947, 0, -0.998356, 0, 0.999995, 0, 0.998355, 0, -0.0569947, -49.631, 0, 13.727)
 
-[node name="Dragon2" parent="Dragon/Path3D/PathFollow3D" instance=ExtResource("13_vjyv8")]
+[node name="Dragon2" parent="Dragon/Path3D/PathFollow3D" instance=ExtResource("14_hm3vq")]
 transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 0, 0)
 
 [connection signal="mouse_entered" from="GameControl/CanvasLayer2/pauseBtn" to="GameControl" method="pauseHvrd"]

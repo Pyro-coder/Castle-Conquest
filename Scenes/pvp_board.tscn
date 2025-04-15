@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d57ybp8mq73m" path="res://Assets/wood_assets/Screenshot 2025-03-22 000409.png" id="9_jw4eg"]
 [ext_resource type="Script" uid="uid://dfykhkkqfytps" path="res://Scenes/Menus/texture_button.gd" id="10_y1gag"]
 [ext_resource type="Script" uid="uid://c34wxpe4rxelx" path="res://Scenes/dragon_game.gd" id="13_vjqkl"]
-[ext_resource type="PackedScene" uid="uid://bdjlh2vowe56m" path="res://Assets/3dCharacters/Dragon2.glb" id="14_yllyv"]
+[ext_resource type="PackedScene" uid="uid://cddvjpvsyelw8" path="res://dragon_2.tscn" id="14_vjqkl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r3ic"]
 sky_top_color = Color(0.201103, 0.414398, 0.868467, 1)
@@ -170,7 +170,7 @@ curve = SubResource("Curve3D_frjh0")
 [node name="PathFollow3D" type="PathFollow3D" parent="Dragon/Path3D"]
 transform = Transform3D(-0.0569947, 0, -0.998356, 0, 0.999995, 0, 0.998355, 0, -0.0569947, -49.631, 0, 13.727)
 
-[node name="Dragon2" parent="Dragon/Path3D/PathFollow3D" instance=ExtResource("14_yllyv")]
+[node name="Dragon2" parent="Dragon/Path3D/PathFollow3D" instance=ExtResource("14_vjqkl")]
 transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, 0, 0)
 
 [connection signal="timeout" from="GameControl/InGameUI/Wait_Timer" to="GameControl/InGameUI" method="_on_wait_timer_timeout"]

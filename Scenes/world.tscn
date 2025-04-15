@@ -1,7 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dvy7s6wfutupg"]
+[gd_scene load_steps=16 format=3 uid="uid://dvy7s6wfutupg"]
 
 [ext_resource type="MeshLibrary" uid="uid://dyymujlo3ml6" path="res://Scenes/Blcoks.tres" id="1_tyue0"]
 [ext_resource type="Script" uid="uid://hgy6xsr7e6hn" path="res://Scenes/menu_camera.gd" id="2_rg8tt"]
+[ext_resource type="Script" uid="uid://yia2uj088qgy" path="res://Scripts/dragon.gd" id="3_8j60k"]
+[ext_resource type="PackedScene" uid="uid://bdjlh2vowe56m" path="res://Assets/3dCharacters/Dragon2.glb" id="4_fo5ed"]
+[ext_resource type="Script" uid="uid://d1uiap35ytfuk" path="res://Assets/3dCharacters/dragon_2.gd" id="5_fo5ed"]
 
 [sub_resource type="GDScript" id="GDScript_xly3f"]
 script/source = "extends Node3D
@@ -156,6 +159,14 @@ sky_material = SubResource("ShaderMaterial_o06y3")
 background_mode = 2
 sky = SubResource("Sky_4gvus")
 
+[sub_resource type="Curve3D" id="Curve3D_5ukr8"]
+closed = true
+_data = {
+"points": PackedVector3Array(-139.429, -3.24127, -7.71124, 139.429, 3.24127, 7.71124, 740.019, -30.0578, -1008.08, -22.2856, 42.1147, -311.18, 22.2856, -42.1147, 311.18, 983.134, -72.5319, -739.695, 80.938, 0, -6.74481, -80.938, 0, 6.74481, 603.876, 0.720734, -321.456, 222.58, 0, 220.331, -222.58, 0, -220.331, 227.159, 65.1325, -359.836, -76.4414, 0, 89.9313, 76.4414, 0, -89.9313, 147.059, 4.19707, -807.481, -168.961, 12.8701, -0.817261, 168.961, -12.8701, 0.817261, 457.864, -27.2777, -1000.24),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
 [node name="World" type="Node3D"]
 script = SubResource("GDScript_xly3f")
 
@@ -183,3 +194,18 @@ transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 
 current = true
 fov = 51.2819
 script = ExtResource("2_rg8tt")
+
+[node name="Dragon" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -474.422, 193.159, 624.869)
+script = ExtResource("3_8j60k")
+
+[node name="Path3D" type="Path3D" parent="Dragon"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 122.724, -1319.64)
+curve = SubResource("Curve3D_5ukr8")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Dragon/Path3D"]
+transform = Transform3D(-0.055219, -0.0231689, -0.998163, 1.86257e-09, 0.999703, -0.023204, 0.998435, -0.00128137, -0.055204, 740.019, -30.0578, -1008.08)
+
+[node name="Dragon2" parent="Dragon/Path3D/PathFollow3D" instance=ExtResource("4_fo5ed")]
+transform = Transform3D(-15, 1.31134e-06, 0, -1.31134e-06, -15, 0, 0, 0, 15, 0, 0, 0)
+script = ExtResource("5_fo5ed")

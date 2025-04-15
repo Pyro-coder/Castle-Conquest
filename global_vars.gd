@@ -25,3 +25,5 @@ var is_host: bool = true
 
 
 var game_code: String = ""
+
+var saved_dragon_anim_state = null 

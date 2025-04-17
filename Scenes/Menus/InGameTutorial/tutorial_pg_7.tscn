@@ -59,9 +59,9 @@ autowrap_mode = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuTemplate"]
 material = SubResource("ShaderMaterial_gqhd8")
 layout_mode = 0
-offset_left = 425.0
+offset_left = 419.0
 offset_top = 519.0
-offset_right = 703.0
+offset_right = 708.0
 offset_bottom = 562.0
 theme_override_constants/separation = 85
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -71,39 +71,25 @@ namespace BattleSheepCore.AI
                         simState.QueueFree();
                         simulationsRun++;
                     }
-                    double avgScore = simulationsRun > 0 ? totalScore / simulationsRun : double.MinValue;
+                    double avgScore = simulationsRun > 0 ? totalScore / simulationsPerMove : double.MinValue;
 
                     // --- Compute the Split Bonus ---
-                    // Build a set of free tile coordinates (from valid placements).
+                    // Build a set of free tile coordinates (using all valid placements).
                     var freeTiles = new HashSet<(int, int)>(validPlacements.Select(vp => (vp.q, vp.r)));
-                    // Remove the candidate tile because the AI would take it.
+                    // Remove the candidate tile since the AI would take it.
                     freeTiles.Remove((placement.q, placement.r));
 
                     // Compute connected components in the free region.
                     var componentSizes = ComputeComponentsSizes(freeTiles);
                     double splitBonus = 0;
-                    // We only award a bonus if the candidate splits the region into exactly 2 components.
-                    if (componentSizes.Count == 2)
+                    // If the candidate tile removal divides the board into more than one component, we reward an even split.
+                    if (componentSizes.Count > 1)
                     {
-                        int comp1 = componentSizes[0];
-                        int comp2 = componentSizes[1];
-                        int diff = Math.Abs(comp1 - comp2);
-                        // When totalFree is even, removing one tile leaves an odd number.
-                        // The ideal split for an odd number (e.g. 31) is 16 and 15; ideal difference is 1.
-                        const int idealDiff = 1;
-                        // Maximum possible difference is when one component gets all the tiles.
-                        int maxDiff = (totalFree - 1) - idealDiff;
-                        double normalized = maxDiff > 0 ? (1.0 - ((double)Math.Abs(diff - idealDiff) / maxDiff)) : 1.0;
-                        splitBonus = splitBonusWeight * normalized;
-
-                        if (diff is idealDiff or idealDiff + 1)
-                        {
-                            splitBonus = splitBonusWeight; // Maximum bonus
-                        }
-                        else
-                        {
-                            splitBonus = 0; // Otherwise, no bonus.
-                        }
+                        // For an even split, the ratio between the smallest and largest component is close to 1.
+                        int largest = componentSizes.Max();
+                        int smallest = componentSizes.Min();
+                        double ratio = (double)smallest / largest;
+                        splitBonus = splitBonusWeight * ratio;
                     }
                     // --- End Split Bonus Computation ---
 
@@ -173,6 +159,11 @@ namespace BattleSheepCore.AI
             }
             return count;
         }
+
+
+        // Helper: Compute the sizes of connected components (regions) in the free tile set.
+
+        // BFS to compute the size of one connected component in a hex grid.
 
 
 
@@ -269,7 +260,7 @@ namespace BattleSheepCore.AI
 
 		private int SimulateRandomPlayout(IGameEngine state, int currentPlayerId)
 		{
-			int simulationDepth = 10;
+			int simulationDepth = 14;
 			for (int d = 0; d < simulationDepth && !state.CheckForWin(); d++)
 			{
 				var moves = state.GetValidMoves(currentPlayerId);

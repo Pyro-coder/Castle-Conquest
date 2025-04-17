@@ -15,7 +15,7 @@ func _ready() -> void:
 func set_title(winner: int):
 	match winner:
 		0:
-			title.text = "Its a Tie"
+			title.text = "It's a Tie!"
 		1:
 			title.text = "Blue Player Conquers All!"
 		2:

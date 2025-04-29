@@ -6,3 +6,5 @@ Russell, Stuart J., et al. Artificial Intelligence: A Modern Approach. Pearson E
 
 
 ChatGPT - For proofing code and research purposes
+
+https://learn.microsoft.com/en-us/aspnet/web-api/overview/advanced/calling-a-web-api-from-a-net-client - For client/server interactions

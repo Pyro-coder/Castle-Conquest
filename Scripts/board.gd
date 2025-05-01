@@ -10,7 +10,7 @@ const BLUE_CHURCH = preload("res://Scenes/church_hex_blue.tscn")
 const BLUE_MARKET = preload("res://Scenes/market_hex_blue.tscn")
 const BLUE_TAVERN = preload("res://Scenes/tavern_hex_blue.tscn")
 const BLUE_BLACKSMITH = preload("res://Scenes/blacksmith_hex_blue.tscn")
-const BLUE_LARGEHOUSE = preload("res://Scenes/largehouse_hex_blue.tscn")
+const BLUE_LARGEHOUSE = preload("res://Scenes/Largehouse_hex_blue.tscn")
 const BLUE_SMALLHOUSE = preload("res://Scenes/smallhouse_hex_blue.tscn")
 
 

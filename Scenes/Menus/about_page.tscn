@@ -65,16 +65,16 @@ offset_right = 704.0
 offset_bottom = 547.0
 theme_override_fonts/font = ExtResource("3_echs6")
 theme_override_font_sizes/font_size = 20
-text = "This game is based on the board game, Battle Sheep, and it was a capstone project to show case the skills we have learned.
+text = "This game is based on the board game, Battle Sheep, and it was a capstone project to showcase the skills we have learned.
 
-Group Leader, Ai and Gamecore Lead
-	   - Redacted
+Group Leader, Ai & Gamecore Lead:
+Noah Oppermann
 
-Networking Lead
-   - Redacted
+Networking Lead:
+Ivy Henderson
 
-Ui Leads
-   - Redacted and Redacted
+Ui Leads:
+Benjamin Green & Denereus Benby
 
 
 We sincerly hope you enjoy our game.
